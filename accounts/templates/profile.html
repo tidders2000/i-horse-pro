@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %} {% load crispy_forms_tags %}{% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
+ {% block content %}
+
+ <h1 class="m-3">Profile</h1>
+
+
+
+      <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 ">
+
+   <img src="{{MEDIA_URL}}{{ instance.profile_image}}" style="height:100px;width:100px;"/>
+
+  <form method='POST' enctype="multipart/form-data" >
+                      {% csrf_token %} {{ profile|crispy }}
+                      <button type="submit" class="btn btn-success">ADD</button>
+
+                      </form>
+ <a href="{% url "password_reset_recover" %}" style="font-size:15px;padding-bottom:50px;">Reset password</a> 
+                      </div>
+                  
+
+</div>
+</div>
+
+
+
+ 
+
+ {% endblock %}

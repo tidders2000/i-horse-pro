@@ -1,54 +1,7 @@
-{% load static%}  
-
-
-
-
-<style>
-
-.centered {
- 
-  top: 5%;
-  text-align:center
- 
-}
-
-body { 
- 
- background: url({% static 'images/error_pattern.png' %}) no-repeat center center fixed;
-  background-size: cover;
-  height: 100%;
-  overflow: hidden;
-
-  
-}
-
-.title{
-  font-size:70px;
-  color:#01579b;
-}
-
-a:link, a:visited {
-  background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a:hover, a:active {
-  background-color: #01579b;
-}
-
-</style>
-   <a href="{% url 'dashboard' %}" class="link">Back</a>
-  <div class="bg"> 
-
-    <p class="centered title">ScreenPop has Popped Off<br>
-    
-    
-    </p>
-   
-
-  </div>
-
+{% extends 'basePW.html' %}{% load static%} {% block page_title %}Enter new password{% endblock %}
+     {% block content %}
+     
+<h4 class="white-text">Ooops</h4>
+<p class="white-text">Sorry the little electronic horse workers are on a break. Click below to get them working again<br><br><a href="{% url 'home' %}">Home</a></p>
+     
+       {% endblock %} 

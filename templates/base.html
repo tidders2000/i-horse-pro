@@ -10,21 +10,57 @@
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <!--vendor style sheets-->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- manifest-->
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+   
    <!-- apple web app settings-->
    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black">
-   <link rel="apple-touch-icon" href="touch-icon-iphone.png">
-   <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
-   <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
-   <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+<link rel="apple-touch-icon" sizes="57x57" href="{% static 'icons/apple-icon-57x57.png'%}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'icons/apple-icon-60x60.png'%}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'icons/apple-icon-72x72.png'%}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'icons/apple-icon-76x76.png'%}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'icons/apple-icon-114x114.png'%}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'icons/apple-icon-120x120.png'%}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'icons/apple-icon-144x144.png'%}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'icons/apple-icon-152x152.png'%}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-icon-180x180.png'%}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'icons/android-icon-192x192.png'%}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png'%}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png'%}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png'%}">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static 'icons/ms-icon-144x144.png'%}">
+  <meta name="theme-color" content="#ffffff">
 
 </head>
-<body>
- <div class="row bg">
 
-      <div class="col s2 ">
+<body>
+
+
+ <div class="row bg">
+<!-- nav for small only-->
+
+ <!-- Top Navigation Menu -->
+<div class="topnav hide-on-med-and-up">
+  <a href="#home" class="active">Logo</a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="menu()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+      <div class="col s2 hide-on-small-only ">
         <div class="white-text sidenav">
-        <img src="{% static 'images/logo5.png' %} "class='logo'/>
+        <img src="{% static 'images/logo5.png' %} "class='responsive-img'/>
           <ul id="" class="">
             <li> <a href="home.html"><i class="fa fa-home"></i><em>Home</em></a></li>
               <li> <a href="horses.html"><i class="fas fa-horse"></i><em>Horses</em></a></li>
@@ -46,14 +82,14 @@
         </div><!--end of side nav-->
     </div><!--end of col-->
 <!--main section-->
-      <div class="col s9" class="main_col"><!--main body -->-->
+      <div class="col s12 m9" class="main_col"><!--main body -->-->
          <div class="hs__wrapper">
 
    
       {% block content %} {% endblock %} 
-  <footer>
-  Design by scruffy horse
-  </footer>
+      <!--small toolbar-->
+
+
 
  </div><!--end of wrapper-->
 
@@ -75,9 +111,36 @@
              {% endif%} {% endcomment %}
 
 </div><!--end of row-->
+<div class="small_navbar hide-on-med-and-up row">
+
+<div class="col s3 align-center"><div class="center-align"><i class="fas fa-home  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Home</span></div></div>
+<div class="col s3 align-center"><div class="center-align"><i class="fas fa-book-open center-align small_nav" style="padding:0;"></i><br><span class="white-text">Training</span></div></div>
+<div class="col s3 align-center"><div class="center-align"><i class="fas fa-horse  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Horse</span></div></div>
+<div class="col s3 align-center"><div class="center-align"><i class="fas fa-calendar center-align small_nav" style="padding:0;"></i><br><span class="white-text">Cal</span></div></div>
+
+ 
+ 
+
+</div><!-- end of small navbar-->
+ {% block sw_script %}
+            <script>
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('{% url "ServiceWorkerView" %}', { scope: 'http://127.0.0.1:8000/home/'}).then(function(reg) {
+                        // registration worked
+                        console.log('Registration succeeded. Scope is ' + reg.scope);
+                    }).catch(function(error) {
+                        // registration failed
+                        console.log('Registration failed with ' + error);
+                    });
+                }
+            </script>
+        {% endblock %} 
 
      <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
-  
+      <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
 </body>
 </html>
 

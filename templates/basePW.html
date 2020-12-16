@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block page_title %}{% endblock %}</title>
+
+  <!-- core css -->
+   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <!--vendor style sheets-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!-- apple web app settings-->
+   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black">
+   <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+   <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+
+</head>
+<body>
+<div class="container">
+ <div class="row bg">
+   <img src="{% static 'images/logo5.png' %} "class='logo'/>
+      <-end of col-->
+<!--main section-->
+
+      <div class="col s10" class="main_col"><!--main body -->-->
+         <div class="hs__wrapper">
+
+   
+      {% block content %} {% endblock %} 
+  <footer>
+  Design by scruffy horse
+  </footer>
+
+ </div><!--end of wrapper-->
+
+</div><!--end of main section-->
+
+
+{% comment %} 
+{% if messages %}
+
+                {% for message in messages %}
+  <div class="alert alert-primary alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+            
+             {% endif%} {% endcomment %}
+
+</div><!--end of row-->
+</div> <!--end of container-->
+     <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+          
+    

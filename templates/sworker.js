@@ -1,6 +1,6 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
-const VERSION = '2.0';
+const VERSION = '2.1';
 
 if (workbox) {
     console.log(`Yay! Workbox is loaded 🎉`);

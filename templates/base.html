@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>{% block page_title %}{% endblock %}</title>
 
   <!-- core css -->
@@ -45,7 +46,7 @@
 
  <!-- Top Navigation Menu -->
 <div class="topnav hide-on-med-and-up">
-  <a href="#home" class="active">Logo</a>
+   <img src="{% static 'images/logo/mobile_logo.png' %} "class="logo_small"/>
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
     <a href="#news">News</a>
@@ -60,7 +61,7 @@
 
       <div class="col s2 hide-on-small-only ">
         <div class="white-text sidenav">
-        <img src="{% static 'images/logo5.png' %} "class='responsive-img'/>
+        <img src="{% static 'images/logo5.png' %} "class="logo"/>
           <ul id="" class="">
             <li> <a href="home.html"><i class="fa fa-home"></i><em>Home</em></a></li>
               <li> <a href="horses.html"><i class="fas fa-horse"></i><em>Horses</em></a></li>
@@ -82,7 +83,7 @@
         </div><!--end of side nav-->
     </div><!--end of col-->
 <!--main section-->
-      <div class="col s12 m9" class="main_col"><!--main body -->-->
+      <div class="col s12 m9" class="main_col" style="padding-left:30px;"><!--main body -->-->
          <div class="hs__wrapper">
 
    

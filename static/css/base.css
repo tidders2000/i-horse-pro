@@ -102,6 +102,10 @@ input {
     width: 205px;
 }
 
+.logo_small {
+    padding: 5px;
+}
+
 
 /*mobile navbar on foot of page*/
 
@@ -148,9 +152,7 @@ input {
 
 /* Add a color to the active/current link */
 
-.small_navbar a.active {
-    background-color: #4CAF50;
-}
+.small_navbar a.active {}
 
 
 /* pop out sile nav on small */
@@ -186,7 +188,7 @@ input {
 /* Style the hamburger menu */
 
 .topnav a.icon {
-    background: black;
+    background: #333333;
     display: block;
     position: absolute;
     right: 0;
@@ -205,20 +207,21 @@ input {
 /* Style the active link (or home/logo) */
 
 .active {
-    background-color: #4CAF50;
     color: white;
 }
 
 
 /* media rules*/
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 769px) {
     .logo {
         width: 130px;
         height: 77px;
     }
-
     ul {
         font-size: 14px;
+    }
+    .main_col {
+        padding-left: 30px !important;
     }
 }

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}{% load static%} {% block page_title %}Push{% endblock %}
+    {% block content %}  
+         
+<head>
+  
+      <!-- core css -->
+    <link rel="stylesheet" href="{% static 'css/sendpush.css' %}"> 
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapid-key" content="{{ vapid_key }}">
+    {% if user.id %}
+        <meta name="user_id" content="{{ user.id }}">
+    {% endif %} 
+    <title>Web Push</title>
+   
+</head>
+
+    
+   
+     
+
+
+<div>
+    <form id="send-push__form">
+        <h3 class="header">Send a push notification</h3>
+        <p class="error"></p>
+        <input type="text" name="head" placeholder="enter a title">
+        <textarea name="body" id="hg" cols="30" rows="10" placeholder="ENTER MESSAGE"></textarea>
+        <button>Send Me</button>
+    </form>
+</div>
+      <script src="{% static 'js/site.js' %}"></script>
+       {% endblock %} 

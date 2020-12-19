@@ -9,6 +9,7 @@
 
   <!-- core css -->
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+     
   <!--vendor style sheets-->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
@@ -35,6 +36,13 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="{% static 'icons/ms-icon-144x144.png'%}">
   <meta name="theme-color" content="#ffffff">
+<!--push key-->
+   
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapid-key" content="{{ vapid_key }}">
+    {% if user.id %}
+        <meta name="user_id" content="{{ user.id }}">
+    {% endif %}
 
 </head>
 
@@ -86,7 +94,7 @@
       <div class="col s12 m9" class="main_col" style="padding-left:30px;"><!--main body -->-->
          <div class="hs__wrapper">
 
-   
+   <p>{{vapid_key}}</p>
       {% block content %} {% endblock %} 
       <!--small toolbar-->
 
@@ -123,6 +131,8 @@
  
 
 </div><!-- end of small navbar-->
+
+<!--register service worker-->
  {% block sw_script %}
             <script>
                 if ('serviceWorker' in navigator) {
@@ -136,11 +146,15 @@
                 }
             </script>
         {% endblock %} 
+<!--fontaweseom kit js file-->
+   <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
+<!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+   
 
-     <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
-      <!-- Compiled and minified JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="{% static 'js/custom.js' %}"></script>
+   
+<!-- custom js-->
+   <script src="{% static 'js/custom.js' %}"></script>
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 {
     "name": "iHorse App",
     "short_name": "iHorse",
-    "start_url": "https://i-horse.herokuapp.com",
-    "scope": "https://i-horse.herokuapp.com",
+    "start_url": "/home/",
+    "scope": "/home/",
     "display": "standalone",
     "background_color": "#FFF",
     "theme_color": "#21a3e2",

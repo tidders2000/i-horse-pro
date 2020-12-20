@@ -136,7 +136,7 @@
  {% block sw_script %}
             <script>
                 if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('{% url "ServiceWorkerView" %}', { scope: 'https://i-horse.herokuapp.com'}).then(function(reg) {
+                    navigator.serviceWorker.register('{% url "ServiceWorkerView" %}', { scope: '/home/'}).then(function(reg) {
                         // registration worked
                         console.log('Registration succeeded. Scope is ' + reg.scope);
                     }).catch(function(error) {

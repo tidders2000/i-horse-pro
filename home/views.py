@@ -24,7 +24,7 @@ def home(request):
 class ServiceWorkerView(TemplateView):
     template_name = 'sworker.js'
     content_type = 'application/javascript'
-    name = 'sw.js'
+    name = 'sworker.js'
 
 
 def error(request):

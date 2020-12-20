@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from home.views import index, ServiceWorkerView
 
 
 urlpatterns = [
@@ -23,4 +24,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('home/', include('home.urls')),
     path('sendpush/', include('sendpush.urls')),
+    path(
+        'sworker.js',
+        ServiceWorkerView.as_view(),
+        name='ServiceWorkerView',
+    ),
+
 ]

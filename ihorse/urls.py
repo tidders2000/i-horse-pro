@@ -29,5 +29,6 @@ urlpatterns = [
         ServiceWorkerView.as_view(),
         name='ServiceWorkerView',
     ),
+    path('webpush/', include('webpush.urls')),
 
 ]

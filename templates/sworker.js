@@ -12,9 +12,9 @@ if (workbox) {
 const OFFLINE_URL = '/accounts/error/';
 const appShell = [
 
-    '/static/css/base.css',
-    '/static/images/logo5.png',
-    '/home/'
+    // '/static/css/base.css',
+    // '/static/images/logo5.png',
+    // '/home/'
 
 ].map((partialUrl) => `${location.protocol}//${location.host}${partialUrl}`);
 

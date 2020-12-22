@@ -212,6 +212,13 @@ input {
 }
 
 
+/* hides notification button by default*/
+
+.enable-notifications {
+    display: none;
+}
+
+
 /* media rules*/
 
 @media screen and (max-width: 769px) {

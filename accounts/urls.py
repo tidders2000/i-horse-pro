@@ -26,7 +26,7 @@ urlpatterns = [
     path('profile/', user_profile, name='profile'),
 
     path('error/', error, name='error'),
-    # path('reset', include('password_reset.urls')),
+    path('reset', include('password_reset.urls')),
 
     # path('test', test, name='test'),
     # path(

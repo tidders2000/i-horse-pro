@@ -1,7 +1,7 @@
 {
     "name": "iHorse App",
     "short_name": "iHorse",
-    "start_url": "/",
+    "start_url": "/home/",
     "scope": "../",
     "display": "standalone",
     "background_color": "#FFF",

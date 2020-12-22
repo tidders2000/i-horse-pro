@@ -1,6 +1,8 @@
 
-{% extends 'base.html' %} {% load crispy_forms_tags %}{% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
+{% extends 'base.html' %}{% load static%} {% load crispy_forms_tags %}{% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
  {% block content %}
+
+
 
  <h1 class="m-3">Profile</h1>
 
@@ -23,8 +25,12 @@
 </div>
 </div>
 
-
+<div class="drawer-option">
+          <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+            Enable Notifications
+          </button>
+        </div>
 
  
-
+   <script src="{% static 'js/app.js' %}"></script>
  {% endblock %}

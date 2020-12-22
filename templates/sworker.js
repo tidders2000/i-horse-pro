@@ -1,9 +1,26 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
-const VERSION = '2.6';
+const VERSION = '4.0';
+
+// self.addEventListener('activate', function(event) {
+//     console.log('[Service Worker] Activating Service Worker ....', event);
+//     event.waitUntil(
+//         caches.keys()
+//         .then(function(keyList) {
+//             return Promise.all(keyList.map(function(key) {
+//                 if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
+//                     console.log('[Service Worker] Removing old cache.', key);
+//                     return caches.delete(key);
+//                 }
+//             }));
+//         })
+//     );
+//     return self.clients.claim();
+// });
 
 if (workbox) {
-    console.log(`Yay! Workbox is loaded 🎉`);
+    console.log(`Yay! Workbox is loaded 🎉 `);
+    console.log(VERSION)
 } else {
     console.log(`Boo! Workbox didn't load 😬`);
 }
@@ -12,9 +29,9 @@ if (workbox) {
 const OFFLINE_URL = '/accounts/error/';
 const appShell = [
 
-    // '/static/css/base.css',
-    // '/static/images/logo5.png',
-    // '/home/'
+    '/static/css/base.css',
+    '/static/images/logo5.png',
+    '/home/'
 
 ].map((partialUrl) => `${location.protocol}//${location.host}${partialUrl}`);
 
@@ -64,20 +81,20 @@ workbox.routing.setCatchHandler(({ event }) => {
 });
 
 // Register event listener for the 'push' event.
-self.addEventListener('push', function(event) {
-    // Retrieve the textual payload from event.data (a PushMessageData object).
-    // Other formats are supported (ArrayBuffer, Blob, JSON), check out the documentation
-    // on https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData.
-    const eventInfo = event.data.text();
-    const data = JSON.parse(eventInfo);
-    const head = data.head || 'New Notification 🕺🕺';
-    const body = data.body || 'This is default content. Your notification didn\'t have one 🙄🙄';
+// self.addEventListener('push', function(event) {
+//     // Retrieve the textual payload from event.data (a PushMessageData object).
+//     // Other formats are supported (ArrayBuffer, Blob, JSON), check out the documentation
+//     // on https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData.
+//     const eventInfo = event.data.text();
+//     const data = JSON.parse(eventInfo);
+//     const head = data.head || 'New Notification 🕺🕺';
+//     const body = data.body || 'This is default content. Your notification didn\'t have one 🙄🙄';
 
-    // Keep the service worker alive until the notification is created.
-    event.waitUntil(
-        self.registration.showNotification(head, {
-            body: body,
-            icon: 'https://i.imgur.com/MZM3K5w.png'
-        })
-    );
-});
+//     // Keep the service worker alive until the notification is created.
+//     event.waitUntil(
+//         self.registration.showNotification(head, {
+//             body: body,
+//             icon: 'https://i.imgur.com/MZM3K5w.png'
+//         })
+//     );
+// });

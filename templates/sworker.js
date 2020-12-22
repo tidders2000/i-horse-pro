@@ -1,6 +1,6 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
-const VERSION = '4.0';
+const VERSION = '5.0';
 
 // self.addEventListener('activate', function(event) {
 //     console.log('[Service Worker] Activating Service Worker ....', event);
@@ -29,9 +29,9 @@ if (workbox) {
 const OFFLINE_URL = '/accounts/error/';
 const appShell = [
 
-    '/static/css/base.css',
-    '/static/images/logo5.png',
-    '/home/'
+    // '/static/css/base.css',
+    // '/static/images/logo5.png',
+    //'/home/'
 
 ].map((partialUrl) => `${location.protocol}//${location.host}${partialUrl}`);
 

@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'home',
     'storages',
-
+    'webpush',
     'sendpush',
-
+    "fcm_django",
 
 ]
 
@@ -62,9 +62,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
-FCM_SERVER_KEY: "AAAAC_FjzQA:APA91bEtknthvu7fmN9r2k-mBivd-hhjTowMq8EKlTGlIbWC7GH8HzVlnWGOiuqo0JCizR_iFtB1z-HN4BB_MqSlWCuaGjmjegJtd7I4WaNYNJ3ku7VpUZwma53MsMzTLi6NgWH_Uw8l"
 
 
 ROOT_URLCONF = 'ihorse.urls'
@@ -134,6 +131,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": os.environ.get('VAPID_PUBLIC_KEY'),
+    "VAPID_PRIVATE_KEY": os.environ.get('VAPID_PRIVATE_KEY'),
+    "VAPID_ADMIN_EMAIL":  os.environ.get('VAPID_ADMIN_EMAIL')
+}
 
 
 # Internationalization

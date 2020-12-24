@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home.views import ServiceWorkerView
+from home.views import ServiceWorkerView, fbsw
 
 
 urlpatterns = [
@@ -24,10 +24,17 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('home/', include('home.urls')),
     path('sendpush/', include('sendpush.urls')),
+
     path(
         'sworker.js',
         ServiceWorkerView.as_view(),
         name='ServiceWorkerView',
+    ),
+
+    path(
+        'firebase-messaging-sw.js',
+        fbsw.as_view(),
+        name='fbsw',
     ),
     path('webpush/', include('webpush.urls')),
 

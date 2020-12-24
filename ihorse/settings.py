@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'storages',
     'webpush',
     'sendpush',
+    "fcm_django",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +62,25 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+FCM_SERVER_KEY: "AAAAC_FjzQA:APA91bEtknthvu7fmN9r2k-mBivd-hhjTowMq8EKlTGlIbWC7GH8HzVlnWGOiuqo0JCizR_iFtB1z-HN4BB_MqSlWCuaGjmjegJtd7I4WaNYNJ3ku7VpUZwma53MsMzTLi6NgWH_Uw8l"
+
+
+FCM_DJANGO_SETTINGS = {
+    # default: _('FCM Django')
+    "APP_VERBOSE_NAME": "iHorse",
+    # Your firebase API KEY
+    "FCM_SERVER_KEY": "AIzaSyD4p8Ud9SI8Cv_u1qxpyH7v7nP0K0S5rPU",
+    # true if you want to have only one active device per registered user at a time
+    # default: False
+    "ONE_DEVICE_PER_USER": False,
+    # devices to which notifications cannot be sent,
+    # are deleted upon receiving error response from FCM
+    # default: False
+    "DELETE_INACTIVE_DEVICES": False,
+
+}
 
 
 ROOT_URLCONF = 'ihorse.urls'

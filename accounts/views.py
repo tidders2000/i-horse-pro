@@ -8,7 +8,7 @@ from .forms import ProfileForm
 from .models import Profile
 from datetime import datetime
 from datetime import date
-
+from django.conf import settings
 from django.template.context_processors import csrf
 
 from django.views.generic import TemplateView
@@ -79,6 +79,9 @@ def registration(request):
 
 @login_required
 def user_profile(request):
+    webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
+    vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
+    user = request.user
     """the users profile page"""
     instance = Profile.objects.get(pk=request.user.pk)
     if request.method == "POST":
@@ -91,7 +94,7 @@ def user_profile(request):
         messages.error(request, "Profile Updated")
 
     profile = ProfileForm(instance=instance)
-    return render(request, 'profile.html', {'profile': profile, 'instance': instance})
+    return render(request, 'profile.html', {'profile': profile, 'instance': instance, 'user': user, 'vapid_key': vapid_key})
 
 
 # class ServiceWorkerView(TemplateView):

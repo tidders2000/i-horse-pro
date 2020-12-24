@@ -3,6 +3,11 @@
  {% block content %}
 
 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapid-key" content="{{ vapid_key }}">
+    {% if user.id %}
+        <meta name="user_id" content="{{ user.id }}">
+    {% endif %} 
 
  <h1 class="m-3">Profile</h1>
 

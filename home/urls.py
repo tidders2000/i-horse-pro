@@ -5,6 +5,7 @@ from .views import *
 
 urlpatterns = [
     path('', home, name='home'),
+
     path(
         'sworker.js',
         ServiceWorkerView.as_view(),

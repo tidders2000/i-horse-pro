@@ -44,6 +44,7 @@ function urlB64ToUint8Array(base64String) {
 }
 
 const subscribe = async(reg) => {
+
     const subscription = await reg.pushManager.getSubscription();
     if (subscription) {
         sendSubData(subscription);

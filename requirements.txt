@@ -36,3 +36,5 @@ sqlparse==0.4.1
 toml==0.10.2
 urllib3==1.26.2
 zipp==3.4.0
+fcm-django==0.3.7 
+pyfcm==1.4.9

@@ -38,3 +38,4 @@ urllib3==1.26.2
 zipp==3.4.0
 fcm-django==0.3.7 
 pyfcm==1.4.9
+django-cors-headers==3.6.0

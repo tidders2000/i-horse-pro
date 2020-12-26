@@ -104,4 +104,4 @@ def user_profile(request):
 
 
 def error(request):
-    return render(request, 'error.html')
+    return render(request, 'offline.html')

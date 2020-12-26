@@ -1,6 +1,5 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
-
-const VERSION = '2.0';
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.0.2/workbox-sw.js');
+const VERSION = '5.0';
 
 // self.addEventListener('activate', function(event) {
 //     console.log('[Service Worker] Activating Service Worker ....', event);
@@ -29,9 +28,10 @@ if (workbox) {
 const OFFLINE_URL = '/accounts/error/';
 const appShell = [
 
-    'https://i-horse.s3.amazonaws.com/static/css/base.css',
 
-    '/home/'
+
+    '/home/',
+    '/static/css/base.css'
 
 ].map((partialUrl) => `${location.protocol}//${location.host}${partialUrl}`);
 

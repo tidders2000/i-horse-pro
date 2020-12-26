@@ -1,4 +1,4 @@
-var CACHE_STATIC_NAME = 'static-v1';
+var CACHE_STATIC_NAME = 'static-v2';
 var CACHE_DYNAMIC_NAME = 'dynamic-v1';
 
 self.addEventListener('install', function(event) {
@@ -10,7 +10,7 @@ self.addEventListener('install', function(event) {
             cache.addAll([
 
                 '/home/',
-                'https://i-horse.s3.amazonaws.com/static/css/base.css',
+                'https://cors-anywhere.herokuapp.com/https://i-horse.s3.amazonaws.com/static/css/base.css',
 
 
 

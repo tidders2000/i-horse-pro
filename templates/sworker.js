@@ -13,7 +13,7 @@ self.addEventListener('install', function(event) {
                 // '/home/templates/home.html',
 
                 '/home/',
-                '/static/css/base.css'
+
 
                 // '/templates/base.html',
                 // '/templates/basePW.html',

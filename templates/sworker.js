@@ -1,5 +1,5 @@
 var CACHE_STATIC_NAME = 'static-v2';
-var CACHE_DYNAMIC_NAME = 'dynamic-v1';
+var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 
 self.addEventListener('install', function(event) {
     console.log('[Service Worker] Installing Service Worker ...', event);
@@ -8,9 +8,19 @@ self.addEventListener('install', function(event) {
         .then(function(cache) {
             console.log('[Service Worker] Precaching App Shell');
             cache.addAll([
+                '/accounts/error/',
+
+                // '/home/templates/home.html',
 
                 '/home/',
+                // '/templates/base.html',
+                // '/templates/basePW.html',
+                'https://cors-anywhere.herokuapp.com/https://i-horse.s3.amazonaws.com/static/images/logo5.png',
                 'https://cors-anywhere.herokuapp.com/https://i-horse.s3.amazonaws.com/static/css/base.css',
+                'https://cors-anywhere.herokuapp.com/https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css',
+                'https://cors-anywhere.herokuapp.com/https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+                'https://cors-anywhere.herokuapp.com/https://i-horse.s3.amazonaws.com/static/images/logo/mobile_logo.png'
+
 
 
 
@@ -41,6 +51,7 @@ self.addEventListener('fetch', function(event) {
         caches.match(event.request)
         .then(function(response) {
             if (response) {
+                console.log(response.status)
                 return response;
             } else {
                 return fetch(event.request)
@@ -52,6 +63,10 @@ self.addEventListener('fetch', function(event) {
                             })
                     })
                     .catch(function(err) {
+                        return caches.open(CACHE_STATIC_NAME)
+                            .then(function(cache) {
+                                return cache.match('/accounts/error/');
+                            });
 
                     });
             }

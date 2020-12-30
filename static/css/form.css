@@ -1,0 +1,10 @@
+textarea {
+    color: white;
+}
+
+.box {
+    border: 1px solid #21a3e2;
+    padding: 10px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}

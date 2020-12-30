@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('home/', include('home.urls')),
+    path('horse/', include('horse.urls')),
     path('sendpush/', include('sendpush.urls')),
 
     path(

@@ -42,15 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'django.contrib.admin',
-    'bootstrap4',
-    'django_forms_bootstrap',
-    'crispy_forms',
+
+
     'home',
     'storages',
     'webpush',
     'sendpush',
     "fcm_django",
     'corsheaders',
+    'horse',
+    'crispy_forms_materialize',
+    'materializecssform',
 
 ]
 

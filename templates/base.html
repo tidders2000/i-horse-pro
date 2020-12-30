@@ -11,7 +11,12 @@
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
      
   <!--vendor style sheets-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  
+   {% block css %}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+{% endblock css %}
 
    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <!-- manifest-->
@@ -68,7 +73,7 @@
 </div>
 
       <div class="col s2 hide-on-small-only ">
-        <div class="white-text sidenav">
+        <div class="white-text ">
         <img src="{% static 'images/logo5.png' %} "class="logo"/>
           <ul id="" class="">
             <li> <a href="home.html"><i class="fa fa-home"></i><em>Home</em></a></li>
@@ -79,7 +84,7 @@
               <li> <a href="training_history.html"><i class="fas fa-chart-line"></i><em>Activity Log</em></a></li>
               <li> <a href="competitions.html"><i class="fas fa-award"></i><em>Competitions</em></a></li>
               <li> <a href="{% url 'profile' %}"><i class="fa fa-cog"></i><em>Settings</em></a></li>
-              <li> <a href="add_horse.html"><i class="fas fa-plus"></i><em>Add Horses</em></a></li>
+              <li> <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a></li>
                <li class='navli'> <a href=""><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a></li>
           
           </ul>
@@ -92,9 +97,9 @@
     </div><!--end of col-->
 <!--main section-->
       <div class="col s12 m9" class="main_col" style="padding-left:30px;"><!--main body -->-->
-         <div class="hs__wrapper">
+         <div class="">
 
-   <p>{{vapid_key}}</p>
+  
       {% block content %} {% endblock %} 
       <!--small toolbar-->
 
@@ -149,10 +154,28 @@
 <!--fontaweseom kit js file-->
    <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
 <!-- Compiled and minified JavaScript -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+
    
 <!--push notification subscribe-->  
+{% block javascript %}
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function(){
+
+  // Initialize materialize data picker
+  $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+  $('select').formSelect();
+
+});
+</script>
+{% endblock javascript %}
   
 <!-- custom js-->
    <script src="{% static 'js/custom.js' %}"></script>

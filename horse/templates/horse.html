@@ -1,0 +1,127 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
+     
+
+     
+     {% block content %}
+        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+     
+{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% endcomment %}
+
+ 
+<style>
+ input#file-upload-button{
+  color:red;
+ }
+</style>
+
+<h4 style="font:24px;color:white;">Add A Horse</h4>
+
+
+                     <form method='POST' enctype="multipart/form-data">
+                     <div class="row box" > 
+                      <h4 style="font:24px;color:white;font-style:avenair;">Basic Info</h4>
+                       <div class="col s12 col m6">
+                          {{ form.showName|materializecss}}
+                       </div>
+                         <div class="col s12 col m6">
+                              {{ form.stableName|materializecss}}
+                       </div>
+                          <div class="col s12 col m6">
+                              {{ form.Gender|materializecss}}
+                       </div>
+
+                          <div class="col s12 col m6">
+                            
+                       </div>
+                     
+                     
+                     </div>
+
+                         <div class="row box" > 
+                      <h4 style="font:24px;color:white;font-style:avenair;">Photo</h4>
+                       <div class="col s12 m6 ">
+                           <img src="{% static 'images/horse.jpeg' %} "class="logo_small"/>
+                       </div>
+
+                         <div class="col s12 m6 ">
+                          <input type="file" class= "add" accept="image/*" capture="camera" />
+                       </div>
+      
+                     
+                     
+                     </div>
+                    
+                  <div class="row box" > 
+                      <h4 style="font:24px;color:white;font-style:avenair;">Personals</h4>
+                       <div class="col s12 col m6">
+                          {{ form.breed|materializecss}}
+                       </div>
+                         <div class="col s12 col m6">
+                              {{ form.pedigree|materializecss}}
+                       </div>
+                          <div class="col s12 col m6">
+                              {{ form.markings|materializecss}}
+                       </div>
+
+                          <div class="col s12 col m6">
+                              {{ form.height|materializecss}}
+                       </div>
+                     
+                     
+                     </div>
+
+                       <div class="row box" > 
+                      <h4 style="font:24px;color:white;font-style:avenair;">Owner Details</h4>
+                       <div class="col s12 ">
+                          {{ form.owner|materializecss}}
+                       </div>
+                         <div class="col s12 col m6">
+                              {{ form.street_address1|materializecss}}
+                       </div>
+                          <div class="col s12 col m6">
+                              {{ form.street_address2|materializecss}}
+                       </div>
+
+                          <div class="col s12 col m4">
+                              {{ form.town_or_city|materializecss}}
+                       </div>
+                            <div class="col s12 col m4">
+                              {{ form.county|materializecss}}
+                       </div>
+                            <div class="col s12 col m4">
+                              {{ form.postcode|materializecss}}
+                       </div>
+                     
+                     
+                     </div>
+
+                                  <div class="row box" > 
+                      <h4 style="font:24px;color:white;font-style:avenair;">Links</h4>
+                       <div class="col s12 ">
+                          {{ form.usefulllinks|materializecss}}
+                       </div>
+      
+                </div>
+             
+                    
+                      <button type="submit" class="btn btn-success">Add</button>
+                        {% csrf_token %} 
+                      </form>
+                     
+
+   <script>
+$(document).ready(function(){
+
+  // Initialize materialize data picker
+  $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+  $('select').material_select();
+
+
+  });
+
+});
+</script>             
+
+{%endblock%}
+

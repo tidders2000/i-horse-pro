@@ -210,5 +210,3 @@ TINYMCE_DEFAULT_CONFIG = {
     'file_browser_callback': 'mce_filebrowser',
 
 }
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'

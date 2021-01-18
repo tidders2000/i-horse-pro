@@ -15,8 +15,16 @@ class horse_form(forms.ModelForm):
         gender = [('Gelding', 'Gelding'), ('Mare', 'Mare'),
                   ('Stallion', 'Stallion')]
         model = Horse
-        fields = ('__all__')
+        exclude = ['user']
 
-        widgets = {
-            'Dob': DateInput()
-        }
+
+class link_form(forms.ModelForm):
+    class Meta:
+        model = Link
+        fields = ('organisation', 'link')
+
+
+class tack_form(forms.ModelForm):
+    class Meta:
+        model = Tack
+        fields = ('tacktype', 'description')

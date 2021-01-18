@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('home/', include('home.urls')),
     path('horse/', include('horse.urls')),
+    path('appointment/', include('appointment.urls')),
     path('sendpush/', include('sendpush.urls')),
 
     path(

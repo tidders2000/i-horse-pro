@@ -10,15 +10,15 @@
 
  
 <style>
- input#file-upload-button{
-  color:red;
- }
+
+
 </style>
 
 <h4 style="font:24px;color:white;">Add A Horse</h4>
+ 
 
 
-                     <form method='POST' enctype="multipart/form-data">
+              <form method="POST" enctype="multipart/form-data">
                      <div class="row box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">Basic Info</h4>
                        <div class="col s12 col m6">
@@ -32,25 +32,13 @@
                        </div>
 
                           <div class="col s12 col m6">
-                            
+                        {{  form.Dob|materializecss}}
                        </div>
                      
                      
                      </div>
 
-                         <div class="row box" > 
-                      <h4 style="font:24px;color:white;font-style:avenair;">Photo</h4>
-                       <div class="col s12 m6 ">
-                           <img src="{% static 'images/horse.jpeg' %} "class="logo_small"/>
-                       </div>
-
-                         <div class="col s12 m6 ">
-                        <input id="file" type="file" accept="image/*">
-                       </div>
-      
-                     
-                     
-                     </div>
+           
                     
                   <div class="row box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">Personals</h4>
@@ -95,18 +83,10 @@
                      
                      
                      </div>
-
-                                  <div class="row box" > 
-                      <h4 style="font:24px;color:white;font-style:avenair;">Links</h4>
-                       <div class="col s12 ">
-                          {{ form.usefulllinks|materializecss}}
-                       </div>
-      
-                </div>
-             
-                    
-                      <button type="submit" class="btn btn-success">Add</button>
-                        {% csrf_token %} 
+           
+                     {% csrf_token %} 
+                      <button type="submit"  class="btn btn-success">Add Horse</button>
+                      
                       </form>
                      
 
@@ -115,12 +95,12 @@ $(document).ready(function(){
 
   // Initialize materialize data picker
   $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
-  $('select').material_select();
+   $('select').formSelect();
 
 
   });
 
-});
+
 </script>             
 
 {%endblock%}

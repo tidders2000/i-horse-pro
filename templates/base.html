@@ -11,6 +11,10 @@
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
      
   <!--vendor style sheets-->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
   
    {% block css %}
@@ -96,7 +100,7 @@
         </div><!--end of side nav-->
     </div><!--end of col-->
 <!--main section-->
-      <div class="col s12 m9" class="main_col" style="padding-left:30px;"><!--main body -->-->
+      <div class="col s12 m9 main_col" ><!--main body -->-->
          <div class="">
 
   
@@ -152,35 +156,28 @@
             </script>
         {% endblock %} 
 <!--fontaweseom kit js file-->
-   <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
+
 <!-- Compiled and minified JavaScript -->
 
 
    
 <!--push notification subscribe-->  
 {% block javascript %}
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-
+   <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
-
-<script>
-$(document).ready(function(){
-
-  // Initialize materialize data picker
-  $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
-  $('select').formSelect();
-
-});
-</script>
+ <script src="{% static 'js/jquery.datetimepicker.full.min.js'%}"></script>
+ <!-- custom js-->
+ <script src="{% static 'js/custom.js' %}"></script>
 {% endblock javascript %}
   
-<!-- custom js-->
-   <script src="{% static 'js/custom.js' %}"></script>
+
+  
 
 </body>
+   
+
+
+
 </html>
 
 

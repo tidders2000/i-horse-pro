@@ -1,0 +1,61 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
+     
+
+     
+     {% block content %}
+        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+     
+{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% endcomment %}
+
+ 
+<style>
+
+
+</style>
+
+<h4 style="font:24px;color:white;">Add Photo</h4>
+ 
+
+
+              <form method="POST" enctype="multipart/form-data">
+                     <div class="row box" > 
+
+                       
+                 
+                       <div class="col s12 m6 image_ph ">
+
+                           <img src= "{{MEDIA_URL}}{{ newHorse.photo}}" class="responsive" alt='placeholder'/>
+                       </div>
+
+                         <div class="col s12 m6 ">
+                                              
+    <input id="pic" name="pic" type="file" class='custom-file-input' accept="image/*">
+                       </div>
+      
+                     
+                     
+                     </div>
+                    
+                
+                     {% csrf_token %} 
+                      <button type="submit"  class="btn btn-success">Add Photo</button>
+                      
+                      </form>
+                     
+
+   <script>
+$(document).ready(function(){
+
+  // Initialize materialize data picker
+  $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+  $('select').material_select();
+
+
+  });
+
+});
+</script>             
+
+{%endblock%}
+

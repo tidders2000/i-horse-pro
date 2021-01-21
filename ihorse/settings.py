@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'crispy_forms_materialize',
     'materializecssform',
     'appointment',
-    'datetimepicker'
+    'datetimepicker',
+    'training',
 
 
 ]
@@ -213,3 +214,9 @@ TINYMCE_DEFAULT_CONFIG = {
     'file_browser_callback': 'mce_filebrowser',
 
 }
+DATE_FORMAT = "Y-m-d"
+TIME_ZONE = 'Europe/London'
+USE_I18N = True
+USE_L10N = True
+USE_THOUSAND_SEPARATOR = True
+USE_TZ = True

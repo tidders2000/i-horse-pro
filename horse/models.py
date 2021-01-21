@@ -30,6 +30,9 @@ class Horse(models.Model):
     feeds = models.TextField(blank=True)
     notes = models.TextField(blank=True, default="behaviour etc")
 
+    def __str__(self):
+        return self.stableName
+
 
 class Link(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)

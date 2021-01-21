@@ -1,0 +1,451 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Horse{% endblock %}
+     
+
+     {% block content %} 
+       <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
+            <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+<style>
+.selected-image{
+  height:183px;
+  width:275px;
+}
+
+textarea{
+  padding:0!important; 
+  margin-top:40px;
+}
+
+.warning_msg{
+  font-size:20px;
+}
+{% comment %} body{
+  background-color: #101010;
+*/background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);/*
+}
+.sidenav {
+ height:100%;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+ .navul{
+   margin-left:15%;
+   font-size:20px;
+ }
+.navli{
+  padding-bottom:5px;
+  color:
+}
+
+li a{
+  color:#b3b3b3;
+}
+
+
+ i{
+   padding-right:15px;
+ }
+
+ .logo{
+   padding-top:10px;
+   margin-left:5px;
+ }
+
+ h2{
+    font-size: 24px;
+    color: #ffffff
+ }
+
+
+
+.appoint{
+  color:white;
+  padding-left:5px;
+     font-size:14px;
+}
+
+.appoint li{
+  margin-left:10px;
+}
+
+
+h4{
+   color:#b3b3b3;
+  font-size:16px;
+  
+}
+
+.listhl{
+ color:#21a3e2
+}
+
+.his{
+  margin-left:10%;
+  font-size:14px;
+  color:white;
+}
+
+.his li{
+    margin-left:10px;
+}
+
+.plus{
+  font-size:119px;
+  color: #21a3e2;
+
+}
+
+.appointments{
+  margin-bottom:100px;
+}
+
+.collection .collection-item{
+  background-color:#101010!important;
+}
+
+.social{
+  font-size:24px;
+  color:white;
+  padding:5px;
+}
+
+.social:hover {
+  background-color:#21a3e2;
+}
+
+
+
+.socialwapper{
+  text-align:center;
+ padding-left:5px;
+}
+
+.card-action {
+  color:#b3b3b3;
+}
+
+.plus_holder{
+  float:right;}
+   @media only screen and (max-width: 768px) {
+ .logo {
+    width: 130px;
+  }
+
+  .navul{
+    font-size:14px;
+    margin-left:15%%;
+    width:140px;
+    
+  }
+
+   i{
+   padding-right:10px;
+ }
+
+ .app_sec{
+   height:250px;
+ }
+
+ .ppimage{
+   height:200px;
+   width:200px;
+ }
+ .plus_holder{
+   margin-top:15%;
+   margin-left:10%;
+ }
+}
+
+ol{
+  list-style: none;
+  font-size:24px;
+}
+
+ol li {
+  counter-increment: my-awesome-counter;
+}
+
+ol li::before {
+  content: counter(my-awesome-counter) ". ";
+  color:#b3b3b3;
+}
+
+.input-field {
+  color:#b3b3b3;
+}
+
+.btn{
+  background-color:#b3b3b3;
+} {% endcomment %}
+
+
+.floorplan{
+  padding:10px;
+
+  
+}
+
+@media screen and (max-width: 600px) {
+  
+.floorplan{
+  width:70%;
+  height:70%;
+ margin-top:30px;
+  
+}
+
+.btn{
+  width:100px;
+  font-size:9px!important;
+  margin-bottom:40px;
+}
+}
+
+</style>
+
+<h4 style="font:24px;color:white;">{{session.disipline.disipline}}</h4>
+   
+      <div class="">
+
+     <img class="selected-image" src="{{MEDIA_URL}}{{ session.disipline.image}}" alt="{{customimg.disipline}}" />
+      
+      </div>
+
+  <h2 class="hs__headline">Session Objectives</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m8 l10">
+          <form method="POST" >
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+          {{obj.objective|materializecss}}
+       
+       </div>
+       <div class="col m2">
+       {% csrf_token %}
+           <button type="submit" class= 'subplus' name="save_obj"><span class="blutext">+<span></button>
+       
+       </div>
+       </form>
+     <div class="col m10">
+   
+ 
+      <ol>
+
+      {% for obj in listObj %}
+       <li class="white-text"><input type="text" value="{{obj.objective}}">  <span class="switch">
+            <label>
+              
+              <input type="checkbox" value="{{obj.Completed}}">
+              <span class="lever"></span>
+              Achieved
+            </label>
+      </span></li>
+
+      {% endfor %}
+
+          
+       </ol>
+     
+     </div>
+    
+    </div>
+
+
+   
+    <div class="row" style="border:1px solid #b3b3b3"></div>
+
+       <h2 class="hs__headline">Session Details</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+          <form method="POST" enctype="multipart/form-data" class="col s12">
+              <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+      <div class="row">
+        <div class="input-field col s6">
+     
+          {{form.instructor|materializecss}} 
+        
+        </div>
+        <div class="input-field col s6">
+      
+         {{form.horse|materializecss}} 
+          
+        </div>
+      </div>
+          <div class="row">
+        <div class="input-field col s6">
+         {{form.date|materializecss}} {{session.date}}
+        </div>
+        <div class="input-field col s6">
+         
+         {{form.location|materializecss}} 
+        </div>
+                <div class="input-field col s12">
+<span class="material-icons yellow-text">
+emoji_objects
+</span>
+           {{form.lightbulb|materializecss}} 
+        </div>
+        <div class="input-field col s12">
+
+         {{form.notes|materializecss}} 
+        </div>
+      </div>
+ 
+    
+    </div>
+
+     
+
+
+
+     <h2 class="hs__headline">Little Wins</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m10">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+       
+          {{form.littlewins1|materializecss}}
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+       
+       </div>
+     <div class="col m10">
+   
+                         <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+       
+          {{form.littlewins2|materializecss}}
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+     
+     </div>
+
+      <div class="col m10">
+   
+                         <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+       
+          {{form.littlewins3|materializecss}}
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+     
+     </div>
+    
+    </div>
+
+
+   
+   <h2 class="hs__headline">Floor Plan</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+<section>
+		<div class="decoration col s12"></div>
+
+  {{form.floorPlan|materializecss}}
+	
+		 {% comment %} <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">camera_enhance</span> </div>
+		  <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">add_circle</span> </div>
+		   <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">create</span> </div>
+			 {% endcomment %}
+
+
+     
+	</section>
+  	<img src="{{MEDIA_URL}}{{ session.floorPlan}}"  alt="floor plan" class="floorplan" >
+</div>
+ 
+<h2 class="hs__headline">Add A File</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+
+
+   
+     
+        
+
+      
+      <div class="file-path-wrapper" style='min-height:220px;'>
+       {{form.files|materializecss}} 
+      </div>
+    
+
+  </div>
+    
+   
+    </div>
+          {% csrf_token %}
+          <p class="white-text warning_msg"> Click the + to save your session</p>
+           <button type="submit" class= 'subplus' name="save_log"><span class="blutext">+<span></button>
+           </form>
+    <h2 class="hs__headline">Homework</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m8 l10">
+          <form method="POST">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+          {{obj.objective|materializecss}}
+       
+       </div>
+       <div class="col m2">
+       {% csrf_token %}
+           <button type="submit" class= 'subplus' name="save_obj"><span class="blutext">+<span></button>
+       
+       </div>
+       </form>
+     <div class="col m10">
+   
+ 
+      <ol>
+
+      {% for obj in listObj %}
+       <li class="white-text"><input type="text" value="{{obj.objective}}">  <span class="switch">
+            <label>
+              
+              <input type="checkbox" value="{{obj.Completed}}">
+              <span class="lever"></span>
+              Achieved
+            </label>
+      </span></li>
+
+      {% endfor %}
+
+          
+       </ol>
+     
+     </div>
+    
+    </div>
+
+      </div><!--end of col-->
+</div><!--end of row-->
+    <script src="slider.js"></script>
+    <script>
+	  $(document).ready(function(){
+    $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+    $('select').formSelect();
+    $('select').select();
+  });
+</script>
+  
+
+{% endblock %}

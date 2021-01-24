@@ -56,6 +56,11 @@ INSTALLED_APPS = [
     'appointment',
     'datetimepicker',
     'training',
+    'competition',
+    'competing',
+    'cal',
+
+
 
 
 ]

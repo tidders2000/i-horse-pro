@@ -1,0 +1,61 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Calendar{% endblock %}
+     
+
+     {% block content %} 
+       <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
+            <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+              <link rel="stylesheet" href="{% static 'css/simple-calendar.css' %}"> 
+
+{% comment %} <h4 style="font:24px;color:white;">Calendar</h4> {% endcomment %}
+
+<div id="container"></div>
+   
+
+
+
+<script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
+
+<script src="{% static  'js/jquery.simple-calendar.min.js'%}"></script>
+<script>
+  $(function(){
+
+  $("#container").simpleCalendar({
+    displayEvent:true,
+    events: [
+
+    // generate new event after tomorrow for one hour
+{% for event in events%}
+    {
+
+      startDate:new Date("{{event.due|date:'D, j F Y h:i'}}"),
+
+      endDate:new Date("{{event.end|date:'D, j F Y h:i'}}"),
+
+      summary:'{{event.event.appType}}'
+
+    },
+     {% endfor %}
+  ],
+   });
+
+
+});
+
+
+</script>
+
+
+   {% endblock %}
+
+       
+
+
+
+
+
+
+
+  
+
+

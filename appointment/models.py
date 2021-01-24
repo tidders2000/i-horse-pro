@@ -24,5 +24,6 @@ class Appointment(models.Model):
     report = models.ImageField(
         upload_to='media/images/appoint', blank=True)
     notes = models.TextField(blank=True)
+    link = models.CharField(max_length=200, blank=True)
 
 # Create your models here.

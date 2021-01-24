@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'competition',
     'competing',
     'cal',
+    'mindset',
 
 
 

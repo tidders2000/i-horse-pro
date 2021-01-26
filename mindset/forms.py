@@ -13,3 +13,11 @@ class goals_form(forms.ModelForm):
 
         model = Goals
         exclude = ['user']
+
+
+class control_form(forms.ModelForm):
+
+    class Meta:
+
+        model = Control
+        exclude = ['user']

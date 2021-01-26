@@ -217,7 +217,7 @@ ol li::before {
 
    <div class="row" style="border:1px solid #b3b3b3"></div>
 
-       <h2 class="hs__headline">Session Details</h2>
+       <h2 class="hs__headline">Competition Details</h2>
     <div class="row" style="border:1px solid #21a3e2">
           <form method="POST" enctype="multipart/form-data" class="col s12">
               <span class="material-icons white-text" style="padding:5px;">
@@ -278,7 +278,7 @@ emoji_objects
 
 
 
-   <h2 class="hs__headline">Venue Ratings</h2>
+   <h2 class="hs__headline">Entry List</h2>
     <div class="row" style="border:1px solid #21a3e2">
     <form method="POST">
 
@@ -287,12 +287,14 @@ emoji_objects
       <button type="submit" class= 'subplus' name="save_entry"><span class="blutext">+<span></button>
     </form>
    
-  <table class="responsive-table">
+  <table class="responsive-table highlight white-text ">
               <thead>
                 <tr>
                     <th>Horse</th>
                     <th>Class</th>
+                    <th>Time</th>
                     <th>Performance</th>
+                    <th>Edit</th>
                 </tr>
               </thead>
               <tbody>
@@ -300,7 +302,9 @@ emoji_objects
                 <tr>
                   <td>{{entry.horse}}</td>
                   <td>{{entry.horseClass}}</td>
+                  <td>{{entry.class_time}}</td>
                   <td>{{entry.performance}}</td>
+                  <td><a href="{% url 'editentry' entry.pk %}">EDIT</a></td>
                 </tr>
          {% endfor %}
               </tbody>

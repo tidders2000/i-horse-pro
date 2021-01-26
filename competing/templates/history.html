@@ -1,0 +1,408 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Horse{% endblock %}
+     
+
+     {% block content %} 
+       <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
+
+<style>
+
+{% comment %} body{
+  background-color: #101010;
+*/background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);/*
+}
+.sidenav {
+ height:100%;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+ .navul{
+   margin-left:15%;
+   font-size:20px;
+ }
+.navli{
+  padding-bottom:5px;
+  color:
+}
+
+li a{
+  color:#b3b3b3;
+}
+
+
+ i{
+   padding-right:15px;
+ }
+
+ .logo{
+   padding-top:10px;
+   margin-left:5px;
+ }
+
+ h2{
+    font-size: 24px;
+    color: #ffffff
+ }
+
+
+
+.appoint{
+  color:white;
+  padding-left:5px;
+     font-size:14px;
+}
+
+.appoint li{
+  margin-left:10px;
+}
+
+
+h4{
+   color:#b3b3b3;
+  font-size:16px;
+  
+}
+
+.listhl{
+ color:#21a3e2
+}
+
+.his{
+  margin-left:10%;
+  font-size:14px;
+  color:white;
+}
+
+.his li{
+    margin-left:10px;
+}
+
+.plus{
+  font-size:119px;
+  color: #21a3e2;
+
+}
+
+.appointments{
+  margin-bottom:100px;
+}
+
+.collection .collection-item{
+  background-color:#101010!important;
+}
+
+.social{
+  font-size:24px;
+  color:white;
+  padding:5px;
+}
+
+.social:hover {
+  background-color:#21a3e2;
+}
+
+
+
+.socialwapper{
+  text-align:center;
+ padding-left:5px;
+}
+
+.card-action {
+  color:#b3b3b3;
+}
+
+.plus_holder{
+  float:right;}
+   @media only screen and (max-width: 768px) {
+ .logo {
+    width: 130px;
+  }
+
+  .navul{
+    font-size:14px;
+    margin-left:15%%;
+    width:140px;
+    
+  }
+
+   i{
+   padding-right:10px;
+ }
+
+ .app_sec{
+   height:250px;
+ }
+
+ .ppimage{
+   height:200px;
+   width:200px;
+ }
+ .plus_holder{
+   margin-top:15%;
+   margin-left:10%;
+ }
+}
+
+ol{
+  list-style: none;
+  font-size:24px;
+}
+
+ol li {
+  counter-increment: my-awesome-counter;
+}
+
+ol li::before {
+  content: counter(my-awesome-counter) ". ";
+  color:#b3b3b3;
+}
+
+.input-field {
+  color:#b3b3b3;
+}
+
+.btn{
+  background-color:#b3b3b3;
+} {% endcomment %}
+
+</style>
+
+<h4 style="font:24px;color:white;">History</h4>
+
+<div class="row" style="border:1px solid #21a3e2; padding:10px;">
+
+   <ul class="collection" style="border:none!important;">
+   {% for train in training%}
+    <li class="collection-item avatar " style="background-color:#101010!important">
+      <img src="{{MEDIA_URL}}{{train.disipline.image}}" alt="train.disipline.disipline" class="circle">
+      <span  style="color:#b3b3b3; font-size:24px;">{{train.disipline.disipline}} {{train.date}}</span>
+      <p class="white-text hide-on-small-only">Training Session
+      </p>
+      <a href="{% url "training_edit" train.pk %}" class="secondary-content "><i class="fa fa-chevron-circle-right" style="font-size:50px;color:#21a3e2;" aria-hidden="true"></i></a>
+    </li>
+       {% endfor %}
+
+          {% for comp in comps %}
+    <li class="collection-item avatar " style="background-color:#101010!important">
+      <img src="{{MEDIA_URL}}{{comp.disipline.image}}" alt="{{comp.disipline.disipline}}" class="circle">
+      <span  style="color:#b3b3b3; font-size:24px;">{{comp.disipline.disipline}} {{comp.date}}</span>
+      <p class="white-text hide-on-small-only">Compeition
+      </p>
+      <a href="{% url "comp_edit" comp.pk %}" class="secondary-content "><i class="fa fa-chevron-circle-right" style="font-size:50px;color:#21a3e2;" aria-hidden="true"></i></a>
+    </li>
+       {% endfor %}
+  </ul>
+            
+</div>     
+
+
+{% comment %}    
+    <div class="row" style="border:1px solid #b3b3b3"></div>
+
+       <h2 class="hs__headline">Session Details</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+          <form class="col s12">
+              <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+      <div class="row">
+        <div class="input-field col s6">
+      
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Instructor</label>
+        </div>
+        <div class="input-field col s6">
+      
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Horse</label>
+        </div>
+      </div>
+          <div class="row">
+        <div class="input-field col s6">
+          
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Date</label>
+        </div>
+        <div class="input-field col s6">
+         
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Location</label>
+        </div>
+                <div class="input-field col s12">
+<span class="material-icons yellow-text">
+emoji_objects
+</span>
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Lightbulb Moment" style="padding:0!important; margin-top:40px;"></textarea>
+        </div>
+      </div>
+    </form>
+    
+    </div>
+
+     <h2 class="hs__headline">Session Objectives</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m10">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter a objective and Click +" style="padding:0!important; margin-top:40px;"></textarea>
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+       
+       </div>
+     <div class="col m10">
+   
+    
+      <ol>
+       <li class="white-text">Here is an objective entered by the user   <span class="switch">
+            <label>
+              
+              <input type="checkbox">
+              <span class="lever"></span>
+              Achieved
+            </label>
+      </span></li>
+
+           <li class="white-text">Here is an objective entered by the user
+           <span class="switch">
+            <label>
+              
+              <input type="checkbox">
+              <span class="lever"></span>
+              Achieved
+            </label>
+      </span>
+           
+           </li>
+       </ol>
+     
+     </div>
+    
+    </div>
+
+   
+
+     <h2 class="hs__headline">Little Wins</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m10">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+       
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter a little win and Click +" style="padding:0!important; margin-top:40px;"></textarea>
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+       
+       </div>
+     <div class="col m10">
+   
+    
+      <ol>
+       <li class="white-text">Win 1</li>
+           <li class="white-text">Win 2</li>
+       </ol>
+     
+     </div>
+    
+    </div>
+
+
+     <h2 class="hs__headline">Homework</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m10">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+       
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter an Objective and Click +" style="padding:0!important; margin-top:40px;"></textarea>
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+       
+       </div>
+     <div class="col m10">
+   
+    
+      <ol>
+       <li class="white-text">work on 1</li>
+           <li class="white-text">work on 2</li>
+       </ol>
+     
+     </div>
+    
+    </div>
+
+   <h2 class="hs__headline">Floor Plan</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+<section>
+		<div class="decoration"></div>
+
+	<div class="row">
+	
+		 <div class="input-field col s4 center-align"><span class="material-icons center-align">camera_enhance</span> </div>
+		  <div class="input-field col s4 center-align"><span class="material-icons center-align">add_circle</span> </div>
+		   <div class="input-field col s4 center-align"><span class="material-icons center-align">create</span> </div>
+			
+		
+	</div>	
+     
+	</section>
+  	<img src="images/floor_plan.jpg" alt="floor plan"/ style="padding:10px;">
+</div>
+
+<h2 class="hs__headline">Notes and Files</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+         <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Notes" style="padding:0!important; margin-top:40px;"></textarea>
+        </div>
+
+        <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+      </div>
+    </form> {% endcomment %}
+  </div>
+    
+    
+    </div>
+
+      </div><!--end of col-->
+</div><!--end of row-->
+    <script src="slider.js"></script>
+    <script>
+	  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+  
+
+{% endblock %}

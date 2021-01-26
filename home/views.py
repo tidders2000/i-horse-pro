@@ -11,8 +11,10 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
-
-
+from horse.models import Horse
+from appointment.models import Appointment
+from competing.models import CompetitionLog
+from training.models import TrainingLog
 # Create your views here.
 
 
@@ -20,8 +22,15 @@ def home(request):
     # webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     # vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
     # user = request.user
+    user = request.user
+    horses = Horse.objects.all().filter(user=user)
+    events = Appointment.objects.all().filter(user=user).order_by('-due')[:3]
+    comps = CompetitionLog.objects.all().filter(
+        user=user).order_by('-date')[:3]
+    training = TrainingLog.objects.all().filter(
+        user=user).order_by('-date')[:3]
 
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'horses': horses, 'events': events, 'comps': comps, 'training': training})
 
 
 @require_POST

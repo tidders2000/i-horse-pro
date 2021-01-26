@@ -22,12 +22,17 @@
                         
                              <div class="col s12 m6 ">
                                   {{ link|materializecss}}
-                                <ul>
+                            
                                               <button type="submit" class= 'subplus'><span class="blutext">+<span></button>
+                               
+                                 {% csrf_token %} 
+                          </form>
+                      
+                               
                                 {% for lin in links %}
-                                <li class="white-text">{{lin.organisation}}: {{lin.link}}
+                                <li class="white-text">{{lin.organisation}}: {{lin.link}}</li>
                                 {% endfor %}
-                                <li><a href="{% url 'home'%}"><span class="blutext">Finish</span></a>/li>
+                                <li><a href="{% url 'home'%}"><span class="blutext">Finish</span></a></li>
                                  </ul>
 
                            </div>
@@ -35,9 +40,7 @@
 
                          <div class="col  m6 center-align">
              
-                            {% csrf_token %} 
-                          </form>
-                      
+                          
                       
                        </div>
                        

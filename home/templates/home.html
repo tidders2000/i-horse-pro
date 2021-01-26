@@ -1,88 +1,170 @@
-{% extends 'base.html' %}{% load static%} {% block page_title %}Home{% endblock %}
-     {% block content %}
-     
-     
-    <head>
-  <meta charset=utf-8 />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase Cloud Messaging Example</title>
+{% extends 'base.html' %}{% load static%} {% block content %}
+
 
   <!-- Material Design Theming -->
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link
+    rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
   <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-  <link rel="manifest" href="{% static 'css/main.css' %}">
- 
+  <link rel="manifest" href="{% static 'css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/slider.css' %}" />
+     <link rel="stylesheet" href="{% static 'css/simple-calendar.css' %}"> 
 
- 
-</head>
 
-<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-
-  <!-- Header section containing title -->
-  {% comment %} <header class="mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-        <h3>Firebase Cloud Messaging</h3>
-      </div>
+<h4 style="font: 24px; color: white">My Horses</h4>
+<ul class="hs">
+  {% for horse in horses %}
+  <li class="hs__item">
+    <div class="hs__item__image__wrapper">
+      <img class="hs__item__image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.showName}}"/>
     </div>
-  </header>
 
-  <main class="mdl-layout__content mdl-color--grey-100">
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-
-      <!-- Container for the Table of content -->
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-          <!-- div to display the generated registration token -->
-          <div id="token_div" style="display: none;">
-            <h4>Registration Token</h4>
-            <p id="token" style="word-break: break-all;"></p>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                    onclick="deleteToken()">Delete Token</button>
-          </div>
-          <!-- div to display the UI to allow the request for permission to
-               notify the user. This is shown if the app has not yet been
-               granted permission to notify. -->
-          <div id="permission_div" style="display: none;">
-            <h4>Needs Permission</h4>
-            <p id="token"></p>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                    onclick="requestPermission()">Request Permission</button>
-          </div>
-          <!-- div to display messages received by this app. -->
-          <div id="messages"></div>
-        </div>
-      </div>
-
+    <div class="hs__item__description">
+      <span class="hs__item__title white-text">
+        <a href="{% url 'detailsInd' pk=horse.pk%}?par=Dentist">{{horse.showName}}</a></span>
     </div>
-  </main>
-</div> {% endcomment %}
+  </li>
 
-            <script>
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('{% url "fbsw" %}', { scope: '/home/'}).then(function(reg) {
-                        // registration worked
-                        console.log('Registration succeeded fbsw. Scope is ' + reg.scope);
-                    }).catch(function(error) {
-                        // registration failed
-                        console.log('Registration failed with ' + error);
-                    });
-                }
-            </script>
+  {% endfor %}
+</ul>
+
+<h4 style="font: 24px; color: white">My Upcoming Appointments</h4>
+<div class="row">
+ <div class="col s12 m4">
+ <h5 style="color:#0288d1;"> Appointments</h5>
+  <ul>
+   {% for event in events %}
+   <li class="white-text">{{event.event}}  {{event.due}}</li>
+ 
+  {% endfor %}
+  </ul>
+ </div>
+
+ <div class="col s12 m4">
+  <h5 style="color:#0288d1;"> Competitions</h5>
+  <ul>
+   {% for comp in comps %}
+   <li class="white-text">{{comp.disipline.disipline}}  {{comp.location}} {{comp.date}}</li>
+ 
+  {% endfor %}
+  </ul>
+ 
+ 
+ </div>
+
+ <div class="col s12 m4">
+    <h5 style="color:#0288d1;"> Training </h5>
+  <ul>
+   {% for train in training %}
+   <li class="white-text">{{train.disipline.disipline}}  {{train.location}} {{train.date}}</li>
+ 
+  {% endfor %}
+  </ul>
+ 
+ </div>
+
+
+</div>
+
+
+
+
+
+<h4 style="font: 24px; color: white">My Calendar</h4>
+
+<div id="container"></div>
+
+<h4 style="font: 24px; color: white">Training</h4>
+<ul class="hs">
+  {% for train in training %}
+  <li class="hs__item">
+    <div class="hs__item__image__wrapper">
+      <img class="hs__item__image" src="{{MEDIA_URL}}{{ train.disipline.image}}" alt="{{horse.showName}}"/>
+    </div>
+
+    <div class="hs__item__description">
+      <span class="hs__item__title white-text">
+        <a href="{% url 'training_edit' pk=train.pk %}">{{train.disipline.disipline}} {{train.date}}</a></span>
+    </div>
+  </li>
+
+  {% endfor %}
+</ul>
+
+<h4 style="font: 24px; color: white">Competition</h4>
+<ul class="hs">
+  {% for comp in comps %}
+  <li class="hs__item">
+    <div class="hs__item__image__wrapper">
+      <img class="hs__item__image" src="{{MEDIA_URL}}{{ comp.disipline.image}}" alt="{{horse.showName}}"/>
+    </div>
+
+    <div class="hs__item__description">
+      <span class="hs__item__title white-text">
+        <a href="{% url 'comp_edit' pk=comp.pk%}">{{comp.disipline.disipline}} {{comp.date}}</a></span>
+    </div>
+  </li>
+
+  {% endfor %}
+</ul>
+   
+
+<script src="{% static  'js/jquery.simple-calendar.min.js'%}"></script>
+<script>
+  $(function(){
+
+  $("#container").simpleCalendar({
+    displayEvent:true,
+    events: [
+
+    // generate new event after tomorrow for one hour
+{% for event in events%}
+    {
+
+      startDate:new Date("{{event.due|date:'D, j F Y h:i'}}"),
+
+      endDate:new Date("{{event.end|date:'D, j F Y h:i'}}"),
+
+      summary:'{{event.event.appType}}'
+
+    },
+     {% endfor %}
+  ],
+   });
+
+
+});
+
+
+</script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register('{% url "fbsw" %}', { scope: "/home/" })
+      .then(function (reg) {
+        // registration worked
+        console.log("Registration succeeded fbsw. Scope is " + reg.scope);
+      })
+      .catch(function (error) {
+        // registration failed
+        console.log("Registration failed with " + error);
+      });
+  }
+</script>
 
 <!-- Import and configure the Firebase SDK -->
 
 <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
 
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js"></script>
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js"></script>
 
-  <script>
+<script>
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -92,41 +174,47 @@
     storageBucket: "ihorse-8e7f4.appspot.com",
     messagingSenderId: "51294489856",
     appId: "1:51294489856:web:021c3f0fd7f810c7e4f7e5",
-    measurementId: "G-QBC4KFYX42"
+    measurementId: "G-QBC4KFYX42",
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
 
-<script> const messaging = firebase.messaging();
+<script>
+  const messaging = firebase.messaging();
 
-function resetUI() {
-   
-    console.log('loading...');
+  function resetUI() {
+    console.log("loading...");
 
-     messaging.getToken({vapidKey:'BMk5wlvBQEvChiTZkVw59uy-45EUAYo_MG4d-yQ7rf_xncyDxFHtP7AosN-sKlhcY0GNFAeFEnn0uaNA4lmPkZ4'}).then((currentToken) => {
-      if (currentToken) {
-        console.log(currentToken)//save token and check for duplicates
-      } else {
-        // Show permission request.
-        console.log('No registration token available. Request permission to generate one.');
-        // Show permission UI.
-     
-      }
- }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-   
-    });
+    messaging
+      .getToken({
+        vapidKey:
+          "BMk5wlvBQEvChiTZkVw59uy-45EUAYo_MG4d-yQ7rf_xncyDxFHtP7AosN-sKlhcY0GNFAeFEnn0uaNA4lmPkZ4",
+      })
+      .then((currentToken) => {
+        if (currentToken) {
+          console.log(currentToken); //save token and check for duplicates
+        } else {
+          // Show permission request.
+          console.log(
+            "No registration token available. Request permission to generate one."
+          );
+          // Show permission UI.
+        }
+      })
+      .catch((err) => {
+        console.log("An error occurred while retrieving token. ", err);
+      });
     // [END get_token]
   }
 
   function requestPermission() {
-    console.log('Requesting permission...');
+    console.log("Requesting permission...");
     // [START request_permission]
     Notification.requestPermission().then((permission) => {
-      if (permission === 'granted') {
-        console.log('Notification permission granted.');
+      if (permission === "granted") {
+        console.log("Notification permission granted.");
         // TODO(developer): Retrieve a registration token for use with FCM.
         // [START_EXCLUDE]
         // In many cases once an app has been granted notification permission,
@@ -134,14 +222,15 @@ function resetUI() {
         resetUI();
         // [END_EXCLUDE]
       } else {
-        console.log('Unable to get permission to notify.');
+        console.log("Unable to get permission to notify.");
       }
     });
     // [END request_permission]
   }
   resetUI();
-
 </script>
 
-{%endblock%}
+ <script src="{% static 'js/slider.js'%}"></script>
+    <script>
 
+{% endblock %}

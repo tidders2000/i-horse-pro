@@ -5,7 +5,7 @@ from .views import *
 
 urlpatterns = [
     path('', mindset, name='mindset'),
-
+    path('mindsetb', mindsetB, name='mindsetB'),
 
 
 

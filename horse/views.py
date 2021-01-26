@@ -61,7 +61,7 @@ def tackhorse(request, pk):
     horse = Horse.objects.get(pk=pk)
     tack = tack_form()
     tackdetails = Tack.objects.all().filter(horse=horse)
-    if request.method == "POST" and 'link' in request:
+    if request.method == "POST":
         tackf = tack_form(request.POST)
         if tackf.is_valid():
             tackSave = tackf.save(commit=False)
@@ -77,7 +77,7 @@ def links(request):
     newHorse = Horse.objects.get(pk=horse)
     link = link_form()
     links = Link.objects.all().filter(horse=newHorse)
-    if request.method == "POST" and 'link' in request:
+    if request.method == "POST":
         linkf = link_form(request.POST)
         if linkf.is_valid():
             linkSave = linkf.save(commit=False)
@@ -109,7 +109,9 @@ def detailsInd(request, pk):
         selected.passport = photo
         selected.save()
     if request.method == 'GET':
-        search = request.GET['par']
-        tory = Appointment.objects.all().filter(event__appType=search)
+
+        if request.GET['par']:
+            search = request.GET['par']
+            tory = Appointment.objects.all().filter(event__appType=search)
 
     return render(request, 'horse_details_ind.html', {'appointments': appointments, 'tory': tory, 'selected': selected, 'horses': horses, 'links': links})

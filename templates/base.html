@@ -80,16 +80,16 @@
         <div class="white-text ">
         <img src="{% static 'images/logo5.png' %} "class="logo"/>
           <ul id="" class="">
-            <li> <a href="home.html"><i class="fa fa-home"></i><em>Home</em></a></li>
-              <li> <a href="horses.html"><i class="fas fa-horse"></i><em>Horses</em></a></li>
+            <li> <a href="{% url 'home' %}"><i class="fa fa-home"></i><em>Home</em></a></li>
+              <li> <a href="{% url 'details'%}"><i class="fas fa-horse"></i><em>Horses</em></a></li>
               <li> <a href="yard.html"><i class="fas fa-broom"></i></i><em>Yard</em></a></li>
-              <li> <a href="calender.html"><i class="fa fa-calendar"></i></i><em>Calendar</em></a></li>
-              <li> <a href="training_log.html"><i class="fas fa-book-open"></i><em>Training</em></a></li>
-              <li> <a href="training_history.html"><i class="fas fa-chart-line"></i><em>Activity Log</em></a></li>
-              <li> <a href="competitions.html"><i class="fas fa-award"></i><em>Competitions</em></a></li>
+              <li> <a href="{% url 'caltwo'%}"><i class="fa fa-calendar"></i></i><em>Calendar</em></a></li>
+              <li> <a href="{% url 'training_log' %}"><i class="fas fa-book-open"></i><em>Training</em></a></li>
+              <li> <a href="{% url 'history'%}"><i class="fas fa-chart-line"></i><em>Activity Log</em></a></li>
+              <li> <a href="{% url 'competition'%}"><i class="fas fa-award"></i><em>Competitions</em></a></li>
               <li> <a href="{% url 'profile' %}"><i class="fa fa-cog"></i><em>Settings</em></a></li>
               <li> <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a></li>
-               <li class='navli'> <a href=""><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a></li>
+               <li class='navli'> <a href="{% url 'mindset' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a></li>
           
           </ul>
           <div class="socialwapper center-align">

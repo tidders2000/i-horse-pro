@@ -17,9 +17,15 @@
 
 </style>
 
-<h4 style="font:24px;color:white;">MindSet{{customImg.count}}</h4>
+<h4 style="font:24px;color:white;">MindSet</h4>
+
+
     <div class='row'>
 
+
+
+
+ 
         <div class= "col s2 offset-s5 blue box "> <span class='box-text'>{{instance.outcome}}<span></div>
         
         </div>
@@ -61,13 +67,14 @@
           <p class="white-text warning_msg"> Click the + to save your session</p>
            <button type="submit" class= 'subplus' name="save_log"><span class="blutext">+<span></button>
            </form>
-
+           <div class="center-align">
+              <a href="{% url 'mindsetB'%}" style="font-size:20px;"class="white-text">Part B</a>  
+              </div>
         </div>
-
+          
         </section>
 
-
-
+     
 
 {% comment %}    
     <div class="row" style="border:1px solid #b3b3b3"></div>
@@ -271,6 +278,6 @@ edit
     $('select').formSelect();
   });
 </script>
-  
+ 
 
 {% endblock %}

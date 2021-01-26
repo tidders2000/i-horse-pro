@@ -22,14 +22,15 @@
                         
                              <div class="col s12 m6 ">
                                   {{ tack|materializecss}}
-                                <ul>
+                             {% csrf_token %} 
                                               <button type="submit" class= 'subplus'><span class="blutext">+<span></button>
+                          </form>
                                 {% for tack in tackdetails %}
-                                <li class="white-text">{{tack.tacktype}}: {{tack.description}}
-                                {{horse.pk}}
+                                <li class="white-text">{{tack.tacktype}}: {{tack.description}}</li>
+                              
                                 {% endfor %}
-                                 <li><a href="{% url 'links'%}"><span class="blutext">Finish</span></a>/li>
-                                <li style="display:{{display}};"><a href="{% url 'detailsInd' pk=horse.pk %} "><span class="blutext">back</span></a>/li>
+                                 <li><a href="{% url 'links'%}"><span class="blutext">Next</span></a></li>
+                                
                                  </ul>
 
                            </div>
@@ -37,14 +38,17 @@
 
                          <div class="col  m6 center-align">
              
-                            {% csrf_token %} 
-                          </form>
+                          <button onclick="goBack()" style="display:{{display}}">Go Back</button>
                       
                       
                        </div>
                        
              </div> 
-                     
+      <script>
+function goBack() {
+  window.history.back();
+}
+</script>               
 
    <script>
 $(document).ready(function(){

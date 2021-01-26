@@ -1,0 +1,297 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Mindset{% endblock %}
+     
+
+     {% block content %} 
+       <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
+       <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+
+<style>
+
+.box{
+  height:100px!important;
+  border: 1px solid grey;
+  padding:5px;
+  text-align:center;
+ 
+}
+
+.control_box{
+ 
+  height:50px;
+  font-size:20px;
+  color:white;
+}
+
+</style>
+
+<h4 style="font:24px;color:white;">MindSet B</h4>
+
+
+        <section>
+
+        
+            <div class ="col s12 m6"><!--container-->
+              <div class="col s12 center-align blue">
+              <h4>Things I Can Control</h4>
+                  
+              </div>
+
+              <div class="col s12">
+              <div class="row">
+                 {% for int in instance.can_control  %}
+                    <div class="col s6 m4 green control_box">
+                    {{int}}
+                    </div>
+                    {% endfor %}
+                    </div>
+              
+              </div>
+            
+            </div><!--end container-->
+
+              <div class ="col s12 m6 "><!--container-->
+                 <div class="col s12 center-align blue">
+                    <h4>Things I Can't Control</h4>
+              
+                 </div>
+
+              <div class="col s12">
+              <div class="row">
+                  {% for int in instance.cannot_control%}
+                    <div class="col s6 m4 red control_box">
+                         {{int}}
+                    </div>
+                    {% endfor %}
+               </div>
+              </div>
+            
+            </div><!--end container-->
+
+
+
+        </section>
+
+
+            <section>
+      {% comment %} <div class="row" style="border:1px solid #21a3e2"> {% endcomment %}
+      <form method="POST" class="col s12">
+          {{form|materializecss}}
+
+             {% csrf_token %}
+          <p class="white-text warning_msg"> Click the + to save your session</p>
+           <button type="submit" class= 'subplus' name="save_log"><span class="blutext">+<span></button>
+           </form>
+
+        {% comment %} </div> {% endcomment %}
+
+        </section>
+
+
+
+
+
+{% comment %}    
+    <div class="row" style="border:1px solid #b3b3b3"></div>
+
+       <h2 class="hs__headline">Session Details</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+          <form class="col s12">
+              <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+      <div class="row">
+        <div class="input-field col s6">
+      
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Instructor</label>
+        </div>
+        <div class="input-field col s6">
+      
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Horse</label>
+        </div>
+      </div>
+          <div class="row">
+        <div class="input-field col s6">
+          
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Date</label>
+        </div>
+        <div class="input-field col s6">
+         
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Location</label>
+        </div>
+                <div class="input-field col s12">
+<span class="material-icons yellow-text">
+emoji_objects
+</span>
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Lightbulb Moment" style="padding:0!important; margin-top:40px;"></textarea>
+        </div>
+      </div>
+    </form>
+    
+    </div>
+
+     <h2 class="hs__headline">Session Objectives</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m10">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter a objective and Click +" style="padding:0!important; margin-top:40px;"></textarea>
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+       
+       </div>
+     <div class="col m10">
+   
+    
+      <ol>
+       <li class="white-text">Here is an objective entered by the user   <span class="switch">
+            <label>
+              
+              <input type="checkbox">
+              <span class="lever"></span>
+              Achieved
+            </label>
+      </span></li>
+
+           <li class="white-text">Here is an objective entered by the user
+           <span class="switch">
+            <label>
+              
+              <input type="checkbox">
+              <span class="lever"></span>
+              Achieved
+            </label>
+      </span>
+           
+           </li>
+       </ol>
+     
+     </div>
+    
+    </div>
+
+   
+
+     <h2 class="hs__headline">Little Wins</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m10">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+       
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter a little win and Click +" style="padding:0!important; margin-top:40px;"></textarea>
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+       
+       </div>
+     <div class="col m10">
+   
+    
+      <ol>
+       <li class="white-text">Win 1</li>
+           <li class="white-text">Win 2</li>
+       </ol>
+     
+     </div>
+    
+    </div>
+
+
+     <h2 class="hs__headline">Homework</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+  
+       
+       <div class="col m10">
+                     <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+       
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter an Objective and Click +" style="padding:0!important; margin-top:40px;"></textarea>
+       
+       </div>
+       <div class="col m2">
+         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
+       
+       </div>
+     <div class="col m10">
+   
+    
+      <ol>
+       <li class="white-text">work on 1</li>
+           <li class="white-text">work on 2</li>
+       </ol>
+     
+     </div>
+    
+    </div>
+
+   <h2 class="hs__headline">Floor Plan</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+<section>
+		<div class="decoration"></div>
+
+	<div class="row">
+	
+		 <div class="input-field col s4 center-align"><span class="material-icons center-align">camera_enhance</span> </div>
+		  <div class="input-field col s4 center-align"><span class="material-icons center-align">add_circle</span> </div>
+		   <div class="input-field col s4 center-align"><span class="material-icons center-align">create</span> </div>
+			
+		
+	</div>	
+     
+	</section>
+  	<img src="images/floor_plan.jpg" alt="floor plan"/ style="padding:10px;">
+</div>
+
+<h2 class="hs__headline">Notes and Files</h2>
+    <div class="row" style="border:1px solid #21a3e2">
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+         <span class="material-icons white-text" style="padding:5px;">
+edit
+</span>
+          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Notes" style="padding:0!important; margin-top:40px;"></textarea>
+        </div>
+
+        <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+      </div>
+    </form> {% endcomment %}
+  </div>
+    
+    
+    </div>
+
+      </div><!--end of col-->
+</div><!--end of row-->
+    <script src="slider.js"></script>
+    <script>
+	  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+ 
+
+{% endblock %}

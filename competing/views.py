@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from training.models import CustomImages
 from .forms import *
+from training.models import TrainingLog
 # Create your views here.
 
 
@@ -44,12 +45,16 @@ def comp_edit(request, pk):
                 newObj.user = user
                 newObj.competition = session
                 newObj.save()
+                url = '/competing/comp_edit/{}'.format(session.pk)
+                return redirect(url)
 
         if 'save_log' in request.POST:
             log = comp_form(
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
+                url = '/competing/comp_edit/{}'.format(session.pk)
+                return redirect(url)
 
         if 'save_venue' in request.POST:
             ven = venue_form(request.POST)
@@ -59,5 +64,27 @@ def comp_edit(request, pk):
                 newObj.competition = session
 
                 newObj.save()
+                url = '/competing/comp_edit/{}'.format(session.pk)
+                return redirect(url)
 
     return render(request, 'cedit.html', {'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
+
+
+def history(request):
+    user = request.user
+    comps = CompetitionLog.objects.all().filter(user=user)
+    training = TrainingLog.objects.all().filter(user=user)
+
+    return render(request, 'history.html', {'comps': comps, 'training': training})
+
+
+def editentry(request, pk):
+    instance = get_object_or_404(Comphorse, pk=pk)
+    comp = instance.competition.pk
+    form = entry_form(instance=instance)
+    if request.method == 'POST':
+        entry = entry_form(request.POST, instance=instance)
+        entry.save()
+        return redirect('comp_edit', pk=comp)
+
+    return render(request, 'editentry.html', {'form': form})

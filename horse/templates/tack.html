@@ -24,7 +24,10 @@
                                   {{ tack|materializecss}}
                              {% csrf_token %} 
                                               <button type="submit" class= 'subplus'><span class="blutext">+<span></button>
-                          </form>
+                             </form>
+
+
+
                                 {% for tack in tackdetails %}
                                 <li class="white-text">{{tack.tacktype}}: {{tack.description}}</li>
                               

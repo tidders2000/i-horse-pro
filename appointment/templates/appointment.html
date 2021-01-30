@@ -85,9 +85,10 @@ input{
 $(document).ready(function(){
 
   // Initialize materialize data picker
-  //$('input').datepicker({'format': 'yyyy-mm-dd'}); 
+   $('#id_due').datepicker({'format': 'dd/mm/yy,H:i'})
+ 
    $('select').formSelect();
-   //$('input').timepicker()
+   $('input').timepicker()
   
 
   });

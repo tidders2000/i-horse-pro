@@ -32,7 +32,7 @@ def photo(request):
 
         newHorse.photo = photo
         newHorse.save()
-        return redirect(reverse('tack'))
+        return redirect(reverse('tackhorse', kwargs={'pk': horse}))
 
     return render(request, 'photo.html', {'horse': horse, 'newHorse': newHorse})
 

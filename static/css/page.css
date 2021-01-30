@@ -1,0 +1,30 @@
+/* horse ind details */
+
+
+/* select css */
+
+.select_image {
+    height: 219px;
+    width: 219px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 769px) {
+    .select_image {
+        height: 118px;
+        width: 118px;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .select_image {
+        height: 56px;
+        width: 56px;
+    }
+    .image_select_link {
+        font-size: 5px;
+    }
+}
+
+
+/*appointments*/

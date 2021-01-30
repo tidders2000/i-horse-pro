@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from training.models import CustomImages
 from .forms import *
+from django.db.models import Q
 from training.models import TrainingLog
+from django.core.paginator import Paginator
+from django.contrib import messages
 # Create your views here.
 
 
@@ -72,10 +75,24 @@ def comp_edit(request, pk):
 
 def history(request):
     user = request.user
-    comps = CompetitionLog.objects.all().filter(user=user)
-    training = TrainingLog.objects.all().filter(user=user)
-
-    return render(request, 'history.html', {'comps': comps, 'training': training})
+    comps = CompetitionLog.objects.all().filter(user=user).order_by('-date')
+    paginator = Paginator(comps, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    training = TrainingLog.objects.all().filter(user=user).order_by('-date')
+    paginators = Paginator(training, 10)
+    train_obj = paginator.get_page(page_number)
+    if request.method == "POST":
+        keyword = request.POST.get('keyword')
+        comps = CompetitionLog.objects.filter(
+            Q(location__icontains=keyword) | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
+        paginator = Paginator(comps, 10)
+        page_obj = paginator.get_page(page_number)
+        training = CompetitionLog.objects.filter(
+            Q(location__icontains=keyword) | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
+        paginators = Paginator(training, 10)
+        train_obj = paginator.get_page(page_number)
+    return render(request, 'history.html', {'train_obj': train_obj, 'page_obj': page_obj})
 
 
 def editentry(request, pk):

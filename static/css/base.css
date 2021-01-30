@@ -10,7 +10,6 @@ body {
 
 ul {
     margin-left: 15%;
-    font-size: 20px;
 }
 
 li {
@@ -33,6 +32,10 @@ h2 {
 h4 {
     color: #ffffff;
     margin-left: 25px;
+}
+
+h5 {
+    color: #0288d1;
 }
 
 input[type=text]:focus {
@@ -120,7 +123,7 @@ input {
 /*mobile navbar on foot of page*/
 
 .small_navbar {
-    background-color: #333;
+    background-color: black;
     overflow: hidden;
     position: fixed;
     bottom: 0;
@@ -148,7 +151,7 @@ input {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 7px;
 }
 
 
@@ -161,8 +164,6 @@ input {
 
 
 /* Add a color to the active/current link */
-
-.small_navbar a.active {}
 
 
 /* pop out sile nav on small */
@@ -228,6 +229,33 @@ input {
 }
 
 
+/* curves images on slider */
+
+.hs__item__image {
+    border-radius: 5px;
+}
+
+
+/* curves corners  on all blue boxes */
+
+.blue_box {
+    border: 1px solid #21a3e2;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+/* home styling*/
+
+.schedule {
+    margin-left: 0 !important;
+}
+
+.schedule li {
+    list-style-type: disc !important;
+}
+
+
 /* media rules*/
 
 @media screen and (max-width: 769px) {
@@ -236,9 +264,30 @@ input {
         height: 77px;
     }
     ul {
-        font-size: 14px;
+        font-size: 10px;
     }
     .main_col {
         padding-left: 30px !important;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .main_col {
+        margin-left: 0px !important;
+        padding-top: 0px;
+        padding-left: 5px !important;
+    }
+    h4 {
+        font-size: 9px !important;
+    }
+    h5 {
+        font-size: 8px !important;
+    }
+    ul {
+        margin-left: 0 !important;
+    }
+    .schedule li {
+        margin-left: 20px;
+        font-size: 8px;
     }
 }

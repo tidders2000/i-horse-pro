@@ -61,11 +61,11 @@ class EventFeed(ICalFeed):
     file_name = "event.ics"
 
     def __call__(self, request, *args, **kwargs):
-        self.request = request
+        self.user = request.user
         return super(EventFeed, self).__call__(request, *args, **kwargs)
 
     def items(self):
-        return Appointment.objects.all().order_by('-due')
+        return Appointment.objects.filter(user=self.user).order_by('-due')
 
     def item_guid(self, item):
         return "{}{}".format(item.id, "global_name")

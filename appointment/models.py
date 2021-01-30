@@ -18,8 +18,6 @@ class Appointment(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     due = models.DateTimeField(
         auto_now=False, null=True)
-    end = models.DateTimeField(
-        auto_now=False, blank=True)
 
     report = models.ImageField(
         upload_to='media/images/appoint', blank=True)

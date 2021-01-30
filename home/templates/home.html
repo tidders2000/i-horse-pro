@@ -1,17 +1,25 @@
 {% extends 'base.html' %}{% load static%} {% block content %}
+<style>
+
+@media all and (max-width: 450px) {
+   .hs li a{
+      font-size:6px!important;
+    }
+   
+}
 
 
+</style>
+{% block head %}
   <!-- Material Design Theming -->
-  <link
-    rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+ 
   <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
   <link rel="manifest" href="{% static 'css/main.css' %}" />
   <link rel="stylesheet" href="{% static 'css/slider.css' %}" />
-     <link rel="stylesheet" href="{% static 'css/simple-calendar.css' %}"> 
 
 
-<h4 style="font: 24px; color: white">My Horses</h4>
+{% endblock %}
+<h4 >My Horses</h4>
 <ul class="hs">
   {% for horse in horses %}
   <li class="hs__item">
@@ -28,23 +36,23 @@
   {% endfor %}
 </ul>
 
-<h4 style="font: 24px; color: white">My Upcoming Appointments</h4>
+<h4>My Schedule</h4>
 <div class="row">
  <div class="col s12 m4">
- <h5 style="color:#0288d1;"> Appointments</h5>
-  <ul>
+ <h5> Appointments</h5>
+  <ul class="schedule">
    {% for event in events %}
-   <li class="white-text">{{event.event}}  {{event.due}}</li>
+   <li class=" grey lighten-1-text">{{event.event}}  {{event.due}}</li>
  
   {% endfor %}
   </ul>
  </div>
 
  <div class="col s12 m4">
-  <h5 style="color:#0288d1;"> Competitions</h5>
-  <ul>
+  <h5> Competitions</h5>
+  <ul class="schedule">
    {% for comp in comps %}
-   <li class="white-text">{{comp.disipline.disipline}}  {{comp.location}} {{comp.date}}</li>
+   <li class="grey-text text-lighten-1">{{comp.disipline.disipline}}  {{comp.location}} {{comp.date}}</li>
  
   {% endfor %}
   </ul>
@@ -53,10 +61,10 @@
  </div>
 
  <div class="col s12 m4">
-    <h5 style="color:#0288d1;"> Training </h5>
-  <ul>
+    <h5> Training </h5>
+  <ul class="schedule">
    {% for train in training %}
-   <li class="white-text">{{train.disipline.disipline}}  {{train.location}} {{train.date}}</li>
+   <li class="grey-text text-lighten-1" style="list-style-type:disc!important;">{{train.disipline.disipline}}  {{train.location}} {{train.date}}</li>
  
   {% endfor %}
   </ul>
@@ -70,11 +78,8 @@
 
 
 
-<h4 style="font: 24px; color: white">My Calendar</h4>
 
-<div id="container"></div>
-
-<h4 style="font: 24px; color: white">Training</h4>
+<h4>Training</h4>
 <ul class="hs">
   {% for train in training %}
   <li class="hs__item">
@@ -83,61 +88,37 @@
     </div>
 
     <div class="hs__item__description">
-      <span class="hs__item__title white-text">
-        <a href="{% url 'training_edit' pk=train.pk %}">{{train.disipline.disipline}} {{train.date}}</a></span>
+      <span class="hs__item__title ">
+        <a href="{% url 'training_edit' pk=train.pk %}">{{train.date}}</a></span>
     </div>
   </li>
 
   {% endfor %}
 </ul>
 
-<h4 style="font: 24px; color: white">Competition</h4>
+<h4>Competition</h4>
 <ul class="hs">
   {% for comp in comps %}
   <li class="hs__item">
-    <div class="hs__item__image__wrapper">
-      <img class="hs__item__image" src="{{MEDIA_URL}}{{ comp.disipline.image}}" alt="{{horse.showName}}"/>
+    <div class="hs__item__image__wrapper " >
+      <img class="hs__item__image" src="{{MEDIA_URL}}{{ comp.disipline.image}}" alt="{{horse.showName}}" />
     </div>
 
     <div class="hs__item__description">
-      <span class="hs__item__title white-text">
-        <a href="{% url 'comp_edit' pk=comp.pk%}">{{comp.disipline.disipline}} {{comp.date}}</a></span>
+      <span class="hs__item__title ">
+        <a href="{% url 'comp_edit' pk=comp.pk%}">  {{comp.date}}</a></span>
     </div>
   </li>
 
   {% endfor %}
 </ul>
+   {% endblock%}
+
    
-
-<script src="{% static  'js/jquery.simple-calendar.min.js'%}"></script>
-<script>
-  $(function(){
-
-  $("#container").simpleCalendar({
-    displayEvent:true,
-    events: [
-
-    // generate new event after tomorrow for one hour
-{% for event in events%}
-    {
-
-      startDate:new Date("{{event.due|date:'D, j F Y h:i'}}"),
-
-      endDate:new Date("{{event.end|date:'D, j F Y h:i'}}"),
-
-      summary:'{{event.event.appType}}'
-
-    },
-     {% endfor %}
-  ],
-   });
+{% block scripts %}
 
 
-});
-
-
-</script>
-
+<!-- service worker install for fb this page only-->
 <script>
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
@@ -164,72 +145,7 @@
 <!-- Add Firebase products that you want to use -->
 <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyD4p8Ud9SI8Cv_u1qxpyH7v7nP0K0S5rPU",
-    authDomain: "ihorse-8e7f4.firebaseapp.com",
-    projectId: "ihorse-8e7f4",
-    storageBucket: "ihorse-8e7f4.appspot.com",
-    messagingSenderId: "51294489856",
-    appId: "1:51294489856:web:021c3f0fd7f810c7e4f7e5",
-    measurementId: "G-QBC4KFYX42",
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-
-<script>
-  const messaging = firebase.messaging();
-
-  function resetUI() {
-    console.log("loading...");
-
-    messaging
-      .getToken({
-        vapidKey:
-          "BMk5wlvBQEvChiTZkVw59uy-45EUAYo_MG4d-yQ7rf_xncyDxFHtP7AosN-sKlhcY0GNFAeFEnn0uaNA4lmPkZ4",
-      })
-      .then((currentToken) => {
-        if (currentToken) {
-          console.log(currentToken); //save token and check for duplicates
-        } else {
-          // Show permission request.
-          console.log(
-            "No registration token available. Request permission to generate one."
-          );
-          // Show permission UI.
-        }
-      })
-      .catch((err) => {
-        console.log("An error occurred while retrieving token. ", err);
-      });
-    // [END get_token]
-  }
-
-  function requestPermission() {
-    console.log("Requesting permission...");
-    // [START request_permission]
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        console.log("Notification permission granted.");
-        // TODO(developer): Retrieve a registration token for use with FCM.
-        // [START_EXCLUDE]
-        // In many cases once an app has been granted notification permission,
-        // it should update its UI reflecting this.
-        resetUI();
-        // [END_EXCLUDE]
-      } else {
-        console.log("Unable to get permission to notify.");
-      }
-    });
-    // [END request_permission]
-  }
-  resetUI();
-</script>
-
+ <script src="{% static 'js/firebase.js'%}"></script>
  <script src="{% static 'js/slider.js'%}"></script>
     <script>
 

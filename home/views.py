@@ -15,6 +15,7 @@ from horse.models import Horse
 from appointment.models import Appointment
 from competing.models import CompetitionLog
 from training.models import TrainingLog
+from django.contrib import messages
 # Create your views here.
 
 
@@ -29,6 +30,7 @@ def home(request):
         user=user).order_by('-date')[:3]
     training = TrainingLog.objects.all().filter(
         user=user).order_by('-date')[:3]
+    messages.error(request, "hello")
 
     return render(request, 'home.html', {'horses': horses, 'events': events, 'comps': comps, 'training': training})
 

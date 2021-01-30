@@ -17,10 +17,10 @@
   crossorigin="anonymous"></script>
 
   
-   {% block css %}
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
-{% endblock css %}
+
 
    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <!-- manifest-->
@@ -53,6 +53,8 @@
         <meta name="user_id" content="{{ user.id }}">
     {% endif %}
 
+{% block head %}{% endblock %}
+
 </head>
 
 <body>
@@ -66,9 +68,16 @@
    <img src="{% static 'images/logo/mobile_logo.png' %} "class="logo_small"/>
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
-    <a href="{% url 'profile' %}">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+               <a href="{% url 'home' %}"><i class="fa fa-home"></i><em>Home</em></a>
+               <a href="{% url 'details'%}"><i class="fas fa-horse"></i><em>Horses</em></a>
+               <a href="yard.html"><i class="fas fa-broom"></i></i><em>Yard</em></a>
+               <a href="{% url 'caltwo'%}"><i class="fa fa-calendar"></i></i><em>Calendar</em></a>
+               <a href="{% url 'training_log' %}"><i class="fas fa-book-open"></i><em>Training</em></a>
+               <a href="{% url 'history'%}"><i class="fas fa-chart-line"></i><em>Activity Log</em></a>
+               <a href="{% url 'competition'%}"><i class="fas fa-award"></i><em>Competitions</em></a>
+               <a href="{% url 'profile' %}"><i class="fa fa-cog"></i><em>Settings</em></a>
+               <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a>
+               <a href="{% url 'mindset' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a>
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="menu()">
@@ -105,8 +114,13 @@
 
   
       {% block content %} {% endblock %} 
-      <!--small toolbar-->
+      <div class="small_navbar hide-on-med-and-up row">
 
+<div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-home  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Home</span></a></div></div>
+<div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-book-open center-align small_nav" style="padding:0;"></i><br><span class="white-text">Training</span></a></div></div>
+<div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-horse  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Horse</span></a></div></div>
+<div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-calendar center-align small_nav" style="padding:0;"></i><br><span class="white-text">Cal</span></a></div></div>
+      <!--small toolbar-->
 
 
  </div><!--end of wrapper-->
@@ -114,27 +128,8 @@
 </div><!--end of main section-->
 
 
-{% comment %} 
-{% if messages %}
-
-                {% for message in messages %}
-  <div class="alert alert-primary alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    {{ message }}
-  </div>
-{% endfor %}
-            
-             {% endif%} {% endcomment %}
-
 </div><!--end of row-->
-<div class="small_navbar hide-on-med-and-up row">
 
-<div class="col s3 align-center"><div class="center-align"><i class="fas fa-home  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Home</span></div></div>
-<div class="col s3 align-center"><div class="center-align"><i class="fas fa-book-open center-align small_nav" style="padding:0;"></i><br><span class="white-text">Training</span></div></div>
-<div class="col s3 align-center"><div class="center-align"><i class="fas fa-horse  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Horse</span></div></div>
-<div class="col s3 align-center"><div class="center-align"><i class="fas fa-calendar center-align small_nav" style="padding:0;"></i><br><span class="white-text">Cal</span></div></div>
 
  
  
@@ -168,6 +163,22 @@
  <script src="{% static 'js/jquery.datetimepicker.full.min.js'%}"></script>
  <!-- custom js-->
  <script src="{% static 'js/custom.js' %}"></script>
+
+
+{% if messages %}
+
+                {% for message in messages %}
+ 
+  <script>   M.toast({html: '{{message}}'})</script>
+  
+  </div>
+{% endfor %}
+            
+             {% endif%} 
+
+
+{% block scripts %}{% endblock %}
+
 {% endblock javascript %}
   
 

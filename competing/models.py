@@ -9,7 +9,8 @@ from django.contrib.auth.models import User
 class CompetitionLog(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
-    date = models.DateField(null=True, blank=True)
+    date = models.DateTimeField(
+        auto_now=False, null=True)
     disipline = models.ForeignKey(
         CustomImages, null=True, on_delete=models.CASCADE)
 

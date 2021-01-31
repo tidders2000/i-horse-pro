@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from training.models import CustomImages
 from .forms import *
+from django_ical.views import ICalFeed
 from django.db.models import Q
 from training.models import TrainingLog
 from django.core.paginator import Paginator
 from django.contrib import messages
+from datetime import datetime
+from datetime import date
+import calendar
 # Create your views here.
 
 
@@ -34,7 +38,7 @@ def comp_edit(request, pk):
     user = request.user
     form = comp_form(instance=session)
     venue = venue_form()
-    # venue = venue_form()
+    display = "display"
     # entries = Comphorse.objects.all().filter(session=session)
     entry = entry_form()
     entries = Comphorse.objects.all().filter(competition=session)
@@ -49,6 +53,7 @@ def comp_edit(request, pk):
                 newObj.competition = session
                 newObj.save()
                 url = '/competing/comp_edit/{}'.format(session.pk)
+
                 return redirect(url)
 
         if 'save_log' in request.POST:
@@ -56,6 +61,8 @@ def comp_edit(request, pk):
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
+                display = "inline"
+                print(display)
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
 
@@ -70,7 +77,40 @@ def comp_edit(request, pk):
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
 
-    return render(request, 'cedit.html', {'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
+    return render(request, 'cedit.html', {'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
+
+
+class EventFeed2(ICalFeed):
+    """
+    A simple event calender
+    """
+    product_id = '-//example.com//Example//EN'
+    timezone = 'UTC'
+    file_name = "comp.ics"
+
+    def __call__(self, request, *args, **kwargs):
+        self.user = request.user
+        return super(EventFeed2, self).__call__(request, *args, **kwargs)
+        print(self.user)
+
+    def items(self):
+        return CompetitionLog.objects.filter(user=self.user).order_by('-date')
+
+    def item_guid(self, item):
+        return "{}{}".format(item.id, "global_name")
+
+    def item_title(self, item):
+
+        return "{}".format(item.location)
+
+    def item_description(self, item):
+        return item.notes
+
+    def item_start_datetime(self, item):
+        return item.date
+
+    def item_link(self, item):
+        return "http://www.google.de"
 
 
 def history(request):

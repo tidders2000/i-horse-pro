@@ -9,6 +9,7 @@ urlpatterns = [
     path('comp_edit/<int:pk>', comp_edit, name="comp_edit"),
     path('history/', history, name='history'),
     path('editentry/<int:pk>', editentry, name='editentry'),
+    path('feed.ics$', EventFeed2(), name='EventFeed2'),
 
 
 

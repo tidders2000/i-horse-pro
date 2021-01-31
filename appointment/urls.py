@@ -7,7 +7,7 @@ urlpatterns = [
     path('<int:pk>', appointment, name='appointment'),
     path('feed.ics$', EventFeed(), name='EventFeed'),
     path('edit/', editapp, name='editapp'),
-    path('ical/', ical, name='ical')
+    # path('ical/', ical, name='ical')
 
 
 ]

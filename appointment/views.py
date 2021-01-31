@@ -84,22 +84,22 @@ class EventFeed(ICalFeed):
         return "http://www.google.de"
 
 
-def ical(request, user_id=None):
-    cal = vobject.iCalendar()
+# def ical(request, user_id=None):
+#     cal = vobject.iCalendar()
 
-    cal.add('method').value = 'PUBLISH'
-    cal.add('calscale').value = 'GREGORIAN'
-    cal.add('x-wr-calname').value = 'TestCal28'
-    cal.add('x-wr-timezone').value = 'Australia/Sydney'
-    cal.add('x-wr-caldesc').value = ''
-    vevent = cal.add('vevent')
-    vevent.add('dtstart').value = datetime(2021, 1, 22)
-    vevent.add('dtend').value = datetime(2021, 1, 22)
-    vevent.add('dtstamp').value = datetime.now()
-    vevent.add('summary').value = "Test event"
-    icalstream = cal.serialize()
+#     cal.add('method').value = 'PUBLISH'
+#     cal.add('calscale').value = 'GREGORIAN'
+#     cal.add('x-wr-calname').value = 'TestCal28'
+#     cal.add('x-wr-timezone').value = 'Australia/Sydney'
+#     cal.add('x-wr-caldesc').value = ''
+#     vevent = cal.add('vevent')
+#     vevent.add('dtstart').value = datetime(2021, 1, 22)
+#     vevent.add('dtend').value = datetime(2021, 1, 22)
+#     vevent.add('dtstamp').value = datetime.now()
+#     vevent.add('summary').value = "Test event"
+#     icalstream = cal.serialize()
 
-    response = HttpResponse(icalstream, content_type='text/calendar')
-    response['Filename'] = 'filename.ics'
-    response['Content-Disposition'] = 'attachment; filename=filename.ics'
-    return response
+#     response = HttpResponse(icalstream, content_type='text/calendar')
+#     response['Filename'] = 'filename.ics'
+#     response['Content-Disposition'] = 'attachment; filename=filename.ics'
+#     return response

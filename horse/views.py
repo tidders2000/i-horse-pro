@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
 from .forms import horse_form, link_form, tack_form
 from django.contrib import messages
 from .models import *
 from appointment.models import Appointment
+from training.models import TrainingLog
 
 # Create your views here.
 
@@ -95,23 +96,34 @@ def details(request):
 
 def detailsInd(request, pk):
     user = request.user
+    string = request.session['history']
+    if request.session['history']:
+
+        tory = Appointment.objects.all().filter(event__appType=string)
+
+    else:
+        tory = Appointment.objects.all().filter(event__appType="Dentist")
+        request.session['history'] = "Dentist"
+        string = request.session['history']
 
     horses = Horse.objects.all().filter(user=user)
-
+    training = TrainingLog.objects.all().filter(horse=pk).order_by('-date')[:5]
     links = Link.objects.all().filter(horse=pk)
     selected = Horse.objects.get(pk=pk)
     appointments = Appointment.objects.all().filter(
         horse=selected).order_by('event__appType', '-due')
     appointments = appointments.distinct('event__appType')
+
     if request.method == "POST":
-        photo = request.FILES.get('pic')
+        if 'save_obj' in request.POST:
+            photo = request.FILES.get('pic')
+            selected.passport = photo
+            selected.save()
 
-        selected.passport = photo
-        selected.save()
-    if request.method == 'GET':
+        if 'apps' in request.POST:
 
-        if request.GET['par']:
-            search = request.GET['par']
-            tory = Appointment.objects.all().filter(event__appType=search)
+            request.session['history'] = request.POST.get('apps')
+            print(request.POST.get('type'))
+            return redirect(reverse('detailsInd', kwargs={'pk': pk}) + '#apps')
 
-    return render(request, 'horse_details_ind.html', {'appointments': appointments, 'tory': tory, 'selected': selected, 'horses': horses, 'links': links})
+    return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links})

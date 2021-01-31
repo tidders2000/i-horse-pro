@@ -12,7 +12,7 @@
 
   <ul class="image_select">
     {% for horse in horses %}
-    <li class="col s3 m4">
+    <li class="col m4">
       <img class="select_image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.showName}}"/>
      <br>
         <a class="image_select_link "href="{{horse.pk}}?par=Dentist">{{horse.showName}}</a> 

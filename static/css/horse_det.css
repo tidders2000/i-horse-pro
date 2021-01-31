@@ -1,0 +1,78 @@
+.step-links a {
+    color: white;
+}
+
+.current {
+    color: white;
+}
+
+.disipline_title {
+    color: #b3b3b3;
+    font-size: 24px;
+}
+
+.disipline_type {
+    color: white;
+}
+
+@media all and (max-width: 450px) {
+    .disipline_title {
+        font-size: 10px;
+    }
+    .history_link {
+        font-size: 30px !important;
+    }
+    .disipline_type {
+        font-size: 8px;
+    }
+}
+
+.submit_button {
+    background: none !important;
+    border: none;
+    padding: 0;
+}
+
+.ppimage {
+    width: 100%;
+    height: 433px;
+    border-radius: 5px;
+}
+
+.app_sec {
+    height: 450px;
+}
+
+.appoint {
+    color: white;
+}
+
+.appoint li a {
+    font-size: 15px;
+}
+
+@media all and (max-width: 450px) {
+    .app_sec {
+        height: 300px !important;
+    }
+}
+
+.appointments_submit {
+    width: 300px;
+    font-size: 10px;
+}
+
+#app {
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+}
+
+.add_appoint {
+    color: #21a3e2;
+    font-size: 10px;
+}
+
+.his_date {
+    color: white;
+    font-family: avenir;
+}

@@ -1,9 +1,17 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Tack{% endblock %}
      
 
+     {% block head %}
+   
+        {% comment %} <link rel="stylesheet" href="{% static 'css/form.css' %}">  {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
+         <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+      {% endblock %}
+     
+  
      
      {% block content %}
-        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+       
      
 {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   {% endcomment %}
@@ -13,14 +21,39 @@
 
 </style>
 
-<h4 style="font:24px;color:white;">Tack</h4>
+<h2>Tack</h2>
  
 
+  <div class="h5">Numbered - <code>.numbered</code></div>
+      <div class="multi-step numbered">
+        <ul class="multi-step-list">
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Horse</p>
+            </div>
+          </li>
+          <li class="multi-step-item active ">
+            <div class="item-wrap">
+              <p class="item-title">Add Photo</p>
+            </div>
+          </li>
+          <li class="multi-step-item active current">
+            <div class="item-wrap">
+              <p class="item-title">Add Tack</p>
+            </div>
+          </li>
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Links</p>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-                         <div class="row box" > 
+                         <div class="row" > 
                         <form method="POST">
                         
-                             <div class="col s12 m6 ">
+                             <div class="col s12 m6 push-m3 blue_box">
                                   {{ tack|materializecss}}
                              {% csrf_token %} 
                                               <button type="submit" class= 'subplus'><span class="blutext">+<span></button>
@@ -41,17 +74,15 @@
 
                          <div class="col  m6 center-align">
              
-                          <button onclick="goBack()" style="display:{{display}}">Go Back</button>
+                          
                       
                       
                        </div>
                        
              </div> 
-      <script>
-function goBack() {
-  window.history.back();
-}
-</script>               
+             {% endblock %}
+              
+{% block scripts %}
 
    <script>
 $(document).ready(function(){
@@ -65,5 +96,5 @@ $(document).ready(function(){
   });
 </script>            
 
-{%endblock%}
+{% endblock %}
 

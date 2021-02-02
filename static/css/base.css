@@ -245,6 +245,11 @@ input {
     padding-bottom: 20px;
 }
 
+.selected-image {
+    border-radius: 5px;
+    ;
+}
+
 
 /* home styling*/
 
@@ -254,6 +259,7 @@ input {
 
 .schedule li {
     list-style-type: disc !important;
+    font-size: 13px;
 }
 
 

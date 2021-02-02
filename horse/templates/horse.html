@@ -1,25 +1,49 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
      
 
-     
-     {% block content %}
+     {% block head %}
+   
         <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+        <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
+      {% endblock %}
      
 {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   {% endcomment %}
 
  
-<style>
+  {% block content %}
 
-
-</style>
-
-<h4 style="font:24px;color:white;">Add A Horse</h4>
+<h2 >Add A Horse</h2>
  
-
+ <div class="h5">Numbered - <code>.numbered</code></div>
+      <div class="multi-step numbered">
+        <ul class="multi-step-list">
+          <li class="multi-step-item active current">
+            <div class="item-wrap">
+              <p class="item-title">Add Horse</p>
+            </div>
+          </li>
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Photo</p>
+            </div>
+          </li>
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Tack</p>
+            </div>
+          </li>
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Links</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
 
               <form method="POST" enctype="multipart/form-data">
-                     <div class="row box" > 
+                     <div class="row blue_box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">Basic Info</h4>
                        <div class="col s12 col m6">
                           {{ form.showName|materializecss}}
@@ -40,7 +64,7 @@
 
            
                     
-                  <div class="row box" > 
+                  <div class="row blue_box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">Personals</h4>
                        <div class="col s12 col m6">
                           {{ form.breed|materializecss}}
@@ -59,7 +83,7 @@
                      
                      </div>
 
-                       <div class="row box" > 
+                       <div class="row blue_box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">Owner Details</h4>
                        <div class="col s12 ">
                           {{ form.owner|materializecss}}
@@ -88,8 +112,8 @@
                       <button type="submit"  class="btn btn-success">Add Horse</button>
                       
                       </form>
-                     
-
+     {% endblock %}                
+{% block scripts %}
    <script>
 $(document).ready(function(){
 
@@ -103,5 +127,5 @@ $(document).ready(function(){
 
 </script>             
 
-{%endblock%}
+{% endblock %}
 

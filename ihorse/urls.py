@@ -43,5 +43,6 @@ urlpatterns = [
         name='fbsw',
     ),
     path('webpush/', include('webpush.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 
 ]

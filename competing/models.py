@@ -29,9 +29,9 @@ class Venue(models.Model):
     competition = models.ForeignKey(
         CompetitionLog, null=True, on_delete=models.CASCADE)
     value = models.CharField(max_length=100, blank=True)
-    refreshments = models.CharField(max_length=100, blank=True)
-    prizes = models.CharField(max_length=100, blank=True)
-    atmosphere = models.CharField(max_length=100, blank=True)
+    refreshments = models.CharField(max_length=1, blank=True)
+    prizes = models.CharField(max_length=1, blank=True)
+    atmosphere = models.CharField(max_length=1, blank=True)
 
     def __str__(self):
         return self.venueName

@@ -1,61 +1,91 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
      
 
+     {% block head %}
+   
+        {% comment %} <link rel="stylesheet" href="{% static 'css/form.css' %}">  {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
+      {% endblock %}
      
      {% block content %}
-        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+
      
 {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   {% endcomment %}
 
- 
-<style>
 
 
-</style>
-
-<h4 style="font:24px;color:white;">Add Photo</h4>
- 
+<h2>Add Photo</h2>
+  <div class="h5">Numbered - <code>.numbered</code></div>
+      <div class="multi-step numbered">
+        <ul class="multi-step-list">
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Horse</p>
+            </div>
+          </li>
+          <li class="multi-step-item active current">
+            <div class="item-wrap">
+              <p class="item-title">Add Photo</p>
+            </div>
+          </li>
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Tack</p>
+            </div>
+          </li>
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Add Links</p>
+            </div>
+          </li>
+        </ul>
+      </div>
 
 
               <form method="POST" enctype="multipart/form-data">
-                     <div class="row box" > 
+                     
+                     
+                     <div class="row" > 
 
                        
                  
-                       <div class="col s12 m6 image_ph ">
+                       <div class="col s12 m6 push-m3 image_ph ">
 
-                           <img src= "{{MEDIA_URL}}{{ newHorse.photo}}" class="responsive" alt='placeholder'/>
+                           <img src= "{{MEDIA_URL}}{{newHorse.photo}}" height = "100%" width="100%" class="responsive" alt='placeholder'/>
                        </div>
-
-                         <div class="col s12 m6 ">
+                      </div><!-- end row-->
+                           <div class= "row">
+                         <div class="col s12 m6 push-m3  ">
                                               
-    <input id="pic" name="pic" type="file" class='custom-file-input' accept="image/*">
+                             <input id="pic" name="pic" type="file" class='custom-file-input' accept="image/*">
                        </div>
       
-                     
+                     </div><!--end row-->
                      
                      </div>
                     
-                
+                      <div class= "row">
+                         <div class="col s12 m6 push-m3  ">
                      {% csrf_token %} 
                       <button type="submit"  class="btn btn-success">Add Photo</button>
-                      
+                      </div>
+                      </div><!--endrow-->
                       </form>
                      
-
+     {% endblock %}                
+{% block scripts %}
    <script>
 $(document).ready(function(){
 
   // Initialize materialize data picker
   $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
-  $('select').material_select();
+   $('select').formSelect();
 
 
   });
 
-});
+
 </script>             
 
-{%endblock%}
-
+{% endblock %}

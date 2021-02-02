@@ -36,8 +36,15 @@ def comp_create(request, pk):
 def comp_edit(request, pk):
     session = get_object_or_404(CompetitionLog, pk=pk)
     user = request.user
+    venues = Venue.objects.all().filter(competition=session)
+    x = session.myStars
+    v = 1
+    r = 2
+    p = 3
+    a = 4
     form = comp_form(instance=session)
-    venue = venue_form()
+
+    venue = venue_form(venues)
     display = "display"
     # entries = Comphorse.objects.all().filter(session=session)
     entry = entry_form()
@@ -57,16 +64,18 @@ def comp_edit(request, pk):
                 return redirect(url)
 
         if 'save_log' in request.POST:
+
             log = comp_form(
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
                 display = "inline"
-                print(display)
+
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
 
         if 'save_venue' in request.POST:
+
             ven = venue_form(request.POST)
             if ven.is_valid():
                 newObj = ven.save(commit=False)
@@ -75,9 +84,10 @@ def comp_edit(request, pk):
 
                 newObj.save()
                 url = '/competing/comp_edit/{}'.format(session.pk)
+
                 return redirect(url)
 
-    return render(request, 'cedit.html', {'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
+    return render(request, 'cedit.html', {'p': p, 'a': a, 'r': r, 'v': v, 'x': x, 'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
 
 
 class EventFeed2(ICalFeed):
@@ -121,7 +131,7 @@ def history(request):
     page_obj = paginator.get_page(page_number)
     training = TrainingLog.objects.all().filter(user=user).order_by('-date')
     paginators = Paginator(training, 10)
-    train_obj = paginator.get_page(page_number)
+    train_obj = paginators.get_page(page_number)
     if request.method == "POST":
         keyword = request.POST.get('keyword')
         comps = CompetitionLog.objects.filter(

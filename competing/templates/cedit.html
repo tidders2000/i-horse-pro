@@ -1,211 +1,22 @@
-{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Horse{% endblock %}
-     
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Horse{% endblock %}{% load ratings %}
 
-     {% block content %} 
+     
+{% block head %}
+  
        <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
             <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
-<style>
-.selected-image{
-  height:183px;
-  width:275px;
-}
-
-textarea{
-  padding:0!important; 
-  margin-top:40px;
-}
-
-.warning_msg{
-  font-size:20px;
-}
-{% comment %} body{
-  background-color: #101010;
-*/background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);/*
-}
-.sidenav {
- height:100%;
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
-}
- .navul{
-   margin-left:15%;
-   font-size:20px;
- }
-.navli{
-  padding-bottom:5px;
-  color:
-}
-
-li a{
-  color:#b3b3b3;
-}
-
-
- i{
-   padding-right:15px;
- }
-
- .logo{
-   padding-top:10px;
-   margin-left:5px;
- }
-
- h2{
-    font-size: 24px;
-    color: #ffffff
- }
-
-
-
-.appoint{
-  color:white;
-  padding-left:5px;
-     font-size:14px;
-}
-
-.appoint li{
-  margin-left:10px;
-}
-
-
-h4{
-   color:#b3b3b3;
-  font-size:16px;
+            <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}"> 
+            <link rel="stylesheet" href="{% static 'css/cedit.css' %}"> 
   
-}
 
-.listhl{
- color:#21a3e2
-}
+{% endblock %}
 
-.his{
-  margin-left:10%;
-  font-size:14px;
-  color:white;
-}
-
-.his li{
-    margin-left:10px;
-}
-
-.plus{
-  font-size:119px;
-  color: #21a3e2;
-
-}
-
-.appointments{
-  margin-bottom:100px;
-}
-
-.collection .collection-item{
-  background-color:#101010!important;
-}
-
-.social{
-  font-size:24px;
-  color:white;
-  padding:5px;
-}
-
-.social:hover {
-  background-color:#21a3e2;
-}
+   {% block content %} 
 
 
 
-.socialwapper{
-  text-align:center;
- padding-left:5px;
-}
-
-.card-action {
-  color:#b3b3b3;
-}
-
-.plus_holder{
-  float:right;}
-   @media only screen and (max-width: 768px) {
- .logo {
-    width: 130px;
-  }
-
-  .navul{
-    font-size:14px;
-    margin-left:15%%;
-    width:140px;
-    
-  }
-
-   i{
-   padding-right:10px;
- }
-
- .app_sec{
-   height:250px;
- }
-
- .ppimage{
-   height:200px;
-   width:200px;
- }
- .plus_holder{
-   margin-top:15%;
-   margin-left:10%;
- }
-}
-
-ol{
-  list-style: none;
-  font-size:24px;
-}
-
-ol li {
-  counter-increment: my-awesome-counter;
-}
-
-ol li::before {
-  content: counter(my-awesome-counter) ". ";
-  color:#b3b3b3;
-}
-
-.input-field {
-  color:#b3b3b3;
-}
-
-.btn{
-  background-color:#b3b3b3;
-} {% endcomment %}
 
 
-.floorplan{
-  padding:10px;
-
-  
-}
-
-@media screen and (max-width: 600px) {
-  
-.floorplan{
-  width:70%;
-  height:70%;
- margin-top:30px;
-  
-}
-
-.btn{
-  width:100px;
-  font-size:9px!important;
-  margin-bottom:40px;
-}
-}
-
-</style>
 
 <h4 style="font:24px;color:white;">{{session.disipline.disipline}}</h4>
 
@@ -227,29 +38,26 @@ ol li::before {
    <div class="row" style="border:1px solid #b3b3b3"></div>
 
        <h2 class="hs__headline">Competition Details</h2>
-    <div class="row" style="border:1px solid #21a3e2">
+    <div class="row blue_box" >
           <form method="POST" enctype="multipart/form-data" class="col s12">
               <span class="material-icons white-text" style="padding:5px;">
 edit
 </span>
       <div class="row">
       <form method-"POST" enctype="multipart/form-data">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6">
      
        {{form.location|materializecss}} 
         
         </div>
-        <div class="input-field col s6">
+        <div class="input-field date col s12 m6">
       
      {{form.date|materializecss}}
           
         </div>
       </div>
-          <div class="row">
-        <div class="input-field col s6">
-         {{form.myStars|materializecss}}
-        </div>
-        <div class="input-field col s6">
+
+        <div class="input-field   col s12">
          
          {{form.videoLink|materializecss}}  
         </div>
@@ -265,6 +73,27 @@ emoji_objects
          <div class="input-field col s12">
 {{form.image|materializecss}} 
         </div>
+                  <div class="row">
+        <div class="input-field col s12">
+<div class="rating">
+<div class="white-text"> Rider Performance</div>
+  <input type="radio" id="star5" name="myStars" value="5" {% if x == '5' %} checked{% endif %}/>
+  <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+  <input type="radio" id="star4" name="myStars" value="4" {% if x == '4' %} checked{% endif %}/>
+  <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+
+  <input type="radio" id="star3" name="myStars"   value="3" {% if x == '3' %} checked{% endif %} />
+  <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+  <input type="radio" id="star2" name="myStars"  value="2" {% if x == '2' %} checked{% endif %} />
+  <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+  <input type="radio" id="star1" name="myStars" value="1" {% if x == '1' %} checked{% endif %} />
+  <label class="star" for="star1" title="Bad" aria-hidden="true" ></label>
+</div>
+
+
+
+        
+        </div>
       </div>
  
       {% csrf_token %}
@@ -273,32 +102,142 @@ emoji_objects
            </form>
     </div>
 
-   <h2 class="hs__headline">Venue Ratings</h2>
-    <div class="row" style="border:1px solid #21a3e2">
-    <form method="POST">
+   <h2>Venue Ratings</h2>
+    <div class="row blue_box">
 
-    {{venue|materializecss}}
+     <form method="POST">
+    <p class="range-field">
+    <h5>Value</h5>
+      <input type="range" id="test5" min="0" max="5" name='value' value="{{v}}" />
+    </p>
+    <p class="range-field">
+    <h5>Refreshments</h5>
+      <input type="range" id="test5" min="0" max="5" name='refreshments' value="{{r}}" />
+    </p>
+    <p class="range-field">
+    <h5>Prizes</h5>
+      <input type="range" id="test5" min="0" max="5" name='prizes' value="{{p}}" />
+    </p>
+    <p class="range-field">
+    <h5>Atmosphere</h5>
+      <input type="range" id="test5" min="0" max="5" name='atmosphere' value="{{a}}" />
+    </p>
+{% csrf_token %}
+      <button type="submit" class= 'subplus' name="save_venue"><span class="blutext">+<span></button>
+    </form>
+  </form>
+    {% comment %} <form method="POST" enctype="multipart/form-data">
+<div class="row">
+ <div class="col s2">
+    <div class="white-text">Value:</div>
+    
+   </div>
+
+   <div class="col s10 input-field ">
+   
+ 
+<div class="rating2">
+  <input type="radio" id="value5" name="value" value="5" {% if v == '5' %} checked{% endif %} />
+  <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+  <input type="radio" id="value4" name="value" value="4" {% if v == '4' %} checked{% endif %}/>
+  <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+
+  <input type="radio" id="value3" name="value"   value="3"   {% if v == '3' %} checked{% endif %}/>
+  <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+  <input type="radio" id="value2" name="value"  value="2"  {% if v == '2' %} checked{% endif %} />
+  <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+  <input type="radio" id="value1" name="value" value="1"  {% if v == '1' %} checked{% endif %} />
+  <label class="star" for="star1" title="Bad" aria-hidden="true" ></label>
+</div>
+</div>
+</div>
+ 
+ <div class="row">
+ <div class="col s2">
+    <div class="white-text">Refreshments:</div>
+   </div>
+
+   <div class="col s10">
+ 
+ <div class="rating">
+  <input type="radio" id="star5" name="refreshments" value="5" {% if r == '5' %} checked{% endif %} />
+  <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+  <input type="radio" id="star4" name="refreshments" value="4" {% if r == '4' %} checked{% endif %}/>
+  <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+
+  <input type="radio" id="star3" name="refreshments"   value="3"   {% if r == '3' %} checked{% endif %}/>
+  <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+  <input type="radio" id="star2" name="refreshments"  value="2"{% if r == '2' %} checked{% endif %} />
+  <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+  <input type="radio" id="star1" name="refreshments" value="1" {% if r == '1' %} checked{% endif %}/>
+  <label class="star" for="star1" title="Bad" aria-hidden="true" ></label>
+</div>
+</div>
+</div>
+ <div class="row">
+ <div class="col s2">
+    <div class="white-text">Prizes:</div>
+   </div>
+
+   <div class="col s10">
+
+   <div class="rating">
+  <input type="radio" id="star5" name="prizes" value="5" {% if p == '5' %} checked{% endif %} />
+  <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+  <input type="radio" id="star4" name="prizes" value="4" {% if p == '4' %} checked{% endif %}/>
+  <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+
+  <input type="radio" id="star3" name="prizes"   value="3"   {% if p == '3' %} checked{% endif %}/>
+  <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+  <input type="radio" id="star2" name="prizes"  value="2"{% if p == '2' %} checked{% endif %} />
+  <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+  <input type="radio" id="star1" name="prizes" value="1" {% if p == '1' %} checked{% endif %}/>
+  <label class="star" for="star1" title="Bad" aria-hidden="true" ></label>
+</div>
+</div>
+</div>
+ <div class="row">
+ <div class="col s2">
+    <div class="white-text">Atmosphere:</div>
+   </div>
+
+   <div class="col s10">
+   <div class="rating">
+  <input type="radio" id="star5" name="atmosphere" value="5" {% if a == '5' %} checked{% endif %} />
+  <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+  <input type="radio" id="star4" name="atmosphere" value="4" {% if a == '4' %} checked{% endif %}/>
+  <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+
+  <input type="radio" id="star3" name="atmosphere"   value="3"   {% if a == '3' %} checked{% endif %}/>
+  <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+  <input type="radio" id="star2" name="atmosphere"  value="2"{% if a == '2' %} checked{% endif %} />
+  <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+  <input type="radio" id="star1" name="atmosphere" value="1" {% if a == '1' %} checked{% endif %}/>
+  <label class="star" for="star1" title="Bad" aria-hidden="true" ></label>
+</div>
+  </div>
+  </div>
       {% csrf_token %}
       <button type="submit" class= 'subplus' name="save_venue"><span class="blutext">+<span></button>
     </form>
-   
+    {% endcomment %}
   
 </div>
 
 
 
    <h2 class="hs__headline">Entry List</h2>
-    <div class="row" style="border:1px solid #21a3e2">
+    <div class="row blue_box" >
     <form method="POST">
-
+    <div></div>
     {{entry|materializecss}}
       {% csrf_token %}
       <button type="submit" class= 'subplus' name="save_entry"><span class="blutext">+<span></button>
     </form>
    
-  <table class="responsive-table highlight white-text ">
+  <table class="responsive-table highlight striped white-text ">
               <thead>
-                <tr>
+                <tr class="fill_table">
                     <th>Horse</th>
                     <th>Class</th>
                     <th>Time</th>
@@ -332,7 +271,18 @@ emoji_objects
     $('select').formSelect();
     $('select').select();
   });
+
 </script>
   
+<script>
+var logID = 'log',
+  log = $('<div id="'+logID+'"></div>');
+$('body').append(log);
+  $('[type*="radio"]').change(function () {
+    var me = $(this);
+    log.html(me.attr('value'));
+  });
+</script>
+
 
 {% endblock %}

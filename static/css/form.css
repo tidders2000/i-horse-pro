@@ -32,6 +32,21 @@ form {
     font-size: 150pt;
 }
 
+.custom-file-input::after {
+    content: '+';
+    display: inline-block;
+    text-align: center;
+    color: #21a3e2;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #010101;
+    font-weight: 700;
+    font-size: 150pt;
+}
+
 .custom-file-input:hover::before {}
 
 .custom-file-input:active::before {}

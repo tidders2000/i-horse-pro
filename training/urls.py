@@ -6,7 +6,8 @@ from .views import *
 urlpatterns = [
     path('', training_log, name='training_log'),
     path('<int:pk>', training_create, name='training_create'),
-    path('training_edit/<int:pk>', training_edit, name="training_edit")
+    path('training_edit/<int:pk>', training_edit, name="training_edit"),
+    path('checkOb/<int:pk>',checkOb,name="checkOb")
 
 
 

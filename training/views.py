@@ -49,3 +49,15 @@ def training_edit(request, pk):
                 log.save()
 
     return render(request, 'tedit.html', {'listObj': listObj, 'obj': obj, 'form': form, 'session': session, })
+
+
+def checkOb(request, pk):
+    objective = get_object_or_404(Objectives, pk=pk)
+    if objective.Completed == False:
+        objective.Completed = True
+    else:
+        objective.Completed = False
+
+    objective.save()
+    session = objective.session.pk
+    return redirect("training_edit", pk=session)

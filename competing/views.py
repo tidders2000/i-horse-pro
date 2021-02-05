@@ -9,6 +9,7 @@ from django.contrib import messages
 from datetime import datetime
 from datetime import date
 import calendar
+from django.contrib import messages
 # Create your views here.
 
 
@@ -60,7 +61,7 @@ def comp_edit(request, pk):
                 newObj.competition = session
                 newObj.save()
                 url = '/competing/comp_edit/{}'.format(session.pk)
-
+                messages.error(request, "Entry Added")
                 return redirect(url)
 
         if 'save_log' in request.POST:
@@ -70,7 +71,7 @@ def comp_edit(request, pk):
             if log.is_valid():
                 log.save()
                 display = "inline"
-
+                messages.error(request, "Competition Saved")
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
 
@@ -83,6 +84,7 @@ def comp_edit(request, pk):
                 newObj.competition = session
 
                 newObj.save()
+                messages.error(request, "Info Saved")
                 url = '/competing/comp_edit/{}'.format(session.pk)
 
                 return redirect(url)
@@ -148,10 +150,11 @@ def history(request):
 def editentry(request, pk):
     instance = get_object_or_404(Comphorse, pk=pk)
     comp = instance.competition.pk
+
     form = entry_form(instance=instance)
     if request.method == 'POST':
         entry = entry_form(request.POST, instance=instance)
         entry.save()
         return redirect('comp_edit', pk=comp)
 
-    return render(request, 'editentry.html', {'form': form})
+    return render(request, 'editentry.html', {'form': form, 'comp': comp})

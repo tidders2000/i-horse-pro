@@ -4,7 +4,15 @@
 <link rel="stylesheet" href="{% static 'css/slider.css' %}" /> 
 <link rel="stylesheet" href="{% static 'css/page.css' %}" /> 
 {% endblock %} {% block content %}
-
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+        <a href="#!" class="breadcrumb">Select Disipline</a>
+       
+      </div>
+    </div>
+  </nav>
 
 <h4 style="font: 24px; color: white">Select A Disipline</h4>
 

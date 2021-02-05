@@ -8,7 +8,16 @@
     {% if user.id %}
         <meta name="user_id" content="{{ user.id }}">
     {% endif %} 
-
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+         
+        <a href="#!" class="breadcrumb">Profile</a>
+       
+      </div>
+    </div>
+  </nav>
  <h1 class="m-3">Profile</h1>
 
 

@@ -1,4 +1,4 @@
-{% load static %}{% load crispy_forms_tags %}
+{% load static %} {% load materializecss %}
 
 <!doctype html>
 <html lang="en">
@@ -46,7 +46,7 @@
 <h1>Login</h1>
 
                       <form method='POST'>
-                       {{ login_form|crispy }}   
+                       {{ login_form|materializecss}}   
              
                       <button type="submit" class="btn btn-success">Login</button>
 {% csrf_token %}

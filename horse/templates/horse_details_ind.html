@@ -18,6 +18,16 @@
 
 </style>
 
+  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+        <a href="#!" class="breadcrumb">Edit</a>
+       
+      </div>
+    </div>
+  </nav>
+
 <h2>Select A Horse</h2>
      <ul class="hs">  
 {% for horse in horses %}
@@ -71,14 +81,14 @@
         <div class="card-content white-text" style="height:220px;">
          <h4 class="cardHeading">Links</h4>
           <ul>
-          <li><a href="{% url 'tack' %}{{selected.pk}}" class="white-text">Tack Record</a></li>
+          <li><a href="{% url 'tackedit' pk=selected.pk %}" class="white-text">Tack Record</a></li>
           {% for link in links %}
            <li> <a href={{link.link}} class="white-text">{{link.organisation}}</a></li>
            {% endfor %}
           </ul>
         </div>
         <div class="card-action">
-        
+         
         </div>
       </div>
     </div>

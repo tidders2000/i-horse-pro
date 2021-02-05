@@ -6,7 +6,7 @@ from datetime import datetime
 from datetime import date
 import calendar
 import vobject
-
+from django.contrib import messages
 # Create your views here.
 
 
@@ -23,6 +23,7 @@ def appointment(request, pk):
             formSave.horse = horse
             formSave.save()
             display = "inline"
+            messages.error(request, "Appointment Saved")
         else:
             print('error')
 
@@ -46,6 +47,7 @@ def editapp(request):
             formSave.horse = horse
             formSave.save()
             display = "inline"
+            messages.error(request, "Appointment Saved")
         else:
             print('error')
 

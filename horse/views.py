@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
+from django.shortcuts import render, redirect, reverse, HttpResponseRedirect, get_object_or_404
 from .forms import horse_form, link_form, tack_form
 from django.contrib import messages
 from .models import *
 from appointment.models import Appointment
 from training.models import TrainingLog
+from datetime import datetime, timedelta, time
 
 # Create your views here.
 
@@ -38,21 +39,30 @@ def photo(request):
     return render(request, 'photo.html', {'horse': horse, 'newHorse': newHorse})
 
 
-def tack(request):
-    horse = request.session['horse']
-    display = 'none'  # hides back button only visible on edit
+def deletetack(request, pk):
+    tackItem = get_object_or_404(Tack, pk=pk)
+    horse = tackItem.horse.pk
+    tackItem.delete()
+
+    return redirect('tackedit', pk=horse)
+
+
+def tackedit(request, pk):
+    horse = get_object_or_404(Horse, pk=pk)
+    tackdetails = Tack.objects.all().filter(horse=horse)
     user = request.user
-    newHorse = Horse.objects.get(pk=horse)
+
     tack = tack_form()
-    tackdetails = Tack.objects.all().filter(horse=newHorse)
-    if request.method == "POST" and 'link' in request:
+
+    if request.method == "POST":
         tackf = tack_form(request.POST)
         if tackf.is_valid():
             tackSave = tackf.save(commit=False)
             tackSave.user = user
-            tackSave.horse = newHorse
+            tackSave.horse = horse
             tackSave.save()
-    return render(request, 'tack.html', {'tack': tack, 'tackdetails': tackdetails, 'horse': horse, 'display': display})
+            messages.error(request, "Tack Saved")
+    return render(request, 'tackedit.html', {'horse': horse, 'tack': tack, 'tackdetails': tackdetails, 'horse': horse})
 
 
 def tackhorse(request, pk):
@@ -69,6 +79,7 @@ def tackhorse(request, pk):
             tackSave.user = user
             tackSave.horse = horse
             tackSave.save()
+            messages.error(request, "Tack Saved")
     return render(request, 'tack.html', {'tack': tack, 'tackdetails': tackdetails, 'horse': horse, 'display': display})
 
 
@@ -85,33 +96,41 @@ def links(request):
             linkSave.user = user
             linkSave.horse = newHorse
             linkSave.save()
+            messages.error(request, "Link Saved")
     return render(request, 'links.html', {'link': link, 'links': links, 'horse': horse})
 
 
 def details(request):
     user = request.user
+    request.session['history'] = "Dentist"
     horses = Horse.objects.all().filter(user=user)
     return render(request, 'horse_details.html', {'horses': horses})
 
 
 def detailsInd(request, pk):
+    today = datetime.now().date()
+    print(request.session['history'])
     user = request.user
     string = request.session['history']
+    selected = Horse.objects.get(pk=pk)
     if request.session['history']:
 
-        tory = Appointment.objects.all().filter(event__appType=string)
+        tory = Appointment.objects.all().filter(event__appType=string).filter(
+            horse=selected)
 
     else:
-        tory = Appointment.objects.all().filter(event__appType="Dentist")
+        tory = Appointment.objects.all().filter(event__appType="Dentist").filter(
+            horse=selected)
+
         request.session['history'] = "Dentist"
         string = request.session['history']
 
     horses = Horse.objects.all().filter(user=user)
     training = TrainingLog.objects.all().filter(horse=pk).order_by('-date')[:5]
     links = Link.objects.all().filter(horse=pk)
-    selected = Horse.objects.get(pk=pk)
+
     appointments = Appointment.objects.all().filter(
-        horse=selected).order_by('event__appType', '-due')
+        horse=selected).order_by('event__appType', 'due')
     appointments = appointments.distinct('event__appType')
 
     if request.method == "POST":
@@ -119,11 +138,12 @@ def detailsInd(request, pk):
             photo = request.FILES.get('pic')
             selected.passport = photo
             selected.save()
+            messages.error(request, "Horse Saved")
 
         if 'apps' in request.POST:
 
             request.session['history'] = request.POST.get('apps')
-            print(request.POST.get('type'))
+
             return redirect(reverse('detailsInd', kwargs={'pk': pk}) + '#apps')
 
     return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links})

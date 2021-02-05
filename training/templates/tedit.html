@@ -4,226 +4,30 @@
   {% block head%}
        <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
             
-            <script>    function fileI() {
-  var element = document.getElementById("id_floorPlan");
-  element.classList.add("custom-file-input");
-}
-fileI()
-  });</script>
 
+ <link rel="stylesheet" href="{% static 'css/page.css' %}"> 
   <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
   {% endblock %}
    {% block content %} 
-<style>
-.selected-image{
-  height:183px;
-  width:275px;
-}
 
-textarea{
-  padding:0!important; 
-  margin-top:40px;
-}
-
-.warning_msg{
-  font-size:20px;
-}
-{% comment %} body{
-  background-color: #101010;
-*/background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);/*
-}
-.sidenav {
- height:100%;
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
-}
- .navul{
-   margin-left:15%;
-   font-size:20px;
- }
-.navli{
-  padding-bottom:5px;
-  color:
-}
-
-li a{
-  color:#b3b3b3;
-}
-
-
- i{
-   padding-right:15px;
- }
-
- .logo{
-   padding-top:10px;
-   margin-left:5px;
- }
-
- h2{
-    font-size: 24px;
-    color: #ffffff
- }
-
-
-
-.appoint{
-  color:white;
-  padding-left:5px;
-     font-size:14px;
-}
-
-.appoint li{
-  margin-left:10px;
-}
-
-
-h4{
-   color:#b3b3b3;
-  font-size:16px;
-  
-}
-
-.listhl{
- color:#21a3e2
-}
-
-.his{
-  margin-left:10%;
-  font-size:14px;
-  color:white;
-}
-
-.his li{
-    margin-left:10px;
-}
-
-.plus{
-  font-size:119px;
-  color: #21a3e2;
-
-}
-
-.appointments{
-  margin-bottom:100px;
-}
-
-.collection .collection-item{
-  background-color:#101010!important;
-}
-
-.social{
-  font-size:24px;
-  color:white;
-  padding:5px;
-}
-
-.social:hover {
-  background-color:#21a3e2;
-}
-
-
-
-.socialwapper{
-  text-align:center;
- padding-left:5px;
-}
-
-.card-action {
-  color:#b3b3b3;
-}
-
-.plus_holder{
-  float:right;}
-   @media only screen and (max-width: 768px) {
- .logo {
-    width: 130px;
-  }
-
-  .navul{
-    font-size:14px;
-    margin-left:15%%;
-    width:140px;
-    
-  }
-
-   i{
-   padding-right:10px;
- }
-
- .app_sec{
-   height:250px;
- }
-
- .ppimage{
-   height:200px;
-   width:200px;
- }
- .plus_holder{
-   margin-top:15%;
-   margin-left:10%;
- }
-}
-
-ol{
-  list-style: none;
-  font-size:24px;
-}
-
-ol li {
-  counter-increment: my-awesome-counter;
-}
-
-ol li::before {
-  content: counter(my-awesome-counter) ". ";
-  color:#b3b3b3;
-}
-
-.input-field {
-  color:#b3b3b3;
-}
-
-.btn{
-  background-color:#b3b3b3;
-} {% endcomment %}
-
-
-.floorplan{
-  padding:10px;
-
-  
-}
-
-@media screen and (max-width: 600px) {
-  
-.floorplan{
-  width:70%;
-  height:70%;
- margin-top:30px;
-  
-}
-
-.btn{
-  width:100px;
-  font-size:9px!important;
-  margin-bottom:40px;
-}
-}
-.obj_display{
-  background-color:#b3b3b3;
-  border-radius:5px;
-}
-.btn, .btn-large, .btn-small {
- background-color:#b3b3b3!important;
-}
-</style>
-
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+         
+        <a href="#!" class="breadcrumb">Edit Training</a>
+       
+      </div>
+    </div>
+  </nav>
 <h4>{{session.disipline.disipline}}</h4>
+
+<div class="nativeCal" style="display:{{display}};">
+
+<a href="{% url 'EventFeed3' %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
+
+</div>
+
    
       <div class="">
 
@@ -477,13 +281,14 @@ edit
 
       </div><!--end of col-->
 </div><!--end of row-->
+{% endblock %}{% block scripts %}
+
     <script src="slider.js"></script>
     <script>
 	  $(document).ready(function(){
-    $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
     $('select').formSelect();
-    $('select').select();
-
+     $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+  });
 </script>
   
 

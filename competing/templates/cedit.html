@@ -15,10 +15,18 @@
 
 
 
+  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+        <a href="#!" class="breadcrumb">Competition Entry</a>
+       
+      </div>
+    </div>
+  </nav>
 
 
-
-<h4 style="font:24px;color:white;">{{session.disipline.disipline}}</h4>
+<h4>{{session.disipline.disipline}}</h4>
 
 
 <div class="nativeCal" style="display:{{display}};">

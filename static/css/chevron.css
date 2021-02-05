@@ -144,15 +144,15 @@
 }
 
 .active.multi-step-item:first-child:hover .item-wrap {
-    background: linear-gradient(to right, #d8f1ff 95%, transparent 5%);
+    background: linear-gradient(to right, #b3b3b3 95%, transparent 5%);
 }
 
 .current.multi-step-item:first-child .item-wrap {
-    background: linear-gradient(to right, #4285f4 95%, transparent 5%);
+    background: linear-gradient(to right, #21a3e2 95%, transparent 5%);
 }
 
 .multi-step-item:last-child .item-wrap {
-    background: linear-gradient(to left, #eee 95%, transparent 5%);
+    background: linear-gradient(to left, #b3b3b3 95%, transparent 5%);
 }
 
 .multi-step-item:last-child .item-wrap:before,

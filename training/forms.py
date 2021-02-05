@@ -1,6 +1,7 @@
 
 from django import forms
 from .models import *
+from django.utils.translation import gettext_lazy as _
 
 
 class DateInput(forms.DateInput):
@@ -13,6 +14,10 @@ class training_form(forms.ModelForm):
 
         model = TrainingLog
         exclude = ['user', 'disipline']
+        labels = {
+            'location': _('* Location'),
+            'date': _('')
+        }
 
 
 class objective_form(forms.ModelForm):

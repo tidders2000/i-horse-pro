@@ -24,7 +24,8 @@ class TrainingLog(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     horse = models.ForeignKey(
         Horse, null=True, blank=True, on_delete=models.CASCADE)
-    date = models.DateField(null=True)
+    date = models.DateTimeField(
+        auto_now=False, null=True)
     disipline = models.ForeignKey(
         CustomImages, null=True, on_delete=models.CASCADE)
     instructor = models.CharField(max_length=100, blank=True)

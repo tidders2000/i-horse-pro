@@ -1,16 +1,23 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Horse{% endblock %}
      
-
-     {% block content %} 
+{% block head%}
+  
        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+{% endblock %}
 
-<style>
+  {% block content %} 
 
-
-
-</style>
-
-<h4 style="font:24px;color:white;">Edit Entry</h4>
+  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+          <a href="{% url "comp_edit" comp %}" class="breadcrumb"> Competition Entry</a>
+        <a href="#!" class="breadcrumb">Entered Horse</a>
+       
+      </div>
+    </div>
+  </nav>
+<h4>Edit Entry</h4>
 
 <div class="row" style="blue-box; padding:10px;">
 <form method="POST">
@@ -219,6 +226,7 @@ edit
 
       </div><!--end of col-->
 </div><!--end of row-->
+{% endblock %}{% block scripts %}
     <script src="slider.js"></script>
     <script>
 	  $(document).ready(function(){

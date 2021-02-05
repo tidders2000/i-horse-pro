@@ -7,6 +7,15 @@
 <link rel="stylesheet" href="{% static 'css/page.css' %}" /> 
 {% endblock %}
 {% block content %}
+  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+        <a href="#!" class="breadcrumb">Edit</a>
+       
+      </div>
+    </div>
+  </nav>
 <h4 style="font: 24px; color: white">Select A Horse</h4>
 
 
@@ -15,7 +24,7 @@
     <li class="col m4">
       <img class="select_image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.showName}}"/>
      <br>
-        <a class="image_select_link "href="{{horse.pk}}?par=Dentist">{{horse.showName}}</a> 
+        <a class="image_select_link "href="{{horse.pk}}">{{horse.showName}}</a> 
     </li>
 
     {% endfor %}

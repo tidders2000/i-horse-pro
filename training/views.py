@@ -1,7 +1,45 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from horse.models import Horse
 from .models import *
+from django_ical.views import ICalFeed
 from .forms import training_form, objective_form
+from datetime import datetime
+from datetime import date
+import calendar
+from django.contrib import messages
+
+
+class EventFeed3(ICalFeed):
+    """
+    A simple event calender
+    """
+    product_id = '-//example.com//Example//EN'
+    timezone = 'UTC'
+    file_name = "comp.ics"
+
+    def __call__(self, request, *args, **kwargs):
+        self.user = request.user
+        return super(EventFeed3, self).__call__(request, *args, **kwargs)
+        print(self.user)
+
+    def items(self):
+        return TrainingLog.objects.filter(user=self.user).order_by('-date')
+
+    def item_guid(self, item):
+        return "{}{}".format(item.id, "global_name")
+
+    def item_title(self, item):
+
+        return "{}".format(item.location)
+
+    def item_description(self, item):
+        return item.notes
+
+    def item_start_datetime(self, item):
+        return item.date
+
+    def item_link(self, item):
+        return "http://www.google.de"
 
 
 def training_log(request):
@@ -47,6 +85,7 @@ def training_edit(request, pk):
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
+                messages.error(request, "Training Saved")
 
     return render(request, 'tedit.html', {'listObj': listObj, 'obj': obj, 'form': form, 'session': session, })
 

@@ -2,6 +2,10 @@ textarea {
     color: white;
 }
 
+.input-field>label {
+    color: #21a3e2;
+}
+
 .box {
     border: 1px solid #21a3e2;
     padding: 10px;

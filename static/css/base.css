@@ -123,7 +123,7 @@ input {
 /*mobile navbar on foot of page*/
 
 .small_navbar {
-    background-color: black;
+    background-color: #101010;
     overflow: hidden;
     position: fixed;
     bottom: 0;
@@ -166,7 +166,16 @@ input {
 /* Add a color to the active/current link */
 
 
-/* pop out sile nav on small */
+/* breadcrumb styling*/
+
+.breadcrumb {
+    background-color: #101010;
+    color: #b3b3b3
+}
+
+.nav-wrapper {
+    background-color: #101010 !important;
+}
 
 
 /* Style the navigation menu */

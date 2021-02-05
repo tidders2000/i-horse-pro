@@ -1,0 +1,84 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Tack{% endblock %}
+     
+
+     {% block head %}
+   
+        {% comment %} <link rel="stylesheet" href="{% static 'css/form.css' %}">  {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
+         <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+          
+      {% endblock %}
+     
+  
+     
+     {% block content %}
+
+     
+{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% endcomment %}
+  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+        <a href="{% url 'detailsInd' pk=horse.pk %}" class="breadcrumb">Edit</a>
+        <a href="#!" class="breadcrumb">Tack</a>
+      </div>
+    </div>
+  </nav>
+
+ 
+
+
+<h2>Tack</h2>
+ 
+
+ 
+
+                         <div class="row" > 
+                        <form method="POST">
+                        
+                             <div class="col s12 m6 push-m3 blue_box">
+                                  {{ tack|materializecss}}
+                             {% csrf_token %} 
+                                              <button type="submit" class= 'subplus'><span class="blutext">+<span></button>
+                             </form>
+
+
+
+                                {% for tack in tackdetails %}
+                                <li class="white-text">{{tack.tacktype}}: {{tack.description}}  <a href="{% url 'deletetack' pk=tack.pk %}"<i class="fas fa-trash-alt"></i></a></li>
+                              
+                                {% endfor %}
+    
+                                
+                                 </ul>
+
+                           </div>
+                     
+
+                         <div class="col  m6 center-align">
+             
+                          
+                      
+                      
+                       </div>
+                       
+             </div> 
+             {% endblock %}
+              
+{% block scripts %}
+
+   <script>
+$(document).ready(function(){
+
+  // Initialize materialize data picker
+  //$('input').datepicker({'format': 'yyyy-mm-dd'}); 
+   $('select').formSelect();
+   //$('input').timepicker()
+  
+
+  });
+</script>            
+
+{% endblock %}
+

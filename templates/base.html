@@ -78,6 +78,7 @@
                <a href="{% url 'profile' %}"><i class="fa fa-cog"></i><em>Settings</em></a>
                <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a>
                <a href="{% url 'mindset' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a>
+               <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><em>Logout</em></a>
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="menu()">
@@ -98,7 +99,8 @@
               <li> <a href="{% url 'competition'%}"><i class="fas fa-award"></i><em>Competitions</em></a></li>
               <li> <a href="{% url 'profile' %}"><i class="fa fa-cog"></i><em>Settings</em></a></li>
               <li> <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a></li>
-               <li class='navli'> <a href="{% url 'mindset' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a></li>
+              <li class='navli'> <a href="{% url 'mindset' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a></li>
+              <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><em>Logout</em></a></li>
           
           </ul>
           <div class="socialwapper center-align">

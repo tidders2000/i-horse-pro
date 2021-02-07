@@ -72,6 +72,7 @@ def training_edit(request, pk):
     form = training_form(instance=session)
     listObj = Objectives.objects.all().filter(session=session)
     obj = objective_form()
+    display = 'none'
     if request.method == 'POST':
 
         if 'save_obj' in request.POST:
@@ -88,9 +89,11 @@ def training_edit(request, pk):
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
+                # sets appointment display css
+                display = 'inline'
                 messages.error(request, "Training Saved")
 
-    return render(request, 'tedit.html', {'listObj': listObj, 'obj': obj, 'form': form, 'session': session, })
+    return render(request, 'tedit.html', {'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display})
 
 
 def checkOb(request, pk):

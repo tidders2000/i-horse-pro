@@ -8,6 +8,12 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 
+class wizard_form(forms.ModelForm):
+    class Meta:
+        model = CustomImages
+        exclude = ['user']
+
+
 class training_form(forms.ModelForm):
 
     class Meta:

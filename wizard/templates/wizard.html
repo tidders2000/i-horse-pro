@@ -1,0 +1,99 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
+     
+
+     {% block head %}
+
+        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+        <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
+    
+         
+
+      {% endblock %}
+     
+{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% endcomment %}
+
+ 
+  {% block content %}
+  <style>
+   tr{
+     color:white;
+   }
+  </style>
+
+<h2 >Customize</h2>
+ 
+ <div class="h5">Numbered - <code>.numbered</code></div>
+      <div class="multi-step numbered">
+        <ul class="multi-step-list">
+          <li class="multi-step-item active">
+            <div class="item-wrap">
+              <p class="item-title">Payment</p>
+            </div>
+          </li>
+          <li class="multi-step-item active  current">
+            <div class="item-wrap">
+              <p class="item-title">Customize</p>
+            </div>
+          </li>
+        
+      
+        </ul>
+      </div>
+      
+
+              <form method="POST" enctype="multipart/form-data">
+                     <div class="row blue_box" > 
+                      {{form|materializecss}}
+                     </div>
+           
+                     {% csrf_token %} 
+                      <button type="submit"  class="btn btn-success">Add Disipline</button>
+                      
+                      </form>
+
+
+
+<section>
+
+      <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>Disipline</th>
+              <th>Image</th>
+              <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for di in disc %}
+          <tr>
+            <td>{{di.disipline}}</td>
+            <td>{{di.image}}</td>
+            <td><a href="{% url 'deletedisipline' pk=di.pk %}"<i class="fas fa-trash-alt"></i></a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+</section>
+     {% endblock %}                
+{% block scripts %}
+
+   <script>
+$(document).ready(function(){
+
+  // Initialize materialize data picker
+  {% comment %} $('.datepicker').datepicker({
+    'format': 'yyyy-mm-dd',
+   }); {% endcomment %}
+   $('select').formSelect();
+
+  });
+
+
+
+</script>             
+
+{% endblock %}
+

@@ -16,7 +16,7 @@ from django.contrib import messages
 def competition(request):
     user = request.user
     customImg = CustomImages.objects.all().filter(user=user)
-
+    request.session['dis'] = 'none'  # sets appointment display css
     return render(request, 'comp.html', {'customImg': customImg})
 
 
@@ -46,7 +46,7 @@ def comp_edit(request, pk):
     form = comp_form(instance=session)
 
     venue = venue_form(venues)
-    display = "display"
+    display = request.session['dis']
     # entries = Comphorse.objects.all().filter(session=session)
     entry = entry_form()
     entries = Comphorse.objects.all().filter(competition=session)
@@ -71,8 +71,9 @@ def comp_edit(request, pk):
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
-                display = "inline"
+                request.session['dis'] = "inline"
                 messages.error(request, "Competition Saved")
+
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
         if 'save_venue' in request.POST:
@@ -127,6 +128,7 @@ class EventFeed2(ICalFeed):
 
 def history(request):
     user = request.user
+    request.session['dis'] = 'none'  # sets appointment display css
     comps = CompetitionLog.objects.all().filter(user=user).order_by('-date')
     paginator = Paginator(comps, 10)
     page_number = request.GET.get('page')

@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from django.utils.translation import gettext_lazy as _
 
 
 class DateInput(forms.DateInput):
@@ -13,6 +14,10 @@ class comp_form(forms.ModelForm):
         model = CompetitionLog
         fields = ['myStars', 'notes', 'lightbulb',
                   'image', 'videoLink', 'date', 'location']
+        labels = {
+            'location': _('* Location'),
+            'date': _('*')
+        }
 
 
 class entry_form(forms.ModelForm):

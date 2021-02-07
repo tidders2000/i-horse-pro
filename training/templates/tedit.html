@@ -54,6 +54,7 @@
 
      <div class="col s12 m6">
      <h5>My Objective</h5>
+     <p class="white-text"> Click Objective to mark achieved</p>
      <ol>
        {% for obj in listObj %}
         <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a>

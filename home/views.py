@@ -31,6 +31,7 @@ def home(request):
     training = TrainingLog.objects.all().filter(
         user=user).order_by('-date')[:6]
 
+    request.session['dis'] = 'none'  # sets appointment display css
     return render(request, 'home.html', {'horses': horses, 'events': events, 'comps': comps, 'training': training})
 
 

@@ -117,13 +117,14 @@
     .floorplan {
         padding: 10px;
         padding-left: 0;
+        margin-top: 50px;
     }
     
     @media screen and (max-width: 600px) {
         .floorplan {
             width: 70%;
             height: 70%;
-            margin-top: 30px;
+            margin-top: 130px;
         }
         .btn {
             width: 100px;

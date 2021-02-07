@@ -18,33 +18,45 @@
       </div>
     </div>
   </nav>
- <h1 class="m-3">Profile</h1>
+ <h2>Profile</h2>
 
 
 
       <div class="row">
-        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 ">
+        <div class="col s12 col m6 ">
 
-   <img src="{{MEDIA_URL}}{{ instance.profile_image}}" style="height:100px;width:100px;"/>
+             <img src="{{MEDIA_URL}}{{ instance.profile_image}}" style="height:100px;width:100px;"/>
+        </div>
+        <div class="col s12 col m6">
 
   <form method='POST' enctype="multipart/form-data" >
                       {% csrf_token %} {{ profile|materializecss }}
                       <button type="submit" class="btn btn-success">ADD</button>
 
                       </form>
- <a href="{% url "password_reset_recover" %}" style="font-size:15px;padding-bottom:50px;">Reset password</a> 
-                      </div>
-                  
+    
+     </div>
+  </div>
+  <div class="row">
 
-</div>
-</div>
-
-<div class="drawer-option">
-          <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+    <div class="col s12">
+    <ul>
+    <li> 
+      <a href="{% url "password_reset_recover" %}" style="font-size:15px;padding-bottom:50px;">Reset password</a> 
+    </li>
+     <li>
+     <div class="drawer-option">
+          <button class="btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
             Enable Notifications
           </button>
         </div>
+    </li>
+    <li>      <a href="{% url "wizard" %}" style="font-size:15px;padding-bottom:50px;">Customize</a> 
+   </li>
+    </ul>
+ </div>
+</div>
 
- 
+
    <script src="{% static 'js/app.js' %}"></script>
  {% endblock %}

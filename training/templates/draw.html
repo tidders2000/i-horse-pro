@@ -118,7 +118,8 @@ nav {
 				{
 					$.post("{%url 'savedraw' pk=pk %}", {imagedata: imageData,csrfmiddlewaretoken: '{{ csrf_token }}'},function(response)
 					{
-						$('body').append(response);
+						/*$('body').append(response);*/
+						window.location.replace("{% url 'training_edit' pk=pk %}")
 					});	
 				}
 			});
@@ -130,10 +131,11 @@ nav {
 		}
 		$(document).ready(function()
 		{
-			$("#test").jqScribble();
+			
+				$("#test").jqScribble();
 		});
 
-	
+
 		</script>
 
 

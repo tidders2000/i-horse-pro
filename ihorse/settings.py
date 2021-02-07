@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'cal',
     'mindset',
     'star_ratings',
-    'plugins',
+    'wizard',
 
 
 

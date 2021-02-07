@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static%} {% load materializecss %}{% block page_title %}Select{% endblock %} {% block head %}
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+   <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+{% comment %} <script type="text/javascript" src="{% static 'js/lib/jquery.ui.core.min.js'%} "></script>
+
+<script type="text/javascript" src="{% static 'js/lib/jquery.ui.widget.min.js'%} "></script>
+
+<script type="text/javascript" src="{% static 'js/lib/jquery.ui.mouse.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/lib/jquery.ui.draggable.min.js' %}"></script> {% endcomment %}
+
+
+<script src="{% static 'js/jquery.jqscribble.js' %}"></script>
+<script src="{% static 'js/jquery.extrabrushes.js' %}"></script>
+
+
+{% endblock %} {% block content %}
+
+<style>
+nav {
+    color: #101010!important;
+
+}
+</style>
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+         
+        <a href="#!" class="breadcrumb">Draw</a>
+       
+      </div>
+    </div>
+  </nav>
+
+<h4>Draw</h4>
+
+  <style>
+			.links a {
+				padding-left: 10px;
+				margin-left: 10px;
+				border-left: 1px solid #000;
+				text-decoration: none;
+				color: #999;
+        font-size:12px!important;
+			}
+			.links a:first-child {
+				padding-left: 0;
+				margin-left: 0;
+				border-left: none;
+			}
+			.links a:hover {text-decoration: underline;}
+			.column-left {
+				display: inline; 
+				float: left;
+             font-size:12px!important;
+			}
+			.column-right {
+				display: inline; 
+				float: right;
+        font-size:12px!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="overflow: hidden; margin-bottom: width:90%;5px;">
+			<div class="column-left links">
+				<strong>BRUSHES:</strong>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brush: BasicBrush});'>Basic</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brush: LineBrush});'>Line</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brush: CrossBrush});'>Cross</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brush: DotBrush});'>Dot</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brush: CircleBrush});'>Circle</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brush: SemiCircleBrush});'>SemiCircle</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brush: RectangleBrush});'>Rectangle</a>
+			</div>
+			<div class="column-right links">
+				<strong>COLORS:</strong>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,0,0)"});'>Black</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(255,0,0)"});'>Red</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,255,0)"});'>Green</a>
+				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,0,255)"});'>Blue</a>
+			</div>
+		</div>
+		<canvas id="test" style="border: 1px solid red;"></canvas>
+		<div class="links" style="margin-top: 5px;">
+			<strong>OPTIONS:</strong>
+			<a href="#" onclick='addImage();'>Add Image</a>
+			<a href="#" onclick='$("#file").trigger("click");'>Add Local Image</a>
+			<input type="file" id="file" style="display:none;">
+			<a href="#" onclick='$("#test").data("jqScribble").clear();'>Clear</a>
+			<a href="#" onclick='$("#test").data("jqScribble").save2();'>Save</a>
+			<a href="#" onclick='save();'>Custom Save</a>
+		</div>
+
+
+    {% endblock %} 
+
+
+{% block scripts %}
+
+
+
+
+		<script type="text/javascript">
+	function save()
+		{
+			$("#test").data("jqScribble").save(function(imageData)
+			{
+				if(confirm("This will write a file using the example image_save.php. Is that cool with you?"))
+				{
+					$.post("{%url 'savedraw' pk=pk %}", {imagedata: imageData,csrfmiddlewaretoken: '{{ csrf_token }}'},function(response)
+					{
+						$('body').append(response);
+					});	
+				}
+			});
+		}
+		function addImage()
+		{
+			var img = prompt("Enter the URL of the image.");
+			if(img !== '')$("#test").data("jqScribble").update({backgroundImage: img});
+		}
+		$(document).ready(function()
+		{
+			$("#test").jqScribble();
+		});
+
+	
+		</script>
+
+
+
+
+{% endblock %}
+

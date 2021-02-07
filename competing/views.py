@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpResponseRedirect
 from training.models import CustomImages
 from .forms import *
 from django_ical.views import ICalFeed
@@ -60,9 +60,10 @@ def comp_edit(request, pk):
                 newObj.user = user
                 newObj.competition = session
                 newObj.save()
-                url = '/competing/comp_edit/{}'.format(session.pk)
+
                 messages.error(request, "Entry Added")
-                return redirect(url)
+
+                return redirect(reverse('comp_edit', kwargs={'pk': session.pk}) + '#entries')
 
         if 'save_log' in request.POST:
 
@@ -74,7 +75,6 @@ def comp_edit(request, pk):
                 messages.error(request, "Competition Saved")
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
-
         if 'save_venue' in request.POST:
 
             ven = venue_form(request.POST)

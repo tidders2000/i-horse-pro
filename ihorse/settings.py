@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-#import env
+import env
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'cal',
     'mindset',
     'star_ratings',
+    'plugins',
 
 
 

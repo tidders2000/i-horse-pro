@@ -24,12 +24,12 @@ def home(request):
     # vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
     # user = request.user
     user = request.user
-    horses = Horse.objects.all().filter(user=user)
-    events = Appointment.objects.all().filter(user=user).order_by('-due')[:3]
+    horses = Horse.objects.all().filter(user=user)[:10]
+    events = Appointment.objects.all().filter(user=user).order_by('-due')[:6]
     comps = CompetitionLog.objects.all().filter(
-        user=user).order_by('-date')[:3]
+        user=user).order_by('-date')[:6]
     training = TrainingLog.objects.all().filter(
-        user=user).order_by('-date')[:3]
+        user=user).order_by('-date')[:6]
 
     return render(request, 'home.html', {'horses': horses, 'events': events, 'comps': comps, 'training': training})
 

@@ -10,6 +10,12 @@
   {% endblock %}
    {% block content %} 
 
+   <style>
+   
+
+   
+   </style>
+
 <nav>
     <div class="nav-wrapper">
       <div class="col s12 breadcrumb">
@@ -205,8 +211,10 @@ edit
    
    <h2 class="hs__headline">Floor Plan</h2>
     <div class="row blue_box" >
+     <a href="{% url 'draw' pk=session.pk %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Draw a floorplan</a>
 <section>
 		<div class="decoration col s12"></div>
+   
 
   {{form.floorPlan|materializecss}}
 	
@@ -232,6 +240,10 @@ edit
       
       <div class="file-path-wrapper" style='min-height:220px;'>
        {{form.files|materializecss}} 
+
+      
+
+
       </div>
     
 

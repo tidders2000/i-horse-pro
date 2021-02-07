@@ -22,9 +22,10 @@
   <ul class="image_select">
     {% for horse in horses %}
     <li class="col m4">
+    <a class="image_select_link "href="{{horse.pk}}">
       <img class="select_image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.showName}}"/>
      <br>
-        <a class="image_select_link "href="{{horse.pk}}">{{horse.showName}}</a> 
+        {{horse.showName}}</a> 
     </li>
 
     {% endfor %}

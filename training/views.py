@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, reverse, get_object_or_404, redirect
 from horse.models import Horse
 from .models import *
 from django_ical.views import ICalFeed
@@ -7,6 +7,9 @@ from datetime import datetime
 from datetime import date
 import calendar
 from django.contrib import messages
+import uuid
+import base64
+from django.core.files.base import ContentFile
 
 
 class EventFeed3(ICalFeed):
@@ -100,3 +103,28 @@ def checkOb(request, pk):
     objective.save()
     session = objective.session.pk
     return redirect("training_edit", pk=session)
+
+
+def draw(request, pk):
+
+    pk = pk
+
+    return render(request, 'draw.html', {'pk': pk})
+
+
+def savedraw(request, pk):
+    session = get_object_or_404(TrainingLog, pk=pk)
+
+    if request.method == "POST":
+        canvas = request.POST.get('imagedata')
+        format, imgstr = canvas.split(';base64,')
+        print("format", format)
+        ext = format.split('/')[-1]
+        string = uuid.uuid4().hex[:6].upper()
+        print(string)
+        data = ContentFile(base64.b64decode(imgstr))
+        file_name = "mydraw{}.".format(string) + ext
+        print(file_name)
+        session.floorPlan.save(file_name, data, save=True)
+
+    return redirect(reverse('training_edit', kwargs={'pk': session.pk}))

@@ -20,7 +20,7 @@ class Horse(models.Model):
     pedigree = models.CharField(max_length=200, default='Sire x Dam')
     height = models.DecimalField(max_digits=3, decimal_places=1, default=15.3)
     markings = models.TextField(default="patchy twat")
-    Dob = models.DateField()
+    Dob = models.DateField(default="2015-01-01")
     owner = models.CharField(max_length=100, default="John Doe")
     street_address1 = models.CharField(max_length=40, blank=True)
     street_address2 = models.CharField(max_length=40, blank=True)

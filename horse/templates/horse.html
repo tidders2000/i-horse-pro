@@ -2,9 +2,12 @@
      
 
      {% block head %}
-   
+
         <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
         <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
+    
+         
+
       {% endblock %}
      
 {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -114,15 +117,18 @@
                       </form>
      {% endblock %}                
 {% block scripts %}
+
    <script>
 $(document).ready(function(){
 
   // Initialize materialize data picker
-  $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+  {% comment %} $('.datepicker').datepicker({
+    'format': 'yyyy-mm-dd',
+   }); {% endcomment %}
    $('select').formSelect();
 
-
   });
+
 
 
 </script>             

@@ -24,12 +24,12 @@
   {% for horse in horses %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper">
-      <img class="hs__item__image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.showName}}"/>
+       <a href="{% url 'detailsInd' pk=horse.pk%}"><img class="hs__item__image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.showName}}"/></a>
     </div>
 
     <div class="hs__item__description">
       <span class="hs__item__title white-text">
-        <a href="{% url 'detailsInd' pk=horse.pk%}?par=Dentist">{{horse.showName}}</a></span>
+       {{horse.showName}}</span>
     </div>
   </li>
 
@@ -84,12 +84,12 @@
   {% for train in training %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper">
-      <img class="hs__item__image" src="{{MEDIA_URL}}{{ train.disipline.image}}" alt="{{horse.showName}}"/>
+     <a href="{% url 'training_edit' pk=train.pk %}"> <img class="hs__item__image" src="{{MEDIA_URL}}{{ train.disipline.image}}" alt="{{horse.showName}}"/></a>
     </div>
 
     <div class="hs__item__description">
-      <span class="hs__item__title ">
-        <a href="{% url 'training_edit' pk=train.pk %}">{{train.date}}</a></span>
+      <span class="hs__item__title white-text ">
+        {{train.date}}  {{train.location}}</span>
     </div>
   </li>
 
@@ -101,12 +101,12 @@
   {% for comp in comps %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper " >
-      <img class="hs__item__image" src="{{MEDIA_URL}}{{ comp.disipline.image}}" alt="{{horse.showName}}" />
+     <a href="{% url 'comp_edit' pk=comp.pk%}">  <img class="hs__item__image" src="{{MEDIA_URL}}{{ comp.disipline.image}}" alt="{{horse.showName}}" /></a>
     </div>
 
     <div class="hs__item__description">
-      <span class="hs__item__title ">
-        <a href="{% url 'comp_edit' pk=comp.pk%}">  {{comp.date}}</a></span>
+      <span class="hs__item__title  white-text">
+         {{comp.date}} {{comp.location}}</span>
     </div>
   </li>
 

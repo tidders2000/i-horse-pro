@@ -26,5 +26,5 @@ class Goals(models.Model):
 
 class Control(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    can_control = ArrayField(models.TextField(max_length=255))
-    cannot_control = ArrayField(models.TextField(max_length=255))
+    can_control = ArrayField(models.TextField())
+    cannot_control = ArrayField(models.TextField())

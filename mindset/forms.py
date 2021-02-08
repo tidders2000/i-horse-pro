@@ -1,6 +1,7 @@
 
 from django import forms
 from .models import *
+from django.utils.translation import gettext_lazy as _
 
 
 class DateInput(forms.DateInput):
@@ -21,3 +22,7 @@ class control_form(forms.ModelForm):
 
         model = Control
         exclude = ['user']
+        labels = {
+            'can_control': _('Can Control- seperate entries with ,'),
+            'cannot_control': _('Cannot Control- seperate entries with ,')
+        }

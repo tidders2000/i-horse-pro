@@ -109,7 +109,7 @@ def details(request):
 
 def detailsInd(request, pk):
     today = datetime.now().date()
-    print(request.session['history'])
+
     user = request.user
     string = request.session['history']
     selected = Horse.objects.get(pk=pk)

@@ -30,7 +30,7 @@ def home(request):
         user=user).order_by('-date')[:6]
     training = TrainingLog.objects.all().filter(
         user=user).order_by('-date')[:6]
-
+    request.session['history'] = "Dentist"  # sets appointments for horse links
     request.session['dis'] = 'none'  # sets appointment display css
     return render(request, 'home.html', {'horses': horses, 'events': events, 'comps': comps, 'training': training})
 

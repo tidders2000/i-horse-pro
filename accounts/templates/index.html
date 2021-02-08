@@ -53,22 +53,39 @@
     {% if user.id %}
         <meta name="user_id" content="{{ user.id }}">
     {% endif %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
 {% block head %}{% endblock %}
 
 </head>
 <!-- correct input focus-->
-<style>
+ {% comment %} <style>
   input[type=text]:focus{
-  background: white;    
+ padding-left:10px; 
+}
+</style>  {% endcomment %}
+
+
+<style>
+input{
+    padding:5px;
+    margin-left:5px;
+    margin-top:10px!important;
+}
+
+.validate{
+    padding-left:10px!important;
+}
+
+label{
+    padding-bottom:10px;
 }
 </style>
-
 <body>
 
-
-
-<h1>Login</h1>
+ <div class="container">
+<div class="row">
+<div class="col s12 col m4 push-m4">
+<h2>Login</h2>
 
                       <form method='POST'>
                        {{ login_form|materializecss}}   
@@ -76,9 +93,9 @@
                       <button type="submit" class="btn btn-success">Login</button>
 {% csrf_token %}
                       </form>
-
-
-  
+</div>
+</div>
+  </div>
  {% comment %} {% block sw_script %}
             <script>
                 if ('serviceWorker' in navigator) {

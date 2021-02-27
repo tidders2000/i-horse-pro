@@ -41,7 +41,8 @@
         <h5> Enter an Objective </h5>
         <form method="POST" style="margin-left:5px!important;">
             {{obj.objective|materializecss}} {% csrf_token %}
-            <button type="submit" class='subplus' name="save_obj"><span class="blutext">+</span></button>
+            <button type="submit" class='subplus' name="save_obj" style="text-align: left!important;"><span
+          class="blutext">+</span></button>
         </form>
     </div>
 

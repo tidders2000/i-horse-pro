@@ -62,6 +62,7 @@ form {
     background-color: inherit !important;
     cursor: pointer;
     display: inline-block;
+    float: left;
 }
 
 .blutext {

@@ -1,0 +1,127 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %} {% block head %}
+
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<link rel="stylesheet" href="{% static 'css/chevron.css' %}"> {% endblock %} {% comment %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> {% endcomment %} {% block content %}
+
+<h2>Add A Horse</h2>
+
+<div class="h5">Numbered - <code>.numbered</code></div>
+<div class="multi-step numbered">
+    <ul class="multi-step-list">
+        <li class="multi-step-item active current">
+            <div class="item-wrap">
+                <p class="item-title">Add Horse</p>
+            </div>
+        </li>
+        <li class="multi-step-item active">
+            <div class="item-wrap">
+                <p class="item-title">Add Photo</p>
+            </div>
+        </li>
+        <li class="multi-step-item active">
+            <div class="item-wrap">
+                <p class="item-title">Add Tack</p>
+            </div>
+        </li>
+        <li class="multi-step-item active">
+            <div class="item-wrap">
+                <p class="item-title">Add Links</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="row blue_box">
+        <h4 style="font:24px;color:white;font-style:avenair;">Basic Info</h4>
+        <div class="col s12 col m6">
+            {{ form.showName|materializecss}}
+        </div>
+        <div class="col s12 col m6">
+            {{ form.stableName|materializecss}}
+        </div>
+        <div class="col s12 col m6">
+            {{ form.Gender|materializecss}}
+        </div>
+
+        <div class="col s12 col m6">
+            {{ form.Dob|materializecss}}
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row blue_box">
+        <h4 style="font:24px;color:white;font-style:avenair;">Personals</h4>
+        <div class="col s12 col m6">
+            {{ form.breed|materializecss}}
+        </div>
+        <div class="col s12 col m6">
+            {{ form.pedigree|materializecss}}
+        </div>
+        <div class="col s12 col m6">
+            {{ form.markings|materializecss}}
+        </div>
+
+        <div class="col s12 col m6">
+            {{ form.height|materializecss}}
+        </div>
+
+
+    </div>
+
+    <div class="row blue_box">
+        <h4 style="font:24px;color:white;font-style:avenair;">Owner Details</h4>
+        <div class="col s12 ">
+            {{ form.owner|materializecss}}
+        </div>
+        <div class="col s12 col m6">
+            {{ form.street_address1|materializecss}}
+        </div>
+        <div class="col s12 col m6">
+            {{ form.street_address2|materializecss}}
+        </div>
+
+        <div class="col s12 col m4">
+            {{ form.town_or_city|materializecss}}
+        </div>
+        <div class="col s12 col m4">
+            {{ form.county|materializecss}}
+        </div>
+        <div class="col s12 col m4">
+            {{ form.postcode|materializecss}}
+        </div>
+
+
+    </div>
+
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Add Horse</button>
+    <button type="button" class="btn red darken-2" onclick="location.href='{% url 'deletehorse' pk=pk %}'">Delete
+    Horse</button>
+
+</form>
+{% endblock %} {% block scripts %}
+
+<script>
+    $(document).ready(function() {
+
+        // Initialize materialize data picker
+        { %
+            comment %
+        }
+        $('.datepicker').datepicker({
+            'format': 'yyyy-mm-dd',
+        }); { %
+            endcomment %
+        }
+        $('select').formSelect();
+
+    });
+</script>
+
+{% endblock %}

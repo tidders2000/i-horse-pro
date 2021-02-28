@@ -147,3 +147,25 @@ def detailsInd(request, pk):
             return redirect(reverse('detailsInd', kwargs={'pk': pk}) + '#apps')
 
     return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links})
+
+
+def edithorse(request, pk):
+    instance = get_object_or_404(Horse, pk=pk)
+    form = horse_form(instance=instance)
+    pk = pk
+    user = request.user
+    if request.method == "POST":
+        horsef = horse_form(request.POST, instance=instance)
+        if horsef.is_valid():
+            horsef.save()
+            messages.error(request, "Horse Updated")
+            return redirect(reverse('edithorse', kwargs={'pk': pk}))
+    return render(request, 'horse_edit.html', {'form': form, 'pk': pk})
+
+
+def deletehorse(request, pk):
+    instance = get_object_or_404(Horse, pk=pk)
+    instance.delete()
+    messages.error(request, "Horse Deleted")
+
+    return redirect(reverse('home'))

@@ -5,6 +5,8 @@ from .views import *
 
 urlpatterns = [
     path('', horse, name='horse'),
+    path('edithorse/<int:pk>', edithorse, name='edithorse'),
+    path('deletehorse/<int:pk>', deletehorse, name='deletehorse'),
     path('photo/', photo, name='photo'),
     path('links/', links, name='links'),
     path('tackedit/<int:pk>', tackedit, name='tackedit'),

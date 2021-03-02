@@ -6,4 +6,10 @@ function menu() {
     } else {
         x.style.display = "block";
     }
+
 }
+
+$(document).ready(function() {
+
+    $('.tooltipped').tooltip();
+});

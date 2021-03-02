@@ -119,6 +119,20 @@
         padding-left: 0;
         margin-top: 50px;
     }
+    /* objective submit button*/
+    
+    .submit {
+        font-size: 40px;
+        font-weight: 700;
+        color: #21a3e2 !important;
+        background-color: #101010 !important;
+        border: none !important;
+    }
+    /* stops date hiding asterik */
+    
+    #id_date {
+        padding-left: 10px !important;
+    }
     
     @media screen and (max-width: 600px) {
         .floorplan {

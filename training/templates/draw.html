@@ -72,32 +72,23 @@ nav {
 	<body>
 		<div style="overflow: hidden; margin-bottom: width:90%;5px;">
 			<div class="column-left links">
-				<strong>BRUSHES:</strong>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brush: BasicBrush});'>Basic</a>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brush: LineBrush});'>Line</a>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brush: CrossBrush});'>Cross</a>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brush: DotBrush});'>Dot</a>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brush: CircleBrush});'>Circle</a>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brush: SemiCircleBrush});'>SemiCircle</a>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brush: RectangleBrush});'>Rectangle</a>
-			</div>
-			<div class="column-right links">
-				<strong>COLORS:</strong>
-				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,0,0)"});'>Black</a>
+				<strong class="blue-text">BRUSHES:</strong>
+					<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,0,0)"});'>Black</a>
 				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(255,0,0)"});'>Red</a>
 				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,255,0)"});'>Green</a>
 				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,0,255)"});'>Blue</a>
+				
+				
 			</div>
+	
 		</div>
 		<canvas id="test" style="border: 1px solid red;"></canvas>
 		<div class="links" style="margin-top: 5px;">
-			<strong>OPTIONS:</strong>
-			<a href="#" onclick='addImage();'>Add Image</a>
-			<a href="#" onclick='$("#file").trigger("click");'>Add Local Image</a>
-			<input type="file" id="file" style="display:none;">
+			<strong class="blue-text">OPTIONS:</strong>
+			
 			<a href="#" onclick='$("#test").data("jqScribble").clear();'>Clear</a>
-			<a href="#" onclick='$("#test").data("jqScribble").save2();'>Save</a>
-			<a href="#" onclick='save();'>Custom Save</a>
+			
+			<a href="#" onclick='save();'>Save Drawing</a>
 		</div>
 
 
@@ -114,7 +105,7 @@ nav {
 		{
 			$("#test").data("jqScribble").save(function(imageData)
 			{
-				if(confirm("This will write a file using the example image_save.php. Is that cool with you?"))
+				if(confirm("This will save your drawing to the training record. Is that cool with you?"))
 				{
 					$.post("{%url 'savedraw' pk=pk %}", {imagedata: imageData,csrfmiddlewaretoken: '{{ csrf_token }}'},function(response)
 					{

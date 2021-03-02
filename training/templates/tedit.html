@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="{% static 'css/page.css' %}">
 <link rel="stylesheet" href="{% static 'css/form.css' %}"> {% endblock %} {% block content %}
 
-<style>
-
-</style>
 
 <nav>
     <div class="nav-wrapper">
@@ -37,16 +34,19 @@
 <h2>Session Objectives</h2>
 <div class="row">
 
-    <div class="col s12 m6 obj_display">
+    <div class="col s12 m6 ">
         <h5> Enter an Objective </h5>
-        <form method="POST" style="margin-left:5px!important;">
-            {{obj.objective|materializecss}} {% csrf_token %}
-            <button type="submit" class='subplus' name="save_obj" style="text-align: left!important;"><span
-          class="blutext">+</span></button>
-        </form>
+        <form method="POST" id="obj" style="margin-left:5px!important;">
+           <div class="col s10"> {{obj.objective|materializecss}}</div>
+            <div class="col s2"> <button type="submit" class="submit tooltipped" data-position="bottom" data-tooltip="Click to Add" name="save_obj">+</button></div>
+            {% csrf_token %}
+              </form>
+            {% comment %}<a class="submit" name="save_obj"  href="{% url 'training_edit' pk=pk %}">+</a>  <button type="submit" class='subplus' name="save_obj" style="text-align: left!important;"><span
+          class="blutext">+</span></button> {% endcomment %}
+      
     </div>
-
-    <div class="col s12 m6">
+     
+    <div class="col s12 m6" id='obj'>
         <h5>My Objective</h5>
         <p class="white-text"> Click Objective to mark achieved</p>
         <ol>
@@ -132,7 +132,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    {{form.date|materializecss}} {{session.date}}
+                    {{form.date|materializecss}} 
                 </div>
                 <div class="input-field col s6">
 
@@ -243,20 +243,24 @@
 </div>
 {% csrf_token %}
 <p class="white-text warning_msg"> Click the + to save your session</p>
-<button type="submit" class='subplus' name="save_log"><span class="blutext">+<span></button>
+<button type="submit " class='subplus tooltipped' data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="blutext">+<span></button>
 </form>
 <h2 class="hs__headline">Homework</h2>
 <div class="row">
 
     <div class="row">
 
-        <div class="col s12 m6 obj_display">
-            <h5> Enter Homework </h5>
-            <form method="POST">
-                {{obj.objective|materializecss}} {% csrf_token %}
-                <button type="submit" class='subplus' name="save_obj"><span class="blutext">+</span></button>
-            </form>
-        </div>
+     <div class="col s12 m6 ">
+        <h5> Enter an Objective </h5>
+        <form method="POST" id="obj" style="margin-left:5px!important;">
+           <div class="col s10"> {{obj.objective|materializecss}}</div>
+            <div class="col s2"> <button type="submit" class="submit tooltipped" data-position="bottom" data-tooltip="Click to Add" name="save_obj">+</button></div>
+            {% csrf_token %}
+              </form>
+            {% comment %}<a class="submit" name="save_obj"  href="{% url 'training_edit' pk=pk %}">+</a>  <button type="submit" class='subplus' name="save_obj" style="text-align: left!important;"><span
+          class="blutext">+</span></button> {% endcomment %}
+      
+    </div>
 
         <div class="col s12 m6">
             <h5>My Homework</h5>
@@ -291,8 +295,15 @@
         $('.datepicker').datepicker({
             'format': 'yyyy-mm-dd'
         });
+          $('.tooltipped').tooltip();
     });
 </script>
+$(document).ready(function(){
+    $("a.submit").click(function(){
+        document.getElementById("obj").submit();
+    }); 
+});
 
 
 {% endblock %}
+

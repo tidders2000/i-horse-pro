@@ -50,12 +50,12 @@
                              <div class="col s12 m6 push-m3 blue_box">
                                   {{ link|materializecss}}
                             
-                                              <button type="submit" class= 'subplus'><span class="blutext">+<span></button>
+                                              <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add"><span class="blutext">+<span></button>
                                
                                  {% csrf_token %} 
                           </form>
                       
-                               
+                               <ul>
                                 {% for lin in links %}
                                 <li class="white-text">{{lin.organisation}}: {{lin.link}}</li>
                                 {% endfor %}

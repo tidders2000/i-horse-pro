@@ -106,7 +106,7 @@ emoji_objects
  
       {% csrf_token %}
           <p class="white-text warning_msg"> Click the + to save your session</p>
-           <button type="submit" class= 'subplus' name="save_log"><span class="blutext">+<span></button>
+           <button type="submit" class= 'subplus tooltipped' name="save_log"  data-position="bottom" data-tooltip="Click to Save"><span class="blutext">+<span></button>
            </form>
     </div>
 
@@ -131,7 +131,7 @@ emoji_objects
       <input type="range" id="test5" min="0" max="5" name='atmosphere' value="{{a}}" />
     </p>
 {% csrf_token %}
-      <button type="submit" class= 'subplus' name="save_venue"><span class="blutext">+<span></button>
+      <button type="submit" class= 'subplus tooltipped' name="save_venue"  data-position="bottom" data-tooltip="Click to Save"><span class="blutext">+<span></button>
     </form>
   </form>
     {% comment %} <form method="POST" enctype="multipart/form-data">
@@ -240,7 +240,7 @@ emoji_objects
     <div></div>
     {{entry|materializecss}}
       {% csrf_token %}
-      <button type="submit" class= 'subplus' name="save_entry"><span class="blutext">+<span></button>
+      <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add" name="save_entry"><span class="blutext">+<span></button>
     </form>
    
   <table class="responsive-table highlight striped white-text " id="entries">

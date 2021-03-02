@@ -83,6 +83,7 @@ def training_edit(request, pk):
                 newObj.user = user
                 newObj.session = session
                 newObj.save()
+                return redirect(reverse('training_edit', kwargs={'pk': pk}) + '#obj')
 
         if 'save_log' in request.POST:
             log = training_form(
@@ -92,8 +93,9 @@ def training_edit(request, pk):
                 # sets appointment display css
                 display = 'inline'
                 messages.error(request, "Training Saved")
+                return redirect("training_edit", pk=pk)
 
-    return render(request, 'tedit.html', {'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display})
+    return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display})
 
 
 def checkOb(request, pk):

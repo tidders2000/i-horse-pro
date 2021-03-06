@@ -20,6 +20,58 @@
  
 }
 
+#id_outcome{
+display: block;
+margin: auto;
+border: none;
+background-color: red;
+height: 30px;
+color: white;
+text-align:center;
+
+}
+
+#id_outcome,#id_performance_goal_1,#id_performance_goal_2{
+  background-color: grey;
+  height: 100px;
+  width: 200px;
+ 
+  padding-top: 10px;
+  padding:2px,2px;
+   -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin-top:10px;
+    text-align:center;
+    margin:10px;
+}
+
+#id_process_goal_1,#id_process_goal_2,#id_process_goal_3,#id_process_goal_4{
+    background-color: grey;
+  height: 100px;
+  width: 200px;
+ 
+  padding-top: 10px;
+  padding:2px,2px;
+   -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin-top:10px;
+    text-align:center;
+    margin:10px;
+}
+
+@media all and (max-width: 450px) {
+
+#id_process_goal_1,#id_process_goal_2,#id_process_goal_3,#id_process_goal_4,#id_outcome,#id_performance_goal_1,#id_performance_goal_2{
+
+
+  margin-left:30%;
+}
+
+
+}
+
 </style>
 <nav>
     <div class="nav-wrapper">
@@ -34,53 +86,62 @@
 
 <h4>MindSet</h4>
 
-
+<form method="POST" id="mindform">
+    <div class="row">        
+     <div class="col s12 ">  
+      <button type="submit" class="btn btn-success submit tooltipped" data-position="bottom" data-tooltip="Click to Add" name="save_obj">Save</button>
+      <button type="button" class="btn red darken-2" onclick="location.href='{% url 'delete_goal' pk=pk %}'">Delete</button>
+      </div>
+    </div>
+   
+   
+   
+   
+   
     <div class='row'>
 
-
+<br>
 
 
  
-        <div class= "col s8 l4 push-l4 push-s2 blue box "> <span class='box-text'>{{instance.outcome}}<span></div>
+        {% comment %} <div class= "col s8 l4 push-l4 push-s2 blue box "> <span class='box-text'>{{instance.outcome}}<span></div> {% endcomment %}
+        <div class="col s12 l4 push-m3 push-l4 ">   {{form.outcome|materializecss}}      </div>
         
         </div>
 
            <div class='row'>
 
-        <div class= "col s6 m4 push-m2 yellow box ">
-        {{instance.performance_goal_1}}
+        <div class= "col s12 m6 l3 push-l3 ">
+        {{form.performance_goal_1|materializecss}}
         </div>
-         <div class= "col s6 m4 push-m2 yellow box">
-          {{instance.performance_goal_2}}
+         <div class= "col s12 m6 l3 push-l3 ">
+          {{form.performance_goal_2|materializecss}}
          </div>
         </div>
 
            <div class='row'>
+          
 
-        <div class= "col s3 m2 push-m2 green darken-4 box">
-          {{instance.process_goal_1}}
+        <div class= "col s12 m6 l3" >
+          {{form.process_goal_1|materializecss}}
         </div>
-         <div class= "col s3 m2 push-m2 green darken-4 box">
-            {{instance.process_goal_2}}
+         <div class= "col s12 m6 l3">
+            {{form.process_goal_2|materializecss}}
          </div>
-           <div class= "col s3 m2 push-m2 green darken-4 box">
-             {{instance.process_goal_3}}
+           <div class= "col s12 m6 l3 ">
+             {{form.process_goal_3|materializecss}}
            
            </div>
-         <div class= "col s3 m2 push-m2 green darken-4 box">
+         <div class= "col s12 m6 l3">
          
-           {{instance.process_goal_4}}
+           {{form.process_goal_4|materializecss}}
          </div>
         </div>
 
-        <section>
-      <div class="row blue_box" >
-      <form method="POST">
-          {{form|materializecss}}
+     
 
              {% csrf_token %}
-          <p class="white-text warning_msg"> Click the + to save your session</p>
-           <button type="submit" class= 'subplus' name="save_log"><span class="blutext">+<span></button>
+       
            </form>
            <div class="center-align">
               <a href="{% url 'mindsetB'%}" style="font-size:20px;"class="white-text">Part B</a>  
@@ -91,195 +152,6 @@
 
      
 
-{% comment %}    
-    <div class="row" style="border:1px solid #b3b3b3"></div>
-
-       <h2 class="hs__headline">Session Details</h2>
-    <div class="row" style="border:1px solid #21a3e2">
-          <form class="col s12">
-              <span class="material-icons white-text" style="padding:5px;">
-edit
-</span>
-      <div class="row">
-        <div class="input-field col s6">
-      
-          <input id="icon_prefix" type="text" class="validate">
-          <label for="icon_prefix">Instructor</label>
-        </div>
-        <div class="input-field col s6">
-      
-          <input id="icon_telephone" type="tel" class="validate">
-          <label for="icon_telephone">Horse</label>
-        </div>
-      </div>
-          <div class="row">
-        <div class="input-field col s6">
-          
-          <input id="icon_prefix" type="text" class="validate">
-          <label for="icon_prefix">Date</label>
-        </div>
-        <div class="input-field col s6">
-         
-          <input id="icon_telephone" type="tel" class="validate">
-          <label for="icon_telephone">Location</label>
-        </div>
-                <div class="input-field col s12">
-<span class="material-icons yellow-text">
-emoji_objects
-</span>
-          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Lightbulb Moment" style="padding:0!important; margin-top:40px;"></textarea>
-        </div>
-      </div>
-    </form>
-    
-    </div>
-
-     <h2 class="hs__headline">Session Objectives</h2>
-    <div class="row" style="border:1px solid #21a3e2">
-  
-       
-       <div class="col m10">
-                     <span class="material-icons white-text" style="padding:5px;">
-edit
-</span>
-          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter a objective and Click +" style="padding:0!important; margin-top:40px;"></textarea>
-       
-       </div>
-       <div class="col m2">
-         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
-       
-       </div>
-     <div class="col m10">
-   
-    
-      <ol>
-       <li class="white-text">Here is an objective entered by the user   <span class="switch">
-            <label>
-              
-              <input type="checkbox">
-              <span class="lever"></span>
-              Achieved
-            </label>
-      </span></li>
-
-           <li class="white-text">Here is an objective entered by the user
-           <span class="switch">
-            <label>
-              
-              <input type="checkbox">
-              <span class="lever"></span>
-              Achieved
-            </label>
-      </span>
-           
-           </li>
-       </ol>
-     
-     </div>
-    
-    </div>
-
-   
-
-     <h2 class="hs__headline">Little Wins</h2>
-    <div class="row" style="border:1px solid #21a3e2">
-  
-       
-       <div class="col m10">
-                     <span class="material-icons white-text" style="padding:5px;">
-edit
-</span>
-       
-          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter a little win and Click +" style="padding:0!important; margin-top:40px;"></textarea>
-       
-       </div>
-       <div class="col m2">
-         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
-       
-       </div>
-     <div class="col m10">
-   
-    
-      <ol>
-       <li class="white-text">Win 1</li>
-           <li class="white-text">Win 2</li>
-       </ol>
-     
-     </div>
-    
-    </div>
-
-
-     <h2 class="hs__headline">Homework</h2>
-    <div class="row" style="border:1px solid #21a3e2">
-  
-       
-       <div class="col m10">
-                     <span class="material-icons white-text" style="padding:5px;">
-edit
-</span>
-       
-          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter an Objective and Click +" style="padding:0!important; margin-top:40px;"></textarea>
-       
-       </div>
-       <div class="col m2">
-         <div class="plus_holder"><i class="fa fa-plus plus" aria-hidden="true"></i></div>
-       
-       </div>
-     <div class="col m10">
-   
-    
-      <ol>
-       <li class="white-text">work on 1</li>
-           <li class="white-text">work on 2</li>
-       </ol>
-     
-     </div>
-    
-    </div>
-
-   <h2 class="hs__headline">Floor Plan</h2>
-    <div class="row" style="border:1px solid #21a3e2">
-<section>
-		<div class="decoration"></div>
-
-	<div class="row">
-	
-		 <div class="input-field col s4 center-align"><span class="material-icons center-align">camera_enhance</span> </div>
-		  <div class="input-field col s4 center-align"><span class="material-icons center-align">add_circle</span> </div>
-		   <div class="input-field col s4 center-align"><span class="material-icons center-align">create</span> </div>
-			
-		
-	</div>	
-     
-	</section>
-  	<img src="images/floor_plan.jpg" alt="floor plan"/ style="padding:10px;">
-</div>
-
-<h2 class="hs__headline">Notes and Files</h2>
-    <div class="row" style="border:1px solid #21a3e2">
-
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-         <span class="material-icons white-text" style="padding:5px;">
-edit
-</span>
-          <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Notes" style="padding:0!important; margin-top:40px;"></textarea>
-        </div>
-
-        <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
-    </div>
-      </div>
-    </form> {% endcomment %}
   </div>
     
     

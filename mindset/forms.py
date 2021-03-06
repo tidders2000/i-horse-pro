@@ -8,6 +8,12 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 
+class titleadd_form(forms.ModelForm):
+    class Meta:
+        model = Goals
+        fields = ['title']
+
+
 class goals_form(forms.ModelForm):
 
     class Meta:

@@ -1,34 +1,62 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .forms import *
+from django.contrib import messages
 
 
 # Create your views here.
 
+def delete_goal(request, pk):
+    goal = get_object_or_404(Goals, pk=pk)
+    goal.delete()
+    messages.error(request, "Goal Deleted")
+    return redirect(reverse('home'))
 
-def mindset(request):
+
+def title_add(request):
+    form = titleadd_form()
+    user = request.user
+    if request.method == 'POST':
+        form = titleadd_form(request.POST)
+        newObj = form.save(commit=False)
+        newObj.user = user
+        newObj.save()
+        pk = newObj.pk
+        return redirect(reverse('mindset', kwargs={'pk': pk}))
+
+    return render(request, 'title_add.html', {'form': form})
+
+
+def mindset_select(request):
+    user = request.user
+    instances = Goals.objects.all().filter(user=user)
+
+    return render(request, 'mindset_select.html', {'instances': instances})
+
+
+def mindset(request, pk):
 
     user = request.user
 
-    instance = Goals.objects.all().filter(user=user).first()
+    instance = get_object_or_404(Goals, pk=pk)
     if instance:
         form = goals_form(instance=instance)
         if request.method == 'POST':
             goal = goals_form(request.POST, instance=instance)
             goal.save()
             form = goals_form(instance=instance)
-        return render(request, 'mindset.html', {'form': form, 'instance': instance})
+            return redirect(reverse('mindset', kwargs={'pk': pk}))
 
-    else:
-        form = goals_form()
-        if request.method == 'POST':
-            goal = goals_form(request.POST)
-            if goal.is_valid():
-                newObj = goal.save(commit=False)
-                newObj.user = user
+    # else:
+    #     form = goals_form()
+    #     if request.method == 'POST':
+    #         goal = goals_form(request.POST)
+    #         if goal.is_valid():
+    #             newObj = goal.save(commit=False)
+    #             newObj.user = user
 
-                newObj.save()
+    #             newObj.save()
 
-    return render(request, 'mindset.html', {'form': form, 'instance': instance})
+    return render(request, 'mindset.html', {'form': form, 'instance': instance, 'pk': pk})
 
 
 def mindsetB(request):

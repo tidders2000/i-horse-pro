@@ -51,7 +51,7 @@ def editapp(request):
         else:
             print('error')
 
-    return render(request, 'appointment.html', {'form': form, 'display': display})
+    return render(request, 'appointment.html', {'form': form, 'display': display, 'instance': instance})
 
 
 class EventFeed(ICalFeed):

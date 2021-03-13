@@ -20,6 +20,7 @@ def horse(request):
             horseSave.user = user
             horseSave.save()
             request.session['horse'] = horseSave.pk
+            messages.error(request, "Horse Saved")
             return redirect(reverse('photo'))
         # messages.error(request, 'Horse added')
 

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'mindset',
     'star_ratings',
     'wizard',
+    'yard',
 
 
 

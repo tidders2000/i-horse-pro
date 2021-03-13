@@ -1,0 +1,64 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Mindset{% endblock %}
+     
+{% block head %}
+    
+       <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
+       <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+
+  {% endblock %}
+ {% block content %} 
+<style>
+
+.box{
+  height:100px!important;
+  border: 1px solid grey;
+  padding:5px;
+  text-align:center;
+  border-radius:5px;
+  color:white;
+  margin:5px;
+ 
+}
+
+</style>
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+         
+        <a href="#!" class="breadcrumb">Mindset</a>
+       
+      </div>
+    </div>
+  </nav>
+
+<h4>Add Employee Details </h4>
+
+
+    <div class='row'>
+
+          <div class="col s12 m6 push-m3">
+
+       <form method="POST">
+         {{form|materializecss}}
+               <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add" name="save_entry"><span class="blutext">+<span></button>
+
+       </form>
+      
+      
+      
+      </div>
+
+
+    
+</div><!--end of row-->
+{% endblock %}{% block scripts %}
+    <script src="slider.js"></script>
+    <script>
+	  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
+ 
+
+{% endblock %}

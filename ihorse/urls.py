@@ -32,6 +32,7 @@ urlpatterns = [
     path('horse/', include('horse.urls')),
     path('appointment/', include('appointment.urls')),
     path('competing/', include('competing.urls')),
+    path('yard/', include('yard.urls')),
     path('sendpush/', include('sendpush.urls')),
 
     path(

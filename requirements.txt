@@ -125,3 +125,4 @@ urllib3==1.26.2
 vobject==0.9.6.1
 zipp==3.4.0
 zope.interface==5.2.0
+stripe==2.56.0

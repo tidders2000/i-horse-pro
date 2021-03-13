@@ -1,0 +1,125 @@
+{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
+     
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+
+  <!-- core css -->
+   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+     
+  <!--vendor style sheets-->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+  
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" /> {% endcomment %}
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- manifest-->
+  {% comment %} <link rel="manifest" href="{% static 'manifest.json' %}"> {% endcomment %}
+   
+   <!-- apple web app settings-->
+   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" sizes="57x57" href="{% static 'icons/apple-icon-57x57.png'%}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'icons/apple-icon-60x60.png'%}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'icons/apple-icon-72x72.png'%}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'icons/apple-icon-76x76.png'%}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'icons/apple-icon-114x114.png'%}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'icons/apple-icon-120x120.png'%}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'icons/apple-icon-144x144.png'%}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'icons/apple-icon-152x152.png'%}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-icon-180x180.png'%}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'icons/android-icon-192x192.png'%}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png'%}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png'%}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png'%}">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static 'icons/ms-icon-144x144.png'%}">
+  <meta name="theme-color" content="#ffffff">
+<!--push key-->
+   
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapid-key" content="{{ vapid_key }}">
+    {% if user.id %}
+        <meta name="user_id" content="{{ user.id }}">
+    {% endif %}
+
+
+</head>
+  
+     
+{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% endcomment %}
+
+ 
+<style>
+img{
+  height:200px;
+  width:200px;
+}
+</style>
+
+
+  <div class="row">
+
+    <div class="col s12 ">
+        <div class="white-text ">
+        <img src="{% static 'images/logo5.png' %} "class="logo"/>
+      </div>
+ <div>
+
+ <div class="row">
+      <div class="col s12 m10 push-m1">
+
+          <h4 class=""> Select Images </h4>
+          <h5>You can change images that represent your selection or keep the defaults</h5>
+       </div>
+     
+  </div>
+    <div class="row">
+        <div class="col s8 m10 push-m1">
+        <table style="width:80%">
+    {% for img in custimg %}
+     <tr>
+    <td> <h4>{{img.disipline}}</h4></td>
+  
+ 
+  </tr
+  <tr>
+    <td> <img src="{{MEDIA_URL}}{{ img.image}}" alt="disipline picture"/></td>
+    <td><form name="theform" method="POST" enctype="multipart/form-data" action="/wizard/select_img"><input type='file' name='inputfile'  id='inputfile' onchange="this.form.submit()" class='inputfile'><input type="hidden" id="pk" name="pk" value="{{img.pk}}"></form></td>
+ 
+  </tr>
+    {% endfor %}
+</table>
+
+
+
+
+
+       </div>
+   
+   </div>
+   <div class="row">
+     
+       <div class="col s12 m6 push-m4 center-align" >
+       <p><a href="{% url 'wizard_addhorse' %}">NEXT <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+       </div>
+   
+   </div>
+
+       <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>       
+
+</body>
+</html>

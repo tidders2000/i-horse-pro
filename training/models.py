@@ -8,13 +8,23 @@ disipline = [('Dressage', 'Dressage'), ('ShowJumping', 'ShowJumping'),
 
 user = User.username
 
+# temp fix for setup wizard
+
+
+class Disipline(models.Model):
+    disipline = models.CharField(
+        max_length=100, blank=True)
+
+    def __str__(self):
+        return self.disipline
+
 
 class CustomImages(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     disipline = models.CharField(
-        max_length=100, choices=disipline, default='Dressage', blank=True)
+        max_length=100, blank=True)
     image = models.ImageField(
-        upload_to='media/images/custom', blank=True, default='')
+        upload_to='media/images/custom', blank=True, default='media/images/200x300.png')
 
     def __str__(self):
         return self.disipline

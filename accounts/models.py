@@ -10,6 +10,7 @@ class Profile(models.Model):
     telephone = models.CharField(max_length=254)
     profile_image = models.ImageField(
         upload_to='media/profiles', default='media/images/default_1.png')
+    wizard = models.BooleanField(default=True)
 
 
 @receiver(post_save, sender=User)

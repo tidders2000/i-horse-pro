@@ -23,11 +23,19 @@ def competition(request):
 def comp_create(request, pk):
     customImg = get_object_or_404(CustomImages, pk=pk)
     form = comp_form()
+    venue = venue_form()
     user = request.user
     sessionSave = form.save(commit=False)
     sessionSave.disipline = customImg
     sessionSave.user = user
+
     sessionSave.save()
+    print(sessionSave)
+    venueSave = venue.save(commit=False)
+    venueSave.competition = sessionSave
+    venueSave.venueName = 'Venue Name'
+    venueSave.save()
+
     pk = sessionSave.pk
 
     url = 'comp_edit/{}'.format(pk)
@@ -37,15 +45,12 @@ def comp_create(request, pk):
 def comp_edit(request, pk):
     session = get_object_or_404(CompetitionLog, pk=pk)
     user = request.user
-    venues = Venue.objects.all().filter(competition=session)
-    x = session.myStars
-    v = 1
-    r = 2
-    p = 3
-    a = 4
-    form = comp_form(instance=session)
 
-    venue = venue_form(venues)
+    test = venue_form()
+    form = comp_form(instance=session)
+    venue_instance = get_object_or_404(Venue, competition=session)
+    print(venue_instance)
+    venue = venue_form(venue_instance.pk)
     display = request.session['dis']
     # entries = Comphorse.objects.all().filter(session=session)
     entry = entry_form()
@@ -78,19 +83,16 @@ def comp_edit(request, pk):
                 return redirect(url)
         if 'save_venue' in request.POST:
 
-            ven = venue_form(request.POST)
-            if ven.is_valid():
-                newObj = ven.save(commit=False)
-                newObj.venueName = session.location
-                newObj.competition = session
+            venue_update = venue_form(request.POST, instance=venue_instance)
+            if venue_update.is_valid():
+                venue_update.save()
 
-                newObj.save()
                 messages.error(request, "Info Saved")
                 url = '/competing/comp_edit/{}'.format(session.pk)
 
                 return redirect(url)
 
-    return render(request, 'cedit.html', {'p': p, 'a': a, 'r': r, 'v': v, 'x': x, 'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
+    return render(request, 'cedit.html', {'venue_instance': venue_instance, 'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
 
 
 class EventFeed2(ICalFeed):

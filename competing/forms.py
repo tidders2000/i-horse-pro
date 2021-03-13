@@ -24,6 +24,11 @@ class entry_form(forms.ModelForm):
     class Meta:
         model = Comphorse
         exclude = ['user', 'competition']
+        widgets = {
+            'horse': forms.Select(
+                attrs={'class': 'bum'}
+            )
+        }
 
 
 class venue_form(forms.ModelForm):

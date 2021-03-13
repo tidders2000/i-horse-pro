@@ -9,6 +9,20 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 
+class wizard_horse_form(forms.ModelForm):
+    class Meta:
+        model = Horse
+        fields = ['stableName', 'photo']
+
+
+class horse_wizard(forms.ModelForm):
+
+    class Meta:
+
+        model = Horse
+        fields = ['stableName']
+
+
 class horse_form(forms.ModelForm):
 
     class Meta:

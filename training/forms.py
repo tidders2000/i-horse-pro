@@ -11,7 +11,7 @@ class DateInput(forms.DateInput):
 class wizard_form(forms.ModelForm):
     class Meta:
         model = CustomImages
-        exclude = ['user']
+        fields = ['image']
 
 
 class training_form(forms.ModelForm):

@@ -1,99 +1,122 @@
-{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
+{% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
      
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 
-     {% block head %}
 
-        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
-        <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
-    
-         
+  <!-- core css -->
+   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+     
+  <!--vendor style sheets-->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
-      {% endblock %}
+  
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" /> {% endcomment %}
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- manifest-->
+  {% comment %} <link rel="manifest" href="{% static 'manifest.json' %}"> {% endcomment %}
+   
+   <!-- apple web app settings-->
+   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" sizes="57x57" href="{% static 'icons/apple-icon-57x57.png'%}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'icons/apple-icon-60x60.png'%}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'icons/apple-icon-72x72.png'%}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'icons/apple-icon-76x76.png'%}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'icons/apple-icon-114x114.png'%}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'icons/apple-icon-120x120.png'%}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'icons/apple-icon-144x144.png'%}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'icons/apple-icon-152x152.png'%}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-icon-180x180.png'%}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'icons/android-icon-192x192.png'%}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png'%}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png'%}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png'%}">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static 'icons/ms-icon-144x144.png'%}">
+  <meta name="theme-color" content="#ffffff">
+<!--push key-->
+   
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapid-key" content="{{ vapid_key }}">
+    {% if user.id %}
+        <meta name="user_id" content="{{ user.id }}">
+    {% endif %}
+
+
+</head>
+  
      
 {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   {% endcomment %}
 
  
-  {% block content %}
-  <style>
-   tr{
-     color:white;
-   }
-  </style>
 
-<h2 >Customize</h2>
- 
- <div class="h5">Numbered - <code>.numbered</code></div>
-      <div class="multi-step numbered">
-        <ul class="multi-step-list">
-          <li class="multi-step-item active">
-            <div class="item-wrap">
-              <p class="item-title">Payment</p>
-            </div>
-          </li>
-          <li class="multi-step-item active  current">
-            <div class="item-wrap">
-              <p class="item-title">Customize</p>
-            </div>
-          </li>
-        
-      
-        </ul>
+
+
+  <div class="row">
+
+    <div class="col s12 ">
+        <div class="white-text ">
+        <img src="{% static 'images/logo5.png' %} "class="logo"/>
       </div>
+ <div>
+
+ <div class="row">
+      <div class="col s12 m6 push-m4">
+
+          <h4 class=""> Lets get you set up</h4>
+          <h5> Select what you like to do </h5>
+       </div>
+     
+  </div>
+    <div class="row">
+       <div class="col s12 m6 push-m4" ">
+        {% for dis in disc %}
+      
+           <a href= {% url 'addDisc' dis.pk %}><div class="chip" style="background-color:red;">{{dis.disipline}}</div></a>
       
 
-              <form method="POST" enctype="multipart/form-data">
-                     <div class="row blue_box" > 
-                      {{form|materializecss}}
-                     </div>
-           
-                     {% csrf_token %} 
-                      <button type="submit"  class="btn btn-success">Add Disipline</button>
-                      
-                      </form>
-
-
-
-<section>
-
-      <table class="responsive-table">
-        <thead>
-          <tr>
-              <th>Disipline</th>
-              <th>Image</th>
-              <th>Delete</th>
-          </tr>
-        </thead>
-
-        <tbody>
-        {% for di in disc %}
-          <tr>
-            <td>{{di.disipline}}</td>
-            <td>{{di.image}}</td>
-            <td><a href="{% url 'deletedisipline' pk=di.pk %}"<i class="fas fa-trash-alt"></i></a></td>
-          </tr>
         {% endfor %}
-        </tbody>
-      </table>
+       </div>
+   
+   </div>
 
-</section>
-     {% endblock %}                
-{% block scripts %}
+     <div class="row">
+     
+       <div class="col s12 m6 push-m4" ">
+           <h5> My Selections</h5>
+        {% for select in myselection %}
+      
+           <a href= ""><div class="chip" style="background-color:grey;">{{select.disipline}}</div></a>
+      
 
-   <script>
-$(document).ready(function(){
+        {% endfor %}
+       </div>
+   
+   </div>
 
-  // Initialize materialize data picker
-  {% comment %} $('.datepicker').datepicker({
-    'format': 'yyyy-mm-dd',
-   }); {% endcomment %}
-   $('select').formSelect();
+   <div class="row">
+     
+       <div class="col s12 m6 push-m4 center-align" >
+       <p><a href="{% url 'select_img' %}">NEXT <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+       </div>
+   
+   </div>
 
-  });
+       <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>       
 
-
-
-</script>             
-
-{% endblock %}
-
+</body>
+</html>

@@ -19,9 +19,9 @@
   
   
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+  {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" /> {% endcomment %}
 
-
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <!-- manifest-->
   {% comment %} <link rel="manifest" href="{% static 'manifest.json' %}"> {% endcomment %}
@@ -119,9 +119,9 @@
       <div class="small_navbar hide-on-med-and-up row">
 
 <div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-home  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Home</span></a></div></div>
-<div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-book-open center-align small_nav" style="padding:0;"></i><br><span class="white-text">Training</span></a></div></div>
-<div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-horse  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Horse</span></a></div></div>
-<div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-calendar center-align small_nav" style="padding:0;"></i><br><span class="white-text">Cal</span></a></div></div>
+<div class="col s3 align-center"><div class="center-align"><a href="{% url 'training_log' %}"><i class="fas fa-book-open center-align small_nav" style="padding:0;"></i><br><span class="white-text">Training</span></a></div></div>
+<div class="col s3 align-center"><div class="center-align"><a href="{% url 'details' %}"><i class="fas fa-horse  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Horse</span></a></div></div>
+<div class="col s3 align-center"><div class="center-align"><a href="{% url 'caltwo' %}"><i class="fas fa-calendar center-align small_nav" style="padding:0;"></i><br><span class="white-text">Cal</span></a></div></div>
       <!--small toolbar-->
 
 

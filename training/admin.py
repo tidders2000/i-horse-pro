@@ -18,3 +18,4 @@ class trainingLog(admin.ModelAdmin):
 admin.site.register(CustomImages, imageAdmin)
 admin.site.register(TrainingLog, trainingLog)
 admin.site.register(Objectives)
+admin.site.register(Disipline)

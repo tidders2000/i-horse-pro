@@ -61,8 +61,8 @@ form {
     border: none;
     background-color: inherit !important;
     cursor: pointer;
-    display: inline-block;
-    float: left;
+    display: block;
+    margin: auto !important;
 }
 
 .blutext {

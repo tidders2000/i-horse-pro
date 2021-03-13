@@ -24,6 +24,7 @@ def index(request):
 
     if request.user.is_authenticated:
         return redirect(reverse('home'))
+
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
 
@@ -35,7 +36,11 @@ def index(request):
 
             if user is not None:
                 auth.login(request=request, user=user)
+                instance = Profile.objects.get(pk=request.user.pk)
                 messages.error(request, "You have successfully logged in")
+                if instance.wizard == True:
+                    print("True")
+                    return redirect(reverse('wizard'))
                 return redirect(reverse('home'))
             else:
 

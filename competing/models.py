@@ -43,5 +43,5 @@ class Comphorse(models.Model):
         CompetitionLog, null=True, on_delete=models.CASCADE)
     horse = models.ForeignKey(Horse, null=True, on_delete=models.CASCADE)
     horseClass = models.CharField(max_length=100, blank=True)
-    scores = models.TextField(blank=True)
+    performance = models.TextField(blank=True)
     class_time = models.CharField(max_length=100, blank=True)

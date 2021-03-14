@@ -70,7 +70,7 @@
   <div id="myLinks">
                <a href="{% url 'home' %}"><i class="fa fa-home"></i><em>Home</em></a>
                <a href="{% url 'details'%}"><i class="fas fa-horse"></i><em>Horses</em></a>
-               <a href="yard.html"><i class="fas fa-broom"></i></i><em>Yard</em></a>
+               <a href="{% url 'yard_menu' %}"><i class="fas fa-broom"></i></i><em>Yard</em></a>
                <a href="{% url 'caltwo'%}"><i class="fa fa-calendar"></i></i><em>Calendar</em></a>
                <a href="{% url 'training_log' %}"><i class="fas fa-book-open"></i><em>Training</em></a>
                <a href="{% url 'history'%}"><i class="fas fa-chart-line"></i><em>Activity Log</em></a>
@@ -92,7 +92,7 @@
           <ul id="" class="">
             <li> <a href="{% url 'home' %}"><i class="fa fa-home"></i><em>Home</em></a></li>
               <li> <a href="{% url 'details'%}"><i class="fas fa-horse"></i><em>Horses</em></a></li>
-              <li> <a href="yard.html"><i class="fas fa-broom"></i></i><em>Yard</em></a></li>
+              <li> <a href="{% url 'yard_menu' %}"><i class="fas fa-broom"></i></i><em>Yard</em></a></li>
               <li> <a href="{% url 'caltwo'%}"><i class="fa fa-calendar"></i></i><em>Calendar</em></a></li>
               <li> <a href="{% url 'training_log' %}"><i class="fas fa-book-open"></i><em>Training</em></a></li>
               <li> <a href="{% url 'history'%}"><i class="fas fa-chart-line"></i><em>Activity Log</em></a></li>

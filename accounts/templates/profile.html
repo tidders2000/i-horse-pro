@@ -1,5 +1,5 @@
 
-{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Settings{% endblock %} {% block page_heading %}Profile{% endblock %}
  {% block content %}
 
 
@@ -13,47 +13,36 @@
       <div class="col s12 breadcrumb">
         <a href="{% url 'home' %}" class="breadcrumb">Home</a>
          
-        <a href="#!" class="breadcrumb">Profile</a>
+        <a href="#!" class="breadcrumb">Settings</a>
        
       </div>
     </div>
   </nav>
- <h2>Profile</h2>
+ <h2>Settings</h2>
 
 
 
       <div class="row">
-        <div class="col s12 col m6 ">
-
-             <img src="{{MEDIA_URL}}{{ instance.profile_image}}" style="height:100px;width:100px;"/>
-        </div>
-        <div class="col s12 col m6">
-
-  <form method='POST' enctype="multipart/form-data" >
-                      {% csrf_token %} {{ profile|materializecss }}
-                      <button type="submit" class="btn btn-success">ADD</button>
-
-                      </form>
-    
-     </div>
-  </div>
-  <div class="row">
-
-    <div class="col s12">
-    <ul>
-    <li> 
-      <a href="{% url "password_reset_recover" %}" style="font-size:15px;padding-bottom:50px;">Reset password</a> 
-    </li>
-     <li>
-     <div class="drawer-option">
-          <button class="btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+        <div class="col s12 col m6 push-m3 ">
+            <div class="drawer-option">
+               <button class="btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
             Enable Notifications
           </button>
         </div>
-    </li>
-    <li>      <a href="{% url "wizard" %}" style="font-size:15px;padding-bottom:50px;">Customize</a> 
-   </li>
-    </ul>
+        </div>
+       </div>
+
+
+  <div class="row">
+
+    <div class="col s12  m6 push-m3">
+    
+      <form action="{% url 'password_reset_recover' %}">
+               <button type="submit" class="btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent" style="width:201px;">
+            Reset Password
+          </button>
+      </form>
+    
  </div>
 </div>
 

@@ -160,24 +160,24 @@
         {% endfor %}
       </li>
 
-      <li>
+     <li>
         <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Worming" name="apps"
-            value="Worming"> <button class="btn btn-success appointments_submit"><i
-              class="fas fa-briefcase-medical grey-text"></i> <b>Worming Next -</b> </a>
+            value="Worming"> <button class="btn btn-success appointments_submit"><i class="fas fa-user-md grey-text"></i>
+            <b>Worming Next -</b> </a>
             {% for app in appointments %}
 
             {% if app.event.appType == "Worming" %}
 
 
-            <span class="next_app">{{app.due}}</span>
+            <span class="next_app"> {{app.due}}</span>
+        </form>
+        {% endif %}
 
-            {% endif %}
 
-
-            {% endfor %}
+        {% endfor %}
       </li>
       <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="saddler" name="apps"
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Saddler" name="apps"
             value="Saddler"> <button class="btn btn-success appointments_submit"><i class="fas fa-chair grey-text"></i>
             <b>Saddler Next -</b> </a>
 
@@ -187,41 +187,41 @@
 
 
             <span class="next_app"> {{app.due}}</span>
-
+     </form>
             {% endif %}
 
 
             {% endfor %}
       </li>
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="farrier" name="apps"
-            value="Farrier"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer grey-text"></i>
+       <li>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Farrier" name="apps"
+            value="Farrier"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
             <b>Farrier Next -</b> </a>
-
             {% for app in appointments %}
 
             {% if app.event.appType == "Farrier" %}
 
 
-            <span class="next_app">{{app.due}}</span>
+            <span class="next_app"> {{app.due}}</span>
+        </form>
+        {% endif %}
 
-            {% endif %}
 
-
-            {% endfor %}
+        {% endfor %}
       </li>
       <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="vet" name="apps" value="Vet">
-          <button class="btn btn-success appointments_submit"><i class="fas fa-briefcase-medical grey-text"></i> <b>Vet
-              Next -</b> </a>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Vet" name="apps"
+            value="Vet"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
+            <b>Vet Next -</b> </a>
 
             {% for app in appointments %}
 
-            {% if app.event.appType == "Vet" %}
+             {% if app.event.appType == "Vet" %}
 
 
-            {{app.due}}
 
+            <span class="next_app">{{app.due}}</span>
+              </form>
             {% endif %}
 
 
@@ -238,7 +238,7 @@
 
 
             <span class="next_app">{{app.due}}</span>
-
+                 </form>
             {% endif %}
 
 

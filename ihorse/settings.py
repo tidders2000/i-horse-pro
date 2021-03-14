@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'django.contrib.admin',
 
-
+    'password_reset',
     'home',
     'storages',
     'webpush',
@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'star_ratings',
     'wizard',
     'yard',
+    'phone_field',
+    'djmoney',
 
 
 

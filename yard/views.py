@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import *
 from django.contrib import messages
 
@@ -6,9 +6,10 @@ from django.contrib import messages
 
 
 def people(request):
-    client = Client.objects.filter(user=request.user)
+    user = request.user
+    client = Client.objects.filter(user=user)
 
-    employee = Staff.objects.filter(user=request.user)
+    employee = Staff.objects.filter(user=user)
     return render(request, 'people.html', {'client': client, 'employee': employee})
 
 
@@ -48,7 +49,7 @@ def edit_client(request, pk):
         if form_add.is_valid():
             form_add.save()
             messages.error(request, "Client Updated")
-    return render(request, 'client.html', {'form': form})
+    return render(request, 'client.html', {'form': form, 'instance': instance})
 
 
 def edit_staff(request, pk):
@@ -59,4 +60,16 @@ def edit_staff(request, pk):
         if form_add.is_valid():
             form_add.save()
             messages.error(request, "Client Updated")
-    return render(request, 'client.html', {'form': form})
+    return render(request, 'staff.html', {'form': form, 'instance': instance})
+
+
+def delete_staff(request, pk):
+    instance = get_object_or_404(Staff, pk=pk)
+    instance.delete()
+    return redirect('home')
+
+
+def delete_client(request, pk):
+    instance = get_object_or_404(Client, pk=pk)
+    instance.delete()
+    return redirect('home')

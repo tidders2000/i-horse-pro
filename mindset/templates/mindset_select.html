@@ -20,6 +20,10 @@
  
 }
 
+.link{
+  color:#21a3e2;
+}
+
 </style>
 <nav>
     <div class="nav-wrapper">
@@ -37,7 +41,7 @@
 
     <div class='row'>
 <ul>
-   <li><a href="{% url 'title_add' %}">Add New Goal</a></li>
+   <li><a href="{% url 'title_add' %}" class="link">Add New Goal</a></li>
     {% for instance in instances %}
     <li> <a href={% url 'mindset' pk=instance.pk %}> {{instance.title}}</a></li>
 

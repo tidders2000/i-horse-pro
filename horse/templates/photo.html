@@ -69,6 +69,8 @@
                          <div class="col s12 m6 push-m3  ">
                      {% csrf_token %} 
                       <button type="submit"  class="btn btn-success">Add Photo</button>
+                                  <button type="button" style="margin:auto; display:block; margin-top:20px;" class="btn btn-success" onclick="location.href='{% url 'tackedit' pk=newHorse.pk %}'">Add/Edit Tack</button>
+  
                       </div>
                       </div><!--endrow-->
                       </form>

@@ -73,6 +73,18 @@
 
 
     </div>
+      <div class="row blue_box" > 
+                      <h4 style="font:24px;color:white;font-style:avenair;">Feeds & Behaviour</h4>
+                       <div class="col s12 ">
+                          {{ form.feeds|materializecss}}
+                       </div>
+                         <div class="col s12">
+                             {{ form.notes|materializecss}}
+                       </div>
+                       
+                     
+                     
+                     </div>
 
     <div class="row blue_box">
         <h4 style="font:24px;color:white;font-style:avenair;">Owner Details</h4>
@@ -100,9 +112,10 @@
     </div>
 
     {% csrf_token %}
-    <button type="submit" class="btn btn-success">Add Horse</button>
+    <button type="submit" class="btn btn-success">Update</button>
     <button type="button" class="btn red darken-2" onclick="location.href='{% url 'deletehorse' pk=pk %}'">Delete
     Horse</button>
+
 
 </form>
 {% endblock %} {% block scripts %}

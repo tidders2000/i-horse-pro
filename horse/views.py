@@ -52,7 +52,7 @@ def tackedit(request, pk):
     horse = get_object_or_404(Horse, pk=pk)
     tackdetails = Tack.objects.all().filter(horse=horse)
     user = request.user
-
+    request.session['horse'] = pk
     tack = tack_form()
 
     if request.method == "POST":
@@ -92,6 +92,7 @@ def links(request):
     links = Link.objects.all().filter(horse=newHorse)
     if request.method == "POST":
         linkf = link_form(request.POST)
+
         if linkf.is_valid():
             linkSave = linkf.save(commit=False)
             linkSave.user = user
@@ -156,11 +157,13 @@ def edithorse(request, pk):
     pk = pk
     user = request.user
     if request.method == "POST":
+        request.session['horse'] = pk
         horsef = horse_form(request.POST, instance=instance)
         if horsef.is_valid():
             horsef.save()
             messages.error(request, "Horse Updated")
-            return redirect(reverse('edithorse', kwargs={'pk': pk}))
+            return redirect('photo')
+            # return redirect(reverse('edithorse', kwargs={'pk': pk}))
     return render(request, 'horse_edit.html', {'form': form, 'pk': pk})
 
 

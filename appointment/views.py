@@ -27,7 +27,7 @@ def appointment(request, pk):
         else:
             print('error')
 
-    return render(request, 'appointment.html', {'form': form, 'display': display})
+    return render(request, 'appointment.html', {'form': form, 'display': display, 'horse': horse})
 
 
 def editapp(request):

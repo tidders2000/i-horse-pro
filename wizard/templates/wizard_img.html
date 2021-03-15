@@ -71,6 +71,7 @@ img{
 @media all and (max-width: 450px) {
    .button-correct{
      padding-left:0;
+     margin-top:5px;
    }
 }
 </style>
@@ -102,8 +103,8 @@ img{
  
   </tr
   <tr>
-    <td> <img src="{{MEDIA_URL}}{{ img.image}}" alt="disipline picture"/></td>
-    <td class="button-correct"><form name="theform" method="POST" enctype="multipart/form-data" action="/wizard/select_img"><input type='file' name='inputfile'  id='inputfile' onchange="this.form.submit()" class='inputfile'><input type="hidden" id="pk" name="pk" value="{{img.pk}}"></form></td>
+    <td class="col s12"> <img src="{{MEDIA_URL}}{{ img.image}}" alt="disipline picture"/></td>
+    <td class="button-correct col s12"><form name="theform" method="POST" enctype="multipart/form-data" action="/wizard/select_img"><input type='file' name='inputfile'  id='inputfile' onchange="this.form.submit()" class='inputfile'><input type="hidden" id="pk" name="pk" value="{{img.pk}}"></form></td>
  
   </tr>
     {% endfor %}

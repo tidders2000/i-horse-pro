@@ -280,8 +280,10 @@ input {
         height: 77px;
     }
     ul {
-        font-size: 10px;
+        font-size: 12px;
     }
+
+
     .main_col {
         padding-left: 30px !important;
     }
@@ -295,20 +297,20 @@ input {
         padding-bottom: 50px !important;
     }
     h4 {
-        font-size: 12px !important;
+        font-size: 18px !important;
     }
     h5 {
-        font-size: 12px !important;
+        font-size: 17px !important;
     }
     h2 {
-        font-size: 14px !important;
+        font-size: 16px !important;
     }
     ul {
-        margin-left: 0 !important;
+        margin-left: 5px !important;
     }
     .schedule li {
         margin-left: 20px;
-        font-size: 8px;
+        font-size: 16px;
     }
 }
 

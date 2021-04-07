@@ -14,36 +14,6 @@
 {% endblock %}
 
    {% block content %} 
-<style>
-.select-wrapper input.select-dropdown{
-  display:none;
-}
-
-
-.caret{
-display:none;
-}
-
-.center{
-    display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.bum{
-      display: block;
-    background-color: #101010;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color:white;
-}
-select{
-  border:none!important;
-}
-
-
-</style>
 
 
   <nav>
@@ -127,14 +97,14 @@ edit
    {% if session.myStars == '5' %}<option  value="5" selected>5</option>{% else %}<option  value="5">5</option>{% endif %}
 </select>
 
-<br>
+    </div>   
          
-        </div>
+
 
       {% csrf_token %}
-       <div class="center-align">
-           <button type="submit" class= 'subplus tooltipped center ' name="save_log"  data-position="bottom" data-tooltip="Click to Save"><span class="blutext">+<span></button>
-          </div>   
+  
+           <button type="submit" id="sbutton" class= 'subplus tooltipped ' name="save_log"  data-position="bottom" data-tooltip="Click to Save"><span class="blutext">+<span></button>
+        
            </form>
   
 
@@ -241,6 +211,8 @@ edit
 	  $(document).ready(function(){
     $('select').formSelect();
     $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+   
+    $('#id_class_time').timepicker() 
   
 
   });

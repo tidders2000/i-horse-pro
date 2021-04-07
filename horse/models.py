@@ -22,12 +22,16 @@ class Horse(models.Model):
     colour = models.TextField(default="patchy twat")
     Dob = models.DateField(default="2015-01-01")
     owner = models.CharField(max_length=100, default="John Doe")
+    owner_mobile =  models.CharField(max_length=20, blank=True)
+    owner_email = models.EmailField(max_length=200, blank=True)
     street_address1 = models.CharField(max_length=40, blank=True)
     street_address2 = models.CharField(max_length=40, blank=True)
     town_or_city = models.CharField(max_length=40, blank=True)
     county = models.CharField(max_length=40, blank=True)
     postcode = models.CharField(max_length=20, blank=True)
+ 
     feeds = models.TextField(blank=True)
+
     notes = models.TextField(blank=True, default="behaviour etc")
 
     def __str__(self):

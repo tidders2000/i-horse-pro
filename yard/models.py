@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Staff(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,  on_delete=models.CASCADE)
     name = models.CharField(max_length=40, blank=True)
 
     street_address1 = models.CharField(max_length=40, blank=True)
@@ -14,11 +14,11 @@ class Staff(models.Model):
     town_or_city = models.CharField(max_length=40, blank=True)
     county = models.CharField(max_length=40, blank=True)
     postcode = models.CharField(max_length=20, blank=True)
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     mobile = models.CharField(max_length=40, blank=True)
     emergency_contact_name = models.CharField(max_length=40, blank=True)
     emergency_contact_number = models.CharField(max_length=40, blank=True)
-    start_date = models.DateField(blank=True)
+    start_date = models.DateField(blank=True,null=True)
     termination_date = models.DateField(blank=True, null=True)
     pay_rate = models.CharField(max_length=40, blank=True)
     notes = models.TextField(blank=True)

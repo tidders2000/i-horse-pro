@@ -70,7 +70,7 @@ input{
       </div>
     </div>
   </nav>
-<h4>Add Appointment for {{instance.disipline.disipline}} <span style="color:#21a3e2;">{{instance.horse.stableName}}</span></h4>
+<h4>Add Appointment for {{horse.stableName}} <span style="color:#21a3e2;"></span></h4>
 
 <div class="nativeCal" style="display:{{display}};">
 
@@ -94,10 +94,10 @@ input{
 $(document).ready(function(){
 
   // Initialize materialize data picker
-   {% comment %} $('#id_due').datepicker({'format': 'dd/mm/yy,H:i'}) {% endcomment %}
+   $('#id_due').datepicker({'format': 'dd/mm/yy,H:i'}) 
  
    $('select').formSelect();
-   {% comment %} $('#id_due').timepicker() {% endcomment %}
+   $('#id_due').timepicker() 
   
 
 function goBack() {

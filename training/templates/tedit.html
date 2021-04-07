@@ -31,10 +31,11 @@
 
 </div>
 
-<h2>Session Objectives</h2>
+
+
 <div class="row">
 
-    <div class="col s12 m6 ">
+    <!-- <div class="col s12 m6 ">
         <h5> Enter an Objective </h5>
         <form method="POST" id="obj" style="margin-left:5px!important;">
            <div class="col s10"> {{obj.objective|materializecss}}</div>
@@ -44,69 +45,10 @@
             {% comment %}<a class="submit" name="save_obj"  href="{% url 'training_edit' pk=pk %}">+</a>  <button type="submit" class='subplus' name="save_obj" style="text-align: left!important;"><span
           class="blutext">+</span></button> {% endcomment %}
       
-    </div>
+    </div> -->
      
-    <div class="col s12 m6" id='obj'>
-        <h5>My Objective</h5>
-        <p class="white-text"> Click Objective to mark achieved</p>
-        <ol>
-            {% for obj in listObj %}
-            <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a> {% if obj.Completed == True %}
-                <i class="fa fa-check green-text" aria-hidden="true"></i> {% endif %}
-
-            </li>
-            {% endfor %}
-        </ol>
-    </div>
 
 
-    {% comment %}
-    <div class="col m8 l10">
-
-        <span class="material-icons white-text" style="padding:5px;">
-      edit
-    </span>
-
-
-    </div>
-    <div class="col m2">
-        {% csrf_token %}
-        <button type="submit" class='subplus' name="save_obj"><span class="blutext">+<span></button>
-
-    </div>
-    </form>
-
-    <table class="white-text">
-        <thead>
-            <tr>
-                <th>Objective</th>
-                <th>Completed</th>
-                <th>Update</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for obj in listObj %}
-            <tr>
-                <td><input type="text" value="{{obj.objective}}"></td>
-                <td>
-                    <div class="switch">
-                        <label>
-
-              <input type="checkbox" value="{{obj.Completed}}">
-              <span class="lever"></span>
-              Done
-            </label>
-                        </di</td>
-                        <td><button type="submit" class="btn btn-success btn-small">Update</button>
-                        </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    {% endcomment %}
-    </div>
     <!--endrow-->
 
 
@@ -119,22 +61,22 @@
       edit
     </span>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
 
                     {{form.instructor|materializecss}}
 
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
 
                     {{form.horse|materializecss}}
 
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     {{form.date|materializecss}} 
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
 
                     {{form.location|materializecss}}
                 </div>
@@ -153,7 +95,23 @@
     </div>
 
 
-
+    <h2 class="hs__headline">Session Objectives</h2>
+    <div class="row blue_box">
+        <div class="col s12 m6" id='obj'>
+            <h5>My Objectives</h5>
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">ADD</a>
+            <p class="white-text"> Click Objective to mark achieved</p>
+            <ol>
+                {% for obj in listObj %}
+                <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a> {% if obj.Completed == True %}
+                    <i class="fa fa-check green-text" aria-hidden="true"></i> {% endif %}
+    
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    
+    </div>
 
 
     <h2 class="hs__headline">Little Wins</h2>
@@ -245,46 +203,28 @@
 <p class="white-text warning_msg"> Click the + to save your session</p>
 <button type="submit " class='subplus tooltipped' data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="blutext">+<span></button>
 </form>
-<h2 class="hs__headline">Homework</h2>
-<div class="row">
-
-    <div class="row">
-
-     <div class="col s12 m6 ">
-        <h5> Enter an Objective </h5>
-        <form method="POST" id="obj" style="margin-left:5px!important;">
-           <div class="col s10"> {{obj.objective|materializecss}}</div>
-            <div class="col s2"> <button type="submit" class="submit tooltipped" data-position="bottom" data-tooltip="Click to Add" name="save_obj">+</button></div>
-            {% csrf_token %}
-              </form>
-            {% comment %}<a class="submit" name="save_obj"  href="{% url 'training_edit' pk=pk %}">+</a>  <button type="submit" class='subplus' name="save_obj" style="text-align: left!important;"><span
-          class="blutext">+</span></button> {% endcomment %}
-      
-    </div>
-
-        <div class="col s12 m6">
-            <h5>My Homework</h5>
-            <ol>
-                {% for obj in listObj %}
-                <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a> {% if obj.Completed == True %}
-                    <i class="fa fa-check green-text" aria-hidden="true"></i> {% endif %}
-
-                </li>
-                {% endfor %}
-            </ol>
-
-
-
-
-            </ol>
-
-        </div>
-
-    </div>
 
 </div>
 <!--end of col-->
 </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal" style="color:black;">
+    <div class="modal-content">
+        <div class="col s12  ">
+            <h5> Enter an Objective </h5>
+            <form method="POST" action="{% url 'training_edit' pk=pk %}" id="obj" style="margin-left:5px!important;">
+               <div class="col s12"> {{obj.objective|materializecss}}</div>
+               <button type="submit"  name="save_obj" class="btn btn-success">Add Objective</button>
+                {% csrf_token %}
+                  </form>
+         
+          
+        </div>
+    </div>
+    <div class="modal-footer">
+       
+    </div>
+  </div>
 <!--end of row-->
 {% endblock %}{% block scripts %}
 
@@ -296,7 +236,10 @@
             'format': 'yyyy-mm-dd'
         });
           $('.tooltipped').tooltip();
+          $('.modal').modal();
     });
+
+      
 </script>
 $(document).ready(function(){
     $("a.submit").click(function(){

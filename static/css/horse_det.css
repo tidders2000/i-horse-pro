@@ -25,6 +25,9 @@
     .disipline_type {
         font-size: 8px;
     }
+    .appointments_submit {
+        width: 100%!important;
+    }
 }
 
 .submit_button {

@@ -67,7 +67,7 @@ textarea {
 }
 
 .date>.input-field>label {
-    visibility: hidden !important;
+    margin-top:-30px;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -96,3 +96,44 @@ input[type=range]+.thumb.active .value {
 .fill_table {
     background-color: #b3b3b3;
 }
+
+.select-wrapper input.select-dropdown{
+    display:none;
+  }
+  
+  
+  .caret{
+  display:none;
+  }
+  
+  .center{
+      display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bum{
+        display: block;
+      background-color: #101010;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      color:white;
+  }
+  select{
+    border:none!important;
+  }
+  
+  #sbutton {
+     clear: both;
+  }
+  
+  .rating{
+    margin-left: 20px;
+  }
+
+@media all and (max-width: 450px) {
+    .selected-image{
+      width:100%;
+    }
+    }

@@ -51,18 +51,20 @@
 
        </form>
 
-       {% if instance %}
+    
       
   
-    {% endif %}
+ 
       
       </div>
 
 
     
 </div><!--end of row-->
+{% if instance %}
   <button type="button" class="btn red darken-2" onclick="location.href='{% url 'delete_client' pk=instance.pk %}'">Delete 
     Client</button>
+    {% endif %}
 {% endblock %}{% block scripts %}
     <script src="slider.js"></script>
     <script>

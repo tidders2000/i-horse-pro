@@ -13,7 +13,9 @@ from django.contrib import messages
 def appointment(request, pk):
     form = event_form()
     user = request.user
-    horse = Horse.objects.get(pk=pk)
+    horse = get_object_or_404(Horse,pk=pk)
+   
+
     display = "none"
     if request.method == "POST":
         form = event_form(request.POST, request.FILES)
@@ -27,7 +29,7 @@ def appointment(request, pk):
         else:
             print('error')
 
-    return render(request, 'appointment.html', {'form': form, 'display': display, 'horse': horse})
+    return render(request, 'appointment.html', {'horse':horse,'form': form, 'display': display})
 
 
 def editapp(request):
@@ -51,7 +53,7 @@ def editapp(request):
         else:
             print('error')
 
-    return render(request, 'appointment.html', {'form': form, 'display': display, 'instance': instance})
+    return render(request, 'appointment.html', {'form': form, 'display': display, 'instance': instance,'horse':horse})
 
 
 class EventFeed(ICalFeed):

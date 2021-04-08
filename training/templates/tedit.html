@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/page.css' %}">
 <link rel="stylesheet" href="{% static 'css/form.css' %}"> {% endblock %} {% block content %}
 
-
+<style>.date label{margin-top: -30px!important;}</style>
 <nav>
     <div class="nav-wrapper">
         <div class="col s12 breadcrumb">
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12 date">
                     {{form.date|materializecss}} 
                 </div>
                 <div class="input-field col s12">

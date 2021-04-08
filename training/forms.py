@@ -22,7 +22,7 @@ class training_form(forms.ModelForm):
         exclude = ['user', 'disipline']
         labels = {
             'location': _('* Location'),
-            'date': _('*')
+            'date': _('* Date')
         }
 
 

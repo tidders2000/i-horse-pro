@@ -15,7 +15,7 @@ from django.forms import DateTimeField
 
 
 class event_form(forms.ModelForm):
-    due= DateTimeField(input_formats=["%d %b %Y %H:%M:%S %Z"])
+    due= DateTimeField(input_formats='%m/%d/%Y %H:%M')
     class Meta:
 
         model = Appointment

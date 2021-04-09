@@ -4,7 +4,7 @@ from .models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 from datetimepicker.widgets import DateTimePicker
-
+from django.forms import DateTimeField
 
 # class DateInput(forms.DateInput):
 #     input_type = 'date'
@@ -15,9 +15,10 @@ from datetimepicker.widgets import DateTimePicker
 
 
 class event_form(forms.ModelForm):
-
+    due= DateTimeField(input_formats=["%d %b %Y %H:%M:%S %Z"])
     class Meta:
 
         model = Appointment
         exclude = ['user', 'horse']
   
+     

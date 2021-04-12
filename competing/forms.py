@@ -28,7 +28,7 @@ class entry_form(forms.ModelForm):
             'horse': forms.Select(
                 attrs={'class': 'bum'}
             ),
-            'time': forms.TimeInput(attrs={'type': 'time'})
+            'class_time': forms.TimeInput(attrs={'type': 'time'})
         }
 
 

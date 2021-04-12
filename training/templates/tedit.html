@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/page.css' %}">
 <link rel="stylesheet" href="{% static 'css/form.css' %}"> {% endblock %} {% block content %}
 
-<style>.date label{margin-top: -30px!important;}</style>
+<style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;}</style>
 <nav>
     <div class="nav-wrapper">
         <div class="col s12 breadcrumb">
@@ -213,7 +213,7 @@
         <div class="col s12  ">
             <h5> Enter an Objective </h5>
             <form method="POST" action="{% url 'training_edit' pk=pk %}" id="obj" style="margin-left:5px!important;">
-               <div class="col s12"> {{obj.objective|materializecss}}</div>
+               <div class="col s12 obj-form"> {{obj.objective|materializecss}}</div>
                <button type="submit"  name="save_obj" class="btn btn-success">Add Objective</button>
                 {% csrf_token %}
                   </form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
 from django_ical.views import ICalFeed
 from .models import *
 from .forms import *

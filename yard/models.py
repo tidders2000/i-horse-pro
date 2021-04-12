@@ -40,7 +40,7 @@ class Client  (models.Model):
     mobile = models.CharField(max_length=40, blank=True)
     emergency_contact_name = models.CharField(max_length=40, blank=True)
     emergency_contact_number = models.CharField(max_length=40, blank=True)
-    start_date = models.DateField()
+    start_date = models.DateField(blank=True,null=True)
 
     def __str__(self):
         return self.name

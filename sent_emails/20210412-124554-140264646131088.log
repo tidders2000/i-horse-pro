@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: simon@scruffyhorse.com
+Date: Mon, 12 Apr 2021 11:45:54 -0000
+Message-ID: <161822795421.50961.13432170676126594158@simons-mbp-2.lan>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey There</title>
+
+</head>
+<body>
+    <p>Please find a Link below to reset your password</p>
+    <a  href="http://127.0.0.1:8000/accounts/reset/MQ/akzssi-a7bc8a5988c1d5f356a00d66e1c7a712/" style=".."> Reset Password </a>
+    
+  You're receiving this e-mail because you requested a password reset for your iHorse account. Thanks for using our site! The 127.0.0.1:8000 team  
+</body>
+</html>
+-------------------------------------------------------------------------------

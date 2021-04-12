@@ -46,7 +46,7 @@
               <form method="POST" enctype="multipart/form-data">
                      
                      
-                     <div class="row" > 
+                     <div class="row" style="text-align:center!important;"> 
 
                        
                  
@@ -66,15 +66,16 @@
                      </div>
                     
                       <div class= "row">
-                         <div class="col s12 m6 push-m3  ">
+                         <div class="col s12 m6 push-m3 push-s3 ">
                      {% csrf_token %} 
-                      <button type="submit"  class="btn btn-success">Add Photo</button>
-                                  <button type="button" style="margin:auto; display:block; margin-top:20px;" class="btn btn-success" onclick="location.href='{% url 'tackedit' pk=newHorse.pk %}'">Add/Edit Tack</button>
+                      <button type="submit"  class="btn btn-success">Add Photo</button><br><br>
+                              
   
                       </div>
                       </div><!--endrow-->
                       </form>
-                     
+                      <a href="{% url 'tackedit' pk=newHorse.pk %}" style="float: right;">SKIP</a>
+                  
      {% endblock %}                
 {% block scripts %}
    <script>

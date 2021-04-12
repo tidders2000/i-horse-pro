@@ -59,17 +59,17 @@ def edit_staff(request, pk):
         form_add = client_form(request.POST, instance=instance)
         if form_add.is_valid():
             form_add.save()
-            messages.error(request, "Client Updated")
+            messages.error(request, "Employee Updated")
     return render(request, 'staff.html', {'form': form, 'instance': instance})
 
 
 def delete_staff(request, pk):
     instance = get_object_or_404(Staff, pk=pk)
     instance.delete()
-    return redirect('home')
+    return redirect('people')
 
 
 def delete_client(request, pk):
     instance = get_object_or_404(Client, pk=pk)
     instance.delete()
-    return redirect('home')
+    return redirect('people')

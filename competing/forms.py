@@ -16,7 +16,7 @@ class comp_form(forms.ModelForm):
                   'image', 'videoLink', 'date', 'location']
         labels = {
             'location': _('* Location'),
-            'date': _('*')
+              'date': _('* Date')
         }
 
 

@@ -4,6 +4,7 @@ from .forms import *
 from django_ical.views import ICalFeed
 from django.db.models import Q
 from training.models import TrainingLog
+from horse.models import Horse
 from django.core.paginator import Paginator
 from django.contrib import messages
 from datetime import datetime
@@ -141,12 +142,15 @@ def history(request):
     if request.method == "POST":
         keyword = request.POST.get('keyword')
         comps = CompetitionLog.objects.filter(
-            Q(location__icontains=keyword) | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
+            Q(location__icontains=keyword)  | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
         paginator = Paginator(comps, 10)
         page_obj = paginator.get_page(page_number)
-        training = CompetitionLog.objects.filter(
-            Q(location__icontains=keyword) | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
+        training = TrainingLog.objects.filter(
+            Q(instructor__icontains=keyword) | Q(date__icontains=keyword)| Q(horse__stableName__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
+        
+
         paginators = Paginator(training, 10)
+
         train_obj = paginator.get_page(page_number)
     return render(request, 'history.html', {'train_obj': train_obj, 'page_obj': page_obj})
 

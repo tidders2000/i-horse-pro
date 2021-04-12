@@ -29,3 +29,9 @@ class Control(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     can_control = ArrayField(models.TextField())
     cannot_control = ArrayField(models.TextField())
+
+class ControlDiagram(models.Model):
+      user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+      item= models.CharField(max_length=50,blank=True)
+      can_control = models.BooleanField()
+      cannot_control = models.BooleanField()

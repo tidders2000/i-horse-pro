@@ -5,7 +5,7 @@ from .views import *
 
 urlpatterns = [
     path('', mindset_select, name='mindset_select'),
-    path('mindsetb', mindsetB, name='mindsetB'),
+    path('mindsetb', control, name='control'),
     path('mindset/<int:pk>', mindset, name='mindset'),
     path('title_add', title_add, name='title_add'),
     path('delete_goal/<int:pk>', delete_goal, name="delete_goal")

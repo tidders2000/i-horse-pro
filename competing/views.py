@@ -146,12 +146,13 @@ def history(request):
         paginator = Paginator(comps, 10)
         page_obj = paginator.get_page(page_number)
         training = TrainingLog.objects.filter(
-            Q(instructor__icontains=keyword) | Q(date__icontains=keyword)| Q(horse__stableName__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
+            Q(instructor__icontains=keyword) | Q(date__icontains=keyword)| Q(horse__stableName__contains=keyword) | Q(disipline__disipline__icontains=keyword))
         
 
-        paginators = Paginator(training, 10)
+        
 
         train_obj = paginator.get_page(page_number)
+        
     return render(request, 'history.html', {'train_obj': train_obj, 'page_obj': page_obj})
 
 

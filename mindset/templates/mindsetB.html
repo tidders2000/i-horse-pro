@@ -7,86 +7,75 @@
   {% endblock %}
  {% block content %} 
 <style>
-
-.box{
-  height:100px!important;
-  border: 1px solid grey;
-  padding:5px;
-  text-align:center;
- 
-}
-
-.control_box{
- 
-  height:70px;
-  font-size:10px;
-  color:white;
-}
- #outer-circle {
-   background: #385a94;
-   border-radius: 50%;
-   height: 300px;
-   width: 300px;
-   position: relative;
-   /* 
-    Child elements with absolute positioning will be 
-    positioned relative to this div 
-   */
-
-    font-size:10px;
- }
-
- #inner-circle {
-   position: absolute;
-   background: #a9aaab;
-   border-radius: 50%;
-   height: 100px;
-   width: 100px;
-   /*
-    Put top edge and left edge in the center
-   */
-   top: 50%;
-   left: 50%;
-   margin: -50px 0px 0px -50px;
-   font-size:10px;
-   /* 
-    Offset the position correctly with
-    minus half of the width and minus half of the height 
-   */
- }
- .quote-wrapper {
-  height: 300px;
+.quote-wrapper {
+  width: 100px;
+  height: 100px;
   position: relative;
-  width: 300px;
+  margin-left:5px!important;
+  margin-bottom: 5px;
 }
+
 .text {
+  width: 100px;
+  height: 100px;
+  /*BLUE BG*/
   background: radial-gradient(
     ellipse at center,
-    rgba(0, 128, 172, 1) 0%,
-    rgba(0, 128, 172, 1) 70%,
-    rgba(0, 128, 172, 0) 70.3%
+    rgba(0, 128, 0, 1) 0%,
+    rgba(0, 128, 20, 1) 70%,
+    rgba(210, 20, 20, 0) 70.3%
   );
-  height: 100%;
-  width: 100%;
-    color: white;
+  /*RED BG
+  background: radial-gradient(
+    ellipse at center,
+    rgba(210, 20, 20, 1) 0%,
+    rgba(210, 20, 20, 1) 70%,
+    rgba(210, 20, 20, 0) 70.3%
+    0,128,0
+  );*/
   position: relative;
   margin: 0;
+  color: white;
 }
-.text p {
-  font-size: 15px;
-  font-style: italic;
+
+.text2 {
+  width: 100px;
+  height: 100px;
+  /*BLUE BG*/
+  background: radial-gradient(
+    ellipse at center,
+    rgba(210, 20, 20, 1) 0%,
+    rgba(210, 20, 20, 1) 70%,
+    rgba(210, 20, 20, 0) 70.3%
+  );
+  /*RED BG
+  background: radial-gradient(
+    ellipse at center,
+    rgba(210, 20, 20, 1) 0%,
+    rgba(210, 20, 20, 1) 70%,
+    rgba(210, 20, 20, 0) 70.3%
+    0,128,0
+  );*/
+  position: relative;
+  margin: 0;
+  color: white;
+}
+
+.text p, .text2 p{
   height: 100%;
+  font-size: 10px;
   line-height: 1.25;
   padding: 0;
   text-align: center;
+  font-style: italic;
   text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.3);
 }
 
-.text::before {
+.text::before,.text2::before {
   content: "";
-  float: left;
-  height: 100%;
   width: 50%;
+  height: 100%;
+  float: left;
   shape-outside: polygon(
     0 0,
     98% 0,
@@ -103,11 +92,11 @@
   shape-margin: 7%;
 }
 
-.text p::before {
+.text p::before,.text2 p::before {
   content: "";
-  float: right;
-  height: 100%;
   width: 50%;
+  height: 100%;
+  float: right;
   shape-outside: polygon(
     2% 0%,
     100% 0%,
@@ -120,92 +109,118 @@
     94% 32.6%,
     76.6% 17.3%,
     50% 6%
-    );
+  );
   shape-margin: 7%;
 }
 
+.quote-wrapper blockquote footer {
+  width: 100%;
+  position: absolute;
+  bottom: 25px;
+  font-size: 12px;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* .quote-wrapper::before {
+  content: "\201C";
+  font-size: 270px;
+  height: 82px;
+  line-height: 0.78;
+  line-height: 1;
+  position: absolute;
+  top: -48px;
+  left: 0;
+  z-index: 1;
+  font-family: sans-serif, serif;
+  color: #ccc;
+  opacity: 0.9;
+} */
+
+@media (min-width: 850px) {
+  .quote-wrapper {
+    width: 370px;
+    height: 370px;
+  }
+
+  .quote-wrapper::before {
+    font-size: 300px;
+  }
+
+  .text p {
+    font-size: 26px;
+  }
+
+
+}
+ form button{
+   margin:10px;
+ }
+
+ input{
+   color:black;
+ }
+
 </style>
 
-<h4>MindSet B</h4>
+<h4>Control Diagram</h4>
 
+<a class=" modal-trigger" href="#modal1">ADD</a>
 
-
-       <section>
-
+{% for control in controls %}
+ {% if control.can_control == True %}
+  <div class='row'>
+    <div class="quote-wrapper col sm-4">
+      <div class="text" cite="http://www.inspireux.com/category/quotes/jesse-james-garrett/">
+        <p>Experience design is the design of anything</p>
+     
+        </div>
         
-            <div class ="col s12  m6"><!--container-->
-              <div class="col s12  center-align blue">
-              <h4>Things I Can Control</h4>
-                  
-              </div>
-
-              <div class="col s12">
-              <div class="row">
-                 {% for int in instance.can_control  %}
-                    <div class="col s6 m4 green control_box">
-                    {{int}}
-                    </div>
-                    {% endfor %}
-                    </div>
-              
-              </div>
-            
-            </div><!--end container-->
-
-              <div class ="col s12 m6 "><!--container-->
-                 <div class="col s12 center-align blue">
-                    <h4>Things I Can't Control</h4>
-              
-                 </div>
-
-              <div class="col s12">
-              <div class="row">
-                  {% for int in instance.cannot_control%}
-                    <div class="col s6 m4 red control_box">
-                         {{int}}
-                    </div>
-                    {% endfor %}
-               </div>
-              </div>
-            
-            </div><!--end container-->
-
-
-
-        </section>
-
-
-            <section>
-  
-      <form method="POST" class="col s12">
-          {{form|materializecss}}
-
-             {% csrf_token %}
-          <p class="white-text warning_msg"> Click the + to save your session</p>
-           <button type="submit" class= 'subplus' name="save_log"><span class="blutext">+<span></button>
-           </form>
-
-      
-
-        </section> 
-
-
-
-
-
-
-  </div>
-    
-    
     </div>
+    {% endif %}
+    {% endfor %}
+    {% for control in controls %}
+    {% if control.cannot_control == True %}
+    <div class="quote-wrapper col sm-4">
+      <div class="text2" cite="http://www.inspireux.com/category/quotes/jesse-james-garrett/">
+        <p>Experience design is the design of anything</p>
+     
+        </div>
+        
+    </div>
+    {% endif %}
+    {% endfor %}
+   
 
-      </div><!--end of col-->
-</div><!--end of row-->
+
+  </div><!--end of row-->
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal" style="color:black;">
+      <div class="modal-content">
+          <div class="col s12  ">
+              <h5> Enter a Factor</h5>
+              <form method="POST" id="factor" style="margin-left:5px!important;">
+                 <div class="col s12"> {{form|materializecss}}</div>
+                 <button type="submit"  name="save" class="btn btn-success">Add Control</button>
+                  {% csrf_token %}
+                    </form>
+           
+            
+          </div>
+      </div>
+      <div class="modal-footer">
+         
+      </div>
+    </div>
 {% endblock %}{% block scripts%}
     <script src="slider.js"></script>
     <script>
 	  $(document).ready(function(){
     $('select').formSelect();
+    $('.modal').modal();
+
   });
 </script>
  

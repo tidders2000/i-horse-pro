@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .forms import *
+from .models import *
 from django.contrib import messages
 
 
@@ -82,3 +83,21 @@ def mindsetB(request):
                 newObj.save()
 
     return render(request, 'mindsetB.html', {'form': form, 'instance': instance})
+
+
+def control(request):
+    form=control_diagram_form()
+    user=request.user
+    controls=ControlDiagram.objects.filter(user=user)
+
+    if request.method == 'POST':
+            control = control_diagram_form(request.POST)
+            if control.is_valid():
+                formSave = control.save(commit=False)
+                formSave.user = user
+                formSave.save()
+                return redirect('control')
+               
+
+            
+    return render(request, 'mindsetB.html', {'form': form,'controls':controls})

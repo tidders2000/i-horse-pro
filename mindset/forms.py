@@ -32,3 +32,7 @@ class control_form(forms.ModelForm):
             'can_control': _('Can Control- seperate entries with ,'),
             'cannot_control': _('Cannot Control- seperate entries with ,')
         }
+class control_diagram_form(forms.ModelForm):
+    class Meta:
+        model= ControlDiagram
+        exclude = ['user']

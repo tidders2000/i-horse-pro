@@ -26,6 +26,7 @@ def appointment(request, pk):
             formSave.save()
             display = "inline"
             messages.error(request, "Appointment Saved")
+            return redirect ('details')
         else:
             print('error')
 

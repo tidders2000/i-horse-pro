@@ -148,10 +148,6 @@
     font-size: 300px;
   }
 
-  .text p {
-    font-size: 26px;
-  }
-
 
 }
  form button{
@@ -168,10 +164,11 @@
 
 <a class=" modal-trigger" href="#modal1">ADD</a>
 
-{% for control in controls %}
- {% if control.can_control == True %}
+
   <div class='row'>
-    <div class="quote-wrapper col sm-4">
+    {% for control in controls %}
+ {% if control.can_control == True %}
+    <div class="quote-wrapper col s4 l2">
       <div class="text" cite="http://www.inspireux.com/category/quotes/jesse-james-garrett/">
         <p>{{ control.item}}</p>
      
@@ -182,7 +179,7 @@
     {% endfor %}
     {% for control in controls %}
     {% if control.cannot_control == True %}
-    <div class="quote-wrapper col sm-4">
+    <div class="quote-wrapper col s4 l2">
       <div class="text2" cite="http://www.inspireux.com/category/quotes/jesse-james-garrett/">
         <p>{{ control.item}}</p>
      

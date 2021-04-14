@@ -96,19 +96,7 @@ label{
 </div>
 </div>
   </div>
- {% comment %} {% block sw_script %}
-            <script>
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('{% url "ServiceWorkerView" %}', { scope: '/' }).then(function(reg) {
-                        // registration worked
-                        console.log('Registration succeeded. Scope is ' + reg.scope);
-                    }).catch(function(error) {
-                        // registration failed
-                        console.log('Registration failed with ' + error);
-                    });
-                }
-            </script>
-        {% endblock %}  {% endcomment %}
+
   <script src="{% static  'js/custom.js' %}"></script> 
 </body>
 </html>

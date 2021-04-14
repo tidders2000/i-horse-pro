@@ -1,21 +1,21 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.0.2/workbox-sw.js');
 const VERSION = '5.0';
 
-// self.addEventListener('activate', function(event) {
-//     console.log('[Service Worker] Activating Service Worker ....', event);
-//     event.waitUntil(
-//         caches.keys()
-//         .then(function(keyList) {
-//             return Promise.all(keyList.map(function(key) {
-//                 if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
-//                     console.log('[Service Worker] Removing old cache.', key);
-//                     return caches.delete(key);
-//                 }
-//             }));
-//         })
-//     );
-//     return self.clients.claim();
-// });
+self.addEventListener('activate', function(event) {
+    console.log('[Service Worker] Activating Service Worker ....', event);
+    event.waitUntil(
+        caches.keys()
+        .then(function(keyList) {
+            return Promise.all(keyList.map(function(key) {
+                if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
+                    console.log('[Service Worker] Removing old cache.', key);
+                    return caches.delete(key);
+                }
+            }));
+        })
+    );
+    return self.clients.claim();
+});
 
 if (workbox) {
     console.log(`Yay! Workbox is loaded 🎉 `);

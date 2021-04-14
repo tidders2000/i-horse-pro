@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-#import env
+import env
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -158,6 +158,7 @@ WEBPUSH_SETTINGS = {
     "VAPID_PRIVATE_KEY": os.environ.get('VAPID_PRIVATE_KEY'),
     "VAPID_ADMIN_EMAIL":  os.environ.get('VAPID_ADMIN_EMAIL')
 }
+
 
 
 # Internationalization

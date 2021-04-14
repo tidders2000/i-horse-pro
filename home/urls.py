@@ -5,6 +5,7 @@ from .views import *
 
 urlpatterns = [
     path('', home, name='home'),
+    path('webpush/', include('webpush.urls')),
 
     path(
         'sworker.js',

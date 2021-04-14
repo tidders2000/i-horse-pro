@@ -10,7 +10,7 @@
     "dir": "ltr",
     "lang": "en-US",
     "orientation": "portrait-primary",
-    "gcm_sender_id": 71562645621,
+    "gcm_sender_id": "539876079581",
     "icons": [{
             "src": "/static/icons/16.png",
             "type": "image/png",

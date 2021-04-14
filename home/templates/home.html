@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% load static%} {% block content %}
+{% extends 'base.html' %}{% load static%} {% load webpush_notifications %}  {% block content %}
 <style>
 
 @media all and (max-width: 450px) {
@@ -18,7 +18,16 @@
   <link rel="stylesheet" href="{% static 'css/slider.css' %}" />
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 
-
+<!-- PushAlert -->
+<script type="text/javascript">
+  (function(d, t) {
+          var g = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+          g.src = "https://cdn.pushalert.co/integrate_d438bc5e6ddb933db3453475aea3bc2f.js";
+          s.parentNode.insertBefore(g, s);
+  }(document, "script"));
+</script>
+<!-- End PushAlert -->
 {% endblock %}
 
 <h4>My Horses</h4>
@@ -78,15 +87,7 @@
 
 
 
-<div class="row">
-  <div class="col s12 col m6 push-m3 ">
-      <div class="drawer-option">
-         <button class="btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
-      Enable Notifications
-    </button>
-  </div>
-  </div>
- </div>
+
 
 
 <h4>Training</h4>

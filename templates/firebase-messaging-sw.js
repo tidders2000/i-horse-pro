@@ -1,6 +1,7 @@
 console.log('firestore sw')
 
-importScripts("https://cdn.pushalert.co/sw-32959.js");
+
+
 
 // [START initialize_firebase_in_sw]
 // Give the service worker access to Firebase Messaging.

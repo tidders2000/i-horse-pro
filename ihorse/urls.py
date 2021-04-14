@@ -34,7 +34,7 @@ urlpatterns = [
     path('competing/', include('competing.urls')),
     path('yard/', include('yard.urls')),
     path('sendpush/', include('sendpush.urls')),
-
+    path('webpush/', include('webpush.urls')),
     path(
         'sworker.js',
         ServiceWorkerView.as_view(),
@@ -46,7 +46,7 @@ urlpatterns = [
         fbsw.as_view(),
         name='fbsw',
     ),
-    path('webpush/', include('webpush.urls')),
+   
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
 
 ]

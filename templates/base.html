@@ -45,13 +45,23 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="{% static 'icons/ms-icon-144x144.png'%}">
   <meta name="theme-color" content="#ffffff">
-<!--push key-->
+<!-- push key
    
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="vapid-key" content="{{ vapid_key }}">
     {% if user.id %}
         <meta name="user_id" content="{{ user.id }}">
-    {% endif %}
+    {% endif %} -->
+    <!-- PushAlert -->
+<script type="text/javascript">
+  (function(d, t) {
+          var g = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+          g.src = "https://cdn.pushalert.co/integrate_d438bc5e6ddb933db3453475aea3bc2f.js";
+          s.parentNode.insertBefore(g, s);
+  }(document, "script"));
+</script>
+<!-- End PushAlert -->
 
 {% block head %}{% endblock %}
 
@@ -137,6 +147,23 @@
  
 
 </div><!-- end of small navbar-->
+
+
+<!-- service worker install for pushalert this page only-->
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register('{% url "sw" %}', { scope: "/home/" })
+      .then(function (reg) {
+        // registration worked
+        console.log("Registration succeeded sw. Scope is " + reg.scope);
+      })
+      .catch(function (error) {
+        // registration failed
+        console.log("Registration failed with " + error);
+      });
+  }
+</script>
 
 <!--register service worker-->
  {% block sw_script %}

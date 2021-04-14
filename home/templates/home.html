@@ -18,16 +18,7 @@
   <link rel="stylesheet" href="{% static 'css/slider.css' %}" />
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 
-<!-- PushAlert -->
-<script type="text/javascript">
-  (function(d, t) {
-          var g = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-          g.src = "https://cdn.pushalert.co/integrate_d438bc5e6ddb933db3453475aea3bc2f.js";
-          s.parentNode.insertBefore(g, s);
-  }(document, "script"));
-</script>
-<!-- End PushAlert -->
+
 {% endblock %}
 
 <h4>My Horses</h4>
@@ -129,21 +120,6 @@
 {% block scripts %}
 
 
-<!-- service worker install for pushalert this page only-->
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register('{% url "sw" %}', { scope: "/home/" })
-      .then(function (reg) {
-        // registration worked
-        console.log("Registration succeeded sw. Scope is " + reg.scope);
-      })
-      .catch(function (error) {
-        // registration failed
-        console.log("Registration failed with " + error);
-      });
-  }
-</script>
 
 
 <!-- service worker install for fb this page only-->

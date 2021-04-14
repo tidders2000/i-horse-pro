@@ -153,7 +153,7 @@
 <script>
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register('{% url "sw" %}', { scope: "/home/" })
+      .register('{% url "sw" %}', { scope: "/" })
       .then(function (reg) {
         // registration worked
         console.log("Registration succeeded sw. Scope is " + reg.scope);

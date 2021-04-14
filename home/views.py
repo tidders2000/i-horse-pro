@@ -47,6 +47,10 @@ class ServiceWorkerView(TemplateView):
     content_type = 'application/javascript'
     name = 'sworker.js'
 
+class sw(TemplateView):
+    template_name = 'sw.js'
+    content_type = 'application/javascript'
+    name = 'sw.js'
 
 class fbsw(TemplateView):
     template_name = 'firebase-messaging-sw.js'

@@ -129,6 +129,23 @@
 {% block scripts %}
 
 
+<!-- service worker install for pushalert this page only-->
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register('{% url "sw" %}', { scope: "/home/" })
+      .then(function (reg) {
+        // registration worked
+        console.log("Registration succeeded sw. Scope is " + reg.scope);
+      })
+      .catch(function (error) {
+        // registration failed
+        console.log("Registration failed with " + error);
+      });
+  }
+</script>
+
+
 <!-- service worker install for fb this page only-->
 <script>
   if ("serviceWorker" in navigator) {

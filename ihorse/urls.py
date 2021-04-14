@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home.views import ServiceWorkerView, fbsw
+from home.views import ServiceWorkerView, fbsw, sw
 from accounts.views import index
 
 
@@ -39,6 +39,12 @@ urlpatterns = [
         'sworker.js',
         ServiceWorkerView.as_view(),
         name='ServiceWorkerView',
+    ),
+
+       path(
+        'sw.js',
+        sw.as_view(),
+        name='sw',
     ),
 
     path(

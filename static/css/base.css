@@ -18,6 +18,7 @@ li {
 
 li a {
     color: #b3b3b3;
+    text-decoration: none!important;
 }
 
 i {

@@ -25,7 +25,7 @@ urlpatterns = [
     path('register/', registration, name='registration'),
     path('profile/', user_profile, name='profile'),
 
-    path('error/', error, name='error'),
+   
     path('reset', include('password_reset.urls')),
     path('webpush/', include('webpush.urls')),
     # path('test', test, name='test'),

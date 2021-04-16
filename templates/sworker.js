@@ -1,4 +1,3 @@
-
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.1/workbox-sw.js');
 
 const VERSION = '2.0';
@@ -13,11 +12,32 @@ const {CacheableResponsePlugin} = workbox.cacheableResponse;
 const {ExpirationPlugin} = workbox.expiration;
 const {precacheAndRoute} =workbox.precaching
 
+const {setCatchHandler} = workbox.routing
+
 precacheAndRoute([
-    // {url: '/home/', revision: '00001' },
+   {url: '/offline.html', revision: '00001' },
    
     // ... other entries ...
   ]);
+
+setCatchHandler(({ event }) => {
+    switch (event.request.destination) {
+        case 'document':
+            return caches.match(workbox.precaching.getCacheKeyForURL('/offline.html'));
+            break;
+        default:
+            return Response.error();
+    }
+});
+
+registerRoute(
+    new RegExp(''),
+    new workbox.strategies.NetworkOnly({
+        cacheName: 'htmlcache'
+    })
+);
+
+
 
 
 // Cache page navigations (html) with a Network First strategy

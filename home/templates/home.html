@@ -44,7 +44,7 @@
  <h5> Appointments</h5>
   <ul class="schedule">
    {% for event in events %}
-   <li class="grey-text text-lighten-1 ">{{event.event}}  {{event.due}}</li>
+   <li class="grey-text text-lighten-1 "><a href="{% url 'editapp' %}?app={{event.pk}}&horse={{event.horse.pk}}">{{event.event}} {{event.due}}</a></li>
  
   {% endfor %}
   </ul>

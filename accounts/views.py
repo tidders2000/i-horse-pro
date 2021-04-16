@@ -108,5 +108,5 @@ def user_profile(request):
 #     name = 'sw.js'
 
 
-def error(request):
+def offline(request):
     return render(request, 'offline.html')

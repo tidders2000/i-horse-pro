@@ -8,6 +8,8 @@ urlpatterns = [
     path('feed.ics$', EventFeed(), name='EventFeed'),
     path('edit/', editapp, name='editapp'),
     # path('ical/', ical, name='ical')
+    path('get_csrftoken_from_cookie', get_csrftoken_from_cookie,
+     name='get_csrftoken_from_cookie')
 
 
 ]

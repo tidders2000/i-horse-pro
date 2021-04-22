@@ -7,8 +7,11 @@ from datetime import date
 import calendar
 import vobject
 from django.contrib import messages
+from django.http import JsonResponse
 # Create your views here.
 
+def get_csrftoken_from_cookie(request, **kwargs):
+    return JsonResponse({"token": request.COOKIES["csrftoken"]})
 
 def appointment(request, pk):
     form = event_form()

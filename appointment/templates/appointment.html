@@ -108,8 +108,43 @@ function goBack() {
   });
 </script>
 
+<script>
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.ready.then(function(registration) {
+        if (registration.sync && window.URLSearchParams && window.FormData) {
+            var frm = document.querySelector("form")
+            frm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                saveData(new URLSearchParams(new FormData(frm)).toString(),
+                    "{% url 'editapp' %}?app={{instance.pk}}&horse={{horse.pk}}")
+                    .then(function() {
+                        return registration.sync.register('appoint-post');
+                    }).then(function() {
+                        location.href = "{% url 'editapp' %}?app={{instance.pk}}&horse={{horse.pk}}";
+                    }).catch(function(err) {
+                        console.error(err);
+                    })
+            }, false);
+        }
+    })
+}
+function saveData(data, post_url) {
+    return new Promise(function(resolve, reject) {
+        var db = window.indexedDB.open("appoint");
+        db.onupgradeneeded = function(event) {
+            var db = event.target.result;
+            var store = db.createObjectStore("appoint", { autoIncrement: true });
+        }
+        db.onsuccess = function(event) {
+            var store = this.result.transaction('appoint', 'readwrite').objectStore('appoint');
+            store.add({url: post_url, data: data});
+            resolve();
+        }
+        db.onerror = function(err) { reject(err); }
+    })
+}
 
-            
+</script>>      
 
 {%endblock%}
 

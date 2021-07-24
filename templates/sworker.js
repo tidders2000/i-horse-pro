@@ -1,6 +1,6 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.0.2/workbox-sw.js');
 
-const VERSION = '2.0';
+const VERSION = '1.0';
 
 if (workbox) {
     console.log(`Yay! Workbox is loaded 🎉 `);
@@ -17,6 +17,7 @@ const {NetworkOnly,NetworkFirst,CacheFirst} = workbox.strategies;
 const {StaleWhileRevalidate} = workbox.strategies;
 const {CacheableResponsePlugin } = workbox.cacheableResponse;
 const {ExpirationPlugin } = workbox.expiration;
+
 
 const {  pageCache,
     imageCache,

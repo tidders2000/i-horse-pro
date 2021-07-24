@@ -55,7 +55,7 @@ def training_log(request):
 def training_create(request, pk):
 
     customImg = get_object_or_404(CustomImages, pk=pk)
-    form = training_form()
+    form = training_form(request.user)
     user = request.user
     sessionSave = form.save(commit=False)
     sessionSave.disipline = customImg
@@ -69,7 +69,7 @@ def training_create(request, pk):
 def training_edit(request, pk):
     session = get_object_or_404(TrainingLog, pk=pk)
     user = request.user
-    form = training_form(instance=session)
+    form = training_form(request.user,instance=session)
     listObj = Objectives.objects.all().filter(session=session)
     obj = objective_form()
     display = 'none'

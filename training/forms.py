@@ -24,6 +24,10 @@ class training_form(forms.ModelForm):
             'location': _('* Location'),
             'date': _('* Date')
         }
+    def __init__(self, user, *args,**kargs):
+        super(training_form,self).__init__(*args,**kargs)
+        self.fields['horse'].queryset=Horse.objects.filter(user=user)
+
 
 
 class objective_form(forms.ModelForm):

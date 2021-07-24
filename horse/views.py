@@ -135,18 +135,24 @@ def detailsInd(request, pk):
         horse=selected).order_by('event__appType', 'due')
     appointments = appointments.distinct('event__appType')
 
-    if request.method == "POST":
-        if 'save_obj' in request.POST:
-            photo = request.FILES.get('pic')
-            selected.passport = photo
-            selected.save()
-            messages.error(request, "Horse Saved")
+    # if request.method == "POST":
+       
+    #     if 'save_pp' in request.POST:
+           
+    #         photo = request.FILES.get('pic')
+    #         print(request.POST)
+    #         selected.passport = photo
+    #         selected.save()
+         
+    #         messages.error(request, "passport Saved")  
 
-        if 'apps' in request.POST:
+    if 'apps' in request.POST:
 
             request.session['history'] = request.POST.get('apps')
 
             return redirect(reverse('detailsInd', kwargs={'pk': pk}) + '#apps')
+        
+      
 
     return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links})
 
@@ -173,3 +179,19 @@ def deletehorse(request, pk):
     messages.error(request, "Horse Deleted")
 
     return redirect(reverse('home'))
+
+
+def savepassport(request,pk):
+    selected = Horse.objects.get(pk=pk)
+    print('hello')
+    if request.method == "POST":
+            photo = request.FILES.get('pic')
+            print(request.POST)
+            selected.passport = photo
+            selected.save()
+         
+            messages.error(request, "passport Saved")  
+
+
+     
+    return redirect(reverse('detailsInd', kwargs={'pk': pk}))

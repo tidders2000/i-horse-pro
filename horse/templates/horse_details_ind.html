@@ -126,7 +126,192 @@
 <!-- end of section-->
 
 <!--app section-->
-<h2 id="apps">Appointments</h2>
+<!-- <h2 id="apps">Appointments</h2>
+<div class='row'>
+    <div class="col s12 m6 appointment " >
+        <h4 class="">Next</h4>
+        <ul class="appoint">
+
+            <li>
+                <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Dentist" name="apps" value="Dentist"> <button class="btn btn-success appointments_submit"><i
+              class="fas fa-tooth grey-text"></i><b>Dentist:</b>
+
+            {% for app in appointments %}
+            {% if app.event.appType == "Dentist" %}
+
+
+            <span class=""> {{app.due}}</span>
+        </form>
+        {% endif %}
+
+
+        {% endfor %}
+      </li>
+
+
+
+      <li>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Physio" name="apps"
+            value="Physio"> <button class="btn btn-success appointments_submit"><i class="fas fa-user-md grey-text"></i>
+            <b>Physio Next -</b> </a>
+            {% for app in appointments %}
+
+            {% if app.event.appType == "Physio" %}
+
+
+            <span class="next_app"> {{app.due}}</span>
+        </form>
+        {% endif %}
+
+
+        {% endfor %}
+      </li>
+
+     <li>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Worming" name="apps"
+            value="Worming"> <button class="btn btn-success appointments_submit"><i class="fas fa-user-md grey-text"></i>
+            <b>Worming Next -</b> </a>
+            {% for app in appointments %}
+
+            {% if app.event.appType == "Worming" %}
+
+
+            <span class="next_app"> {{app.due}}</span>
+        </form>
+        {% endif %}
+
+
+        {% endfor %}
+      </li>
+      <li>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Saddler" name="apps"
+            value="Saddler"> <button class="btn btn-success appointments_submit"><i class="fas fa-chair grey-text"></i>
+            <b>Saddler Next -</b> </a>
+
+            {% for app in appointments %}
+
+            {% if app.event.appType == "Saddler" %}
+
+
+            <span class="next_app"> {{app.due}}</span>
+     </form>
+            {% endif %}
+
+
+            {% endfor %}
+      </li>
+       <li>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Farrier" name="apps"
+            value="Farrier"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
+            <b>Farrier Next -</b> </a>
+            {% for app in appointments %}
+
+            {% if app.event.appType == "Farrier" %}
+
+
+            <span class="next_app"> {{app.due}}</span>
+        </form>
+        {% endif %}
+
+
+        {% endfor %}
+      </li>
+      <li>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Vet" name="apps"
+            value="Vet"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
+            <b>Vet Next -</b> </a>
+
+            {% for app in appointments %}
+
+             {% if app.event.appType == "Vet" %}
+
+
+
+            <span class="next_app">{{app.due}}</span>
+              </form>
+            {% endif %}
+
+
+            {% endfor %}
+      </li>
+      <li>
+        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="vacs" name="apps"
+            value="Vacs"> <button class="btn btn-success appointments_submit"><i
+              class="fas fa-briefcase-medical grey-text"></i> <b>Vacs Next -</b> </a>
+
+            {% for app in appointments %}
+
+            {% if app.event.appType == "Injections" %}
+
+
+            <span class="next_app">{{app.due}}</span>
+                 </form>
+            {% endif %}
+
+
+            {% endfor %}
+      </li>
+
+
+
+
+
+
+    </ul>
+
+  </div>
+
+  <div class="col s12 m6">
+
+    <h4 class="">History</h4>
+    <ul class="his">
+      {% for tor in tory %}
+      <li class="his_date"><a href="{% url 'editapp' %}?app={{tor.pk}}&horse={{selected.pk}}" <i
+          class="fa fa-calendar-o" aria-hidden="true"></i> <span class="next_app">{{tor.due}}</span></a></li>
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+    </ul>
+
+  </div>
+
+
+
+
+</div> -->
+
+
+
+<!--passport-->
+<h2 class="hs__headline">Horse Passport</h2>
+<div class="row blue_box">
+
+
+  <div class="col s12 m6" style="padding:15px;">
+
+    <img src="{{MEDIA_URL}}{{ selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
+    </a>
+  </div>
+  <div class="col s6 l4">
+
+    <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data">
+      <input id="pic" name="pic" type="file" class='' accept="image/*" class="" style="margin-top:30%;">
+      {% csrf_token %}
+      <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
+        style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button>
+                </form>
+    </div>
+
+
+
+
+
+
+
+</div>
+<!--end of section-->
+
+ <h2 id="apps">Appointments</h2>
 <div class='row'>
     <div class="col s12 m6 appointment " >
         <h4 class="">Next</h4>
@@ -279,37 +464,6 @@
 
 
 </div>
-<!--end of app section-->
-
-
-<!--passport-->
-<h2 class="hs__headline">Horse Passport</h2>
-<div class="row blue_box">
-
-
-  <div class="col s12 m6" style="padding:15px;">
-
-    <img src="{{MEDIA_URL}}{{ selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
-    </a>
-  </div>
-  <div class="col s6 l4">
-
-    <form method="POST" enctype="multipart/form-data">
-      <input id="pic" name="pic" type="file" class='' accept="image/*" class="" style="margin-top:30%;">
-      {% csrf_token %}
-      <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
-        style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button>
-                </form>
-    </div>
-
-
-
-
-
-
-
-</div>
-<!--end of section-->
 
 <h2 class="hs__headline">Training</h2>
 <div class="row " style="padding-bottom:20px;">

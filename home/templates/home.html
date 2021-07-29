@@ -8,7 +8,6 @@
    
 }
 
-
 </style>
 {% block head %}
   <!-- Material Design Theming -->
@@ -17,12 +16,13 @@
   
   <link rel="stylesheet" href="{% static 'css/slider.css' %}" />
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-
+ 
+  
 
 {% endblock %}
 
 <h4>My Horses</h4>
-<ul class="hs">
+<ul class="hs" data-intro='Your horses are listed here. Click image to view'>
   {% for horse in horses %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper">
@@ -38,13 +38,14 @@
   {% endfor %}
 </ul>
 
+
 <h4>My Schedule</h4>
-<div class="row">
+<div class="row" data-intro="Upcoming appointments, comps and training sessions for all horses are listed here. Click on to view or update">
  <div class="col s12 m4">
  <h5> Appointments</h5>
   <ul class="schedule">
    {% for event in events %}
-   <li class="grey-text text-lighten-1 "><a href="{% url 'editapp' %}?app={{event.pk}}&horse={{event.horse.pk}}">{{event.event}} {{event.due}}</a></li>
+   <li class="grey-text text-lighten-1 "><a class="white-text" href="{% url 'editapp' %}?app={{event.pk}}&horse={{event.horse.pk}}">{{event.event}} {{event.due}}</a></li>
  
   {% endfor %}
   </ul>
@@ -54,7 +55,7 @@
   <h5> Competitions</h5>
   <ul class="schedule">
    {% for comp in comps %}
-   <li class="grey-text text-lighten-1">{{comp.disipline.disipline}}  {{comp.location}} {{comp.date}}</li>
+   <li class="grey-text text-lighten-1"><a class="white-text" href="{% url 'comp_edit' comp.pk %}">{{comp.disipline.disipline}}  {{comp.location}} {{comp.date}}</a></li>
  
   {% endfor %}
   </ul>
@@ -63,10 +64,10 @@
  </div>
 
  <div class="col s12 m4">
-    <h5> Training </h5>
+    <h5 > Training </h5>
   <ul class="schedule">
    {% for train in training %}
-   <li class="grey-text text-lighten-1" style="list-style-type:disc!important;">{{train.disipline.disipline}}  {{train.location}} {{train.date}}</li>
+   <li class="grey-text text-lighten-1" style="list-style-type:disc!important;"><a class="white-text" href="{% url 'training_edit' train.pk %}">{{train.disipline.disipline}}  {{train.location}} {{train.date}}</a></li>
  
   {% endfor %}
   </ul>
@@ -76,14 +77,10 @@
 
 </div>
 
-
-
-
-
-
-<h4>Training</h4>
+  
+<h4 data-intro="Your training history for all horses is listed here.Click to view">Training</h4>
 <ul class="hs">
-  {% for train in training %}
+  {% for train in train_his %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper">
      <a href="{% url 'training_edit' pk=train.pk %}"> <img class="hs__item__image" src="{{MEDIA_URL}}{{ train.disipline.image}}" alt="{{horse.showName}}"/></a>
@@ -97,10 +94,9 @@
 
   {% endfor %}
 </ul>
-
-<h4>Competition</h4>
+<h4 data-intro="Your comp history for all horses is listed here.Click to view">Competition</h4>
 <ul class="hs">
-  {% for comp in comps %}
+  {% for comp in comp_his %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper " >
      <a href="{% url 'comp_edit' pk=comp.pk%}">  <img class="hs__item__image" src="{{MEDIA_URL}}{{ comp.disipline.image}}" alt="{{horse.showName}}" /></a>
@@ -114,6 +110,9 @@
 
   {% endfor %}
 </ul>
+
+
+
    {% endblock%}
 
    
@@ -152,6 +151,11 @@
 <script src="{% static 'js/app.js' %}"></script>
 
  <script src="{% static 'js/slider.js'%}"></script>
+
+
+ <script>
+
+ </script>
    
 
 {% endblock %}

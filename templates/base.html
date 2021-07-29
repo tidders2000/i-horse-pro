@@ -25,6 +25,7 @@
    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <!-- manifest-->
  <link rel="manifest" href="{% static 'manifest.json' %}"> 
+ <link rel="stylesheet" href="https://unpkg.com/intro.js/minified/introjs.min.css">
    
    <!-- apple web app settings-->
    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -89,11 +90,13 @@
                <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a>
                <a href="{% url 'mindset_select' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a>
                <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><em>Logout</em></a>
+               <a onclick="introJs().start();"><i class="fa fa-info-circle" aria-hidden="true"></i><em>Context Help</em></a>
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="menu()">
     <i class="fa fa-bars"></i>
   </a>
+ 
 </div>
 
       <div class="col s2 hide-on-small-only ">
@@ -113,11 +116,16 @@
               <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><em>Logout</em></a></li>
           
           </ul>
+ 
           <div class="socialwapper center-align">
           <a href=""><i class="fa fa-facebook-square social" aria-hidden="true"></i></a>
           <i class="fa fa-twitter-square social" aria-hidden="true"></i>
           <i class="fa fa-instagram social" aria-hidden="true"></i>
           </div>
+        
+
+
+          <button onclick="introJs().start();" class="btn btn-success help">Context Help</button>
         </div><!--end of side nav-->
     </div><!--end of col-->
 <!--main section-->
@@ -192,6 +200,7 @@
  <script src="{% static 'js/jquery.datetimepicker.full.min.js'%}"></script>
  <!-- custom js-->
  <script src="{% static 'js/custom.js' %}"></script>
+ <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
 
 
 {% if messages %}

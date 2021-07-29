@@ -1,6 +1,6 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.0.2/workbox-sw.js');
 
-const VERSION = '1.9';
+const VERSION = '2.1';
 
 if (workbox) {
     console.log(`Yay! Workbox is loaded 🎉 `);
@@ -47,12 +47,14 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  
   const bgSyncLogic = async () => {
     try {
       const response = await fetch(event.request.clone());
       return response;
     } catch (error) {
       await queue.pushRequest({request: event.request});
+      console.log('request in queue')
       return error;
     }
   };

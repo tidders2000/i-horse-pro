@@ -12,6 +12,7 @@ from django.conf import settings
 from django.template.context_processors import csrf
 
 from django.views.generic import TemplateView
+import urllib.request
 
 
 def login(request):
@@ -21,11 +22,11 @@ def login(request):
 
 
 def index(request):
-
     if request.user.is_authenticated:
         return redirect(reverse('home'))
 
     if request.method == 'POST':
+       
         login_form = UserLoginForm(request.POST)
 
         if login_form.is_valid():

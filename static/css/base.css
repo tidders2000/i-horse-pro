@@ -6,6 +6,7 @@
 body {
     background-color: #101010;
     /* background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%); */
+    overflow-x: hidden;
 }
 
 ul {
@@ -220,7 +221,7 @@ input {
 /* Add a grey background color on mouse-over */
 
 .topnav a:hover {
-    background-color: #ddd;
+    color: #ddd;
     color: black;
 }
 
@@ -282,6 +283,7 @@ input {
     }
     ul {
         font-size: 12px;
+        margin-left:10%;
     }
 
 
@@ -319,4 +321,11 @@ input {
     .main_col {
         margin-left: 60px !important;
     }
+}
+
+/* help buttom for context help*/
+.help{
+    display: block!important;
+    margin: auto!important;
+    margin-top: 10px!important;
 }

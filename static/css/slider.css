@@ -19,7 +19,14 @@
     -webkit-overflow-scrolling: touch;
     margin: 0 -20px;
 }
+@media only screen and (max-width: 600px) {
+    .hs {
 
+        margin: 0!important;
+    }
+
+
+}
 .hs__header {
     display: flex;
     align-items: center;

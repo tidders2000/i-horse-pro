@@ -40,7 +40,7 @@
 
 
     <div class='row'>
-<ul>
+<ul data-intro='Goals are targets you may be working towards such as qualify for trailblazers regional final. Goal diagrams can be used to break the goal into small chunks. You can create multiple diagrams. Click a diagram to edit'>
    <li><a href="{% url 'title_add' %}" class="link">Add New Goal</a></li>
     {% for instance in instances %}
     <li> <a href={% url 'mindset' pk=instance.pk %}> {{instance.title}}</a></li>
@@ -60,12 +60,13 @@
 
 
     <div class='row'>
-<ul>
+<ul data-intro='Control diagrams are linked to your goals. Capture the elements of your riding that you can influence and also ones you cannot. Click edit to change'>
  
-    {% for instance in instances %}
-    <li> <a href={% url 'control' %}> Edit</a></li>
+    {{instances}}
+   
+    <li> <a href={% url 'control' %} class="link"> Edit</a></li>
 
-     {% endfor %}
+  
 
 </ul>
 

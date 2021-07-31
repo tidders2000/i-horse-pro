@@ -71,7 +71,7 @@ nav {
 	</head>
 	<body>
 		<div style="overflow: hidden; margin-bottom: width:90%;5px;">
-			<div class="column-left links">
+			<div class="column-left links" data-intro='Select a color for your pen then draw on the canvas with finger or mouse'>
 				<strong class="blue-text">BRUSHES:</strong>
 					<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(0,0,0)"});'>Black</a>
 				<a href="#" onclick='$("#test").data("jqScribble").update({brushColor: "rgb(255,0,0)"});'>Red</a>
@@ -86,9 +86,9 @@ nav {
 		<div class="links" style="margin-top: 5px;">
 			<strong class="blue-text">OPTIONS:</strong>
 			
-			<a href="#" onclick='$("#test").data("jqScribble").clear();'>Clear</a>
+			<a href="#" onclick='$("#test").data("jqScribble").clear();' data-intro='Clear the canvas'>Clear</a>
 			
-			<a href="#" onclick='save();'>Save Drawing</a>
+			<a href="#" onclick='save();' data-intro='Make sure you save the diagram. You cannot edit a diagram but you can add a new one'>Save Drawing</a>
 		</div>
 
 

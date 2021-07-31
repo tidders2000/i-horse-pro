@@ -10,7 +10,7 @@ def delete_goal(request, pk):
     goal = get_object_or_404(Goals, pk=pk)
     goal.delete()
     messages.error(request, "Goal Deleted")
-    return redirect(reverse('home'))
+    return redirect(reverse('mindset_select'))
 
 
 def title_add(request):

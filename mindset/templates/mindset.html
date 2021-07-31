@@ -88,7 +88,7 @@ text-align:center;
 
 <form method="POST" id="mindform">
     <div class="row">        
-     <div class="col s12 ">  
+     <div class="col s12 " data-intro='A template diagram is provide. Click in a box to change the default text, make sure you save when done. Clicking delete removes the diagram'>  
       <button type="submit" class="btn btn-success submit tooltipped" data-position="bottom" data-tooltip="Click to Add" name="save_obj">Save</button>
       <button type="button" class="btn red darken-2" onclick="location.href='{% url 'delete_goal' pk=pk %}'">Delete</button>
       </div>
@@ -104,17 +104,17 @@ text-align:center;
 
 
  
-        {% comment %} <div class= "col s8 l4 push-l4 push-s2 blue box "> <span class='box-text'>{{instance.outcome}}<span></div> {% endcomment %}
-        <div class="col s12 l4 push-m3 push-l4 ">   {{form.outcome|materializecss}}      </div>
+        {% comment %} <div class= "col s8 l4 push-l4 push-s2 blue box " data-intro='Outcome - Qualify for Quest regional final'> <span class='box-text'>{{instance.outcome}}<span></div> {% endcomment %}
+        <div class="col s12 l4 push-m3 push-l4 " data-intro='Outcome - Qualify for Quest regional final'>   {{form.outcome|materializecss}}      </div>
         
         </div>
 
            <div class='row'>
 
-        <div class= "col s12 m6 l3 push-l3 ">
+        <div class= "col s12 m6 l3 push-l3 " data-intro='Goal - Consistently score 65%+'>
         {{form.performance_goal_1|materializecss}}
         </div>
-         <div class= "col s12 m6 l3 push-l3 ">
+         <div class= "col s12 m6 l3 push-l3 "data-intro='Goal - Ride at least 10 Q tests from Jan to Aug'>
           {{form.performance_goal_2|materializecss}}
          </div>
         </div>
@@ -122,17 +122,17 @@ text-align:center;
            <div class='row'>
           
 
-        <div class= "col s12 m6 l3" >
+        <div class= "col s12 m6 l3" data-intro='Work from inside leg to outside hand Consistently'>
           {{form.process_goal_1|materializecss}}
         </div>
-         <div class= "col s12 m6 l3">
+         <div class= "col s12 m6 l3" data-intro='Ensure my riding is accurate'>
             {{form.process_goal_2|materializecss}}
          </div>
-           <div class= "col s12 m6 l3 ">
+           <div class= "col s12 m6 l3 " data-intro='Have weekly dressage lessons'>
              {{form.process_goal_3|materializecss}}
            
            </div>
-         <div class= "col s12 m6 l3">
+         <div class= "col s12 m6 l3" data-intro='Practice at least three times a week'>
          
            {{form.process_goal_4|materializecss}}
          </div>
@@ -144,7 +144,7 @@ text-align:center;
        
            </form>
            <div class="center-align">
-              <a href="{% url 'mindsetB'%}" style="font-size:20px;"class="white-text">Part B</a>  
+              <!-- <a href="{% url 'control'%}" style="font-size:20px;"class="white-text">Part B</a>   -->
               </div>
         </div>
           

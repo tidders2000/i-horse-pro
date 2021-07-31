@@ -61,7 +61,7 @@
       edit
     </span>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" data-intro='Complete the details of future or previous training sessions. Note date and venue are mandatory fields. You can come back and edit so if the session has not yet taken place just fill in the minimum to save. To save a session scroll to the bottom and click the +'>
 
                     {{form.instructor|materializecss}}
 
@@ -98,9 +98,9 @@
     <h2 class="hs__headline">Session Objectives</h2>
     <div class="row blue_box">
         <div class="col s12 m6" id='obj'>
-            <h5>My Objectives</h5>
+            <h5 data-intro='`Session objectives can be added. Click add, to close the box click elsewhere on the screen'>My Objectives</h5>
             <a class="waves-effect waves-light btn modal-trigger" href="#modal1">ADD</a>
-            <p class="white-text"> Click Objective to mark achieved</p>
+            <p class="white-text" data-intro='Come back here after the session and click to show objectives achived'> Click Objective to mark achieved</p>
             <ol>
                 {% for obj in listObj %}
                 <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a> {% if obj.Completed == True %}
@@ -115,7 +115,7 @@
 
 
     <h2 class="hs__headline">Little Wins</h2>
-    <div class="row blue_box">
+    <div class="row blue_box" data-intro='Add things that went well in the session, such as loaded well'>
 
 
         <div class="col m10">
@@ -157,7 +157,7 @@
 
 
     <h2 class="hs__headline">Floor Plan</h2>
-    <div class="row blue_box">
+    <div class="row blue_box" data-intro='You can add diagrams. Click on the Floorplan currently to select a file such as a photo or click the draw floorplan to draw. Note you cannot edit diagrams once drawn but can add another one to replace it'>
         <a href="{% url 'draw' pk=session.pk %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Draw a floorplan</a>
         <section>
             <div class="decoration col s12"></div>
@@ -186,7 +186,7 @@
 
 
 
-        <div class="file-path-wrapper" style='min-height:220px;'>
+        <div class="file-path-wrapper" style='min-height:220px;' data-intro='Load up any supporting information such as session notes'>
             {{form.files|materializecss}}
 
 
@@ -200,7 +200,7 @@
 
 </div>
 {% csrf_token %}
-<p class="white-text warning_msg"> Click the + to save your session</p>
+<p class="white-text warning_msg" data-intro='Make sure you save the session'> Click the + to save your session</p>
 <button type="submit " class='subplus tooltipped' data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="blutext">+<span></button>
 </form>
 

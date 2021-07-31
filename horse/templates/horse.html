@@ -18,7 +18,7 @@
 
 <h2 >Add A Horse</h2>
  
- <div class="h5">Numbered - <code>.numbered</code></div>
+ <div class="h5" data-intro='Wizard takes you through adding a horse'>Numbered - <code>.numbered</code></div>
       <div class="multi-step numbered">
         <ul class="multi-step-list">
           <li class="multi-step-item active current">
@@ -47,7 +47,7 @@
 
               <form method="POST" enctype="multipart/form-data">
                      <div class="row blue_box" > 
-                      <h4 style="font:24px;color:white;font-style:avenair;">Basic Info</h4>
+                      <h4 style="font:24px;color:white;font-style:avenair;" data-intro='Complete basic horse details'>Basic Info</h4>
                        <div class="col s12 col m6">
                           {{ form.showName|materializecss}}
                        </div>
@@ -89,7 +89,7 @@
 
                       <div class="row blue_box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">Feeds & Behaviour</h4>
-                       <div class="col s12 ">
+                       <div class="col s12" data-intro='Add feed information and any useful notes on behaviour such as cribs or bites' >
                           {{ form.feeds|materializecss}}
                        </div>
                          <div class="col s12">
@@ -132,7 +132,7 @@
                      </div>
            
                      {% csrf_token %} 
-                      <button type="submit"  class="btn btn-success">Add Horse</button>
+                      <button type="submit"  class="btn btn-success" data-intro='Click to add horse'>Add Horse</button>
                       
                       </form>
      {% endblock %}                

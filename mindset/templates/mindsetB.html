@@ -140,8 +140,8 @@
 
 @media (min-width: 850px) {
   .quote-wrapper {
-    width: 370px;
-    height: 370px;
+    width: 150px;
+    height: 150px;
   }
 
   .quote-wrapper::before {
@@ -159,8 +159,18 @@
  }
 
 </style>
+<nav>
+  <div class="nav-wrapper">
+    <div class="col s12 breadcrumb">
+      <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+       <a href="{% url 'mindset_select' %}" class="breadcrumb">Mindset</a>
+      <a href="#!" class="breadcrumb">Contol Diagram</a>
+     
+    </div>
+  </div>
+</nav>
 
-<h4>Control Diagram</h4>
+<h4 data-intro='Click add to add'>Control Diagram</h4>
 
 <a class=" modal-trigger" href="#modal1">ADD</a>
 
@@ -168,8 +178,8 @@
   <div class='row'>
     {% for control in controls %}
  {% if control.can_control == True %}
-    <div class="quote-wrapper col s4 l2">
-      <div class="text" cite="http://www.inspireux.com/category/quotes/jesse-james-garrett/">
+    <div class="quote-wrapper col s4 m3 l2">
+      <div class="text" cite="">
         <p>{{ control.item}}</p>
      
         </div>
@@ -179,8 +189,9 @@
     {% endfor %}
     {% for control in controls %}
     {% if control.cannot_control == True %}
-    <div class="quote-wrapper col s4 l2">
-      <div class="text2" cite="http://www.inspireux.com/category/quotes/jesse-james-garrett/">
+    <div class="quote-wrapper col s4 m3 l2">
+      <div class="text2" cite="
+      ">
         <p>{{ control.item}}</p>
      
         </div>

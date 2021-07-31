@@ -47,7 +47,7 @@
                          <div class="row" > 
                         <form method="POST">
                         
-                             <div class="col s12 m6 push-m3 blue_box">
+                             <div class="col s12 m10 blue_box"  data-intro='Add a title such as BE record, add a link then click the +. Mutiple links can be added.' >
                                   {{ link|materializecss}}
                             
                                               <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add"><span class="blutext">+<span></button>
@@ -59,7 +59,7 @@
                                 {% for lin in links %}
                                 <li class="white-text">{{lin.organisation}}: {{lin.link}}</li>
                                 {% endfor %}
-                                <li><a href="{% url 'home'%}" style="float: right;"><span class="blutext">Finish</span></a></li>
+                                <li  ><a href="{% url 'home'%}" style="float: right;"><span class="blutext" data-intro='Click to end the wizard'>Finish</span></a></li>
                                  </ul>
 
                            </div>

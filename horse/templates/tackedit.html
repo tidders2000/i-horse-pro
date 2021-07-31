@@ -37,7 +37,7 @@
                          <div class="row" > 
                         <form method="POST">
                         
-                             <div class="col s12 m6 push-m3 blue_box">
+                             <div class="col s12 m10 blue_box"  data-intro='Select tack type, add a description then click the +. Mutiple tack can be added. If you wish to remove something click the bin'>
                                   {{ tack|materializecss}}
                              {% csrf_token %} 
                                               <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add"><span class="blutext">+<span></button>
@@ -64,7 +64,7 @@
                        </div>
                        
              </div> 
-                  <button type="button" style="margin:auto; display:block;" class="btn btn-success" onclick="location.href='{% url 'links' %}'">Add/Edit Links</button>
+                  <button type="button" data-intro='Click to move to the next section' style="margin:auto; display:block;" class="btn btn-success" onclick="location.href='{% url 'links' %}'">Add/Edit Links</button>
                   <a href="{% url 'links'  %}" style="float: right;">SKIP</a>
              {% endblock %}
               

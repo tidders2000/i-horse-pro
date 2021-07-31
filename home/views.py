@@ -18,10 +18,11 @@ from training.models import TrainingLog
 from django.contrib import messages
 from datetime import datetime
 from datetime import date
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def home(request):
     # webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     # vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')

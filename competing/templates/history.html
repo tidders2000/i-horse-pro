@@ -60,13 +60,13 @@
     </div>
   </nav>
 
-<h4>History</h4>
+<h4  data-intro='All your training and comps are listed here for all horses'>History</h4>
 
   <!-- search -->
   <h5>Search</h5>
            <div class="row">
            <div class="col s10 m11">
-            <form method='POST' style="padding-left:0;">
+            <form method='POST' style="padding-left:0;"  data-intro='Use search to find specifics'>
             
                 <input type="text" placeholder="Keyword" name='keyword'>
           </div>
@@ -83,9 +83,9 @@
 
 <div class="row" >
 
-   <ul class="collection" style="border:none!important;">
+   <ul class="collection" style="border:none!important;" data-intro='Click a blue arrow to view'>
    {% for train in train_obj %}
-    <li class="collection-item avatar " style="background-color:#101010!important">
+    <li class="collection-item avatar " style="background-color:#101010!important"  >
       <img src="{{MEDIA_URL}}{{train.disipline.image}}" alt="train.disipline.disipline" class="circle">
       <span class="disipline_title ">{{train.disipline.disipline}} {{train.date}}</span>
       <p class="disipline_type">Training Session
@@ -105,12 +105,12 @@
        {% endfor %}
   </ul>
  <!--pagination-->         
-<div class="pagination">
+<div class="pagination"  data-intro='Use the nav to view pages'>
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+        {% endif %} 
 
         <span class="current">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.

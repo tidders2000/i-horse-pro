@@ -62,10 +62,10 @@
 
 
                                 {% for tack in tackdetails %}
-                                <li class="white-text">{{tack.tacktype}}: {{tack.description}}</li>
+                                <li class="white-text" data-intro='Select tack type, add a description then click the +'>Click choose file then click Add'>{{tack.tacktype}}: {{tack.description}}</li>
                               
                                 {% endfor %}
-                                 <li><a href="{% url 'links'%}"><span class="blutext">Next</span></a></li>
+                                 <li data-intro='Click to move to the next section'><a href="{% url 'links'%}"><span class="blutext">Next</span></a></li>
                                 
                                  </ul>
 

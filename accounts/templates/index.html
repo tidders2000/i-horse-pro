@@ -236,28 +236,70 @@ i{
 .social-holder{
   margin-top:5%;
 }
+
+.profile{
+  height:400px;
+  width:400px;
+}
+
+@media screen and (max-width: 769px) {
+  .profile{
+  height:200px;
+  width:200px;
+}
+
+.about-text{
+  font-size: 1.2em;
+  padding-top: 0;
+}
+
+.phone-text{
+  margin-top:25%;
+}
+  }
+
+  @media all and (max-width: 450px) {
+    .about-text{
+  font-size: 1.7em;
+  padding-top: 0;
+}
+.headline{
+  font-size: 1.7em;
+}
+.phone-text {
+  font-size:1.7em;
+  margin-top: 2%;
+}
+
+.block{
+  height:800px;
+}
+.form-holder{
+  width:90%;
+}
+  }
 </style>
 <body>
 
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/parallex_image.jpg'%}">
     <div class="top-left"><img src="{% static 'images/logo5.png' %} "class="logo"/></div>
-    <div class="top-right strap-line">Your Equine World - Organised</div>
-    <div class="centered headline">An app for every aspect of your equine life - from management to training'</div>
+    <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised</div>
+    <div class="centered headline ">An app for every aspect of your equine life - from management to training'</div>
   </div>
 
   <section>
   
       <div class="block  row">
 
-        <div class="col s4  left-align"><img src="{% static 'images/tina.jpeg' %}" height="400" width= "400" class="circle" alt="Tina Canton"/></div>
+        <div class="col s12 m4  left-align "><img src="{% static 'images/tina.jpeg' %}" class="circle profile" alt="Tina Canton"/></div>
        
    
   
-      <div class="col s4 valign-wrapper text-center" style="height:100%">
-        <p class="text-center about-text">Equestrian professionals, Tina Canton and Helen Bell have worked together to bring you this innovative and life changing app to organise your equine life. As high level riders and elite coaches they have developed the iHorse app to bring your equine organisation into the 21st century! A efficient alturnative to paper diaries!! </p>
+      <div class="col s12 m4  text-center " style="height:100%">
+        <p class="text-center about-text">Equestrian professionals, Tina Canton and Helen Bell have worked together to bring you this innovative and life changing app to organise your equine life. As high level riders and elite coaches they have developed the iHorse app to bring your equine organisation into the 21st century! A efficient altarnative to paper diaries!! </p>
     </div>
-    <div class="col s4">
-      <p class="right"><img src="{% static 'images/helen2.jpg' %}" height="400" width= "400" class="circle" alt="Helen Bell"/></p>
+    <div class="col s12 m4  hide-on-small-only">
+      <p class="right"><img src="{% static 'images/helen2.jpg' %}"  class="circle profile" alt="Helen Bell"/></p>
     
     </div>
   
@@ -269,7 +311,7 @@ i{
 
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/smartphone.png'%}">
     <div class=row>
-    <div class="phone-text col s6 offset-s3">On the move you will have the  ability to access all of your horse management information, keep track of your training session by session, have a record of competition performance and link this into  
+    <div class="phone-text col s10 offset-s1 m12 l8 offset-l2">On the move you will have the  ability to access all of your horse management information, keep track of your training session by session, have a record of competition performance and link this into  
       easy to use positive psychology exercises.</div>
     </div>
     </div> 
@@ -297,7 +339,7 @@ i{
 
   <div class="parallax-window" data-parallax="scroll" style="padding-top:70px;" data-image-src="{% static 'images/parallex_image.jpg'%}">
    
-    <div class="container"><div class="row">    <form class="col s12" id="reg-form">      <div class="row">  <h2>Register Interest</h2>      <div class="input-field col s6">          <input id="first_name" type="text" class="validate" required>          <label for="first_name">First Name</label>        </div>        <div class="input-field col s6">          <input id="last_name" type="text" class="validate" required>          <label for="last_name">Last Name</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="email" type="email" class="validate" required>          <label for="email">Email</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="disipline" type="text" class="validate" minlength="6" required>          <label for="password">Horse Disipline</label>        </div>      </div>      <div class="row">              <div class="input-field col s6">          <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register            <i class="material-icons right">done</i>          </button>        </div>      </div>    </form>  </div>  <a title="Login" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a></div>
+    <div class="container form-holder"><div class="row">    <form class="col s12" id="reg-form">      <div class="row">  <h2>Register Interest</h2>      <div class="input-field col s6">          <input id="first_name" type="text" class="validate" required>          <label for="first_name">First Name</label>        </div>        <div class="input-field col s6">          <input id="last_name" type="text" class="validate" required>          <label for="last_name">Last Name</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="email" type="email" class="validate" required>          <label for="email">Email</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="disipline" type="text" class="validate" minlength="6" required>          <label for="password">Horse Disipline</label>        </div>      </div>      <div class="row">              <div class="input-field col s6">          <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register            <i class="material-icons right">done</i>          </button>        </div>      </div>    </form>  </div>  <a title="Login" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a></div>
   </div>
 
   

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm
 from .forms import ProfileForm
 
-from .models import Profile
+from .models import *
 from datetime import datetime
 from datetime import date
 from django.conf import settings
@@ -111,3 +111,20 @@ def user_profile(request):
 
 def offline(request):
     return render(request, 'offline.html')
+
+def emailList(request):
+    if request.method =="POST":
+        fname=request.POST.get('fn')
+        lname= request.POST.get('ln')
+        email= request.POST.get('em')
+        dis = request.POST.get('di')
+        obj = Register_email.objects.create(fname=fname, lname=lname, dis=dis, email=email)
+      
+      
+        obj.save()
+
+  
+
+
+
+    return redirect(reverse('index'))

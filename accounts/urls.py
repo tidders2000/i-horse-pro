@@ -24,6 +24,7 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('register/', registration, name='registration'),
     path('profile/', user_profile, name='profile'),
+    path('emailList', emailList, name="emailList"),
 
    
     path('reset', include('password_reset.urls')),

@@ -187,7 +187,7 @@ vertical-align: middle;
 }
 
 .container {
-  background: white;
+  background: rgb(7, 7, 7);
   padding: 20px 25px;
   border: 5px solid #21a3e2;
   width: 550px;
@@ -277,13 +277,27 @@ i{
 .form-holder{
   width:90%;
 }
-  }
+
+.logo{
+  margin-top: 50px;
+}
+
+
 </style>
 <body>
+ 
+                     
+             
+                      
+
+             
+
 
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/parallex_image.jpg'%}">
+
     <div class="top-left"><img src="{% static 'images/logo5.png' %} "class="logo"/></div>
     <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised</div>
+    <div class="top-right  logform hide-on-small-only" style="padding-top:80px;padding-right:10px;">  <form method='POST'>{{ login_form|materializecss}} <button type="submit" class="btn btn-success">Login</button>{% csrf_token %}</form>    </div>
     <div class="centered headline ">An app for every aspect of your equine life - from management to training'</div>
   </div>
 
@@ -339,7 +353,7 @@ i{
 
   <div class="parallax-window" data-parallax="scroll" style="padding-top:70px;" data-image-src="{% static 'images/parallex_image.jpg'%}">
    
-    <div class="container form-holder"><div class="row">    <form class="col s12" id="reg-form">      <div class="row">  <h2>Register Interest</h2>      <div class="input-field col s6">          <input id="first_name" type="text" class="validate" required>          <label for="first_name">First Name</label>        </div>        <div class="input-field col s6">          <input id="last_name" type="text" class="validate" required>          <label for="last_name">Last Name</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="email" type="email" class="validate" required>          <label for="email">Email</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="disipline" type="text" class="validate" minlength="6" required>          <label for="password">Horse Disipline</label>        </div>      </div>      <div class="row">              <div class="input-field col s6">          <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register            <i class="material-icons right">done</i>          </button>        </div>      </div>    </form>  </div>  <a title="Login" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a></div>
+    <div class="container form-holder"><div class="row">    <form class="col s12" id="reg-form" method='POST' action="{% url 'emailList' %}">      <div class="row">  <h2>Register Interest</h2>      <div class="input-field col s6">          <input id="first_name" name="fn" type="text" class="validate" required>          <label for="first_name">First Name</label>        </div>        <div class="input-field col s6">          <input id="last_name" name="ln" type="text" class="validate" required>          <label for="last_name">Last Name</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="email" type="email" name="em" class="validate" required>          <label for="email">Email</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="disipline" type="text" name="di" class="" minlength="6" required>          <label for="disipline">Horse Disipline</label>        </div>      </div>      <div class="row">              <div class="input-field col s6">          <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register            <i class="material-icons right">done</i>          </button>        </div>      </div>       {% csrf_token %}  </form>  </div>  <a title="Login" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a></div>
   </div>
 
   

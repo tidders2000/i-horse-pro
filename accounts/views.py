@@ -122,6 +122,7 @@ def emailList(request):
       
       
         obj.save()
+        messages.success(request, "Thanks, Interest noted")
 
   
 

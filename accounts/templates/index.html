@@ -159,7 +159,7 @@ label{
   margin-top: 50px!important;
 }
 
-h2{
+h2,h4{
   color: #21a3e2;
 }
 
@@ -324,6 +324,10 @@ display: inline;
 }
 
 
+ .modal .modal-footer .btn-flat {
+    margin: 1px 0!important;
+}
+
 </style>
 <body>
  
@@ -339,11 +343,34 @@ display: inline;
     <div class="top-left"><img src="{% static 'images/logo5.png' %} "class="logo"/></div>
     <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised</div>
     <div class="top-right  logform hide-on-small-only" style="padding-top:80px;padding-right:10px;">  <form method='POST'>{{ login_form|materializecss}} <button type="submit" class="btn btn-success">Login</button>{% csrf_token %}</form>    </div>
-    <div class="centered headline ">An app for every aspect of your equine life - from management to training'</div>
+    <div class="centered headline ">Join our like minded community - all things equine in one easily accessible place, </div>
   </div>
 
   <section>
   
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    `<div class="modal-header">
+      <h5 class="center"> iHorse Online Riding Club</h4>   
+      <h6 class="center">Coming April 2022 - Sign up for news</h5>
+    </div>
+    <div class="modal-content">
+        <form class="col s12" id="reg-form" method='POST' action="{% url 'emailList' %}">      <div class="row">     <div class="input-field col s6">          <input id="first_name" name="fn" type="text" class="validate" required>          <label for="first_name">First Name</label>        </div>        <div class="input-field col s6">          <input id="last_name" name="ln" type="text" class="validate" required>          <label for="last_name">Last Name</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="email" type="email" name="em" class="validate" required>          <label for="email">Email</label>        </div>      </div>      <div class="row">        <div class="input-field col s12">          <input id="disipline" type="text" name="di" class="" minlength="6" required>          <label for="disipline">Horse Disipline</label>        </div>      </div>      
+          
+          <div class="row">              
+              <div class="input-field col s6">          
+                
+                <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register           <i class="material-icons right">done</i></button>    
+                  </div>  
+                   
+            </div>       {% csrf_token %}  </form>  
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>  
+    
+  
+  </div>
       <div class="block  row">
 
         <div class="col s12 m4  left-align ">
@@ -356,7 +383,8 @@ display: inline;
    
   
       <div class="col s12 m4  text-center ">
-        <p class="text-center about-text">Equestrian professionals, Tina Canton and Helen Bell have worked together to bring you this innovative and life changing app to organise your equine life. As high level riders and elite coaches they have developed the iHorse app to bring your equine organisation into the 21st century! A efficient altarnative to paper diaries!! </p>
+        <h2>Tina & Helen Present</h2>
+        <p class="text-center about-text">Equestrian professionals, Tina Canton and Helen Bell have worked together and are proud to present their innovative modern take on the riding club. </p>
     </div>
     <div class="col s12 m4  ">
       <p class="right"><img src="{% static 'images/helen2.png' %}"  class="profile helen"  alt="Helen Bell"/></p>
@@ -371,8 +399,25 @@ display: inline;
 
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/smartphone.png'%}">
     <div class=row>
-    <div class="phone-text col s10 offset-s1 m12 l8 offset-l2">On the move you will have the  ability to access all of your horse management information, keep track of your training session by session, have a record of competition performance and link this into  
-      easy to use positive psychology exercises.</div>
+    <div class="phone-text col s10 offset-s1 m12 l8 offset-l2">
+      <h1>What is iHorse?</h1>
+
+      <p>ihorse is an online riding club. We are trying to bring all the benefits of a traditional riding club with the conveniance of the touch of a button.</p>
+  
+
+      <p> Joining iHorse is joining our community. We encourage members to interact with each other and want iHorse to become the one stop shop for all things horsey. The club will launch in April so watch this space, we have big plans</p>
+
+      
+
+      
+          
+
+
+
+
+      
+    
+    </div>
     </div>
     </div> 
 
@@ -380,13 +425,13 @@ display: inline;
   
       <div class="block2  row">
 
-        <div><img src="{% static 'images/logo5.png' %} "class="pro-logo"/><h2>PRO</h2></div>
+        <div><img src="{% static 'images/logo5.png' %} "class="pro-logo"/><h2>Riding and Tech</h2></div>
      
    
   
       <div class="col s12 m6 offset-m3  text-center" >
 
-        <p class="text-center pro-text">The pro version allows unlimited number of horses, staffing records, supplier information and many other features.  </p>
+        <p class="text-center pro-text">Modern day riders can access a whole host of online resources. Technology is becoming another tool in a riders toolbox. Instead of going to different apps, websites or magazines, iHorse will be the name you can trust to meet all your needs </p>
     </div>
     
   
@@ -395,6 +440,7 @@ display: inline;
      
 
   </section>
+
 
 
   <div class="parallax-window" data-parallax="scroll" style="padding-top:70px;" data-image-src="{% static 'images/parallex_image.jpg'%}">
@@ -439,6 +485,14 @@ display: inline;
 $(document).ready(function(){
     $('.parallax').parallax();
   });
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      $('.modal').modal();
+      $('.modal').modal('open');
+    
+    });
   </script>
 </body>
 </html>

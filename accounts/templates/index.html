@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="iHorse">
-  <meta name="description" content="An equestrian riding club and one stop shop for horse riders including equestrian advice,coaching and community">
+  <meta name="description" content="An equestrian community and one stop shop for horse riders including equestrian advice,coaching and reviews">
   <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   
   <title>{% block page_title %}{% endblock %}</title>
@@ -342,9 +342,9 @@ display: inline;
 
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/parallex_image.jpg'%}">
 
-    <div class="top-left"><img src="{% static 'images/logo5.png' %} "class="logo"/></div>
+    <div class="top-left"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
     <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised</div>
-    <div class="top-right  logform hide-on-small-only" style="padding-top:80px;padding-right:10px;">  <form method='POST'>{{ login_form|materializecss}} <button type="submit" class="btn btn-success">Login</button>{% csrf_token %}</form>    </div>
+    {% comment %} <div class="top-right  logform hide-on-small-only" style="padding-top:80px;padding-right:10px;">  <form method='POST'>{{ login_form|materializecss}} <button type="submit" class="btn btn-success">Login</button>{% csrf_token %}</form>    </div> {% endcomment %}
     <div class="centered headline ">Join our like minded community - all things equine in one easily accessible place, </div>
   </div>
 
@@ -353,7 +353,7 @@ display: inline;
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     `<div class="modal-header">
-      <h5 class="center"> iHorse Online Riding Club</h4>   
+      <h5 class="center"> i-Horse Club</h4>   
       <h6 class="center">Coming April 2022 - Sign up for news</h5>
     </div>
     <div class="modal-content">
@@ -402,12 +402,12 @@ display: inline;
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/smartphone.png'%}">
     <div class=row>
     <div class="phone-text col s10 offset-s1 m12 l8 offset-l2">
-      <h1>What is iHorse?</h1>
+      <h1>What is i-Horse?</h1>
 
-      <p>ihorse is an online riding club. We are trying to bring all the benefits of a traditional riding club with the conveniance of the touch of a button.</p>
+      <p>i-Horse club aims to create a place for all things equine. We will provide a platform where you can do all your horsey online stuff in one place, from buying or selling to coaching tips and advice. We will also provide apps and tools to make your horsey life easier </p>
   
 
-      <p> Joining iHorse is joining our community. We encourage members to interact with each other and want iHorse to become the one stop shop for all things horsey. The club will launch in April so watch this space, we have big plans for you if you are an equine trader, professional rider, grass roots rider or happy hacker you will not wnat to be without iHorse</p>
+      <p> Joining iHorse is joining our community. We encourage members to interact with each other and want i-Horse to become the one stop shop for all things horsey. The club will launch in April so watch this space, we have big plans for you if you are an equine trader, professional rider, grass roots rider or happy hacker you will not wnat to be without i-Horse</p>
 
       
 
@@ -433,7 +433,7 @@ display: inline;
   
       <div class="col s12 m6 offset-m3  text-center" >
 
-        <p class="text-center pro-text">Modern day riders can access a whole host of online resources. Technology is becoming another tool in a riders toolbox. Instead of going to different apps, websites or magazines, iHorse will be the name you can trust to meet all your needs </p>
+        <p class="text-center pro-text">Modern day riders can access a whole host of online resources. Technology is becoming another tool in a riders toolbox. Instead of going to different apps, websites or magazines, i-Horse will be the name you can trust to meet all your needs </p>
     </div>
     
   

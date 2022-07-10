@@ -7,10 +7,12 @@ body {
     background-color: #101010;
     /* background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%); */
     overflow-x: hidden;
+
 }
 
 ul {
     margin-left: 15%;
+    list-style: none!important
 }
 
 li {
@@ -21,6 +23,9 @@ li a {
     color: #b3b3b3;
     text-decoration: none!important;
 }
+a:hover{
+    color:#0288d1;
+}
 
 i {
     padding-right: 15px;
@@ -29,11 +34,16 @@ i {
 h2 {
     font-size: 24px;
     color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
 
 h4 {
     color: #ffffff;
     margin-left: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 h5 {
@@ -282,7 +292,7 @@ input {
         height: 77px;
     }
     ul {
-        font-size: 11px;
+        /* font-size: 11px; */
         margin-left:10%;
     }
 
@@ -328,4 +338,8 @@ input {
     display: block!important;
     margin: auto!important;
     margin-top: 10px!important;
+}
+
+.card-panel{
+    border-radius: 10px;
 }

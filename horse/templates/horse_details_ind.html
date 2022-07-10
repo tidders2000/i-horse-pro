@@ -8,6 +8,87 @@
     .cardHeading {
         color: #21a3e2;
     }
+
+    .card-panel,.card{
+      border-radius:10px;
+    }
+
+    .tabs li a{
+      color:#0288d1!important;
+    }
+    .indicator{
+        background-color:white!important;
+        margin-top:5px;
+    }
+
+    nav{
+        background-color:black!important;
+    }
+
+    .caret{
+        color:white!important;
+    }
+    .material-icons{
+        {% comment %} font-size:40px; {% endcomment %}
+        color:white;
+        padding-top:10px;
+    }
+    .session_title{
+        font-size:40px;
+        color:white;
+        text-align:center;
+        font-weight:600;
+
+    }
+
+    button{
+        border-radius:10px;
+        background-colour:#21a3e2!important;
+    }
+
+    .i_color{
+        color:#21a3e2!important;
+       
+    }
+
+
+    ::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+  }
+
+  label{
+      text-size:1 rem!important;
+      font-family: 'Roboto', 'Helvetica', sans-serif;
+  }
+ 
+
+.file-field .btn{
+      display:none;
+  }
+  .file-path-wrapper{
+      display:none;
+  }
+
+  button{
+      border-radius:10px;
+      float:right;
+  }
+
+  .acc_down{
+   
+    color:black;
+  }
+
+  .acc_header{
+    font-size:20px;
+    color:#0288d1;
+  }
+
+  .bl{
+    letter-spacing: 2px;
+    font-weight:600;
+  }
+
 </style>
 
 <nav>
@@ -19,7 +100,7 @@
         </div>
     </div>
 </nav>
-
+{% comment %} 
 <h2>Select A Horse</h2>
 <ul class="hs" data-intro='Select a different horse here'>
     {% for horse in horses %}
@@ -42,10 +123,185 @@
     </li>
 
     {% endfor %}
-</ul>
+</ul> {% endcomment %}
+
+<div class="card-panel grey darken-4">
+  <form method="POST" enctype="multipart/form-data" >
+  <div class="row">
+      <div class="col s6"><b>{{selected.stableName}}</b></div>
+      <div class="col s2 session_title"> </div>
+      <div class="col s4">
+          <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="material-icons">
+          save
+          </span></button></div>
+  </div>
 
 
-<h5 data-intro='Selected horse shows here'>{{selected.showName}}</h5>
+    <div class="row">
+  
+                    <h4 class="cardHeading">Key Info</h4>
+                    <ul    class-"key_info">
+                        <li><span class="bl">STABLE NAME:</span> {{selected.stableName}}</li>
+                        <li><span class="bl">SHOW NAME:</span> {{selected.showName}}</li>
+                        <li><span class="bl">DOB:</span> {{selected.Dob}}</li>
+                        <li><span class="bl">GENDER:</span> {{selected.Gender}}</li>
+                        <li><span class="bl">OWNER:</span> {{selected.owner}}</li>
+                        <li><span class="bl">E MAIL:</span> {{selected.owner_email}}</li>
+                        <li><span class="bl">MOBILE:</span> {{selected.owner_mobile}}</li>
+
+                    </ul>
+             
+
+            
+            </div>
+            <div class="row">
+          
+              <div class="col s12">
+                  
+                <ul class="tabs grey darken-4">
+                  <li class="tab col s3"><a href="#test1" class="active">  <i class="material-icons small i_color">link</i></a></li>
+                  <li class="tab col s3"><a  href="#test2"><i class="material-icons small i_color">assignment</i></a></li>
+                  <li class="tab col s3"><a  href="#test3"><i class="material-icons small i_color">school</i></a></li>
+                
+                </ul>
+              </div>
+              <div id="test1" class="col s12">
+                <h2 class="hs__headline">Links</h2>
+                <div class="row blue_box">
+                  <ul>
+                    <li data-intro='Click the link to view and edit tack'><a href="{% url 'tackedit' pk=selected.pk %}" class="white-text">Tack Record</a></li>
+                    {% for link in links %}
+                    <li> <a href={{link.link}} class="white-text">{{link.organisation}}</a></li>
+                    {% endfor %}
+                </ul>
+                <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data">
+                  {% comment %} <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">
+                    save
+                    </span></button>
+                    <input id="pic" name="pic" type="file"  accept="image/*"  >
+                    {% csrf_token %}
+                     {% endcomment %}
+                  
+                              </form> 
+                </div> 
+
+              </div>
+              <div id="test2" class="col s12">
+                <h2 class="hs__headline">Notes</h2>
+                <div class="row blue_box">
+                  <p>{{selected.notes}}</p>
+                </div> 
+              </div>
+              <div id="test3" class="col s12">
+
+                
+<h2 class="hs__headline">Training</h2>
+<div class="row blue_box">
+<div class="row " style="padding-bottom:20px;" data-intro='Training history for your horse'>
+
+    <ul class="collection" style="border:none!important;">
+        {% for train in training %}
+        <li class="collection-item avatar " style="background-color:#212121!important">
+            <img src="{{MEDIA_URL}}{{train.disipline.image}}" alt="train.disipline.disipline" class="circle">
+            <span class="disipline_title ">{{train.disipline.disipline}} {{train.date}}</span>
+            <p class="disipline_type">Training Session
+            </p>
+            <a href="{% url 'training_edit' pk=train.pk %}" class="secondary-content "><i
+          class="fa fa-chevron-circle-right history_link" style="font-size:50px;color:#21a3e2;"
+          aria-hidden="true"></i></a>
+        </li>
+        {% endfor %}
+</div>
+
+              </div>
+        
+            </div> 
+        </div>
+      </div>
+{% comment %} 
+        <div class="card-panel grey darken-4 ">
+          <div class="row">
+          
+              <div class="col s12">
+                  
+                <ul class="tabs grey darken-4">
+                  <li class="tab col s3"><a href="#test1" class="active">  <i class="material-icons small i_color">link</i></a></li>
+                  <li class="tab col s3"><a  href="#test2"><i class="material-icons small i_color">assignment</i></a></li>
+                  <li class="tab col s3 "><a href="#test3"> <i class="material-icons small i_color">card_travel</i></a></li>
+                  <li class="tab col s3"><a href="#test4"> <i class="material-icons small i_color">file_upload</i></a></li>
+                  <li class="tab col s3"><a href="#test5"> <i class="material-icons small i_color">lightbulb_outline</i></a></li>
+                </ul>
+              </div>
+              <div id="test1" class="col s12">
+                <h2 class="hs__headline">Links</h2>
+                <div class="row blue_box">
+                  <ul>
+                    <li data-intro='Click the link to view and edit tack'><a href="{% url 'tackedit' pk=selected.pk %}" class="white-text">Tack Record</a></li>
+                    {% for link in links %}
+                    <li> <a href={{link.link}} class="white-text">{{link.organisation}}</a></li>
+                    {% endfor %}
+                </ul>
+                </div> 
+
+              </div>
+              <div id="test2" class="col s12">
+                <h2 class="hs__headline">Notes</h2>
+                <div class="row blue_box">
+                  <p>{{selected.notes}}</p>
+                </div> 
+
+              </div>
+              <div id="test3" class="col s12">
+
+                <h2 class="hs__headline">Passport</h2>
+                <div class="row blue_box">
+             
+            
+                            
+              
+                <img src="{{MEDIA_URL}}{{selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
+              </div>
+
+            </div>
+              <div id="test4" class="col s12">t4</div>
+            </div>
+          </div> {% endcomment %}
+
+
+
+
+<div class="card-panel grey darken-4 ">
+  <h2 class="hs__headline">Horse Passport</h2>
+  <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
+  
+  
+    <div class="col s12 m6" style="padding:15px;">
+
+
+
+      
+      <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data">
+        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">
+          save
+          </span></button>
+          <input id="pic" name="pic" type="file"  accept="image/*"  >
+        {% csrf_token %}
+        {% comment %} <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
+          style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button> {% endcomment %}
+                  </form>
+  
+      <img src="{{MEDIA_URL}}{{ selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
+      </a>
+    </div>
+    <div class="col s6 l4">
+  
+  
+      </div>
+
+</div>
+</div>
+
+{% comment %} <h5 data-intro='Selected horse shows here'>{{selected.showName}}</h5>
 <div class="row" style="border:1px solid #b3b3b3"></div>
 <h2 class="">Details</h2>
 
@@ -57,7 +313,7 @@
                 <div class="card-content white-text" style="height:220px;">
                     <h4 class="cardHeading">Key Info</h4>
                     <ul>
-                        <li>STABLE NAME: {{selected.stableName}}</li>
+                        <li>STABLE NAE: {{selected.stableName}}</li>
                         <li>SHOW NAME: {{selected.showName}}</li>
                         <li>DOB: {{selected.Dob}}</li>
                         <li>GENDER: {{selected.Gender}}</li>
@@ -68,8 +324,8 @@
 
                 </div>
             </div>
-        </div>
-        <div class="col s12 m12 l6" data-intro='Links added during horse set up are shown here.Tack is always present'>
+        </div> {% endcomment %}
+        {% comment %} <div class="col s12 m12 l6" data-intro='Links added during horse set up are shown here.Tack is always present'>
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text" style="height:220px;">
                     <h4 class="cardHeading">Links</h4>
@@ -85,17 +341,15 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
  
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col s12 m12 l6" data-intro='Owner details added during horse set up. Click edit link below to change'>
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text" style="height:220px;">
                     <h4 class="cardHeading" class="cardHeading">Owner Details</h4>
                     <ul>
-                        <li>Owner: {{selected.owner}}</li>
-                        <li>E Mail: {{selected.owner_email}}</li>
-                        <li>Mobile: {{selected.owner_mobile}}</li>
+                        
                       
 
                     </ul>
@@ -117,12 +371,12 @@
             </div>
         </div>
         <p data-intro='Click the link to access the horse set up wizard and edit remove horse'><a href="{% url 'edithorse' pk=selected.pk %}">Edit or Delete Horse</a></p>
-    </div>
+    </div> {% endcomment %}
 
 
 
 
-</div>
+{% comment %} </div> {% endcomment %}
 <!-- end of section-->
 
 <!--app section-->
@@ -283,7 +537,7 @@
 
 
 <!--passport-->
-<h2 class="hs__headline">Horse Passport</h2>
+{% comment %} <h2 class="hs__headline">Horse Passport</h2>
 <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
 
 
@@ -300,18 +554,196 @@
       <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
         style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button>
                 </form>
-    </div>
+    </div> {% endcomment %}
+    <div class="card-panel grey darken-4 ">
+      <h2 id="apps">Appointments</h2>
+
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header">
+
+          <div class="col s11 acc_header">Farrier</div>
+          
+          <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+          
+
+   
+        </div>
+        <div class="collapsible-body"><span>
+ <ul>
+          {% for app in appointments %}
+          {% if app.event.appType == "Farrier" %}
 
 
+         <li> <span class=""> {{app.due}}</span></li>
+      
+      {% endif %}
 
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+ </ul>
+        </span></div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+           <div class="col s11 acc_header">Vet</div>
+          
+         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+   
+        </div>
+        <div class="collapsible-body"><span>
+ <ul>
+          {% for app in appointments %}
+          {% if app.event.appType == "Vet" %}
+
+
+         <li> <span class=""> {{app.due}}</span></li>
+      
+      {% endif %}
+
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+ </ul>
+        </span></div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+           <div class="col s11 acc_header">Physio</div>
+          
+         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+   
+        </div>
+        <div class="collapsible-body"><span>
+ <ul>
+          {% for app in appointments %}
+          {% if app.event.appType == "Physio" %}
+
+
+         <li> <span class=""> {{app.due}}</span></li>
+      
+      {% endif %}
+
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+ </ul>
+        </span></div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">
+           <div class="col s11 acc_header">Dentist</div>
+          
+         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+   
+        </div>
+        <div class="collapsible-body"><span>
+ <ul>
+          {% for app in appointments %}
+          {% if app.event.appType == "Dentist" %}
+
+
+         <li> <span class=""> {{app.due}}</span></li>
+      
+      {% endif %}
+
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+ </ul>
+        </span></div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">
+           <div class="col s11 acc_header">Worming</div>
+          
+         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+   
+        </div>
+        <div class="collapsible-body"><span>
+ <ul>
+          {% for app in appointments %}
+          {% if app.event.appType == "Worming" %}
+
+
+         <li> <span class=""> {{app.due}}</span></li>
+      
+      {% endif %}
+
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+ </ul>
+        </span></div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">
+           <div class="col s11 acc_header">Vacs</div>
+          
+         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+   
+        </div>
+        <div class="collapsible-body"><span>
+ <ul>
+          {% for app in appointments %}
+          {% if app.event.appType == "Injections" %}
+
+
+         <li> <span class=""> {{app.due}}</span></li>
+      
+      {% endif %}
+
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+ </ul>
+        </span></div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">
+           <div class="col s11 acc_header">Saddler</div>
+          
+         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+   
+        </div>
+        <div class="collapsible-body"><span>
+ <ul>
+          {% for app in appointments %}
+          {% if app.event.appType == "Saddler" %}
+
+
+         <li> <span class=""> {{app.due}}</span></li>
+      
+      {% endif %}
+
+
+      {% endfor %}
+      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
+ </ul>
+        </span></div>
+      </li>
+    </ul>
 
 
 
 
 </div>
-<!--end of section-->
 
- <h2 id="apps">Appointments</h2>
+</div>
+<!--end of section-->
+{% comment %} 
+<div id="test2" class="col s12">
+  <h2 class="hs__headline">Notes</h2>
+  <div class="row blue_box">
+    <p>{{selected.notes}}</p>
+  </div>  {% endcomment %}
+
+ {% comment %} <h2 id="apps">Appointments</h2>
 <div class='row'>
     <div class="col s12 m6 appointment "data-intro='Appointments for your horse are added here' >
         <h4 class="">Next</h4>
@@ -319,7 +751,7 @@
 
             <li>
                 <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Dentist" name="apps" value="Dentist"> <button class="btn btn-success appointments_submit"><i
-              class="fas fa-tooth grey-text"></i><b>Dentist:</b>
+              class="fas fa-tooth grey-text"></i><b>D:</b>
 
             {% for app in appointments %}
             {% if app.event.appType == "Dentist" %}
@@ -400,6 +832,7 @@
 
 
         {% endfor %}
+        
       </li>
       <li>
         <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Vet" name="apps"
@@ -444,8 +877,8 @@
 
     </ul>
 
-  </div>
-
+  </div> {% endcomment %}
+{% comment %} 
   <div class="col s12 m6">
 
     <h4 class="" data-intro='Appointment history by type is shown here. Click a link to view or edit'>History</h4>
@@ -458,13 +891,13 @@
       <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
     </ul>
 
-  </div>
+  </div> {% endcomment %}
 
 
 
 
-</div>
-
+{% comment %} </div> {% endcomment %}
+{% comment %} 
 <h2 class="hs__headline">Training</h2>
 <div class="row " style="padding-bottom:20px;" data-intro='Training history for your horse'>
 
@@ -480,7 +913,7 @@
           aria-hidden="true"></i></a>
         </li>
         {% endfor %}
-</div>
+</div> {% endcomment %}
 
 
 
@@ -495,7 +928,8 @@
 <script src="{% static 'js/slider.js'%}"></script>
 <script>
     $(document).ready(function() {
-        $('select').formSelect();
+      $('select').material_select();
+        $('.collapsible').collapsible();
     });
 </script>
 

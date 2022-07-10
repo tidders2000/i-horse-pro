@@ -41,7 +41,7 @@ def index(request):
                 messages.error(request, "You have successfully logged in")
                 if instance.wizard == True:
                     print("True")
-                    return redirect(reverse('wizard'))
+                    return redirect(reverse('wizard_addhorse'))
                 return redirect(reverse('home'))
             else:
 

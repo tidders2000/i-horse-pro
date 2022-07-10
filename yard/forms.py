@@ -21,6 +21,4 @@ class staff_form(forms.ModelForm):
         model = Staff
         fields = '__all__'
         exclude = ['user']
-        widgets = {
-            'start_date': DateInput(), 'termination_date': DateInput()
-        }
+     

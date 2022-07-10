@@ -47,6 +47,13 @@ def deletetack(request, pk):
 
     return redirect('tackedit', pk=horse)
 
+def deletelink(request, pk):
+    linkItem = get_object_or_404(Link, pk=pk)
+    horse = linkItem.horse.pk
+    linkItem.delete()
+
+    return redirect('links', pk=horse)
+
 
 def tackedit(request, pk):
     horse = get_object_or_404(Horse, pk=pk)
@@ -84,7 +91,7 @@ def tackhorse(request, pk):
     return render(request, 'tack.html', {'tack': tack, 'tackdetails': tackdetails, 'horse': horse, 'display': display})
 
 
-def links(request):
+def links(request,pk):
     horse = request.session['horse']
     user = request.user
     newHorse = Horse.objects.get(pk=horse)
@@ -133,7 +140,7 @@ def detailsInd(request, pk):
 
     appointments = Appointment.objects.all().filter(
         horse=selected).order_by('event__appType', 'due')
-    appointments = appointments.distinct('event__appType')
+    # appointments = appointments.distinct('event__appType')
 
     # if request.method == "POST":
        

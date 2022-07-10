@@ -46,6 +46,75 @@
 .current{
   margin-left:5px;
 }
+.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
+
+
+    .card-panel{
+        border-radius:10px;
+      }
+
+      .tabs li a{
+        color:#0288d1!important;
+      }
+      .indicator{
+          background-color:white!important;
+          margin-top:5px;
+      }
+
+      nav{
+          background-color:black!important;
+      }
+
+      .caret{
+          color:white!important;
+      }
+      .material-icons{
+          {% comment %} font-size:40px; {% endcomment %}
+          color:white;
+          padding-top:10px;
+      }
+      .session_title{
+          font-size:40px;
+          color:white;
+          text-align:center;
+          font-weight:600;
+
+      }
+
+      button{
+          border-radius:10px;
+          background-colour:#21a3e2!important;
+      }
+
+      .i_color{
+          color:#21a3e2!important;
+         
+      }
+
+
+      ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+
+    label{
+        text-size:1 rem!important;
+        font-family: 'Roboto', 'Helvetica', sans-serif;
+    }
+   
+
+.file-field .btn{
+        display:none;
+    }
+    .file-path-wrapper{
+        display:none;
+    }
+
+    button{
+        border-radius:10px;
+    }
+    .collection-item{
+      background-color:pink;
+    }
 
 </style>
 
@@ -59,7 +128,7 @@
       </div>
     </div>
   </nav>
-
+  <div class="card-panel grey darken-4">
 <h4  data-intro='All your training and comps are listed here for all horses'>History</h4>
 
   <!-- search -->
@@ -80,12 +149,13 @@
             
             </form>
         </div>
-
+      </div><!--end of card-->
+      <div class="card-panel grey darken-4">
 <div class="row" >
 
    <ul class="collection" style="border:none!important;" data-intro='Click a blue arrow to view'>
    {% for train in train_obj %}
-    <li class="collection-item avatar " style="background-color:#101010!important"  >
+    <li class="collection-item avatar grey darken-4 "  >
       <img src="{{MEDIA_URL}}{{train.disipline.image}}" alt="train.disipline.disipline" class="circle">
       <span class="disipline_title ">{{train.disipline.disipline}} {{train.date}}</span>
       <p class="disipline_type">Training Session
@@ -95,7 +165,7 @@
        {% endfor %}
 
           {% for comp in page_obj%}
-    <li class="collection-item avatar " style="background-color:#101010!important">
+    <li class="collection-item avatar grey darken-4 " >
       <img src="{{MEDIA_URL}}{{comp.disipline.image}}" alt="{{comp.disipline.disipline}}" class="circle">
       <span  class="disipline_title ">{{comp.disipline.disipline}} {{comp.date}}</span>
       <p class="disipline_type">Competition
@@ -123,6 +193,7 @@
     </span>
 </div>
 </div><!--end of row-->
+</div>
 {% endblock %}{% block scripts %}
     <script src="slider.js"></script>
     <script>

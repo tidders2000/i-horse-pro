@@ -14,7 +14,92 @@
 {% endblock %}
 
    {% block content %} 
+   <style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
+     .card-action a{
+       color:#0288d1!important;
+      background-color:white;
+     }
+  .card_text{
+    font-weight: 700;
+    text-transform:uppercase;
+    color:black
+  }
+   label{
+     margin-top:-20px;
+   }
+    .card-panel,.card{
+        border-radius:10px;
+      }
 
+      .tabs li a{
+        color:#0288d1!important;
+      }
+      .indicator{
+          background-color:white!important;
+          margin-top:5px;
+      }
+
+      nav{
+          background-color:black!important;
+      }
+
+      .caret{
+          color:white!important;
+      }
+      .material-icons{
+          {% comment %} font-size:40px; {% endcomment %}
+          color:white;
+          padding-top:10px;
+      }
+      .session_title{
+          font-size:40px;
+          color:white;
+          text-align:center;
+          font-weight:600;
+   
+      }
+
+      button{
+          border-radius:10px;
+          background-colour:#21a3e2!important;
+      }
+
+      .i_color{
+          color:#21a3e2!important;
+         
+      }
+
+
+      ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+
+    label{
+        text-size:1 rem!important;
+        font-family: 'Roboto', 'Helvetica', sans-serif;
+    }
+   
+
+.file-field .btn{
+        display:none;
+    }
+    .file-path-wrapper{
+        display:none;
+    }
+
+    button{
+        border-radius:10px;
+    }
+
+   
+ .fa-trophy{
+  color: white;
+  font-size: 20px;
+    }
+   select{
+    background-color: #212121!important;
+   }
+</style>
 
   <nav>
     <div class="nav-wrapper">
@@ -27,31 +112,27 @@
   </nav>
 
 
-<h4>{{session.disipline.disipline}}</h4>
 
 
-<div class="nativeCal" style="display:{{display}};">
+
+<div class="nativeCal" >
 
 <a href="{% url 'EventFeed2' %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
 
 </div>
 
 
-   
-      <div class="">
-
-     <img class="selected-image" src="{{MEDIA_URL}}{{ session.disipline.image}}" alt="{{customimg.disipline}}" />
-      
-      </div>
-
-   <div class="row" style="border:1px solid #b3b3b3"></div>
-
-       <h2 class="hs__headline">Competition Details</h2>
-    <div class="row blue_box" >
-          <form method="POST" enctype="multipart/form-data" class="col s12">
-              <span class="material-icons white-text" style="padding:5px;">
-edit
-</span>
+ 
+<div class="card-panel grey darken-4">
+  <form method="POST" enctype="multipart/form-data" >
+  <div class="row">
+      <div class="col s2"><i class="fa fa-trophy" aria-hidden="true"></i></div>
+      <div class="col s8 session_title">{{session.disipline.disipline}}  </div>
+      <div class="col s2">
+          <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="material-icons">
+          save
+          </span></button></div>
+  </div>
       <div class="row">
       <form method-"POST" enctype="multipart/form-data">
         <div class="input-field col s12 m6">
@@ -64,16 +145,13 @@ edit
      {{form.date|materializecss}}
           
         </div>
-      </div>
 
-                <div class="input-field   col s12">
-                
-                {{form.videoLink|materializecss}}  
-                </div>
+
+            
                         <div class="input-field col s12">
         <span class="material-icons yellow-text">
         emoji_objects
-        </span>
+        </span>  
                   {{form.lightbulb|materializecss}} 
                 </div>
                 <div class="input-field col s12">
@@ -83,10 +161,104 @@ edit
         {{form.image|materializecss}} 
                 </div>
                   
+                <div class="col s12">
+                        
+                  <ul class="tabs grey darken-4">
+                    <li class="tab col s3"><a href="#test1" class="active"> Rider</a></li>
+                    <li class="tab col s3"><a  href="#test2">Venue</a></li>
+                
+   
+                  </ul>
+                </div>
+                <div id="test1" class="col s12"> 
+                  <div class="row blue_box">
+                  <div class="white-text">Rider Rating</div>
+
+
+
+                  <select id="id_myStars" name="myStars">
+                    
+                  {% if session.myStars == '1' %}<option  value="1" selected>1</option>{% else %}<option  value="1">1</option>{% endif %}
+                {% if  session.myStars == '2' %}<option  value="2" selected>2</option>{% else %}<option  value="2">2</option>{% endif %}
+                 {% if  session.myStars == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
+                  {% if  session.myStars == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
+                  {% if session.myStars == '5' %}<option  value="5" selected>5</option>{% else %}<option  value="5">5</option>{% endif %}
+               </select>
+
+                </div>
+              </div>
+                <div id="test2" class="col s12">
+                  <div class="row blue_box">
+                    <form method="POST">
+                    <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_venue"  style="float:right;"><span class="material-icons" >
+                      save
+                      </span></button>
+                    <h5> Rate the Venue</h5>
+                     
+                      
+                     <div class="white-text">Value</div>
+                   
+                     <select id="id_value" name="value">
+                     
+                    <div class="white-text">Venue Rating</div>
+                     
+                   {% if venue_instance.value == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
+                 {% if venue_instance.value == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
+                  {% if venue_instance.value == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
+                   {% if venue_instance.value == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
+                   {% if venue_instance.value == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
+                
+                
+                </select>
+                
+                
+                
+                <br>
+                 <div class="white-text">Refreshments</div>
+                <select id="id_refreshments" name="refreshments" value="4">
+                  {% if venue_instance.refreshments == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
+                 {% if venue_instance.refreshments == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
+                  {% if venue_instance.refreshments == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
+                   {% if venue_instance.refreshments == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
+                   {% if venue_instance.refreshments == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
+                </select>
+                <br>
+                 <div class="white-text">Prizes</div>
+                <select id="id_prizes" value="4" name="prizes">
+                    {% if venue_instance.prizes == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
+                 {% if venue_instance.prizes == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
+                  {% if venue_instance.prizes == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
+                   {% if venue_instance.prizes == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
+                   {% if venue_instance.prizes == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
+                </select>
+                <br>
+                 <div class="white-text">Atmosphere</div>
+                <select id="id_atmosphere" value="4" name="atmosphere">
+                 {% if venue_instance.atmosphere == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
+                 {% if venue_instance.atmosphere == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
+                  {% if venue_instance.atmosphere  == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
+                   {% if venue_instance.atmosphere  == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
+                   {% if venue_instance.atmosphere == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
+                </select>
+                   
+                {% csrf_token %}
+                      
+                    </form>
+                 
+                
                   
+                </div>
+
+
+                </div>
+
+                <div id="test3" class="col s12">
+                
+              </div>    
+
                   
    
-<div class="rating">
+{% comment %} <div class="rating">
   <div class="white-text">Rider Rating</div>
    <select id="id_myStars" name="myStars">
      
@@ -95,20 +267,21 @@ edit
   {% if  session.myStars == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
    {% if  session.myStars == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
    {% if session.myStars == '5' %}<option  value="5" selected>5</option>{% else %}<option  value="5">5</option>{% endif %}
-</select>
+</select> {% endcomment %}
 
     </div>   
          
+  </div>
 
-
-      {% csrf_token %}
+    
   
-           <button type="submit" id="sbutton" class= 'subplus tooltipped ' name="save_log"  data-position="bottom" data-tooltip="Click to Save"><span class="blutext">+<span></button>
-        
+   
+{% comment %}         
            </form>
   
 
     </div>
+  </div>
    <h2>Venue Ratings</h2>
     <div class="row blue_box">
     <h5> Rate the Venue</h5>
@@ -166,18 +339,32 @@ edit
   
 </div>
 
-
-
+</div> {% endcomment %}
+ 
+<div class="card-panel grey darken-4">
    <h2 class="hs__headline">Entry List</h2>
-    <div class="row blue_box" >
+    <div class="row blue_box"style="padding-top:30px!important" >
     <form method="POST">
     <div></div>
     {{entry|materializecss}}
       {% csrf_token %}
       <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add" name="save_entry"><span class="blutext">+<span></button>
     </form>
-   
-  <table class=" white-text " id="entries">
+    {% for entry in entries%}
+    <div class="card blue-grey darken-1 ">
+      <div class="card-content white-text">
+        <span class="card-title">{{entry.horse}}</span>
+        <p><span class="card_text">Class:</span> {{entry.horseClass}}</p>
+        
+        <p><span class="card_text">Time</span> {{entry.class_time}}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'editentry' entry.pk %}">EDIT</a>
+        
+      </div>
+    </div>
+    {% endfor %}
+  {% comment %} <table class=" white-text " id="entries">
               <thead>
                 <tr class="grey-text">
                     <th>Horse</th>
@@ -198,9 +385,9 @@ edit
                 </tr>
          {% endfor %}
               </tbody>
-            </table>
+            </table> {% endcomment %}
 </div>
-   
+</div>
    
 
 
@@ -209,8 +396,21 @@ edit
    
     <script>
 	  $(document).ready(function(){
-    $('select').formSelect();
+      $('select').material_select();
     $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+    $('.timepicker').pickatime({
+      default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+      fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+      twelvehour: false, // Use AM/PM or 24-hour format
+      donetext: 'OK', // text for done-button
+      cleartext: 'Clear', // text for clear-button
+      canceltext: 'Cancel', // Text for cancel-button,
+      container: undefined, // ex. 'body' will append picker to body
+      autoclose: false, // automatic close timepicker
+     
+   
+      
+    });
    
     // $('#id_class_time').timepicker() 
   

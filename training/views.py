@@ -33,10 +33,10 @@ class EventFeed3(ICalFeed):
 
     def item_title(self, item):
 
-        return "{}".format(item.location)
+        return "Training:{}".format(item.horse)
 
     def item_description(self, item):
-        return item.notes
+        return item.disipline
 
     def item_start_datetime(self, item):
         return item.date
@@ -86,16 +86,17 @@ def training_edit(request, pk):
                 return redirect(reverse('training_edit', kwargs={'pk': pk}) + '#obj')
 
         if 'save_log' in request.POST:
-            log = training_form(
+            log = training_form(request.user,
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
-                # sets appointment display css
-                display = 'inline'
+               
+                # display = 'inline'
                 messages.error(request, "Training Saved")
                 return redirect("training_edit", pk=pk)
+                
 
-    return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display})
+    return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display,})
 
 
 def checkOb(request, pk):

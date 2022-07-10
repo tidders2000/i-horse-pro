@@ -9,6 +9,7 @@
 
   <!-- core css -->
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
      
   <!--vendor style sheets-->
   <script
@@ -21,7 +22,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" /> {% endcomment %}
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <!-- manifest-->
  <link rel="manifest" href="{% static 'manifest.json' %}"> 
@@ -66,7 +67,22 @@
 
 {% block head %}{% endblock %}
 
+
+
 </head>
+<style>
+  a:hover{
+    color:#0288d1;
+  }
+
+  .topnav{
+    background-color:#101010;
+  }
+
+  .side-nav{
+    background-color:black!important;
+  }
+</style>
 
 <body>
 
@@ -76,7 +92,34 @@
 
  <!-- Top Navigation Menu -->
 <div class="topnav hide-on-med-and-up">
-   <img src="{% static 'images/logo/mobile_logo.png' %} "class="logo_small"/>
+  <ul id="slide-out" class="side-nav">
+    <li><div class="user-view">
+     
+      <a href="{% url 'home' %}"><i class="fa fa-home"></i><em>Home</em></a>
+      <a href="{% url 'details'%}"><i class="fas fa-horse"></i><em>Horses</em></a>
+      <a href="{% url 'yard_menu' %}"><i class="fas fa-broom"></i></i><em>Yard</em></a>
+      <a href="{% url 'caltwo'%}"><i class="fa fa-calendar"></i></i><em>Calendar</em></a>
+      <a href="{% url 'training_log' %}"><i class="fas fa-book-open"></i><em>Training</em></a>
+      <a href="{% url 'history'%}"><i class="fas fa-chart-line"></i><em>Activity Log</em></a>
+      <a href="{% url 'competition'%}"><i class="fas fa-award"></i><em>Competitions</em></a>
+      <a href="{% url 'profile' %}"><i class="fa fa-cog"></i><em>Settings</em></a>
+      <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a>
+      {% comment %} <a href="{% url 'mindset_select' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a> {% endcomment %}
+      <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><em>Logout</em></a>
+    </div></li>
+   
+  </ul>
+  <div class="row">
+    <div class="col s1">
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    <div class="col s4 offset-s2">
+  <img src="{% static 'images/logo5.png' %} "class="logo"/>
+    </div>
+
+  </div>
+        
+   {% comment %} <img src="{% static 'images/logo/mobile_logo.png' %} "class="logo_small"/>
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
                <a href="{% url 'home' %}"><i class="fa fa-home"></i><em>Home</em></a>
@@ -95,7 +138,7 @@
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="menu()">
     <i class="fa fa-bars"></i>
-  </a>
+  </a> {% endcomment %}
  
 </div>
 
@@ -112,14 +155,14 @@
               <li> <a href="{% url 'competition'%}"><i class="fas fa-award"></i><em>Competitions</em></a></li>
               <li> <a href="{% url 'profile' %}"><i class="fa fa-cog"></i><em>Settings</em></a></li>
               <li> <a href="{% url 'horse' %}"><i class="fas fa-plus"></i><em>Add Horses</em></a></li>
-              <li class='navli'> <a href="{% url 'mindset_select' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a></li>
+              {% comment %} <li class='navli'> <a href="{% url 'mindset_select' %}"><i class="fa fa-heart" aria-hidden="true"></i><em>Mindset</em></a></li> {% endcomment %}
               <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><em>Logout</em></a></li>
           
           </ul>
  
           <div class="socialwapper center-align">
           <a href=""><i class="fa fa-facebook-square social" aria-hidden="true"></i></a>
-          <i class="fa fa-twitter-square social" aria-hidden="true"></i>
+          <i class="fa fa-twitter-square social" i class="fas fa-horse  center-align small_nav" style="padding:0;"></i>aria-hidden="true"></i>
           <i class="fa fa-instagram social" aria-hidden="true"></i>
           </div>
         
@@ -196,14 +239,20 @@
 <!--push notification subscribe-->  
 {% block javascript %}
    <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
  <script src="{% static 'js/jquery.datetimepicker.full.min.js'%}"></script>
  <!-- custom js-->
  <script src="{% static 'js/custom.js' %}"></script>
  <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
 <script>
+  $('.button-collapse').sideNav({
+    menuWidth: 300, // Default is 300
+    edge: 'right', // Choose the horizontal origin
+    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    draggable: true, // Choose whether you can drag to open on touch screens,
 
-
+  }
+);
 </script>
 
 </script>

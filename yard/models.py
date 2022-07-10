@@ -19,9 +19,12 @@ class Staff(models.Model):
     emergency_contact_name = models.CharField(max_length=40, blank=True)
     emergency_contact_number = models.CharField(max_length=40, blank=True)
     start_date = models.DateField(blank=True,null=True)
-    termination_date = models.DateField(blank=True, null=True)
+    
+    
+   
     pay_rate = models.CharField(max_length=40, blank=True)
     notes = models.TextField(blank=True)
+    termination_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -9,14 +9,19 @@
  {% block content %} 
 <style>
 
-
+.card-panel{
+  border-radius:10px;
+}
+nav{
+  background-color:black!important;
+}
 
 </style>
 <nav>
     <div class="nav-wrapper">
       <div class="col s12 breadcrumb">
         <a href="{% url 'home' %}" class="breadcrumb">Home</a>
-        <a href="{% url 'yard_menu' %}" class="breadcrumb">yard</a>
+        <a href="{% url 'yard_menu' %}" class="breadcrumb">Yard</a>
         
         <a href="#"  data-intro='Employees and clients are listed below. Click a client/employee to view. Click the add link to add more' class="breadcrumb">People</a>
        
@@ -29,26 +34,36 @@
 
     <div class='row'>
     <div class="col s12 m6" style="">
+      <div class="card-panel grey darken-4">
     <h5>Employees</h5>
     
-    <a href="{% url 'staff' %}">Add Employee </a><i class="fa fa-plus" aria-hidden="true"></i>
-     <p class="white-text">Name / Contact Number</p>
+    <a href="{% url 'staff' %}" class="white-text">Add Employee </a><i class="fa fa-plus white-text" aria-hidden="true"></i>
+  <br><br>
       {% for emp in employee %}
-      <p class="white-text"> <a href="{% url 'edit_staff' pk=emp.pk %}" class="white-text">{{emp.name}} <a href="tel:{{emp.mobile}}" class="white-text">{{emp.mobile}}</a></p>
+      <div class="chip">
+      
+        <a href="{% url 'edit_staff' pk=emp.pk %}">{{emp.name}}</a>
+      </div>
+      {% comment %} <p class="white-text"> <a href="{% url 'edit_staff' pk=emp.pk %}" class="white-text">{{emp.name}} <a href="tel:{{emp.mobile}}" class="white-text">{{emp.mobile}}</a></p> {% endcomment %}
       {% endfor %}
     
     
-    
+    </div>
     </div><!--endof  col-->
      <div class="col s12 m6" style="">
+      <div class="card-panel grey darken-4">
      <h5>Clients</h5>
-     <a href="{% url 'clients' %}">Add Client </a><i class="fa fa-plus" aria-hidden="true"></i>
-    <p class="white-text">Name / Contact Number</p>
+     <a href="{% url 'clients' %}" class="white-text">Add Client </a><i class="fa fa-plus white-text" aria-hidden="true"></i>
+     <br><br>
       {% for cli in client %}
-      <p class="white-text"> <a href="{% url 'edit_client' pk=cli.pk %}" class="white-text">{{cli.name}} <a href="tel:{{cli.mobile}}" class="white-text">{{cli.mobile}}</a></p>
+      <div class="chip">
+      
+        <a href="{% url 'edit_client' pk=cli.pk %}">{{cli.name}}</a>
+      </div>
+    
       {% endfor %}
      </div><!--endof  col-->
-
+    </div>
 </div><!--end of row-->
 {% endblock %}{% block scripts %}
     <script src="slider.js"></script>

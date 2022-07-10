@@ -38,6 +38,13 @@ def staff(request):
 
 
 def yard_menu(request):
+ 
+    if request.method == "POST":
+      fname=request.POST.get('fn')
+      lname= request.POST.get('ln')
+      print(fname)
+      print(lname)
+
     return render(request, 'yard_menu.html')
 
 
@@ -49,17 +56,20 @@ def edit_client(request, pk):
         if form_add.is_valid():
             form_add.save()
             messages.error(request, "Client Updated")
+            return redirect('people')
     return render(request, 'client.html', {'form': form, 'instance': instance})
 
 
 def edit_staff(request, pk):
     instance = get_object_or_404(Staff, pk=pk)
-    form = client_form(instance=instance)
+    form = staff_form(instance=instance)
     if request.method == "POST":
-        form_add = client_form(request.POST, instance=instance)
+        form_add = staff_form(request.POST, instance=instance)
         if form_add.is_valid():
             form_add.save()
             messages.error(request, "Employee Updated")
+            return redirect('people')
+
     return render(request, 'staff.html', {'form': form, 'instance': instance})
 
 

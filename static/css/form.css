@@ -15,6 +15,7 @@ textarea {
 
 form {
     margin-left: 30px;
+    color:white;
 }
 
 .custom-file-input::-webkit-file-upload-button {
@@ -72,7 +73,7 @@ form {
 @media only screen and (max-width: 600px) {
     .col,
     .row {
-        margin-left: 0 !important;
+        /* margin-left: 0 !important; */
         margin-right: 0 !important;
     }
     form {

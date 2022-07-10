@@ -3,9 +3,80 @@
 
 
 <link rel="stylesheet" href="{% static 'css/page.css' %}">
-<link rel="stylesheet" href="{% static 'css/form.css' %}"> {% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+{% endblock %}
 
-<style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;}</style>
+{% block content %}
+
+
+<style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
+
+
+    .card-panel{
+        border-radius:10px;
+      }
+
+      .tabs li a{
+        color:#0288d1!important;
+      }
+      .indicator{
+          background-color:white!important;
+          margin-top:5px;
+      }
+
+      nav{
+          background-color:black!important;
+      }
+
+      .caret{
+          color:white!important;
+      }
+      .material-icons{
+          {% comment %} font-size:40px; {% endcomment %}
+          color:white;
+          padding-top:10px;
+      }
+      .session_title{
+          font-size:40px;
+          color:white;
+          text-align:center;
+          font-weight:600;
+
+      }
+
+      button{
+          border-radius:10px;
+          background-colour:#21a3e2!important;
+      }
+
+      .i_color{
+          color:#21a3e2!important;
+         
+      }
+
+
+      ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+
+    label{
+        text-size:1 rem!important;
+        font-family: 'Roboto', 'Helvetica', sans-serif;
+    }
+   
+
+.file-field .btn{
+        display:none;
+    }
+    .file-path-wrapper{
+        display:none;
+    }
+
+    button{
+        border-radius:10px;
+    }
+   
+</style>
 <nav>
     <div class="nav-wrapper">
         <div class="col s12 breadcrumb">
@@ -16,20 +87,19 @@
         </div>
     </div>
 </nav>
-<h2>{{session.disipline.disipline}} - <span style="color:#21a3e2;">{{session.horse.stableName}}</span></h2>
 
-<div class="nativeCal" style="display:{{display}};">
+
+{% comment %} 
+<h2><img src="{{MEDIA_URL}}{{ session.disipline.image}}" alt="{{customimg.disipline}}" class="circle " height="60px" width="60px"/> {{session.disipline.disipline}} - <span style="color:#21a3e2;">{{session.horse.stableName}}</span></h2>
+{% endcomment %}
+<div class="nativeCal" style="display:inline";>
 
     <a href="{% url 'EventFeed3' %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
 
-</div>
+</div> 
 
 
-<div class="">
 
-    <img class="selected-image" src="{{MEDIA_URL}}{{ session.disipline.image}}" alt="{{customimg.disipline}}" />
-
-</div>
 
 
 
@@ -51,10 +121,161 @@
 
     <!--endrow-->
 
+    <div class="card-panel grey darken-4">
+        <form method="POST" enctype="multipart/form-data" >
+        <div class="row">
+            <div class="col s2"><span class="material-icons large">
+                school
+                </span></div>
+            <div class="col s8 session_title">{{session.disipline.disipline}}  </div>
+            <div class="col s2">
+                <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="material-icons">
+                save
+                </span></button></div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12" data-intro='Complete the details of future or previous training sessions. Note date and venue are mandatory fields. You can come back and edit so if the session has not yet taken place just fill in the minimum to save. To save a session scroll to the bottom and click the +'>
 
+                {{form.instructor|materializecss}}
 
+            </div>
+            <div class="input-field col s12">
 
-    <h2 class="hs__headline">Session Details</h2>
+                {{form.horse|materializecss}}
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 date">
+                {{form.date|materializecss}} 
+            </div>
+            <div class="input-field col s12">
+
+                {{form.location|materializecss}}
+            </div>
+           
+            <div class="input-field col s12">
+
+                {{form.notes|materializecss}}
+            </div>
+        </div>
+        
+
+        </div>
+
+        <div class="row">
+           
+              <div class="card-panel grey darken-4 ">
+                <div class="row">
+                
+                    <div class="col s12">
+                        
+                      <ul class="tabs grey darken-4">
+                        <li class="tab col s3"><a href="#test1" class="active">  <i class="material-icons small i_color">assignment</i></a></li>
+                        <li class="tab col s3"><a  href="#test2"><i class="material-icons small i_color">assignment_turned_in</i></a></li>
+                        <li class="tab col s3 "><a href="#test3"> <i class="material-icons small i_color">create</i></a></li>
+                        <li class="tab col s3"><a href="#test4"> <i class="material-icons small i_color">file_upload</i></a></li>
+                        <li class="tab col s3"><a href="#test5"> <i class="material-icons small i_color">lightbulb_outline</i></a></li>
+                      </ul>
+                    </div>
+                    <div id="test1" class="col s12">
+                        <h2 class="hs__headline">Objectives</h2>
+                        <div class="row blue_box">
+                        <div class="col s12 m6" id='obj'>
+                            <h5 data-intro='`Session objectives can be added. Click add, to close the box click elsewhere on the screen'>My Objectives</h5>
+                            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">ADD</a>
+                            <p class="white-text" data-intro='Come back here after the session and click to show objectives achived'> Click Objective to mark achieved</p>
+                            <ol>
+                                {% for obj in listObj %}
+                                <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a> {% if obj.Completed == True %}
+                                    <i class="fa fa-check green-text" aria-hidden="true"></i> {% endif %}
+                    
+                                </li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="test2" class="col s12">
+                        <h2 class="hs__headline">Little Wins</h2>
+                        <div class="row blue_box" data-intro='Add things that went well in the session, such as loaded well'>
+                    
+                    
+                            <div class="col s12">
+                                {% comment %} <span class="material-icons white-text" style="padding:5px;"> {% endcomment %}
+                         
+                        </span> {{form.littlewins1|materializecss}}
+                    
+                            </div>
+                        
+                            <div class="col s12">
+                    
+                                {% comment %} <span class="material-icons white-text" style="padding:5px;"> {% endcomment %}
+                    
+                        </span> {{form.littlewins2|materializecss}}
+                    
+                            </div>
+                         
+                    
+                            <div class="col m12">
+                    
+                                {% comment %} <span class="material-icons white-text" style="padding:5px;"> {% endcomment %}
+                     
+                        </span> {{form.littlewins3|materializecss}}
+                    
+                            </div>
+                         
+                    
+                        </div>
+                    </div>
+                    <div id="test3" class="col s12">
+                        <h2 class="hs__headline">Floor Plan</h2>
+                        <div class="row blue_box" data-intro='You can add diagrams. Click on the Floorplan currently to select a file such as a photo or click the draw floorplan to draw. Note you cannot edit diagrams once drawn but can add another one to replace it'>
+                            <a href="{% url 'draw' pk=session.pk %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Click to draw a floorplan</a>
+                            <section>
+                                <div class="decoration col s12"></div>
+                    
+                    
+                                {{form.floorPlan|materializecss}} {% comment %}
+                                <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">camera_enhance</span> </div>
+                                <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">add_circle</span>
+                                </div>
+                                <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">create</span>
+                                </div>
+                                {% endcomment %}
+                    
+                    
+                    
+                            </section>
+                            <img src="{{MEDIA_URL}}{{ session.floorPlan}}" alt="floor plan" class="floorplan">
+                        </div>
+                    </div>
+                    <div id="test4" class="col s12">
+
+    <h2 class="hs__headline">Add A File</h2>
+    <div class="row blue_box">
+
+ <div class="file-path-wrapper" style='min-height:220px;' data-intro='Load up any supporting information such as session notes'>
+            {{form.files|materializecss}}
+
+</div>
+                    </div>
+                  </div>
+            
+              <div id="test5" class="col s12">
+                <h2 class="hs__headline">Lightbulb</h2>
+                <div class="row blue_box">
+                <div class="input-field col s12">
+            {{form.lightbulb|materializecss}}
+                </div>
+            </div>
+        </div>
+              </div>
+            </div>
+          </div>
+          {% csrf_token %}
+        </form>
+    {% comment %} <h2 class="hs__headline">Session Details</h2>
     <div class="row blue_box">
         <form method="POST" enctype="multipart/form-data" class="col s12">
             <span class="material-icons white-text" style="padding:5px;">
@@ -71,7 +292,7 @@
                     {{form.horse|materializecss}}
 
                 </div>
-            </div>
+            </div><br><br>
             <div class="row">
                 <div class="input-field col s12 date">
                     {{form.date|materializecss}} 
@@ -92,12 +313,12 @@
             </div>
 
 
-    </div>
+    </div> {% endcomment %}
 
 
-    <h2 class="hs__headline">Session Objectives</h2>
+    {% comment %} <h2 class="hs__headline">Session Objectives</h2>
     <div class="row blue_box">
-        <div class="col s12 m6" id='obj'>
+       <div class="col s12 m6" id='obj'>
             <h5 data-intro='`Session objectives can be added. Click add, to close the box click elsewhere on the screen'>My Objectives</h5>
             <a class="waves-effect waves-light btn modal-trigger" href="#modal1">ADD</a>
             <p class="white-text" data-intro='Come back here after the session and click to show objectives achived'> Click Objective to mark achieved</p>
@@ -109,12 +330,12 @@
                 </li>
                 {% endfor %}
             </ol>
-        </div>
+        </div> 
     
-    </div>
+    </div> {% endcomment %}
 
 
-    <h2 class="hs__headline">Little Wins</h2>
+    {% comment %} <h2 class="hs__headline">Little Wins</h2>
     <div class="row blue_box" data-intro='Add things that went well in the session, such as loaded well'>
 
 
@@ -152,24 +373,24 @@
 
         </div>
 
-    </div>
+    </div> {% endcomment %}
 
 
 
-    <h2 class="hs__headline">Floor Plan</h2>
+    {% comment %} <h2 class="hs__headline">Floor Plan</h2>
     <div class="row blue_box" data-intro='You can add diagrams. Click on the Floorplan currently to select a file such as a photo or click the draw floorplan to draw. Note you cannot edit diagrams once drawn but can add another one to replace it'>
         <a href="{% url 'draw' pk=session.pk %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Draw a floorplan</a>
         <section>
             <div class="decoration col s12"></div>
 
 
-            {{form.floorPlan|materializecss}} {% comment %}
+            {{form.floorPlan|materializecss}} 
             <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">camera_enhance</span> </div>
             <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">add_circle</span>
             </div>
             <div class="input-field col s4 center-align"><span class="material-icons center-align white-text">create</span>
             </div>
-            {% endcomment %}
+          
 
 
 
@@ -204,7 +425,7 @@
 <button type="submit " class='subplus tooltipped' data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="blutext">+<span></button>
 </form>
 
-</div>
+</div> {% endcomment %}
 <!--end of col-->
 </div>
   <!-- Modal Structure -->
@@ -231,12 +452,15 @@
 <!-- <script src="slider.js"></script> -->
 <script>
     $(document).ready(function() {
-        $('select').formSelect();
+        $('select').material_select();
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
         $('.datepicker').datepicker({
             'format': 'yyyy-mm-dd'
         });
-          $('.tooltipped').tooltip();
-          $('.modal').modal();
+
+        
+     
     });
 
       

@@ -43,6 +43,9 @@ nav {
 <h4>Draw</h4>
 
   <style>
+	 label{
+		  font-size:18px!important;
+	  }
 			.links a {
 				padding-left: 10px;
 				margin-left: 10px;
@@ -67,6 +70,10 @@ nav {
 				float: right;
         font-size:12px!important;
 			}
+
+			.save{
+				color:white!important;
+			}
 		</style>
 	</head>
 	<body>
@@ -86,9 +93,9 @@ nav {
 		<div class="links" style="margin-top: 5px;">
 			<strong class="blue-text">OPTIONS:</strong>
 			
-			<a href="#" onclick='$("#test").data("jqScribble").clear();' data-intro='Clear the canvas'>Clear</a>
+			<button class="waves-effect waves-light btn">	<a href="#" onclick='$("#test").data("jqScribble").clear();' data-intro='Clear the canvas' class="save">Clear</a></button>
 			
-			<a href="#" onclick='save();' data-intro='Make sure you save the diagram. You cannot edit a diagram but you can add a new one'>Save Drawing</a>
+			<button class="waves-effect waves-light btn"><a href="#" onclick='save();' data-intro='Make sure you save the diagram. You cannot edit a diagram but you can add a new one' class="save">Save Drawing</a></button>
 		</div>
 
 

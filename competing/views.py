@@ -49,12 +49,14 @@ def comp_edit(request, pk):
 
     test = venue_form()
     form = comp_form(instance=session)
+    
     venue_instance = get_object_or_404(Venue, competition=session)
     print(venue_instance)
     venue = venue_form(venue_instance.pk)
     display = request.session['dis']
     # entries = Comphorse.objects.all().filter(session=session)
     entry = entry_form()
+    entry.fields["horse"].queryset = Horse.objects.filter(user=request.user)
     entries = Comphorse.objects.all().filter(competition=session)
     if request.method == 'POST':
 

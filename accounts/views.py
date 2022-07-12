@@ -16,9 +16,40 @@ import urllib.request
 
 
 def login(request):
-    """Return a login page"""
+    if request.user.is_authenticated:
+        return redirect(reverse('home'))
 
-    return redirect('index')
+    if request.method == 'POST':
+       
+        login_form = UserLoginForm(request.POST)
+
+        if login_form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username=username,
+                                     password=password)
+
+            if user is not None:
+                auth.login(request=request, user=user)
+                instance = Profile.objects.get(pk=request.user.pk)
+                messages.error(request, "You have successfully logged in")
+                if instance.wizard == True:
+                    print("True")
+                    return redirect(reverse('wizard_addhorse'))
+                return redirect(reverse('home'))
+            else:
+
+                messages.error(request, "oops")
+                messages.error(request, user)
+                # redirects to switcher instead of dash to set group and business
+
+    else:
+        login_form = UserLoginForm()
+
+    
+   
+
+    return render(request,"login.html", {'login_form': login_form})
 
 
 def index(request):

@@ -52,6 +52,8 @@ h5 {
 
 input[type=text]:focus {
     background: white;
+    border-radius: 3px;
+    padding:3px;
 }
 
 button {
@@ -316,7 +318,7 @@ input {
         font-size: 17px !important;
     }
     h2 {
-        font-size: 18px !important;
+        font-size: 25px !important;
     }
     ul {
         margin-left: 5px !important;

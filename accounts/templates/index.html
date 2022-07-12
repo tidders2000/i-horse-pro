@@ -107,9 +107,10 @@ label{
 
 .headline{
   text-align: center;
-  font-size: 4em;
-  color:white;
+  font-size: 3em;
+  color: white;
   font-family: 'Patua One', cursive;
+  letter-spacing: 0.1em;
 
 }
 
@@ -330,24 +331,34 @@ display: inline;
     margin: 1px 0!important;
 }
 
+.login{
+  text-transform: uppercase;
+
+}
+
+
+
 </style>
 <body>
  
                      
              
-                      
+                
 
              
 
 
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/parallex_image.jpg'%}">
 
-    <div class="top-left"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
-    <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised</div>
-    <div class="top-right  logform hide-on-small-only" style="padding-top:80px;padding-right:10px;">  <form method='POST'>{{ login_form|materializecss}} <button type="submit" class="btn btn-success">Login</button>{% csrf_token %}</form>    </div>
-    <div class="centered headline ">Join our like minded community - all things equine in one easily accessible place, </div>
+    <div class="top-left hide-on-small-only"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
+    <div class="center hide-on-med-and-up"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
+   <div class="top-right white-text login" ><a href="{%url 'login'%}">  LOGIN</a></div>
+    {% comment %} <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised <span>LOGIN</span></div> {% endcomment %}
+    <div class="centered headline ">
+      <div>Your Equine World <span class="blue-text upper">ORGANISED</span> </div>
+    <div class="">All things Equine in one easily accessible place </div>
   </div>
-
+</div>
   <section>
   
   <!-- Modal Structure -->
@@ -402,7 +413,7 @@ display: inline;
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/smartphone.png'%}">
     <div class=row>
     <div class="phone-text col s10 offset-s1 m12 l8 offset-l2">
-      <h1>What is i-Horse?</h1>
+      <h2>What is i-Horse?</h2>
 
       <p>i-Horse club aims to create a place for all things equine. We will provide a platform where you can do all your horsey online stuff in one place, from buying or selling to coaching tips and advice. We will also provide apps and tools to make your horsey life easier </p>
   
@@ -492,7 +503,7 @@ $(document).ready(function(){
   <script>
     $(document).ready(function(){
       $('.modal').modal();
-      $('.modal').modal('open');
+    
     
     });
   </script>

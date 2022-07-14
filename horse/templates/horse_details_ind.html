@@ -44,6 +44,7 @@
     button{
         border-radius:10px;
         background-colour:#21a3e2!important;
+        min-height:50px;
     }
 
     .i_color{
@@ -151,7 +152,7 @@
 
                     </ul>
              
-
+                    <p data-intro='Click the link to access the horse set up wizard and edit remove horse'><a href="{% url 'edithorse' pk=selected.pk %}">Edit or Delete Horse</a></p>
             
             </div>
             <div class="row">
@@ -172,7 +173,9 @@
                     <li data-intro='Click the link to view and edit tack'><a href="{% url 'tackedit' pk=selected.pk %}" class="white-text">Tack Record</a></li>
                     {% for link in links %}
                     <li> <a href={{link.link}} class="white-text">{{link.organisation}}</a></li>
+   
                     {% endfor %}
+                    <li data-intro='Click the link to view and edit tack'><a href="{% url 'links' pk=selected.pk %}" class="blue-text">Add/Delete Links</a></li>
                 </ul>
                 <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data">
                   {% comment %} <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">

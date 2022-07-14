@@ -42,12 +42,12 @@ border-radius:10px;
   {% for horse in horses %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper">
-       <a href="{% url 'detailsInd' pk=horse.pk%}"><img class="hs__item__image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.showName}}"/></a>
+       <a href="{% url 'detailsInd' pk=horse.pk%}"><img class="hs__item__image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.stableName}}"/></a>
     </div>
 
     <div class="hs__item__description">
       <span class="hs__item__title white-text">
-       {{horse.showName}}</span>
+       {{horse.stableName}}</span>
     </div>
   </li>
 

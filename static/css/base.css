@@ -302,6 +302,9 @@ input {
     .main_col {
         padding-left: 30px !important;
     }
+    .nav_side{
+        font-size: 12px!important;
+       }
 }
 
 @media all and (max-width: 450px) {

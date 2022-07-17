@@ -90,6 +90,16 @@
     font-weight:600;
   }
 
+  .photo_button{
+    margin:10px!important;
+width:100%;
+  }
+
+  .photo_title{
+    margin:40px!important;
+  }
+
+
 </style>
 
 <nav>
@@ -151,10 +161,14 @@
                         <li><span class="bl">MOBILE:</span> {{selected.owner_mobile}}</li>
 
                     </ul>
+           
              
-                    <p data-intro='Click the link to access the horse set up wizard and edit remove horse'><a href="{% url 'edithorse' pk=selected.pk %}">Edit or Delete Horse</a></p>
+                    <p data-intro='Click the link to access the horse set up wizard and edit remove horse'><a href="{% url 'edithorse' pk=selected.pk %}">Edit Details or Delete Horse</a></p>
             
             </div>
+
+
+            
             <div class="row">
           
               <div class="col s12">
@@ -163,6 +177,7 @@
                   <li class="tab col s3"><a href="#test1" class="active">  <i class="material-icons small i_color">link</i></a></li>
                   <li class="tab col s3"><a  href="#test2"><i class="material-icons small i_color">assignment</i></a></li>
                   <li class="tab col s3"><a  href="#test3"><i class="material-icons small i_color">school</i></a></li>
+                  
                 
                 </ul>
               </div>
@@ -177,15 +192,7 @@
                     {% endfor %}
                     <li data-intro='Click the link to view and edit tack'><a href="{% url 'links' pk=selected.pk %}" class="blue-text">Add/Delete Links</a></li>
                 </ul>
-                <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data">
-                  {% comment %} <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">
-                    save
-                    </span></button>
-                    <input id="pic" name="pic" type="file"  accept="image/*"  >
-                    {% csrf_token %}
-                     {% endcomment %}
-                  
-                              </form> 
+     
                 </div> 
 
               </div>
@@ -219,60 +226,41 @@
               </div>
         
             </div> 
+      
+  </div>
+</div>
+
+<div class="card-panel grey darken-4 ">
+  <h2 class="hs__headline">Photos </h2>
+  <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
+  
+  
+    <div class="col s12 m6" style="padding:15px;">
+
+<form method="POST"  action="{% url 'photo' pk=selected.pk %}"enctype="multipart/form-data">
+  <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">
+    save
+    </span></button>
+    <input id="pic" name="pic" type="file"  accept="image/*" class="white-text" >
+  {% csrf_token %}
+  {% comment %} <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
+    style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button> {% endcomment %}
+            </form>
+
+          </div>
+          <div class="row">
+            {% if selected.photo %}
+            <div class="col s3 materialboxed ">
+              <img src="{{MEDIA_URL}}{{ selected.photo }}" class="responsive-img">
+           
+            {% else %}
+            <p>No images added</p>
+            {% endif %}
+          </div>
         </div>
       </div>
-{% comment %} 
-        <div class="card-panel grey darken-4 ">
-          <div class="row">
-          
-              <div class="col s12">
-                  
-                <ul class="tabs grey darken-4">
-                  <li class="tab col s3"><a href="#test1" class="active">  <i class="material-icons small i_color">link</i></a></li>
-                  <li class="tab col s3"><a  href="#test2"><i class="material-icons small i_color">assignment</i></a></li>
-                  <li class="tab col s3 "><a href="#test3"> <i class="material-icons small i_color">card_travel</i></a></li>
-                  <li class="tab col s3"><a href="#test4"> <i class="material-icons small i_color">file_upload</i></a></li>
-                  <li class="tab col s3"><a href="#test5"> <i class="material-icons small i_color">lightbulb_outline</i></a></li>
-                </ul>
-              </div>
-              <div id="test1" class="col s12">
-                <h2 class="hs__headline">Links</h2>
-                <div class="row blue_box">
-                  <ul>
-                    <li data-intro='Click the link to view and edit tack'><a href="{% url 'tackedit' pk=selected.pk %}" class="white-text">Tack Record</a></li>
-                    {% for link in links %}
-                    <li> <a href={{link.link}} class="white-text">{{link.organisation}}</a></li>
-                    {% endfor %}
-                </ul>
-                </div> 
-
-              </div>
-              <div id="test2" class="col s12">
-                <h2 class="hs__headline">Notes</h2>
-                <div class="row blue_box">
-                  <p>{{selected.notes}}</p>
-                </div> 
-
-              </div>
-              <div id="test3" class="col s12">
-
-                <h2 class="hs__headline">Passport</h2>
-                <div class="row blue_box">
-             
-            
-                            
-              
-                <img src="{{MEDIA_URL}}{{selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
-              </div>
-
-            </div>
-              <div id="test4" class="col s12">t4</div>
-            </div>
-          </div> {% endcomment %}
-
-
-
-
+    
+    </div>
 <div class="card-panel grey darken-4 ">
   <h2 class="hs__headline">Horse Passport</h2>
   <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
@@ -303,6 +291,8 @@
 
 </div>
 </div>
+
+
 
 {% comment %} <h5 data-intro='Selected horse shows here'>{{selected.showName}}</h5>
 <div class="row" style="border:1px solid #b3b3b3"></div>

@@ -15,71 +15,149 @@
      
 {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   {% endcomment %}
+  <style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
+    .card-action a{
+      color:#0288d1!important;
+     background-color:white;
+    }
+ .card_text{
+   font-weight: 700;
+   text-transform:uppercase;
+   color:black
+ }
+  label{
+    margin-top:-20px;
+  }
+   .card-panel,.card{
+       border-radius:10px;
+     }
 
- 
-<style>
+     .tabs li a{
+       color:#0288d1!important;
+     }
+     .indicator{
+         background-color:white!important;
+         margin-top:5px;
+     }
 
+     nav{
+         background-color:black!important;
+     }
+
+     .caret{
+         color:white!important;
+     }
+     .material-icons{
+         {% comment %} font-size:40px; {% endcomment %}
+         color:white;
+         padding-top:10px;
+     }
+     .session_title{
+         font-size:40px;
+         color:white;
+         text-align:center;
+         font-weight:600;
+  
+     }
+
+     button{
+         border-radius:10px;
+         background-colour:#21a3e2!important;
+     }
+
+     .i_color{
+         color:#21a3e2!important;
+        
+     }
+
+
+     ::-webkit-calendar-picker-indicator {
+       filter: invert(1);
+   }
+
+   label{
+       text-size:1 rem!important;
+       font-family: 'Roboto', 'Helvetica', sans-serif;
+   }
+  
+
+.file-field .btn{
+       display:none;
+   }
+   .file-path-wrapper{
+       display:none;
+   }
+
+   button{
+       border-radius:10px;
+   }
+
+  
+.fa-trophy{
+ color: white;
+ font-size: 20px;
+   }
+  select{
+   background-color: #212121!important;
+  }
 </style>
 
-<h2>Tack</h2>
+
  
 
-  <div class="h5">Numbered - <code>.numbered</code></div>
-      <div class="multi-step numbered">
-        <ul class="multi-step-list">
-          <li class="multi-step-item active">
-            <div class="item-wrap">
-              <p class="item-title">Add Horse</p>
-            </div>
-          </li>
-          <li class="multi-step-item active ">
-            <div class="item-wrap">
-              <p class="item-title">Add Photo</p>
-            </div>
-          </li>
-          <li class="multi-step-item active current">
-            <div class="item-wrap">
-              <p class="item-title">Add Tack</p>
-            </div>
-          </li>
-          <li class="multi-step-item active">
-            <div class="item-wrap">
-              <p class="item-title">Add Links</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-                         <div class="row" > 
-                        <form method="POST">
-                        
-                             <div class="col s12 m6 push-m3 blue_box">
-                                  {{ tack|materializecss}}
-                             {% csrf_token %} 
-                                              <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add"><span class="blutext">+<span></button>
-                             </form>
+<nav>
+  <div class="nav-wrapper">
+    <div class="col s12">
+      <a href="#!" class="breadcrumb">Horse/Tack</a>
+     
+    </div>
+  </div>
+</nav>
+<div class="card-panel grey darken-4">
 
 
-
-                                {% for tack in tackdetails %}
-                                <li class="white-text" data-intro='Select tack type, add a description then click the +'>Click choose file then click Add'>{{tack.tacktype}}: {{tack.description}}</li>
-                              
-                                {% endfor %}
-                                 <li data-intro='Click to move to the next section'><a href="{% url 'links'%}"><span class="blutext">Next</span></a></li>
-                                
-                                 </ul>
-
-                           </div>
-                           <a href="{% url 'tackedit' pk=newHorse.pk %}" style="float: right;">SKIP</a>
-
-                         <div class="col  m6 center-align">
-             
+  <h2>Tack</h2>
+   
+  
+   
+  
+                           <div class="row" > 
+                          <form method="POST">
                           
-                      
-                      
-                       </div>
+                               <div class="col s12 m10 blue_box"  data-intro='Select tack type, add a description then click the +. Mutiple tack can be added. If you wish to remove something click the bin'>
+                                    {{ tack|materializecss}}
+                               {% csrf_token %} 
+                                                <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add"><span class="blutext">+<span></button>
+                               </form>
+  
+  
+  
+                                  {% comment %} {% for tack in tackdetails %}
+                                  <li class="white-text">{{tack.tacktype}}: {{tack.description}}  <a href="{% url 'deletetack' pk=tack.pk %}"<i class="fas fa-trash-alt"></i></a></li>
+                                
+                                  {% endfor %} {% endcomment %}
+                              
+                                  
+                                 
+  
+                            
                        
-             </div> 
+  
+                           <div class="col  m6 center-align">
+               
+                            {% for tack in tackdetails %}
+                            <div class="chip">
+                              {{tack.tacktype}}: {{tack.description}}
+                              <a href="{% url 'deletetackHorse' pk=tack.pk %}"<i class="fas fa-trash-alt"></i></a>
+                            </div>
+                            {% endfor %}
+                          
+                        
+                         </div>
+                        </div> 
+               </div> 
+                 
+              </div>
              {% endblock %}
               
 {% block scripts %}
@@ -89,7 +167,7 @@ $(document).ready(function(){
 
   // Initialize materialize data picker
   //$('input').datepicker({'format': 'yyyy-mm-dd'}); 
-   $('select').formSelect();
+  $('select').material_select();
    //$('input').timepicker()
   
 

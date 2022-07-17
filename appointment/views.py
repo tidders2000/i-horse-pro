@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
+from django.shortcuts import render, HttpResponse, get_object_or_404,redirect,reverse
 from django_ical.views import ICalFeed
 from .models import *
 from .forms import *
@@ -29,7 +29,8 @@ def appointment(request, pk):
             formSave.save()
             display = "inline"
             messages.error(request, "Appointment Saved")
-            return redirect ('details')
+            # return redirect ('details')
+            return redirect(reverse('detailsInd', kwargs={'pk': horse.pk}))
         else:
             print('error')
 

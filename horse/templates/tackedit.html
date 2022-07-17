@@ -104,8 +104,8 @@
   <nav>
     <div class="nav-wrapper">
       <div class="col s12">
-        <a href="#!" class="breadcrumb">Basic</a>
-        <a href="#!" class="breadcrumb">Tack 3/4</a>
+        <a href="#!" class="breadcrumb">Tack</a>
+     
        
       </div>
     </div>
@@ -154,8 +154,8 @@
                        </div>
                        
              </div> 
-                  <button type="button" data-intro='Click to move to the next section' style="margin:auto; display:block;" class="btn btn-success" onclick="location.href='{% url 'links' pk=horse.pk %}'">Add/Edit Links</button>
-                  <a href="{% url 'links' pk=horse.pk %}" style="float: right;">SKIP</a>
+                 
+                  <a href="{% url 'detailsInd' pk=horse.pk %}" style="float: right;">Return to Horse</a>
             </div>
                   {% endblock %}
               
@@ -166,7 +166,7 @@ $(document).ready(function(){
 
   // Initialize materialize data picker
   //$('input').datepicker({'format': 'yyyy-mm-dd'}); 
-   $('select').formSelect();
+  $('select').material_select();
    //$('input').timepicker()
   
 

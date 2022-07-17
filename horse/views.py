@@ -21,23 +21,27 @@ def horse(request):
             horseSave.save()
             request.session['horse'] = horseSave.pk
             messages.error(request, "Horse Saved")
-            return redirect(reverse('photo'))
+            return redirect(reverse('detailsInd', kwargs={'pk':horseSave.pk}))
+            # return redirect(reverse('photo'))
         # messages.error(request, 'Horse added')
 
     return render(request, 'horse.html', {'form': form})
 
 
-def photo(request):
-    horse = request.session['horse']
-    newHorse = Horse.objects.get(pk=horse)
+def photo(request,pk):
+    selected = Horse.objects.get(pk=pk)
+    print('hello')
     if request.method == "POST":
-        photo = request.FILES.get('pic')
+            photo = request.FILES.get('pic')
+            print(request.POST)
+            selected.photo = photo
+            selected.save()
+         
+            messages.error(request, "photo Saved")  
 
-        newHorse.photo = photo
-        newHorse.save()
-        return redirect(reverse('tackedit', kwargs={'pk': newHorse.pk}))
 
-    return render(request, 'photo.html', {'horse': horse, 'newHorse': newHorse})
+     
+    return redirect(reverse('detailsInd', kwargs={'pk': pk}))
 
 
 def deletetack(request, pk):
@@ -46,6 +50,13 @@ def deletetack(request, pk):
     tackItem.delete()
 
     return redirect('tackedit', pk=horse)
+
+def deletetackHorse(request, pk):
+    tackItem = get_object_or_404(Tack, pk=pk)
+    horse = tackItem.horse.pk
+    tackItem.delete()
+
+    return redirect('tackhorse', pk=horse)
 
 def deletelink(request, pk):
     linkItem = get_object_or_404(Link, pk=pk)
@@ -70,6 +81,7 @@ def tackedit(request, pk):
             tackSave.horse = horse
             tackSave.save()
             messages.error(request, "Tack Saved")
+            
     return render(request, 'tackedit.html', {'horse': horse, 'tack': tack, 'tackdetails': tackdetails, 'horse': horse})
 
 
@@ -106,7 +118,7 @@ def links(request,pk):
             linkSave.horse = newHorse
             linkSave.save()
             messages.error(request, "Link Saved")
-    return render(request, 'links.html', {'link': link, 'links': links, 'horse': horse})
+    return render(request, 'links.html', {'link': link, 'links': links, 'horse': newHorse})
 
 
 def details(request):
@@ -175,8 +187,8 @@ def edithorse(request, pk):
         if horsef.is_valid():
             horsef.save()
             messages.error(request, "Horse Updated")
-            return redirect('photo')
-            # return redirect(reverse('edithorse', kwargs={'pk': pk}))
+            # return redirect('photo')
+            return redirect(reverse('detailsInd', kwargs={'pk': pk}))
     return render(request, 'horse_edit.html', {'form': form, 'pk': pk})
 
 

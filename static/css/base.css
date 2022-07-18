@@ -302,7 +302,7 @@ input {
     .main_col {
         padding-left: 30px !important;
     }
-    .nav_side{
+    .nav_side li a{
         font-size: 12px!important;
        }
 }

@@ -25,9 +25,9 @@
    text-transform:uppercase;
    color:black
  }
-  label{
-    margin-top:-20px;
-  }
+ .datepicker{
+  margin-top:20px!important;
+}
    .card-panel,.card{
        border-radius:10px;
      }
@@ -100,6 +100,10 @@
   select{
    background-color: #212121!important;
   }
+
+  textarea{
+    padding:0!important;
+  }
 </style>
 <h2 >Add A Horse</h2>
  
@@ -143,17 +147,17 @@
                 
                      <div class="row blue_box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;" data-intro='Complete basic horse details'>Basic Info</h4>
-                       <div class="col s12 col m6">
+                       <div class="col s12 col m12">
                           {{ form.showName|materializecss}}
                        </div>
-                         <div class="col s12 col m6">
+                         <div class="col s12 col m12">
                               {{ form.stableName|materializecss}}
                        </div>
-                          <div class="col s12 col m6">
+                          <div class="col s12 col m12">
                               {{ form.Gender|materializecss}}
                        </div>
 
-                          <div class="col s12 col m6">
+                          <div class="col s12 col m12">
                         {{  form.Dob|materializecss}}
                        </div>
                      
@@ -164,17 +168,17 @@
                     
                   <div class="row blue_box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">Personals</h4>
-                       <div class="col s12 col m6">
+                       <div class="col s12 ">
                           {{ form.breed|materializecss}}
                        </div>
-                         <div class="col s12 col m6">
+                         <div class="col s12 col m12">
                               {{ form.pedigree|materializecss}}
                        </div>
-                          <div class="col s12 col m6">
+                          <div class="col s12 col m12">
                               {{ form.colour|materializecss}}
                        </div>
 
-                          <div class="col s12 col m6">
+                          <div class="col s12 col m12">
                               {{ form.height|materializecss}}
                        </div>
                      

@@ -1,5 +1,5 @@
 from django.db import models
-
+from .utils import image_resize
 
 from django.contrib.auth.models import User
 gender = [('Gelding', 'Gelding'), ('Mare', 'Mare'), ('Stallion', 'Stallion')]
@@ -35,7 +35,14 @@ class Horse(models.Model):
     notes = models.TextField(blank=True, default="behaviour etc")
 
     def __str__(self):
-        return self.stableName
+        return f"{self.stableName} Profile"
+
+    def save(self, *args, **kwargs):
+        image_resize(self.photo, 500, 500)
+      
+        super().save(*args, **kwargs)
+
+   
 
 
 class Link(models.Model):

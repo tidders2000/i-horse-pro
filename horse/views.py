@@ -30,10 +30,10 @@ def horse(request):
 
 def photo(request,pk):
     selected = Horse.objects.get(pk=pk)
-    print('hello')
+  
     if request.method == "POST":
             photo = request.FILES.get('pic')
-            print(request.POST)
+           
             selected.photo = photo
             selected.save()
          
@@ -42,7 +42,6 @@ def photo(request,pk):
 
      
     return redirect(reverse('detailsInd', kwargs={'pk': pk}))
-
 
 def deletetack(request, pk):
     tackItem = get_object_or_404(Tack, pk=pk)
@@ -202,10 +201,10 @@ def deletehorse(request, pk):
 
 def savepassport(request,pk):
     selected = Horse.objects.get(pk=pk)
-    print('hello')
+  
     if request.method == "POST":
-            photo = request.FILES.get('pic')
-            print(request.POST)
+            photo = request.FILES.get('pass')
+           
             selected.passport = photo
             selected.save()
          

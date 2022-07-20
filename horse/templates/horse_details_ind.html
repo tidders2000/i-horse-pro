@@ -230,22 +230,24 @@ width:100%;
   </div>
 </div>
 
+<form method="POST"></form><!--dont delete-->
 <div class="card-panel grey darken-4 ">
-  <h2 class="hs__headline">Photos </h2>
+  <h2 class="hs__headline">Photos {{selected.pk}} </h2>
   <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
   
   
     <div class="col s12" style="padding:15px;">
 
-<form method="POST"  action="{% url 'photo' pk=selected.pk %}"enctype="multipart/form-data">
-  <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">
-    save
-    </span></button>
-    <input id="pic" name="pic" type="file"  accept="image/*" class="white-text" >
-  {% csrf_token %}
-  {% comment %} <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
-    style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button> {% endcomment %}
-            </form>
+       
+      <form method="POST"  action="{% url 'photo' pk=selected.pk %}"enctype="multipart/form-data" name="photo">
+        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_photo"><span class="material-icons">
+          save
+          </span></button>
+          <input id="pic" name="pic" type="file"  accept="image/*"  >
+        {% csrf_token %}
+        {% comment %} <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
+          style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button> {% endcomment %}
+                  </form>
 
           </div>
           <div class="row">
@@ -261,290 +263,13 @@ width:100%;
       </div>
     
     </div>
-<div class="card-panel grey darken-4 ">
-  <h2 class="hs__headline">Horse Passport</h2>
-  <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
-  
-  
-    <div class="col s12 " style="padding:15px;">
 
 
 
-      
-      <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data">
-        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">
-          save
-          </span></button>
-          <input id="pic" name="pic" type="file"  accept="image/*"  >
-        {% csrf_token %}
-        {% comment %} <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
-          style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button> {% endcomment %}
-                  </form>
-  
-      <img src="{{MEDIA_URL}}{{ selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
-      </a>
-    </div>
-
-
-</div>
-</div>
 
 
 
-{% comment %} <h5 data-intro='Selected horse shows here'>{{selected.showName}}</h5>
-<div class="row" style="border:1px solid #b3b3b3"></div>
-<h2 class="">Details</h2>
-
-<div class="row cardHolder" style="padding:20px!important;">
-
-    <div class="row">
-        <div class="col s12 m12 l6 " data-intro='Horse details added during Add Horse'>
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text" style="height:220px;">
-                    <h4 class="cardHeading">Key Info</h4>
-                    <ul>
-                        <li>STABLE NAE: {{selected.stableName}}</li>
-                        <li>SHOW NAME: {{selected.showName}}</li>
-                        <li>DOB: {{selected.Dob}}</li>
-                        <li>GENDER: {{selected.Gender}}</li>
-
-                    </ul>
-                </div>
-                <div class="card-action">
-
-                </div>
-            </div>
-        </div> {% endcomment %}
-        {% comment %} <div class="col s12 m12 l6" data-intro='Links added during horse set up are shown here.Tack is always present'>
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text" style="height:220px;">
-                    <h4 class="cardHeading">Links</h4>
-                    <ul>
-                        <li data-intro='Click the link to view and edit tack'><a href="{% url 'tackedit' pk=selected.pk %}" class="white-text">Tack Record</a></li>
-                        {% for link in links %}
-                        <li> <a href={{link.link}} class="white-text">{{link.organisation}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="card-action">
-
-                </div>
-            </div>
-        </div>
-    </div> {% endcomment %}
  
-    {% comment %} <div class="row">
-        <div class="col s12 m12 l6" data-intro='Owner details added during horse set up. Click edit link below to change'>
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text" style="height:220px;">
-                    <h4 class="cardHeading" class="cardHeading">Owner Details</h4>
-                    <ul>
-                        
-                      
-
-                    </ul>
-                </div>
-                <div class="card-action">
-
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m12 l6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text" style="height:220px;">
-                    <h4 class="cardHeading">Notes</h4>
-                    <p>{{selected.notes}}</p>
-                </div>
-                <div class="card-action">
-
-                </div>
-            </div>
-        </div>
-        <p data-intro='Click the link to access the horse set up wizard and edit remove horse'><a href="{% url 'edithorse' pk=selected.pk %}">Edit or Delete Horse</a></p>
-    </div> {% endcomment %}
-
-
-
-
-{% comment %} </div> {% endcomment %}
-<!-- end of section-->
-
-<!--app section-->
-<!-- <h2 id="apps">Appointments</h2>
-<div class='row'>
-    <div class="col s12 m6 appointment " >
-        <h4 class="">Next</h4>
-        <ul class="appoint">
-
-            <li>
-                <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Dentist" name="apps" value="Dentist"> <button class="btn btn-success appointments_submit"><i
-              class="fas fa-tooth grey-text"></i><b>Dentist:</b>
-
-            {% for app in appointments %}
-            {% if app.event.appType == "Dentist" %}
-
-
-            <span class=""> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-      </li>
-
-
-
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Physio" name="apps"
-            value="Physio"> <button class="btn btn-success appointments_submit"><i class="fas fa-user-md grey-text"></i>
-            <b>Physio Next -</b> </a>
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Physio" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-      </li>
-
-     <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Worming" name="apps"
-            value="Worming"> <button class="btn btn-success appointments_submit"><i class="fas fa-user-md grey-text"></i>
-            <b>Worming Next -</b> </a>
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Worming" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-      </li>
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Saddler" name="apps"
-            value="Saddler"> <button class="btn btn-success appointments_submit"><i class="fas fa-chair grey-text"></i>
-            <b>Saddler Next -</b> </a>
-
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Saddler" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-     </form>
-            {% endif %}
-
-
-            {% endfor %}
-      </li>
-       <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Farrier" name="apps"
-            value="Farrier"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
-            <b>Farrier Next -</b> </a>
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Farrier" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-      </li>
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Vet" name="apps"
-            value="Vet"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
-            <b>Vet Next -</b> </a>
-
-            {% for app in appointments %}
-
-             {% if app.event.appType == "Vet" %}
-
-
-
-            <span class="next_app">{{app.due}}</span>
-              </form>
-            {% endif %}
-
-
-            {% endfor %}
-      </li>
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="vacs" name="apps"
-            value="Vacs"> <button class="btn btn-success appointments_submit"><i
-              class="fas fa-briefcase-medical grey-text"></i> <b>Vacs Next -</b> </a>
-
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Injections" %}
-
-
-            <span class="next_app">{{app.due}}</span>
-                 </form>
-            {% endif %}
-
-
-            {% endfor %}
-      </li>
-
-
-
-
-
-
-    </ul>
-
-  </div>
-
-  <div class="col s12 m6">
-
-    <h4 class="">History</h4>
-    <ul class="his">
-      {% for tor in tory %}
-      <li class="his_date"><a href="{% url 'editapp' %}?app={{tor.pk}}&horse={{selected.pk}}" <i
-          class="fa fa-calendar-o" aria-hidden="true"></i> <span class="next_app">{{tor.due}}</span></a></li>
-
-      {% endfor %}
-      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
-    </ul>
-
-  </div>
-
-
-
-
-</div> -->
-
-
-
-<!--passport-->
-{% comment %} <h2 class="hs__headline">Horse Passport</h2>
-<div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
-
-
-  <div class="col s12 m6" style="padding:15px;">
-
-    <img src="{{MEDIA_URL}}{{ selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
-    </a>
-  </div>
-  <div class="col s6 l4">
-
-    <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data">
-      <input id="pic" name="pic" type="file" class='' accept="image/*" class="" style="margin-top:30%;">
-      {% csrf_token %}
-      <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
-        style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button>
-                </form>
-    </div> {% endcomment %}
     <div class="card-panel grey darken-4 ">
       <h2 id="apps">Appointments</h2>
 
@@ -724,186 +449,34 @@ width:100%;
 
 </div>
 
+<div class="card-panel grey darken-4 ">
+  <h2 class="hs__headline">Horse Passport</h2>
+  <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
+  <form method="POST"></form<!-- do not delete-->
+  
+    <div class="col s12 " style="padding:15px;">
+
+
+
+      
+      <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data" name="pass">
+        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_pass"><span class="material-icons">
+          save
+          </span></button>
+          <input id="pass" name="pass" type="file"  accept="image/*"  >
+        {% csrf_token %}
+        {% comment %} <button type="submit" class='subplus tooltipped'  data-position="bottom" data-tooltip="Click to Save"  name="save_obj"
+          style='display: block;margin-left: auto; margin-right: auto'><span class="blutext">+<span></button> {% endcomment %}
+                  </form>
+  
+      <img src="{{MEDIA_URL}}{{ selected.passport}}" class="ppimage" layout="responsive" alt="horse passport"></amp-img>
+    
+    </div>
+
+
 </div>
-<!--end of section-->
-{% comment %} 
-<div id="test2" class="col s12">
-  <h2 class="hs__headline">Notes</h2>
-  <div class="row blue_box">
-    <p>{{selected.notes}}</p>
-  </div>  {% endcomment %}
-
- {% comment %} <h2 id="apps">Appointments</h2>
-<div class='row'>
-    <div class="col s12 m6 appointment "data-intro='Appointments for your horse are added here' >
-        <h4 class="">Next</h4>
-        <ul class="appoint" data-intro='The lastest appointment is shown by type and clicking will display the history'>
-
-            <li>
-                <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Dentist" name="apps" value="Dentist"> <button class="btn btn-success appointments_submit"><i
-              class="fas fa-tooth grey-text"></i><b>D:</b>
-
-            {% for app in appointments %}
-            {% if app.event.appType == "Dentist" %}
-
-
-            <span class=""> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-      </li>
-
-
-
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Physio" name="apps"
-            value="Physio"> <button class="btn btn-success appointments_submit"><i class="fas fa-user-md grey-text"></i>
-            <b>Physio Next -</b> </a>
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Physio" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-      </li>
-
-     <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Worming" name="apps"
-            value="Worming"> <button class="btn btn-success appointments_submit"><i class="fas fa-user-md grey-text"></i>
-            <b>Worming Next -</b> </a>
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Worming" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-      </li>
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Saddler" name="apps"
-            value="Saddler"> <button class="btn btn-success appointments_submit"><i class="fas fa-chair grey-text"></i>
-            <b>Saddler Next -</b> </a>
-
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Saddler" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-     </form>
-            {% endif %}
-
-
-            {% endfor %}
-      </li>
-       <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Farrier" name="apps"
-            value="Farrier"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
-            <b>Farrier Next -</b> </a>
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Farrier" %}
-
-
-            <span class="next_app"> {{app.due}}</span>
-        </form>
-        {% endif %}
-
-
-        {% endfor %}
-        
-      </li>
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="Vet" name="apps"
-            value="Vet"> <button class="btn btn-success appointments_submit"><i class="fas fa-hammer  grey-text"></i>
-            <b>Vet Next -</b> </a>
-
-            {% for app in appointments %}
-
-             {% if app.event.appType == "Vet" %}
-
-
-
-            <span class="next_app">{{app.due}}</span>
-              </form>
-            {% endif %}
-
-
-            {% endfor %}
-      </li>
-      <li>
-        <form name="app" id="app" method="POST"> {% csrf_token %} <input type="hidden" id="vacs" name="apps"
-            value="Vacs"> <button class="btn btn-success appointments_submit"><i
-              class="fas fa-briefcase-medical grey-text"></i> <b>Vacs Next -</b> </a>
-
-            {% for app in appointments %}
-
-            {% if app.event.appType == "Injections" %}
-
-
-            <span class="next_app">{{app.due}}</span>
-                 </form>
-            {% endif %}
-
-
-            {% endfor %}
-      </li>
-
-
-
-
-
-
-    </ul>
-
-  </div> {% endcomment %}
-{% comment %} 
-  <div class="col s12 m6">
-
-    <h4 class="" data-intro='Appointment history by type is shown here. Click a link to view or edit'>History</h4>
-    <ul class="his">
-      {% for tor in tory %}
-      <li class="his_date"><a href="{% url 'editapp' %}?app={{tor.pk}}&horse={{selected.pk}}" <i
-          class="fa fa-calendar-o" aria-hidden="true"></i> <span class="next_app">{{tor.due}}</span></a></li>
-
-      {% endfor %}
-      <li><a href="{% url 'appointment' pk=selected.pk %}" class="add_appoint"> Add A Appointment</a></li>
-    </ul>
-
-  </div> {% endcomment %}
-
-
-
-
-{% comment %} </div> {% endcomment %}
-{% comment %} 
-<h2 class="hs__headline">Training</h2>
-<div class="row " style="padding-bottom:20px;" data-intro='Training history for your horse'>
-
-    <ul class="collection" style="border:none!important;">
-        {% for train in training %}
-        <li class="collection-item avatar " style="background-color:#101010!important">
-            <img src="{{MEDIA_URL}}{{train.disipline.image}}" alt="train.disipline.disipline" class="circle">
-            <span class="disipline_title ">{{train.disipline.disipline}} {{train.date}}</span>
-            <p class="disipline_type">Training Session
-            </p>
-            <a href="{% url 'training_edit' pk=train.pk %}" class="secondary-content "><i
-          class="fa fa-chevron-circle-right history_link" style="font-size:50px;color:#21a3e2;"
-          aria-hidden="true"></i></a>
-        </li>
-        {% endfor %}
-</div> {% endcomment %}
+</div>
+</div>
 
 
 

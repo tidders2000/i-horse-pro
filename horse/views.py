@@ -203,7 +203,7 @@ def savepassport(request,pk):
     selected = Horse.objects.get(pk=pk)
   
     if request.method == "POST":
-            photo = request.FILES.get('pass')
+            photo = request.FILES.get('pic')
            
             selected.passport = photo
             selected.save()

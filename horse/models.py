@@ -39,7 +39,7 @@ class Horse(models.Model):
 
     def save(self, *args, **kwargs):
         image_resize(self.photo, 500, 500)
-      
+        image_resize(self.passport, 500, 500)
         super().save(*args, **kwargs)
 
    

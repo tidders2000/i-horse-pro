@@ -70,7 +70,7 @@
       display:none;
   }
 
-  button{
+  .save-button{
       border-radius:10px;
       float:right;
   }
@@ -142,7 +142,7 @@ width:100%;
       <div class="col s6"><b>{{selected.stableName}}</b></div>
       <div class="col s2 session_title"> </div>
       <div class="col s4">
-          <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="material-icons">
+          <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_log" class="save-button"><span class="material-icons">
           save
           </span></button></div>
   </div>
@@ -240,7 +240,7 @@ width:100%;
 
        
       <form method="POST"  action="{% url 'photo' pk=selected.pk %}"enctype="multipart/form-data" name="photo">
-        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_photo"><span class="material-icons">
+        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
           save
           </span></button>
           <input id="pic" name="pic" type="file"  accept="image/*"  >
@@ -458,7 +458,7 @@ width:100%;
 
        
       <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data" name="pass">
-        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_photo"><span class="material-icons">
+        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
           save
           </span></button>
           <input id="pic" name="pic" type="file"  accept="image/*"  >

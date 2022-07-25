@@ -108,7 +108,7 @@
     <div class="nav-wrapper">
       <div class="col s12 breadcrumb">
         <a href="{% url 'home' %}" class="breadcrumb">Home</a>
-        <a href="#!" class="breadcrumb">Competition Entry</a>
+        <a href="#!" class="breadcrumb">Competition Entry {{show}}</a>
        
       </div>
     </div>
@@ -343,7 +343,7 @@
 </div>
 
 </div> {% endcomment %}
- 
+ {% if show %}
 <div class="card-panel grey darken-4">
    <h2 class="hs__headline">Entry List</h2>
     <div class="row blue_box"style="padding-top:30px!important" >
@@ -392,7 +392,7 @@
 </div>
 </div>
    
-
+{%endif%}
 
       </div><!--end of col-->
 </div><!--end of row-->

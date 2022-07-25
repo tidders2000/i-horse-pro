@@ -45,6 +45,10 @@ def comp_create(request, pk):
 
 def comp_edit(request, pk):
     session = get_object_or_404(CompetitionLog, pk=pk)
+    if not session.location:
+       show=False
+    else:
+     show=True
     user = request.user
 
     test = venue_form()
@@ -95,7 +99,7 @@ def comp_edit(request, pk):
 
                 return redirect(url)
 
-    return render(request, 'cedit.html', {'venue_instance': venue_instance, 'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
+    return render(request, 'cedit.html', {'show':show,'venue_instance': venue_instance, 'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
 
 
 class EventFeed2(ICalFeed):

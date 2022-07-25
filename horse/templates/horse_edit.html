@@ -13,9 +13,9 @@
    text-transform:uppercase;
    color:black
  }
-  label{
-    margin-top:-20px;
-  }
+ .datepicker{
+  margin-top:20px!important;
+}
    .card-panel,.card{
        border-radius:10px;
      }
@@ -87,6 +87,10 @@
    }
   select{
    background-color: #212121!important;
+  }
+
+  textarea{
+    padding:0!important;
   }
 </style>
 
@@ -216,16 +220,18 @@
 {% endblock %} {% block scripts %}
 
 <script>
-    $(document).ready(function() {
-
-        // Initialize materialize data picker
-     
-        $('.datepicker').datepicker({
-            'format': 'yyyy-mm-dd',
-        }); 
-        $('select').formSelect();
-
-    });
-</script>
+    $(document).ready(function(){
+    
+      // Initialize materialize data picker
+      {% comment %} $('.datepicker').datepicker({
+        'format': 'yyyy-mm-dd',
+       }); {% endcomment %}
+       $('select').material_select();
+    
+      });
+    
+    
+    
+    </script>  
 
 {% endblock %}

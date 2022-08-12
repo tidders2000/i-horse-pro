@@ -39,9 +39,9 @@ def photo(request,pk):
             print(selected)
             selected.photo = photo
             selected.save()
-            # return JsonResponse({'data':'Data uploaded'})
-            return redirect(reverse('detailsInd', kwargs={'pk': pk}))
-          
+            return JsonResponse({'data':'Data uploaded'})
+            # return redirect(reverse('detailsInd', kwargs={'pk': pk}))
+            # messages.error(request, "photo Saved")  
 
 
      

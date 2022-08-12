@@ -1,5 +1,6 @@
 
 from django import forms
+from django.forms import Textarea
 from .models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
@@ -13,6 +14,9 @@ class wizard_horse_form(forms.ModelForm):
     class Meta:
         model = Horse
         fields = ['stableName', 'photo']
+        widgets = {
+            'notes':Textarea(attrs={'cols':20,'rows':20})
+        }
 
 
 class horse_wizard(forms.ModelForm):
@@ -21,6 +25,9 @@ class horse_wizard(forms.ModelForm):
 
         model = Horse
         fields = ['stableName']
+        widgets = {
+            'notes':Textarea(attrs={'cols':20,'rows':20})
+        }
 
 
 class horse_form(forms.ModelForm):
@@ -30,6 +37,9 @@ class horse_form(forms.ModelForm):
                   ('Stallion', 'Stallion')]
         model = Horse
         exclude = ['user']
+        widgets = {
+            'notes':Textarea(attrs={'cols':20,'rows':20})
+        }
 
 
 class link_form(forms.ModelForm):

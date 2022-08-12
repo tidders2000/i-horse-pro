@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, HttpResponseRedirect, get_object_or_404
+from django.http import JsonResponse
 from .forms import horse_form, link_form, tack_form
 from django.contrib import messages
 from .models import *
@@ -32,11 +33,14 @@ def photo(request,pk):
     selected = Horse.objects.get(pk=pk)
   
     if request.method == "POST":
-            photo = request.FILES.get('pic')
            
+            photo = request.FILES.get('id_image')
+            print(photo)
+            print(selected)
             selected.photo = photo
             selected.save()
-         
+            return JsonResponse({'data':'Data uploaded'})
+            return redirect(reverse('detailsInd', kwargs={'pk': pk}))
             messages.error(request, "photo Saved")  
 
 

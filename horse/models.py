@@ -35,7 +35,7 @@ class Horse(models.Model):
     notes = models.TextField(blank=True, default="behaviour etc")
 
     def __str__(self):
-        return f"{self.stableName} Profile"
+        return f"{self.stableName}"
 
     def save(self, *args, **kwargs):
         image_resize(self.photo, 500, 500)

@@ -4,7 +4,14 @@
 <link rel="stylesheet" href="{% static 'css/form.css' %}">
 <link rel="stylesheet" href="{% static 'css/horse_det.css' %}"> {% endblock %} {% block content %}
 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+
+integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+crossorigin="anonymous"></script>
 <style>
+  .not-visible{
+    display: none;
+}
     .cardHeading {
         color: #21a3e2;
     }
@@ -98,6 +105,8 @@ width:100%;
   .photo_title{
     margin:40px!important;
   }
+
+  
 
 
 </style>
@@ -199,7 +208,7 @@ width:100%;
               <div id="test2" class="col s12">
                 <h2 class="hs__headline">Notes</h2>
                 <div class="row blue_box">
-                  <p>{{selected.notes}}</p>
+                  <p>{{selected.notes|linebreaks }}</p>
                 </div> 
               </div>
               <div id="test3" class="col s12">
@@ -239,14 +248,16 @@ width:100%;
     <div class="col s12" style="padding:15px;">
 
        
-      <form method="POST"  action="{% url 'photo' pk=selected.pk %}"enctype="multipart/form-data" name="photo">
-        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
+      <form method="POST"  id=""action="{% url 'photo' pk=selected.pk %}"enctype="multipart/form-data" name="photo">
+        <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
           save
           </span></button>
           <input id="pic" name="pic" type="file"  accept="image/*"  >
         {% csrf_token %}
      
                   </form>
+                  <div class="container not-visible progress" id="">
+                  </div>
 
           </div>
           <div class="row">
@@ -264,9 +275,18 @@ width:100%;
     </div> 
 
 
+    <form action="" method="post" id="upload_form">
+      {% csrf_token %}
+      <input id="id_image" name="id_image" type="file"  accept="image/*"  >
+      <input type="submit" value="Upload" class="btn btn-primary">
+  </form>
+  {% comment %} <div class="container progress progress-bar progress-bar-striped" id="progress">
+  </div> {% endcomment %}
 
-
-
+<div class="progress not-visible " id="progress">
+  <div class="determinate " ></div>
+  
+</div>
 
  
     <div class="card-panel grey darken-4 ">
@@ -407,7 +427,7 @@ width:100%;
           {% if app.event.appType == "Injections" %}
 
 
-         <li> <span class=""> {{app.due}}</span></li>
+         <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -533,6 +553,62 @@ width:100%;
       $('select').material_select();
         $('.collapsible').collapsible();
     });
+</script>
+
+<script>
+  const uploadForm = document.getElementById('upload_form');
+  const input_file = document.getElementById('id_image');
+  const progress_bar = document.getElementById('progress');
+  
+  $("#upload_form").submit(function(e){
+      e.preventDefault();
+      $form = $(this)
+      var formData = new FormData(this);
+      const media_data = input_file.files[0];
+      if(media_data != null){
+          console.log('hello');
+          progress_bar.classList.remove("not-visible");
+      }
+
+      $.ajax({
+          type: 'POST',
+          url:'{% url 'photo' pk=selected.pk %}',
+          data: formData,
+          dataType: 'json',
+          beforeSend: function(){
+        
+            
+          },
+          xhr:function(){
+              const xhr = new window.XMLHttpRequest();
+              xhr.upload.addEventListener('progress', e=>{
+                  if(e.lengthComputable){
+                      const percentProgress = (e.loaded/e.total)*100;
+                      console.log(percentProgress);
+                      progress_bar.innerHTML = `    <div class="progress"   style="width: ${percentProgress}%" id="progress">
+                        <div class="determinate " ></div>
+                        
+                      </div>`
+                  }
+              });  
+              return xhr
+          },
+          success: function(response){
+              console.log(response);
+              console.log('success')
+              uploadForm.reset()
+              progress_bar.classList.add('not-visible')
+          },
+          error: function(err){
+              console.log(err);
+              console.log('fail')
+          },
+          cache: false,
+          contentType: false,
+          processData: false,
+      });
+  });
+
 </script>
 
 {% endblock %}

@@ -13,7 +13,7 @@ class comp_form(forms.ModelForm):
 
         model = CompetitionLog
         exclude = ['videoLink',]
-        fields = ['myStars', 'notes', 'lightbulb',
+        fields = ['myStars', 'performance', 'lightbulb',
                   'image', 'videoLink', 'date', 'location']
         labels = {
             'location': _('* Location'),

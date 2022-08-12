@@ -19,7 +19,7 @@ class CompetitionLog(models.Model):
 
     image = models.ImageField(
         upload_to='media/images/competition', blank=True, default='')
-    notes = models.TextField(blank=True)
+    performance = models.TextField(blank=True)
     myStars = models.CharField(max_length=100, blank=True)
     videoLink = models.CharField(max_length=100, blank=True)
 
@@ -43,5 +43,5 @@ class Comphorse(models.Model):
         CompetitionLog, null=True, on_delete=models.CASCADE)
     horse = models.ForeignKey(Horse, null=True, on_delete=models.CASCADE)
     horseClass = models.CharField(max_length=100, blank=True)
-    performance = models.TextField(blank=True)
+    cost = models.TextField(blank=True)
     class_time = models.TimeField(auto_now=False,blank=True)

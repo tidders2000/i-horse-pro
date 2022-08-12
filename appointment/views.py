@@ -55,6 +55,7 @@ def editapp(request):
             formSave.save()
             display = "inline"
             messages.error(request, "Appointment Saved")
+            return redirect(reverse('detailsInd', kwargs={'pk': horse.pk}))
         else:
             print('error')
 

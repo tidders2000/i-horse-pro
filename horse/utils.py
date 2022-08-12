@@ -18,7 +18,7 @@ def image_resize(image, width, height):
     img = Image.open(image)
     # check if either the width or height is greater than the max
     if img.width > width or img.height > height:
-        output_size = (width, height)
+        output_size = (height, width)
         # Create a new resized “thumbnail” version of the image with Pillow
         img.thumbnail(output_size)
         # Find the file name of the image

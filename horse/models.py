@@ -20,6 +20,7 @@ class Horse(models.Model):
     pedigree = models.CharField(max_length=200, default='Sire x Dam')
     height = models.DecimalField(max_digits=3, decimal_places=1, default=15.3)
     colour = models.TextField(default="patchy twat")
+    chip = models.CharField(max_length=100, blank=True)
     Dob = models.DateField(default="2015-01-01")
     owner = models.CharField(max_length=100, default="John Doe")
     owner_mobile =  models.CharField(max_length=20, blank=True)

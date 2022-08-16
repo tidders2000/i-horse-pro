@@ -264,18 +264,19 @@
 );
 </script>
 
-</script>
 
 {% if messages %}
 
-                {% for message in messages %}
- 
-  <script>   M.toast({html: '{{message}}'})</script>
-  
-  </div>
+{% for message in messages %}
+
+<script>Materialize.toast('{{message}}', 4000)</script>
+
+<p class="white-text">{{message}}</div>
+
+</div>
 {% endfor %}
-            
-             {% endif%} 
+
+{% endif%} 
 
 
 {% block scripts %}{% endblock %}

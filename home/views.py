@@ -29,7 +29,7 @@ def home(request):
     # user = request.user
     user = request.user
     now = datetime.now()
-   
+    messages.success(request, "Horse Updated")
     horses = Horse.objects.all().filter(user=user)[:10]
     events = Appointment.objects.all().filter(Q(user=user,due__gte=now)).order_by('due')[:6]
     comps = CompetitionLog.objects.all().filter(
@@ -40,6 +40,7 @@ def home(request):
     comp_his = CompetitionLog.objects.all().filter(user=user, date__lte=now).order_by('-date')[:6]
     request.session['history'] = "Dentist"  # sets appointments for horse links
     request.session['dis'] = 'none'  # sets appointment display css
+
     return render(request, 'home.html', {'horses': horses, 'events': events, 'comps': comps, 'training': training,'train_his':train_his,'comp_his':comp_his})
 
 

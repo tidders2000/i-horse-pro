@@ -30,13 +30,13 @@ def horse(request):
 
 
 def photo(request,pk):
+   
     selected = Horse.objects.get(pk=pk)
   
     if request.method == "POST":
            
             photo = request.FILES.get('id_image')
-            print(photo)
-            print(selected)
+           
             selected.photo = photo
             selected.save()
             return JsonResponse({'data':'Data uploaded'})
@@ -133,7 +133,7 @@ def details(request):
 
 def detailsInd(request, pk):
     today = datetime.now().date()
-
+   
     user = request.user
     string = request.session['history']
     selected = Horse.objects.get(pk=pk)

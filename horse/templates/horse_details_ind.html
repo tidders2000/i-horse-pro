@@ -106,8 +106,15 @@ width:100%;
     margin:40px!important;
   }
 
-  
-
+  #myProgress{
+    width:100%;
+    background-color:grey;
+  }
+#myBar{
+  width:1%;
+  height:30px;
+  background-color:pink;
+}
 
 </style>
 
@@ -165,9 +172,11 @@ width:100%;
                         <li><span class="bl">SHOW NAME:</span> {{selected.showName}}</li>
                         <li><span class="bl">DOB:</span> {{selected.Dob}}</li>
                         <li><span class="bl">GENDER:</span> {{selected.Gender}}</li>
+                        <li><span class="bl">CHIP:</span> {{selected.chip}}</li>
                         <li><span class="bl">OWNER:</span> {{selected.owner}}</li>
                         <li><span class="bl">E MAIL:</span> {{selected.owner_email}}</li>
                         <li><span class="bl">MOBILE:</span> {{selected.owner_mobile}}</li>
+                        
 
                     </ul>
            
@@ -283,12 +292,16 @@ width:100%;
   {% comment %} <div class="container progress progress-bar progress-bar-striped" id="progress">
   </div> {% endcomment %}
 
-<div class="progress not-visible " id="progress">
-  <div class="determinate " ></div>
+ <div class="progress  " id="progress">
+  <div class="determinate "></div>
   
-</div>
+</div> 
 
- 
+<div id ="myProgress">
+  <div id="myBar"></div>
+    </div>
+
+ <div id="proc" class="white-text"></div>
     <div class="card-panel grey darken-4 ">
       <h2 id="apps">Appointments</h2>
 
@@ -559,6 +572,8 @@ width:100%;
   const uploadForm = document.getElementById('upload_form');
   const input_file = document.getElementById('id_image');
   const progress_bar = document.getElementById('progress');
+  var elem = document.getElementById("myBar")
+  var elem2 = document.getElementById("proc")
   
   $("#upload_form").submit(function(e){
       e.preventDefault();
@@ -566,7 +581,7 @@ width:100%;
       var formData = new FormData(this);
       const media_data = input_file.files[0];
       if(media_data != null){
-          console.log('hello');
+       
           progress_bar.classList.remove("not-visible");
       }
 
@@ -585,11 +600,12 @@ width:100%;
                   if(e.lengthComputable){
                       const percentProgress = (e.loaded/e.total)*100;
                       console.log(percentProgress);
-                      progress_bar.innerHTML = `    <div class="progress"   style="width: ${percentProgress}%" id="progress">
+                      elem.style.width = percentProgress + "%";
+                      progress_bar.innerHTML = `<div class="progress"   style="width:${percentProgress}%" id="progress">
                         <div class="determinate " ></div>
-                        
-                      </div>`
+                        </div>`
                   }
+                 proc.insertAdjacentText('beforeend', 'Converting Image');
               });  
               return xhr
           },

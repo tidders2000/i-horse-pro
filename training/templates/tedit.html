@@ -136,7 +136,7 @@ min-height:50px;
                 </span></button></div>
         </div>
         <div class="row">
-            <div class="input-field col s12" data-intro='Complete the details of future or previous training sessions. Note date and venue are mandatory fields. You can come back and edit so if the session has not yet taken place just fill in the minimum to save. To save a session scroll to the bottom and click the +'>
+            <div class="input-field col s12" >
 
                 {{form.instructor|materializecss}}
 
@@ -199,8 +199,8 @@ min-height:50px;
                     </div>
                     </div>
                     <div id="test2" class="col s12">
-                        <h2 class="hs__headline">Little Wins</h2>
-                        <div class="row blue_box" data-intro='Add things that went well in the session, such as loaded well'>
+                        <h2 class="hs__headline" data-intro='Add things that went well in the session, such as loaded well'>Little Wins</h2>
+                        <div class="row blue_box" >
                     
                     
                             <div class="col s12">
@@ -231,8 +231,8 @@ min-height:50px;
                         </div>
                     </div>
                     <div id="test3" class="col s12">
-                        <h2 class="hs__headline">Floor Plan</h2>
-                        <div class="row blue_box" data-intro='You can add diagrams. Click on the Floorplan currently to select a file such as a photo or click the draw floorplan to draw. Note you cannot edit diagrams once drawn but can add another one to replace it'>
+                        <h2 class="hs__headline" data-intro='You can add diagrams. Click on the Floorplan currently to select a file such as a photo or click the draw floorplan to draw. Note you cannot edit diagrams once drawn but can add another one to replace it'>Floor Plan</h2>
+                        <div class="row blue_box" >
                             <a href="{% url 'draw' pk=session.pk %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Click to draw a floorplan</a>
                             <section>
                                 <div class="decoration col s12"></div>
@@ -254,10 +254,10 @@ min-height:50px;
                     </div>
                     <div id="test4" class="col s12">
 
-    <h2 class="hs__headline">Add A File</h2>
+    <h2 class="hs__headline"  data-intro='Load up any supporting information such as session notes'>Add A File</h2>
     <div class="row blue_box">
 
- <div class="file-path-wrapper" style='min-height:220px;' data-intro='Load up any supporting information such as session notes'>
+ <div class="file-path-wrapper" style='min-height:220px;'>
             {{form.files|materializecss}}
 
 </div>

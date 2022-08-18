@@ -207,12 +207,18 @@ def savepassport(request,pk):
     selected = Horse.objects.get(pk=pk)
   
     if request.method == "POST":
-            photo = request.FILES.get('pic')
+            photo = request.FILES.get('id_image_passport')
            
             selected.passport = photo
             selected.save()
          
             messages.error(request, "passport Saved")  
+
+
+     
+            return JsonResponse({'data':'Data uploaded'})
+            # return redirect(reverse('detailsInd', kwargs={'pk': pk}))
+            # messages.error(request, "photo Saved")  
 
 
      

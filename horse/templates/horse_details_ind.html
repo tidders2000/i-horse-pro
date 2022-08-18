@@ -12,6 +12,8 @@ crossorigin="anonymous"></script>
   .not-visible{
     display: none;
 }
+
+
     .cardHeading {
         color: #21a3e2;
     }
@@ -106,15 +108,17 @@ width:100%;
     margin:40px!important;
   }
 
-  #myProgress{
+  #myProgress,#myProgress_passport{
     width:100%;
     background-color:grey;
   }
-#myBar{
+#myBar,#myBar_passport{
   width:1%;
-  height:30px;
-  background-color:pink;
+  height:10px;
+  background-color:#21a3e2;
 }
+
+
 
 </style>
 
@@ -181,7 +185,7 @@ width:100%;
                     </ul>
            
              
-                    <p data-intro='Click the link to access the horse set up wizard and edit remove horse'><a href="{% url 'edithorse' pk=selected.pk %}">Edit Details or Delete Horse</a></p>
+                    <p data-intro='Click the link to  edit or remove horse'><a href="{% url 'edithorse' pk=selected.pk %}">Edit Details or Delete Horse</a></p>
             
             </div>
 
@@ -208,7 +212,7 @@ width:100%;
                     <li> <a href={{link.link}} class="white-text">{{link.organisation}}</a></li>
    
                     {% endfor %}
-                    <li data-intro='Click the link to view and edit tack'><a href="{% url 'links' pk=selected.pk %}" class="blue-text">Add/Delete Links</a></li>
+                    <li data-intro='Click the link to edit links'><a href="{% url 'links' pk=selected.pk %}" class="blue-text">Add/Delete Links</a></li>
                 </ul>
      
                 </div> 
@@ -225,7 +229,7 @@ width:100%;
                 
 <h2 class="hs__headline">Training</h2>
 <div class="row blue_box">
-<div class="row " style="padding-bottom:20px;" data-intro='Training history for your horse'>
+<div class="row " style="padding-bottom:20px;" >
 
     <ul class="collection" style="border:none!important;">
         {% for train in training %}
@@ -251,23 +255,24 @@ width:100%;
 <form method="post"></form>
  <div class="card-panel grey darken-4 ">
   <h2 class="hs__headline">Photos {{selected.pk}} </h2>
-  <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
+  <div class="row blue_box" data-intro='Add a photo of your Horse by clicking choose file then click save'>
   
   
     <div class="col s12" style="padding:15px;">
 
        
-      <form method="POST"  id=""action="{% url 'photo' pk=selected.pk %}"enctype="multipart/form-data" name="photo">
+      <form method="POST"  id="upload_form" >
         <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
           save
           </span></button>
-          <input id="pic" name="pic" type="file"  accept="image/*"  >
+          <input id="id_image" name="id_image" type="file"  accept="image/*"  >
         {% csrf_token %}
      
                   </form>
-                  <div class="container not-visible progress" id="">
-                  </div>
-
+                  <div id ="myProgress" >
+                    <div id="myBar" class="not-visible" style="margin-top:40px;"></div>
+                      </div>
+                      <div id="proc" class="white-text"></div>
           </div>
           <div class="row">
             {% if selected.photo %}
@@ -280,11 +285,12 @@ width:100%;
           </div>
         </div>
       </div>
+   
     
     </div> 
 
 
-    <form action="" method="post" id="upload_form">
+    {% comment %} <form action="" method="post" id="upload_form">
       {% csrf_token %}
       <input id="id_image" name="id_image" type="file"  accept="image/*"  >
       <input type="submit" value="Upload" class="btn btn-primary">
@@ -292,16 +298,13 @@ width:100%;
   {% comment %} <div class="container progress progress-bar progress-bar-striped" id="progress">
   </div> {% endcomment %}
 
- <div class="progress  " id="progress">
-  <div class="determinate "></div>
-  
-</div> 
 
-<div id ="myProgress">
+
+{% comment %} <div id ="myProgress">
   <div id="myBar"></div>
-    </div>
+    </div>  {% endcomment %}
 
- <div id="proc" class="white-text"></div>
+
     <div class="card-panel grey darken-4 ">
       <h2 id="apps">Appointments</h2>
 
@@ -484,20 +487,27 @@ width:100%;
 <form method="post"></form>
  <div class="card-panel grey darken-4 ">
   <h2 class="hs__headline">Passport </h2>
-  <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the +'>
+  <div class="row blue_box" data-intro='Add a photo of your passport by clicking choose file then click the save'>
   
   
     <div class="col s12" style="padding:15px;">
 
        
-      <form method="POST"  action="{% url 'savepassport' pk=selected.pk %}"enctype="multipart/form-data" name="pass">
-        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
+      <form method="POST"  id="upload_form_passport" >
+        <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
           save
           </span></button>
-          <input id="pic" name="pic" type="file"  accept="image/*"  >
+          <input id="id_image_passport" name="id_image_passport" type="file"  accept="image/*"  >
         {% csrf_token %}
      
                   </form>
+                </form>
+                <div id ="myProgress_passport" >
+                  <div id="myBar_passport" class="not-visible" style="margin-top:40px;"></div>
+                    </div>
+                    <div id="proc_passport" class="white-text"></div>
+      
+
 
           </div>
           <div class="row">
@@ -571,7 +581,6 @@ width:100%;
 <script>
   const uploadForm = document.getElementById('upload_form');
   const input_file = document.getElementById('id_image');
-  const progress_bar = document.getElementById('progress');
   var elem = document.getElementById("myBar")
   var elem2 = document.getElementById("proc")
   
@@ -582,7 +591,7 @@ width:100%;
       const media_data = input_file.files[0];
       if(media_data != null){
        
-          progress_bar.classList.remove("not-visible");
+         elem.classList.remove("not-visible");
       }
 
       $.ajax({
@@ -599,13 +608,14 @@ width:100%;
               xhr.upload.addEventListener('progress', e=>{
                   if(e.lengthComputable){
                       const percentProgress = (e.loaded/e.total)*100;
+                      if(percentProgress >= 100){
+                        proc.insertAdjacentText('beforeend', 'Resizing image please wait...');
+                      }
                       console.log(percentProgress);
                       elem.style.width = percentProgress + "%";
-                      progress_bar.innerHTML = `<div class="progress"   style="width:${percentProgress}%" id="progress">
-                        <div class="determinate " ></div>
-                        </div>`
+                
                   }
-                 proc.insertAdjacentText('beforeend', 'Converting Image');
+                
               });  
               return xhr
           },
@@ -613,7 +623,67 @@ width:100%;
               console.log(response);
               console.log('success')
               uploadForm.reset()
-              progress_bar.classList.add('not-visible')
+              elem.classList.add('not-visible')
+              location.reload()
+          },
+          error: function(err){
+              console.log(err);
+              console.log('fail')
+          },
+          cache: false,
+          contentType: false,
+          processData: false,
+      });
+  });
+
+</script>
+<!-- upload for passport temp duplication]-->
+<script>
+  const uploadFormPass = document.getElementById('upload_form_passport');
+  const input_filePass = document.getElementById('id_image_passport');
+  var elemPass = document.getElementById("myBar_passport")
+  var elem2Pass = document.getElementById("proc_passport")
+  
+  $("#upload_form_passport").submit(function(e){
+      e.preventDefault();
+      $form = $(this)
+      var formData = new FormData(this);
+      const media_data = input_filePass.files[0];
+      if(media_data != null){
+        console.log('hello')
+        elemPass.classList.remove("not-visible");
+      }
+
+      $.ajax({
+          type: 'POST',
+          url:'{% url 'savepassport' pk=selected.pk %}',
+          data: formData,
+          dataType: 'json',
+          beforeSend: function(){
+        
+            
+          },
+          xhr:function(){
+              const xhr = new window.XMLHttpRequest();
+              xhr.upload.addEventListener('progress', e=>{
+                  if(e.lengthComputable){
+                      const percentProgress = (e.loaded/e.total)*100;
+                      if(percentProgress >= 100){
+                        proc_passport.insertAdjacentText('beforeend', 'Resizing image please wait...');
+                      }
+                      console.log(percentProgress);
+                      elemPass.style.width = percentProgress + "%";
+                
+                  }
+                
+              });  
+              return xhr
+          },
+          success: function(response){
+              console.log(response);
+              console.log('success')
+              uploadFormPass.reset()
+              elemPass.classList.add('not-visible')
               location.reload()
           },
           error: function(err){

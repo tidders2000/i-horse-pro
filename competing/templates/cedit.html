@@ -138,6 +138,9 @@
   </div>
       <div class="row">
       <form method-"POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+    
         <div class="input-field col s12 m6">
      
        {{form.location|materializecss}} 
@@ -163,7 +166,7 @@
                 <div class="input-field col s12">
         {{form.image|materializecss}} 
                 </div>
-                  
+              </form>
                 {% comment %} <div class="col s12">
                         
                   <ul class="tabs grey darken-4">

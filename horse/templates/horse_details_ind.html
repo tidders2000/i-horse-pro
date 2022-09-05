@@ -274,7 +274,7 @@ width:100%;
         <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
           save
           </span></button>
-          <input id="id_image" name="id_image" type="file"  accept="image/*"  >
+          <input id="id_image" name="id_image"  type="file"  accept="image/*"  >
         {% csrf_token %}
      
                   </form>
@@ -283,17 +283,18 @@ width:100%;
                       </div>
                       <div id="proc" class="white-text"></div>
           </div>
-          <div class="row">
-            {% if selected.photo %}
-            <div class="col s3 materialboxed ">
-              <img src="{{MEDIA_URL}}{{ selected.photo }}" class="responsive-img">
-           
-            {% else %}
-            <p>No images added</p>
-            {% endif %}
+         
+      <div class="container">
+        <div class="row">
+          {% for photo in photos%}
+        <div class="col s3 m3"><img src="{{MEDIA_URL}}{{ photo.photo }}" alt="" class="materialboxed responsive-img"></div>  
+
+        {%endfor%}
           </div>
         </div>
+        </div>
       </div>
+
    
     
     </div> 

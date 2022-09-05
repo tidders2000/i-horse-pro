@@ -47,14 +47,14 @@ class EventFeed3(ICalFeed):
 
 def training_log(request):
     user = request.user
-    customImg = CustomImages.objects.all().filter(user=user)
+    customImg = Disipline.objects.all()
 
     return render(request, 'tlog.html', {'customImg': customImg})
 
 
 def training_create(request, pk):
 
-    customImg = get_object_or_404(CustomImages, pk=pk)
+    customImg = get_object_or_404(Disipline, pk=pk)
     form = training_form(request.user)
     user = request.user
     sessionSave = form.save(commit=False)

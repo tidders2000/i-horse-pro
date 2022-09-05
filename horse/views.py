@@ -36,9 +36,9 @@ def photo(request,pk):
     if request.method == "POST":
            
             photo = request.FILES.get('id_image')
+            Images.objects.create(photo=photo,horse=selected)
+            
            
-            selected.photo = photo
-            selected.save()
             return JsonResponse({'data':'Data uploaded'})
             # return redirect(reverse('detailsInd', kwargs={'pk': pk}))
             # messages.error(request, "photo Saved")  
@@ -152,6 +152,7 @@ def detailsInd(request, pk):
     horses = Horse.objects.all().filter(user=user)
     training = TrainingLog.objects.all().filter(horse=pk).order_by('-date')[:5]
     links = Link.objects.all().filter(horse=pk)
+    photos = Images.objects.all().filter(horse=pk)
 
     appointments = Appointment.objects.all().filter(
         horse=selected).order_by('event__appType', 'due')
@@ -176,7 +177,7 @@ def detailsInd(request, pk):
         
       
 
-    return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links})
+    return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links, 'photos':photos})
 
 
 def edithorse(request, pk):

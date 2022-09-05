@@ -4,7 +4,7 @@ from horse.models import Horse
 # Create your models here.
 
 disipline = [('Dressage', 'Dressage'), ('ShowJumping', 'ShowJumping'),
-             ('Eventing', 'Eventing'), ('PonyClub', 'PonyClub')]
+             ('XC', 'XC'), ('PonyClub', 'PonyClub')]
 
 user = User.username
 
@@ -36,8 +36,7 @@ class TrainingLog(models.Model):
         Horse, null=True, blank=True, on_delete=models.CASCADE)
     date = models.DateTimeField(
         auto_now=False, null=True)
-    disipline = models.ForeignKey(
-        CustomImages, null=True, on_delete=models.CASCADE)
+    disipline = models.CharField(max_length=100, blank=True)
     instructor = models.CharField(max_length=100, blank=True)
     location = models.CharField(max_length=100, blank=True)
     lightbulb = models.CharField(max_length=100, blank=True)

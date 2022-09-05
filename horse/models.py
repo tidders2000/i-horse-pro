@@ -9,17 +9,17 @@ tackType = [('Saddle', 'Saddle'), ('Bit', 'Bit'),
 
 class Horse(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    showName = models.CharField(max_length=100, default='Show Name')
-    stableName = models.CharField(max_length=100, default='Stable Name')
-    photo = models.ImageField(
+    showName = models.CharField(max_length=100)
+    stableName = models.CharField(max_length=100,)
+    photo = models.FileField(
         upload_to='media/images/horses', blank=True, default='media/images/horses/horse.jpeg')
     passport = models.ImageField(
         upload_to='media/images/passport', blank=True, default='media/images/passport.jpg')
-    breed = models.CharField(max_length=100, default='Irish Cob')
+    breed = models.CharField(max_length=100,)
     Gender = models.CharField(max_length=40, choices=gender, default='Gelding')
     pedigree = models.CharField(max_length=200, default='Sire x Dam')
     height = models.DecimalField(max_digits=3, decimal_places=1, default=15.3)
-    colour = models.TextField(default="patchy twat")
+    colour = models.TextField(default="markings")
     chip = models.CharField(max_length=100, blank=True)
     Dob = models.DateField(default="2015-01-01")
     owner = models.CharField(max_length=100, default="John Doe")
@@ -44,7 +44,14 @@ class Horse(models.Model):
         super().save(*args, **kwargs)
 
    
-
+class Images(models.Model):
+    horse = models.ForeignKey(Horse, default=None,on_delete=models.CASCADE)
+    photo = models.FileField(
+        upload_to='media/images/horses', blank=True, default='media/images/horses/horse.jpeg')
+    def save(self, *args, **kwargs):
+        image_resize(self.photo, 500, 500)
+        
+        super().save(*args, **kwargs)
 
 class Link(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)

@@ -82,6 +82,9 @@ crossorigin="anonymous"></script>
   .save-button{
       border-radius:10px;
       float:right;
+      white-space: normal;
+      text-align: center;
+ 
   }
 
   .acc_down{
@@ -171,9 +174,7 @@ width:100%;
       <div class="col s6"><b>{{selected.stableName}}</b></div>
       <div class="col s2 session_title"> </div>
       <div class="col s4">
-          <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_log" class="save-button"><span class="material-icons">
-          save
-          </span></button></div>
+         </div>
   </div>
 
 
@@ -189,6 +190,10 @@ width:100%;
                         <li><span class="bl">OWNER:</span> {{selected.owner}}</li>
                         <li><span class="bl">E MAIL:</span> {{selected.owner_email}}</li>
                         <li><span class="bl">MOBILE:</span> {{selected.owner_mobile}}</li>
+                        <li><span class="bl">ARRIVED:</span> {{selected.Arrived}}</li>
+                        <li><span class="bl">LEFT:</span> {{selected.Left}}</li>
+                     
+                       
                         
 
                     </ul>
@@ -263,7 +268,7 @@ width:100%;
 
 <form method="post"></form>
  <div class="card-panel grey darken-4 ">
-  <h2 class="hs__headline">Photos {{selected.pk}} </h2>
+  <h2 class="hs__headline">Photos  </h2>
   <div class="row blue_box" data-intro='Add a photo of your Horse by clicking choose file then click save'>
   
   
@@ -271,7 +276,7 @@ width:100%;
 
        
       <form method="POST"  id="upload_form" >
-        <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
+        <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button>
           save
           </span></button>
           <input id="id_image" name="id_image"  type="file"  accept="image/*"  >
@@ -283,18 +288,21 @@ width:100%;
                       </div>
                       <div id="proc" class="white-text"></div>
           </div>
-         
-      <div class="container">
-        <div class="row">
-          {% for photo in photos%}
-        <div class="col s3 m3"><img src="{{MEDIA_URL}}{{ photo.photo }}" alt="" class="materialboxed responsive-img"></div>  
-
-        {%endfor%}
-          </div>
-        </div>
+          <div class="row">
+            {% for photo in photos%}
+            {% if photo.photo %}
+          
+            <div class="col s3 m3"><img src="{{MEDIA_URL}}{{ photo.photo }}" alt="" class="materialboxed responsive-img"></div>  
+           
+            {% else %}
+            <p>No images added</p>
+            {% endif %}
+            {%endfor%}
+       
         </div>
       </div>
 
+  
    
     
     </div> 
@@ -504,9 +512,7 @@ width:100%;
 
        
       <form method="POST"  id="upload_form_passport" >
-        <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button"><span class="material-icons">
-          save
-          </span></button>
+      <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button>
           <input id="id_image_passport" name="id_image_passport" type="file"  accept="image/*"  >
         {% csrf_token %}
      
@@ -614,6 +620,7 @@ width:100%;
             
           },
           xhr:function(){
+            
               const xhr = new window.XMLHttpRequest();
               xhr.upload.addEventListener('progress', e=>{
                   if(e.lengthComputable){
@@ -639,6 +646,7 @@ width:100%;
           error: function(err){
               console.log(err);
               console.log('fail')
+              location.reload()
           },
           cache: false,
           contentType: false,
@@ -660,7 +668,7 @@ width:100%;
       var formData = new FormData(this);
       const media_data = input_filePass.files[0];
       if(media_data != null){
-        console.log('hello')
+     
         elemPass.classList.remove("not-visible");
       }
 
@@ -674,6 +682,7 @@ width:100%;
             
           },
           xhr:function(){
+            console.log('xhr')
               const xhr = new window.XMLHttpRequest();
               xhr.upload.addEventListener('progress', e=>{
                   if(e.lengthComputable){
@@ -699,6 +708,7 @@ width:100%;
           error: function(err){
               console.log(err);
               console.log('fail')
+              location.reload()
           },
           cache: false,
           contentType: false,

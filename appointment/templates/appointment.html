@@ -97,6 +97,21 @@ font-size: 20px;
 select{
  background-color: #212121!important;
 }
+
+.report{
+  margin-top:20px;
+  height:100px;
+  width:100px;
+}
+
+.report_para{
+  color:#0288d1;
+  margin-left:10px;
+}
+
+#id_image{
+  margin-left:10px;
+}
 </style>
   <nav>
     <div class="nav-wrapper">
@@ -109,11 +124,11 @@ select{
     </div>
   </nav>
   <div class="card-panel grey darken-4">
-
+    <a href="{% url 'EventFeed' %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
 
 <div class="nativeCal" style="display:{{display}};">
 
-<a href="{% url 'EventFeed' %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
+
 
 </div>
  <form method="POST" enctype="multipart/form-data">
@@ -121,15 +136,26 @@ select{
     <div class="col s2"><span class="material-icons ">
        event
         </span></div>
+        
     <div class="col s8 session_title"><h4>Add Appointment for {{horse.stableName}} </h4></div>
     <div class="col s2">
-        <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_entry"><span class="material-icons">
-        save
-        </span></button></div>
+
+      <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button></div>
               
           {{form|materializecss}}
         {% csrf_token %} 
-
+        <p class="report_para"> Add a report</p>
+        <input id="id_image" name="id_image"  type="file"  accept="image/*"  >
+        <div class="row">
+          {% if instance.report %}
+          <div class="col s3 materialboxed ">
+            <img src="{{MEDIA_URL}}{{ instance.report }}" class=" report ">
+         
+          {% else %}
+          <p>No images added</p>
+          {% endif %}
+        </div>
+      </div>
     
                      </form>
 

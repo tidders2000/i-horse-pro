@@ -10,7 +10,7 @@ from django.contrib import messages
 import uuid
 import base64
 from django.core.files.base import ContentFile
-
+from django.core.paginator import Paginator
 
 class EventFeed3(ICalFeed):
     """
@@ -48,8 +48,14 @@ class EventFeed3(ICalFeed):
 def training_log(request):
     user = request.user
     customImg = Disipline.objects.all()
+     
+    train = TrainingLog.objects.all().filter(user=user).order_by('-date')
+    paginator = Paginator(train, 10)
+    page_number = request.GET.get('page')
+    train_obj = paginator.get_page(page_number)
 
-    return render(request, 'tlog.html', {'customImg': customImg})
+
+    return render(request, 'tlog.html', {'customImg': customImg,'train_obj': train_obj})
 
 
 def training_create(request, pk):

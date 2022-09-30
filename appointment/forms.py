@@ -19,6 +19,6 @@ class event_form(forms.ModelForm):
     class Meta:
 
         model = Appointment
-        exclude = ['user', 'horse']
+        exclude = ['user', 'horse','link','report']
   
      

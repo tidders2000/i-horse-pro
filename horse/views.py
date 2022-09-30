@@ -6,6 +6,8 @@ from .models import *
 from appointment.models import Appointment
 from training.models import TrainingLog
 from datetime import datetime, timedelta, time
+from django.db import connections
+import random
 
 # Create your views here.
 
@@ -30,18 +32,27 @@ def horse(request):
 
 
 def photo(request,pk):
-   
+    
     selected = Horse.objects.get(pk=pk)
+    number=random.randint(1,10000)
+    rand = number
   
     if request.method == "POST":
-           
+      
+        # files=request.FILES.getlist('id_image')
+        # print(files)
+        # for f in files:
+        #     file_instance=Images_new.objects.create(horse=selected,photo=f)
+        #     file_instance.save
+        
             photo = request.FILES.get('id_image')
-            Images.objects.create(photo=photo,horse=selected)
+            obj=Images_new.objects.create(photo=photo,horse=selected,id=rand)
             
-           
             return JsonResponse({'data':'Data uploaded'})
-            # return redirect(reverse('detailsInd', kwargs={'pk': pk}))
             # messages.error(request, "photo Saved")  
+            # return redirect('detailsInd', kwargs={'pk': pk})
+           
+          
 
 
      
@@ -152,7 +163,7 @@ def detailsInd(request, pk):
     horses = Horse.objects.all().filter(user=user)
     training = TrainingLog.objects.all().filter(horse=pk).order_by('-date')[:5]
     links = Link.objects.all().filter(horse=pk)
-    photos = Images.objects.all().filter(horse=pk)
+    photos = Images_new.objects.all().filter(horse=pk)
 
     appointments = Appointment.objects.all().filter(
         horse=selected).order_by('event__appType', 'due')
@@ -177,10 +188,11 @@ def detailsInd(request, pk):
         
       
 
-    return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links, 'photos':photos})
+    return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links,'photos':photos })
 
 
 def edithorse(request, pk):
+
     instance = get_object_or_404(Horse, pk=pk)
     form = horse_form(instance=instance)
     pk = pk

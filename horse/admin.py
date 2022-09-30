@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Horse, Link, Tack,Images
+from .models import Horse, Link, Tack,Images_new
 
 
 class HorseAdmin(admin.ModelAdmin):
@@ -13,4 +13,4 @@ class HorseAdmin(admin.ModelAdmin):
 admin.site.register(Horse, HorseAdmin)
 admin.site.register(Link)
 admin.site.register(Tack)
-admin.site.register(Images)
+admin.site.register(Images_new)

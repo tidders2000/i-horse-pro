@@ -19,8 +19,8 @@ class Appointment(models.Model):
     due = models.DateTimeField(
         auto_now=False, null=True)
 
-    report = models.ImageField(
-        upload_to='media/images/appoint', blank=True)
+    report = models.FileField(  upload_to='media/images/reports')
+     
     notes = models.TextField(blank=True)
     link = models.CharField(max_length=200, blank=True)
 

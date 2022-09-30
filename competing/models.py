@@ -11,8 +11,7 @@ class CompetitionLog(models.Model):
 
     date = models.DateTimeField(
         auto_now=False, null=True)
-    disipline = models.ForeignKey(
-        CustomImages, null=True, on_delete=models.CASCADE)
+    disipline = models.CharField(max_length=100, blank=True)
 
     location = models.CharField(max_length=100, blank=True)
     lightbulb = models.CharField(max_length=100, blank=True)

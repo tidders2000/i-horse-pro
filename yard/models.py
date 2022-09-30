@@ -19,6 +19,7 @@ class Staff(models.Model):
     emergency_contact_name = models.CharField(max_length=40, blank=True)
     emergency_contact_number = models.CharField(max_length=40, blank=True)
     start_date = models.DateField(blank=True,null=True)
+    ni_number = models.CharField(max_length=20, blank=True)
     
     
    
@@ -44,6 +45,7 @@ class Client  (models.Model):
     emergency_contact_name = models.CharField(max_length=40, blank=True)
     emergency_contact_number = models.CharField(max_length=40, blank=True)
     start_date = models.DateField(blank=True,null=True)
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return self.name

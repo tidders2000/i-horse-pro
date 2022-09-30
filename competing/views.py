@@ -11,23 +11,45 @@ from datetime import datetime
 from datetime import date
 import calendar
 from django.contrib import messages
+from training.models import Disipline
 # Create your views here.
 
 
 def competition(request):
     user = request.user
-    customImg = CustomImages.objects.all().filter(user=user)
-    request.session['dis'] = 'none'  # sets appointment display css
-    return render(request, 'comp.html', {'customImg': customImg})
+    customImg = Disipline.objects.all()
+     
+    comps = CompetitionLog.objects.all().filter(user=user).order_by('-date')
+    paginator = Paginator(comps, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
+ 
+    # if request.method == "POST":
+    #     keyword = request.POST.get('keyword')
+    #     comps = CompetitionLog.objects.filter(
+    #         Q(location__icontains=keyword)  | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
+    #     paginator = Paginator(comps, 10)
+    #     page_obj = paginator.get_page(page_number)
+       
+        
+
+        
+
+
+    return render(request, 'comp.html', {'customImg': customImg, 'page_obj': page_obj})
 
 
 def comp_create(request, pk):
-    customImg = get_object_or_404(CustomImages, pk=pk)
+      
+  
+    Dis = get_object_or_404(Disipline, pk=pk)
     form = comp_form()
     venue = venue_form()
     user = request.user
     sessionSave = form.save(commit=False)
-    sessionSave.disipline = customImg
+    sessionSave.disipline = Dis
     sessionSave.user = user
 
     sessionSave.save()
@@ -37,13 +59,14 @@ def comp_create(request, pk):
     venueSave.venueName = 'Venue Name'
     venueSave.save()
 
-    pk = sessionSave.pk
+    pik = sessionSave.pk
 
-    url = 'comp_edit/{}'.format(pk)
+    url = 'comp_edit/{}'.format(pik)
     return redirect(url)
 
 
 def comp_edit(request, pk):
+    # Dis = get_object_or_404(Disipline, pk=pk)
     session = get_object_or_404(CompetitionLog, pk=pk)
     if not session.location:
        show=False
@@ -88,16 +111,7 @@ def comp_edit(request, pk):
 
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
-        if 'save_venue' in request.POST:
 
-            venue_update = venue_form(request.POST, instance=venue_instance)
-            if venue_update.is_valid():
-                venue_update.save()
-
-                messages.error(request, "Info Saved")
-                url = '/competing/comp_edit/{}'.format(session.pk)
-
-                return redirect(url)
 
     return render(request, 'cedit.html', {'show':show,'venue_instance': venue_instance, 'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
 

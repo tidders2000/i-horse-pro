@@ -41,16 +41,19 @@ def editapp(request):
 
     app = request.GET['app']
     instance = get_object_or_404(Appointment, pk=app)
+
     form = event_form(instance=instance)
     user = request.user
     id = request.GET['horse']
     horse = Horse.objects.get(pk=id)
     display = "none"
     if request.method == "POST":
+        photo = request.FILES.get('id_image')
         form = event_form(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             formSave = form.save(commit=False)
             formSave.user = user
+            formSave.report = photo
             formSave.horse = horse
             formSave.save()
             display = "inline"

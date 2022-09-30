@@ -44,6 +44,12 @@
 
       }
 
+      @media only screen and (max-width: 600px) {
+        .session_title{
+            font-size:25px
+        }
+      }
+
       button{
           border-radius:10px;
           background-colour:#21a3e2!important;
@@ -131,9 +137,7 @@ min-height:50px;
                 </span></div>
             <div class="col s8 session_title">{{session.disipline}}  </div>
             <div class="col s2">
-                <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_log"><span class="material-icons">
-                save
-                </span></button></div>
+                <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_log" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button></div>
         </div>
         <div class="row">
             <div class="input-field col s12" >

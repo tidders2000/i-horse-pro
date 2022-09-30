@@ -102,6 +102,65 @@ nav {
 
     {% endfor %} 
     </ul>
+    <div class="card-panel grey darken-4">
+      <h4>History</h4>
+ 
+         <div class="row">
+         <div class="col s10 m11">
+          <form method='POST' style="padding-left:0;"  data-intro='Use search to find specifics'>
+          
+              <input type="text" placeholder="Keyword" name='keyword'>
+        </div>
+            <div class="col s2 m1">
+             <button type="submit"  class="submit_button"><i class="fa fa-search white-text" aria-hidden="true"></i></button>
+             </div>
+        
+         
+           {% csrf_token %}
+          
+          
+          </form>
+      </div>
+  
+<div class="row" >
+
+  <ul class="collection" style="border:none!important;" data-intro='Click a blue arrow to view'>
+
+
+    {% for train in train_obj%}
+<li class="collection-item avatar grey darken-4 " >
+{% if train.disipline == 'Dressage' %}
+<i class="fa fa-heartbeat disipline_title" aria-hidden="true"></i>
+{%  elif train.disipline == 'XC' %}
+<i class="fa fa-rocket  disipline_title" aria-hidden="true"></i>
+{%  elif train.disipline == 'ShowJumping' %}
+  <i class="fa fa-bars disipline_title" aria-hidden="true"></i>
+  {% endif%}
+<span  class="disipline_title ">{{train.disipline}} {{train.horse}} {{train.date}}</span>
+
+<a href="{% url "training_edit" train.pk %}" class="secondary-content "><i class="fa fa-chevron-circle-right history_link" style="font-size:50px;color:#21a3e2;" aria-hidden="true"></i></a>
+</li>
+ {% endfor %}
+</ul>
+<!--pagination-->         
+<div class="pagination"  data-intro='Use the nav to view pages'>
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %} 
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+  </span>
+</div>
+</div><!--end of row-->
   </div>
     {% endblock %} 
 

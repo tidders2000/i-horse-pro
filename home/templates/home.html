@@ -24,6 +24,9 @@ border-radius:10px;
  .arrow{
    color:#0288d1;
  }
+ .add_horse{
+   color:#21a3e2;;
+ }
 </style>
 {% block head %}
   <!-- Material Design Theming -->
@@ -54,7 +57,7 @@ border-radius:10px;
   {% endfor %}
 </ul>
 
-
+<div class="add_horse"><a href="{% url 'horse' %}"><i class="fas fa-plus" style="padding:0;"></i> Add Horse</a></div>
 </div>
 
 
@@ -68,7 +71,7 @@ border-radius:10px;
  <h5> Appointments</h5>
   <ul class="schedule">
    {% for event in events %}
-   <li class="grey-text text-lighten-1 "><a class="white-text" href="{% url 'editapp' %}?app={{event.pk}}&horse={{event.horse.pk}}">{{event.event}} {{event.due}}</a></li>
+   <li class="grey-text text-lighten-1 "><a class="white-text" href="{% url 'editapp' %}?app={{event.pk}}&horse={{event.horse.pk}}">{{event.horse.stableName}} {{event.event}} {{event.due}}</a></li>
  
   {% endfor %}
   </ul>

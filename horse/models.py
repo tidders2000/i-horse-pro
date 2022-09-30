@@ -17,12 +17,12 @@ class Horse(models.Model):
         upload_to='media/images/passport', blank=True, default='media/images/passport.jpg')
     breed = models.CharField(max_length=100,)
     Gender = models.CharField(max_length=40, choices=gender, default='Gelding')
-    pedigree = models.CharField(max_length=200, default='Sire x Dam')
-    height = models.DecimalField(max_digits=3, decimal_places=1, default=15.3)
-    colour = models.TextField(default="markings")
+    pedigree = models.CharField(max_length=200)
+    height = models.DecimalField(max_digits=3, decimal_places=1)
+    colour = models.TextField()
     chip = models.CharField(max_length=100, blank=True)
-    Dob = models.DateField(default="2015-01-01")
-    owner = models.CharField(max_length=100, default="John Doe")
+    Dob = models.DateField()
+    owner = models.CharField(max_length=100)
     owner_mobile =  models.CharField(max_length=20, blank=True)
     owner_email = models.EmailField(max_length=200, blank=True)
     street_address1 = models.CharField(max_length=40, blank=True)
@@ -30,7 +30,8 @@ class Horse(models.Model):
     town_or_city = models.CharField(max_length=40, blank=True)
     county = models.CharField(max_length=40, blank=True)
     postcode = models.CharField(max_length=20, blank=True)
- 
+    Arrived = models.DateField()
+    Left = models.DateField()
     feeds = models.TextField(blank=True)
 
     notes = models.TextField(blank=True, default="behaviour etc")
@@ -45,6 +46,17 @@ class Horse(models.Model):
 
    
 class Images(models.Model):
+    id = models.CharField(max_length=40,primary_key=True)
+    horse = models.ForeignKey(Horse, default=None,on_delete=models.CASCADE)
+    photo = models.FileField(
+        upload_to='media/images/horses', blank=True, default='media/images/horses/horse.jpeg')
+    def save(self, *args, **kwargs):
+        image_resize(self.photo, 500, 500)
+        
+        super().save(*args, **kwargs)
+
+   
+class Images_new(models.Model):
     horse = models.ForeignKey(Horse, default=None,on_delete=models.CASCADE)
     photo = models.FileField(
         upload_to='media/images/horses', blank=True, default='media/images/horses/horse.jpeg')

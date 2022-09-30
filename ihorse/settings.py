@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'yard',
     'phone_field',
     'djmoney',
+    
 
 
 

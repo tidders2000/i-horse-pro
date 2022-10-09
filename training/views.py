@@ -53,9 +53,9 @@ def training_log(request):
     paginator = Paginator(train, 10)
     page_number = request.GET.get('page')
     train_obj = paginator.get_page(page_number)
+    page_obj = paginator.get_page(page_number)
 
-
-    return render(request, 'tlog.html', {'customImg': customImg,'train_obj': train_obj})
+    return render(request, 'tlog.html', {'customImg': customImg,'train_obj': train_obj,'page_obj':page_obj})
 
 
 def training_create(request, pk):

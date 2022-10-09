@@ -18,8 +18,13 @@
     
     .disipline_title {
         color: #b3b3b3;
-        font-size: 24px;
+        font-size: 18px;
     }
+
+    .collection .collection-item.avatar{
+        padding-left: 0!important;
+    }
+    
     
     .disipline_type {
         color: white;

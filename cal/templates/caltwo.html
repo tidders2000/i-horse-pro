@@ -47,7 +47,11 @@
 
                   endDate: new Date("{{event.due|date:'D, j F Y h:i'}}"),
 
-                  summary: '{{event.event.appType}}'
+                  summary: '{{event.event.appType}} for {{event.horse.stableName}} ',
+
+                
+
+                  
 
               }, {% endfor %}
 

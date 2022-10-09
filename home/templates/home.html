@@ -94,7 +94,7 @@ border-radius:10px;
     <h5 > Training </h5>
   <ul class="schedule">
    {% for train in training %}
-   <li class="grey-text text-lighten-1" style="list-style-type:disc!important;"><a class="white-text" href="{% url 'training_edit' train.pk %}">{{train.disipline.disipline}}  {{train.location}} {{train.date}}</a></li>
+   <li class="grey-text text-lighten-1" style="list-style-type:disc!important;"><a class="white-text" href="{% url 'training_edit' train.pk %}">{{train.disipline.disipline}}  {{train.horse.stableName}} {{train.date}}</a></li>
  
   {% endfor %}
   </ul>

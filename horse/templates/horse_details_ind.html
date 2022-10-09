@@ -343,7 +343,7 @@ width:100%;
           {% if app.event.appType == "Farrier" %}
 
 
-         <li> <span class=""> {{app.due}}</span></li>
+          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -366,7 +366,7 @@ width:100%;
           {% if app.event.appType == "Vet" %}
 
 
-         <li> <span class=""> {{app.due}}</span></li>
+          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -389,7 +389,7 @@ width:100%;
           {% if app.event.appType == "Physio" %}
 
 
-         <li> <span class=""> {{app.due}}</span></li>
+          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -413,7 +413,7 @@ width:100%;
           {% if app.event.appType == "Dentist" %}
 
 
-         <li> <span class=""> {{app.due}}</span></li>
+          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -437,7 +437,7 @@ width:100%;
           {% if app.event.appType == "Worming" %}
 
 
-         <li> <span class=""> {{app.due}}</span></li>
+          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 

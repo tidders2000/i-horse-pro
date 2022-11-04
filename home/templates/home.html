@@ -45,7 +45,13 @@ border-radius:10px;
   {% for horse in horses %}
   <li class="hs__item">
     <div class="hs__item__image__wrapper">
-       <a href="{% url 'detailsInd' pk=horse.pk%}"><img class="hs__item__image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.stableName}}"/></a>
+       <a href="{% url 'detailsInd' pk=horse.pk%}">
+         {% comment %} {%for image in images%}
+          {% if image.horse.pk == horse.pk %} {% endcomment %}
+         <img class="hs__item__image" src="{{MEDIA_URL}}{{ horse.photo}}" alt="{{horse.stableName}}"/>
+          {% comment %} {%endif%}
+          {%endfor%} {% endcomment %}
+        </a>
     </div>
 
     <div class="hs__item__description">
@@ -56,6 +62,9 @@ border-radius:10px;
 
   {% endfor %}
 </ul>
+
+
+
 
 <div class="add_horse"><a href="{% url 'horse' %}"><i class="fas fa-plus" style="padding:0;"></i> Add Horse</a></div>
 </div>

@@ -45,11 +45,11 @@ class Horse(models.Model):
         super().save(*args, **kwargs)
 
    
-class Images(models.Model):
-    id = models.CharField(max_length=40,primary_key=True)
+class Images_P(models.Model):
+
     horse = models.ForeignKey(Horse, default=None,on_delete=models.CASCADE)
     photo = models.FileField(
-        upload_to='media/images/horses', blank=True, default='media/images/horses/horse.jpeg')
+        upload_to='media/images/passport', blank=True, default='media/images/passport.jpg')
     def save(self, *args, **kwargs):
         image_resize(self.photo, 500, 500)
         

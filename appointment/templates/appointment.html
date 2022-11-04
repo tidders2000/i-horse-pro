@@ -145,11 +145,11 @@ select{
           {{form|materializecss}}
         {% csrf_token %} 
         <p class="report_para"> Add a report</p>
-        <input id="id_image" name="id_image"  type="file"  accept="image/*"  >
+        <input id="id_image" name="id_image"  type="file"   >
         <div class="row">
           {% if instance.report %}
           <div class="col s3 materialboxed ">
-            <img src="{{MEDIA_URL}}{{ instance.report }}" class=" report ">
+            <a href="{{MEDIA_URL}}{{ instance.report }}" class="report ">{{ instance.report }}</a>
          
           {% else %}
           <p>No images added</p>

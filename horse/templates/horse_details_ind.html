@@ -277,7 +277,7 @@ width:100%;
        
       <form method="POST"  id="upload_form" >
         <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button>
-          save
+       
           </span></button>
           <input id="id_image" name="id_image"  type="file"  accept="image/*"  >
         {% csrf_token %}
@@ -527,15 +527,18 @@ width:100%;
 
           </div>
           <div class="row">
-            {% if selected.passport %}
-            <div class="col s3 materialboxed ">
-              <img src="{{MEDIA_URL}}{{ selected.passport }}" class="responsive-img">
+            {% for pass in passport%}
+            {% if pass.photo %}
+          
+            <div class="col s3 m3"><img src="{{MEDIA_URL}}{{ pass.photo }}" alt="" class="materialboxed responsive-img"></div>  
            
             {% else %}
             <p>No images added</p>
             {% endif %}
-          </div>
+            {%endfor%}
+       
         </div>
+      </div>
       </div>
     
     </div> 

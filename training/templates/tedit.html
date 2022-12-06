@@ -83,6 +83,10 @@
 min-height:50px;
 
     }
+
+    #modal1{
+        padding-bottom:50px!important;
+    }
    
 </style>
 <nav>
@@ -162,7 +166,7 @@ min-height:50px;
            
             <div class="input-field col s12">
 
-                {{form.notes|materializecss}}
+                {{form.homework|materializecss}}
             </div>
         </div>
         
@@ -193,7 +197,7 @@ min-height:50px;
                             <p class="white-text" data-intro='Come back here after the session and click to show objectives achived'> Click Objective to mark achieved</p>
                             <ol>
                                 {% for obj in listObj %}
-                                <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a> {% if obj.Completed == True %}
+                                <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a>  <a href="{% url 'deleteobjective' pk=obj.pk%}"><i class="fa fa-times delete" aria-hidden="true"></i></a> {% if obj.Completed == True %}
                                     <i class="fa fa-check green-text" aria-hidden="true"></i> {% endif %}
                     
                                 </li>
@@ -256,15 +260,28 @@ min-height:50px;
                             <img src="{{MEDIA_URL}}{{ session.floorPlan}}" alt="floor plan" class="floorplan responsive-img">
                         </div>
                     </div>
-                    <div id="test4" class="col s12">
+    
+<div id="test4" class="col s12">
 
     <h2 class="hs__headline"  data-intro='Load up any supporting information such as session notes'>Add A File</h2>
-    <div class="row blue_box">
+       <div class="row blue_box">
+        <input id="id_image" name="id_image"  type="file"  >
+        <div class="row">
+            {% if session.files %}
+            <div class="col s3 materialboxed ">
+              <a href="{{MEDIA_URL}}{{ session.files }}" class="report ">{{ session.files }}</a>
+           
+            {% else %}
+            <p>No files added</p>
+            {% endif %}
+          </div>
+        </div>
 
- <div class="file-path-wrapper" style='min-height:220px;'>
+        {% comment %} <div class="file-path-wrapper" style='min-height:220px;'>
             {{form.files|materializecss}}
 
-</div>
+                        </p>
+                         </div> {% endcomment %}
                     </div>
                   </div>
             
@@ -440,7 +457,7 @@ min-height:50px;
         <div class="col s12  ">
             <h5> Enter an Objective </h5>
             <form method="POST" action="{% url 'training_edit' pk=pk %}" id="obj" style="margin-left:5px!important;">
-               <div class="col s12 obj-form"> {{obj.objective|materializecss}}</div>
+               <div class="col s12 obj-form"> {{obj.objective|materializecss}} </div>
                <button type="submit"  name="save_obj" class="btn btn-success">Add Objective</button>
                 {% csrf_token %}
                   </form>
@@ -448,7 +465,7 @@ min-height:50px;
           
         </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer ">
        
     </div>
   </div>
@@ -471,10 +488,12 @@ min-height:50px;
 
       
 </script>
+$('#id_homework').trigger('autoresize');
 $(document).ready(function(){
     $("a.submit").click(function(){
         document.getElementById("obj").submit();
     }); 
+  
 });
 
 

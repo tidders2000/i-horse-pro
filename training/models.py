@@ -45,7 +45,7 @@ class TrainingLog(models.Model):
     littlewins3 = models.CharField(max_length=100, blank=True)
     floorPlan = models.ImageField(
         upload_to='media/images/floorplan', blank=True, default='media/images/floor_plan.jpg')
-    notes = models.TextField(blank=True)
+    homework = models.TextField(blank=True)
     files = models.FileField(upload_to='media/uploads', blank=True)
 
 

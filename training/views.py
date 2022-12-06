@@ -92,14 +92,17 @@ def training_edit(request, pk):
                 return redirect(reverse('training_edit', kwargs={'pk': pk}) + '#obj')
 
         if 'save_log' in request.POST:
+            photo = request.FILES.get('id_image')
             log = training_form(request.user,
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
-                log.save()
+                 formSave = log.save(commit=False)
+                 formSave.files = photo
+                 formSave.save()
                
                 # display = 'inline'
-                messages.error(request, "Training Saved")
-                return redirect("training_edit", pk=pk)
+                 messages.error(request, "Training Saved")
+                 return redirect("training_edit", pk=pk)
                 
 
     return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display,})
@@ -140,3 +143,11 @@ def savedraw(request, pk):
         session.floorPlan.save(file_name, data, save=True)
 
     return redirect(reverse('training_edit', kwargs={'pk': session.pk}))
+
+def deleteobjective(request,pk):
+    objective = get_object_or_404(Objectives, pk=pk)
+    objective.delete()
+    id=objective.session.pk
+  
+
+    return redirect(reverse('training_edit', kwargs={'pk': id}))

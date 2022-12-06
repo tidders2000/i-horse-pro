@@ -126,11 +126,14 @@ class EventFeed2(ICalFeed):
 
     def __call__(self, request, *args, **kwargs):
         self.user = request.user
+        self.pk = kwargs['pk']
         return super(EventFeed2, self).__call__(request, *args, **kwargs)
         print(self.user)
 
     def items(self):
-        return CompetitionLog.objects.filter(user=self.user).order_by('-date')
+    #    (user=self.user).order_by('-date')
+       
+        return CompetitionLog.objects.filter(pk=self.pk)
 
     def item_guid(self, item):
         return "{}{}".format(item.id, "global_name")
@@ -139,8 +142,8 @@ class EventFeed2(ICalFeed):
 
         return "{}".format(item.location)
 
-    def item_description(self, item):
-        return item.notes
+    # def item_description(self, item):
+    #     return item.notes
 
     def item_start_datetime(self, item):
         return item.date

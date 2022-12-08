@@ -22,11 +22,12 @@ class EventFeed3(ICalFeed):
 
     def __call__(self, request, *args, **kwargs):
         self.user = request.user
+        self.pk = kwargs['pk']
         return super(EventFeed3, self).__call__(request, *args, **kwargs)
         print(self.user)
 
     def items(self):
-        return TrainingLog.objects.filter(user=self.user).order_by('-date')
+        return TrainingLog.objects.filter(pk=self.pk)
 
     def item_guid(self, item):
         return "{}{}".format(item.id, "global_name")

@@ -75,10 +75,11 @@ class EventFeed(ICalFeed):
 
     def __call__(self, request, *args, **kwargs):
         self.user = request.user
+        self.pk = kwargs['pk']
         return super(EventFeed, self).__call__(request, *args, **kwargs)
 
     def items(self):
-        return Appointment.objects.filter(user=self.user).order_by('-due')
+        return Appointment.objects.filter(pk=self.pk)
 
     def item_guid(self, item):
         return "{}{}".format(item.id, "global_name")

@@ -89,7 +89,9 @@ min-height:50px;
     }
 
     #id_homework{
-        padding-bottom: 70px!important;
+        padding-bottom: 200px!important;
+      
+        margin-top:10px;
     }
    
 </style>
@@ -110,7 +112,7 @@ min-height:50px;
 {% endcomment %}
 <div class="nativeCal" style="display:inline";>
 
-    <a href="{% url 'EventFeed3' %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
+    <a href="{% url 'EventFeed3' session.pk %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
 
 </div> 
 

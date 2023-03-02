@@ -1,3 +1,4 @@
+from itertools import count
 from django.shortcuts import render, redirect, reverse, HttpResponseRedirect, get_object_or_404
 from django.http import JsonResponse
 from .forms import horse_form, link_form, tack_form
@@ -13,8 +14,16 @@ import random
 
 
 def horse(request):
-
     user = request.user
+    horses = Horse.objects.all().filter(user=user).count()
+    if user.profile.membership=="Free" and horses >=1:
+         messages.error(request, 'Maximum reached') 
+         return redirect('home')
+    if user.profile.membership=="Competition" and horses >=3:
+          messages.error(request, 'Maximum reached') 
+          return redirect('home')
+
+   
     form = horse_form()
     if request.method == "POST":
         horsef = horse_form(request.POST)

@@ -17,6 +17,12 @@ from training.models import Disipline
 
 def competition(request):
     user = request.user
+    comps =CompetitionLog.objects.all().filter(user=user).count()
+    if user.profile.membership=="Free" and comps >=5:
+         messages.error(request, 'Maximum reached') 
+         return redirect('home')
+  
+    
     customImg = Disipline.objects.all()
      
     comps = CompetitionLog.objects.all().filter(user=user).order_by('-date')

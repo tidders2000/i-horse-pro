@@ -38,6 +38,11 @@ def staff(request):
 
 
 def yard_menu(request):
+    user = request.user
+ 
+    if user.profile.membership!="Pro":
+         messages.error(request, 'Sorry you need Pro membership to access Yard Management') 
+         return redirect('home')
  
     if request.method == "POST":
       fname=request.POST.get('fn')

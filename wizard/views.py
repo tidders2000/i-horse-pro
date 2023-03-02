@@ -13,12 +13,69 @@ from accounts.models import Profile
 
 import stripe
 
+def success(request):
 
+ membership= Profile.objects.get(pk=request.user.pk)
+ status=membership.membership
+ return render(request,'success.html',{'status':status})
+
+def cancel(request):
+     instance = Profile.objects.get(pk=request.user.pk)
+     instance.membership ='Free'
+     instance.save()
+     return render(request,'cancel.html')
 # Create your views here.
 
 #stripe.api_key = settings.STRIPE_SECRET
 # Create your views here.
 
+def pro(request):
+ 
+ instance = Profile.objects.get(pk=request.user.pk)
+ instance.membership ='Pro'
+ instance.save()
+ price="price_1MgrHWEbBBCp0sSzN8zMkWgr"
+ stripe.api_key = settings.STRIPE_SECRET_KEY
+ 
+ if settings.DEBUG:
+            domain = "http://127.0.0.1:8000"
+            checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price': price,  
+                    'quantity': 1,
+                },
+            ],
+            mode='subscription',
+            success_url=domain + '/wizard/success/',
+            cancel_url=domain + '/wizard/cancel/',
+        )
+ return redirect(checkout_session.url, code=303)
+
+def competition(request):
+ instance = Profile.objects.get(pk=request.user.pk)
+ instance.membership ='Competition'
+ instance.save()
+
+ price="price_1MgrGnEbBBCp0sSzEVLCpIuA"
+ stripe.api_key = settings.STRIPE_SECRET_KEY
+ 
+ if settings.DEBUG:
+            domain = "http://127.0.0.1:8000"
+            checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price': price,  
+                    'quantity': 1,
+                },
+            ],
+            mode='subscription',
+            success_url=domain + '/wizard/success/',
+            cancel_url=domain + '/wizard/cancel/',
+        )
+ return redirect(checkout_session.url, code=303)
 
 def wizard(request):
 

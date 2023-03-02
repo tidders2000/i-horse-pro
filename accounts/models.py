@@ -11,6 +11,7 @@ class Profile(models.Model):
     profile_image = models.ImageField(
         upload_to='media/profiles', default='media/images/default_1.png')
     wizard = models.BooleanField(default=True)
+    membership = models.CharField(default="Free",max_length=254)
 
 
 @receiver(post_save, sender=User)

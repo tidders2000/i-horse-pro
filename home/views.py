@@ -31,7 +31,7 @@ def home(request):
 
   
     now = datetime.now()
-    messages.success(request, "Horse Updated")
+  
     horses = Horse.objects.all().filter(user=user)[:10]
     events = Appointment.objects.all().filter(Q(user=user,due__gte=now)).order_by('due')[:6]
     comps = CompetitionLog.objects.all().filter(

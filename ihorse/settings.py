@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
-# import env
+import env
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +29,6 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['i-horse.herokuapp.com', '127.0.0.1','www.i-horse.co.uk', 'www.i-horse.club']
 
 
 # Application definition
@@ -234,3 +233,7 @@ USE_I18N = True
 USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
 USE_TZ = True
+
+STRIPE_PUBLISHABLE_KEY =  os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_TEST_MODE = os.environ.get('STRIPE_TEST_MODE')

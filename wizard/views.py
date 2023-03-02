@@ -48,8 +48,8 @@ def pro(request):
                 },
             ],
             mode='subscription',
-            success_url=domain + '/wizard/success/',
-            cancel_url=domain + '/wizard/cancel/',
+            success_url=domain + '/wizard/success',
+            cancel_url=domain + '/wizard/cancel',
         )
  return redirect(checkout_session.url, code=303)
 

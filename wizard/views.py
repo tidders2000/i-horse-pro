@@ -38,7 +38,7 @@ def pro(request):
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
-            domain = "http://127.0.0.1:8000"
+            domain = "https://i-horse-development-fezeitgzxk.herokuapp.com"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[
@@ -62,7 +62,7 @@ def competition(request):
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
-            domain = "http://127.0.0.1:8000"
+            domain = "https://i-horse-development-fezeitgzxk.herokuapp.com"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[

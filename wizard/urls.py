@@ -15,7 +15,7 @@ urlpatterns = [
     path('cancel',cancel,name="cancel"),
     path('success',success,name='success'),
     path('pro',pro,name='pro'),
-    path('competition',competition,name='competition')
+    path('competition',competition,name='competitionmem')
 
 
 

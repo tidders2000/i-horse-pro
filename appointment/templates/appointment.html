@@ -12,7 +12,7 @@
   {% endcomment %}
 
  
-<  <style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
+ <style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
   .card-action a{
     color:#0288d1!important;
    background-color:white;
@@ -112,6 +112,7 @@ select{
 #id_image{
   margin-left:10px;
 }
+
 </style>
   <nav>
     <div class="nav-wrapper">
@@ -133,6 +134,19 @@ select{
 </div>
  <form method="POST" enctype="multipart/form-data">
   <div class="row">
+          
+    {% if messages %}
+
+    {% for message in messages %}
+    
+    <script>Materialize.toast('{{message}}', 4000)</script>
+    
+    
+    
+    </div>
+    {% endfor %}
+    
+    {% endif%} 
     <div class="col s2"><span class="material-icons ">
        event
         </span></div>
@@ -152,9 +166,13 @@ select{
             <a href="{{MEDIA_URL}}{{ instance.report }}" class="report ">{{ instance.report }}</a>
          
           {% else %}
-          <p>No images added</p>
+          <p>No files added</p>
           {% endif %}
         </div>
+        <button type="button" class="btn red darken-2" onclick="location.href='{% url 'deleteAppointment' instance.pk %}'">Delete
+          Appointment</button>
+      
+
       </div>
     
                      </form>

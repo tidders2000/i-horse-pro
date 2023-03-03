@@ -33,9 +33,9 @@ def login(request):
                 auth.login(request=request, user=user)
                 instance = Profile.objects.get(pk=request.user.pk)
                 messages.error(request, "You have successfully logged in")
-                if instance.wizard == True:
-                    print("True")
-                    return redirect(reverse('wizard_addhorse'))
+                # if instance.wizard == True:
+                #     print("True")
+                #     return redirect(reverse('wizard_addhorse'))
                 return redirect(reverse('home'))
             else:
 
@@ -53,8 +53,7 @@ def login(request):
 
 
 def index(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('home'))
+ 
 
     if request.method == 'POST':
        
@@ -72,8 +71,8 @@ def index(request):
                 messages.error(request, "You have successfully logged in")
                 if instance.wizard == True:
                     print("True")
-                    return redirect(reverse('wizard_addhorse'))
-                return redirect(reverse('home'))
+                    return redirect(reverse('wizard_payment'))
+                # return redirect(reverse('home'))
             else:
 
                 messages.error(request, "oops")
@@ -93,21 +92,21 @@ def logout(request):
     return redirect('index')
 
 
-@login_required
+
 def registration(request):
 
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
-        telephone = request.POST.get("telephone", "default")
-        image = request.FILES.get("profile_image")
+        # telephone = request.POST.get("telephone", "default")
+        # image = request.FILES.get("profile_image")
 
-        if registration_form.is_valid() and profile_form.is_valid():
+        if registration_form.is_valid() :
             xe = registration_form.save()
-            xe.profile.telephone = telephone
-            xe.profile.profile_image = image
-            xe.save()
-            return redirect(reverse('new_business'))
+            # xe.profile.telephone = '000000000'
+            # xe.profile.membership = "Basic"
+            # xe.save()
+            return redirect(reverse('login'))
 
     registration_form = UserRegistrationForm()
     profile_form = ProfileForm()

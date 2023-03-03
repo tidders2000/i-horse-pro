@@ -352,7 +352,8 @@ display: inline;
 
     <div class="top-left hide-on-small-only"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
     <div class="center hide-on-med-and-up"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
-   <div class="top-right white-text login" ><a href="{%url 'login'%}">  LOGIN</a></div>
+  
+   <div class="top-right white-text login" ><a href="{% url 'registration' %}"> SIGNUP</a> <a href="{%url 'login'%}">  LOGIN</a></div>
     {% comment %} <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised <span>LOGIN</span></div> {% endcomment %}
     <div class="centered headline ">
       <div>Your Equine World <span class="blue-text upper">ORGANISED</span> </div>

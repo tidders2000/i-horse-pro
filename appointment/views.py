@@ -13,6 +13,13 @@ from django.http import JsonResponse
 def get_csrftoken_from_cookie(request, **kwargs):
     return JsonResponse({"token": request.COOKIES["csrftoken"]})
 
+def deleteAppointment(request, pk):
+       instance = get_object_or_404(Appointment, pk=pk)
+       instance.delete()
+
+
+       return redirect("home")
+
 def appointment(request, pk):
     form = event_form()
     user = request.user
@@ -29,8 +36,9 @@ def appointment(request, pk):
             formSave.save()
             display = "inline"
             messages.error(request, "Appointment Saved")
+            return redirect(reverse('appointment', kwargs={'pk': pk}))
             # return redirect ('details')
-            return redirect(reverse('EventFeed', kwargs={'pk': formSave.pk}))
+            # return redirect(reverse('EventFeed', kwargs={'pk': formSave.pk}))
         else:
             print('error')
 

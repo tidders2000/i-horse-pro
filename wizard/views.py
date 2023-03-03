@@ -141,12 +141,16 @@ def wizard_addhorse(request):
     return render(request, 'wizard_addhorse.html', {'form': form})
 
 
-@login_required()
+
 def wizard_payment(request):
     user = request.user
+    instance = Profile.objects.get(pk=request.user.pk)
+    instance.wizard = False
+    instance.save()
+
     if request.method == "POST":
 
-        return redirect('payment')
+     return redirect('payment')
 
     return render(request, "wizard_payment.html", {})
 

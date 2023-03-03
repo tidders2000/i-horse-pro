@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect, reverse
 from django.db.models import Q
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.http import require_GET, require_POST
@@ -19,6 +19,7 @@ from django.contrib import messages
 from datetime import datetime
 from datetime import date
 from django.contrib.auth.decorators import login_required
+from accounts.models import Profile
 
 # Create your views here.
 
@@ -27,6 +28,14 @@ def home(request):
     # webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     # vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
     # user = request.user
+    user = request.user
+    """the users profile page"""
+    instance = Profile.objects.get(pk=request.user.pk)
+    if request.user.is_authenticated:
+        if instance.wizard == True:
+                    print("True")
+                    return redirect(reverse('wizard_payment'))
+
     user = request.user
 
   

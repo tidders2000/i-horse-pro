@@ -12,7 +12,7 @@ class Horse(models.Model):
     showName = models.CharField(max_length=100)
     stableName = models.CharField(max_length=100,)
     photo = models.FileField(
-        upload_to='media/images/horses', blank=True, default='media/images/horses/horse.jpeg')
+        upload_to='media/images/horses', blank=True, default='media/images/horses/horse.png')
     passport = models.ImageField(
         upload_to='media/images/passport', blank=True, default='media/images/passport.jpg')
     breed = models.CharField(max_length=100,blank=True)

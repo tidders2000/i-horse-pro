@@ -244,7 +244,9 @@ input {
     color: white;
 }
 
-
+.save-button{
+    border:none!important;
+}
 /* hides notification button by default*/
 
 .enable-notifications {

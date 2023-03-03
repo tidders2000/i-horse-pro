@@ -95,6 +95,9 @@
 i{
   width:40px!important;
 }
+button{
+  border:none!important;
+}
 </style>
 
 <body>
@@ -204,7 +207,12 @@ i{
          <div class="">
 
   
-      {% block content %} {% endblock %} 
+      {% block content %}
+      
+
+
+      
+      {% endblock %} 
       <div class="small_navbar hide-on-med-and-up row">
 
 <div class="col s3 align-center"><div class="center-align"><a href="{% url 'home' %}"><i class="fas fa-home  center-align small_nav" style="padding:0;"></i><br><span class="white-text">Home</span></a></div></div>

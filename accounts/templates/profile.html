@@ -140,7 +140,13 @@ select{
 
   <div class="col s12  m6 push-m3" data-intro='Reset your password'>
   
-<a href="{% url 'wizard_payment'%}">Upgrade Membership</a>
+
+
+<form action="{% url 'wizard_payment'%}">
+  <button type="submit" class="btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent" style="width:201px;">
+Upgrade
+</button>
+</form>
   
 </div>
 

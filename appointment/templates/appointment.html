@@ -124,6 +124,11 @@ select{
       </div>
     </div>
   </nav>
+  <div class="nativeCal" >
+     {% if instance %}
+    <a href="{% url 'EventFeed' instance.pk %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a>
+    {%endif%}
+    </div>
   <div class="card-panel grey darken-4">
     {% comment %} <a href="{% url 'EventFeed' %}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add To Calendar</a> {% endcomment %}
 
@@ -151,7 +156,7 @@ select{
        event
         </span></div>
         
-    <div class="col s8 session_title"><h4>Add Appointment for {{horse.stableName}} </h4></div>
+    <div class="col s8 session_title"><h4> {% if instance%}Edit {%else%}Add{%endif%} Appointment for {{horse.stableName}} </h4></div>
     <div class="col s2">
 
       <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button></div>
@@ -169,8 +174,11 @@ select{
           <p>No files added</p>
           {% endif %}
         </div>
+        {% if instance%}
         <button type="button" class="btn red darken-2" onclick="location.href='{% url 'deleteAppointment' instance.pk %}'">Delete
           Appointment</button>
+
+          {% endif %}
       
 
       </div>

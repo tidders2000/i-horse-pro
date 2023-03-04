@@ -36,7 +36,7 @@ def appointment(request, pk):
             formSave.save()
             display = "inline"
             messages.error(request, "Appointment Saved")
-            return redirect(reverse('appointment', kwargs={'pk': pk}))
+            return redirect(reverse('detailsInd', kwargs={'pk': horse.pk}))
             # return redirect ('details')
             # return redirect(reverse('EventFeed', kwargs={'pk': formSave.pk}))
         else:

@@ -22,6 +22,12 @@ from django.template.context_processors import csrf
 from django.views.generic import TemplateView
 import urllib.request
 
+def deleteuser(request):
+    user=request.user
+    user.delete()
+    return redirect(reverse('login'))
+
+
 def pp(request): 
 
  return render(request,'privacypolicy.html')

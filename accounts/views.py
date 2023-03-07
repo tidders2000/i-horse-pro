@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponse  
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm
 from .forms import ProfileForm
-
+from django.contrib.sites.shortcuts import get_current_site  
+from django.utils.encoding import force_bytes, force_text  
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
+from django.template.loader import render_to_string  
+from .token import account_activation_token 
+from django.core.mail import send_mail 
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from .models import *
 from datetime import datetime
 from datetime import date
@@ -14,6 +22,9 @@ from django.template.context_processors import csrf
 from django.views.generic import TemplateView
 import urllib.request
 
+def pp(request): 
+
+ return render(request,'privacypolicy.html')
 
 def login(request):
     if request.user.is_authenticated:
@@ -54,7 +65,7 @@ def login(request):
 
 def index(request):
  
-
+ 
     if request.method == 'POST':
        
         login_form = UserLoginForm(request.POST)
@@ -91,10 +102,23 @@ def logout(request):
     messages.success(request, "You have successfully been logged out")
     return redirect('index')
 
-
+def activate(request, uidb64, token):  
+  
+    try:  
+        uid = force_text(urlsafe_base64_decode(uidb64))  
+        user = User.objects.get(pk=uid)  
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):  
+        user = None  
+    if user is not None and account_activation_token.check_token(user, token):  
+        user.is_active = True  
+        user.save()  
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')  
+    else:  
+        return HttpResponse('Activation link is invalid!')  
 
 def registration(request):
 
+  
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
@@ -102,11 +126,53 @@ def registration(request):
         # image = request.FILES.get("profile_image")
 
         if registration_form.is_valid() :
+          
             xe = registration_form.save()
-            # xe.profile.telephone = '000000000'
-            # xe.profile.membership = "Basic"
-            # xe.save()
+            xe.profile.telephone = '000000000'
+            xe.profile.membership = "Basic"
+            xe.is_active = False 
+            xe.save()
+            user=xe
+            #to get the domain of the current site  
+            current_site = get_current_site(request)  
+            message = render_to_string('acc_active_email.html', {  
+                'user': xe,  
+                'domain': current_site.domain,  
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
+                'token':account_activation_token.make_token(user),  
+            }) 
+
+            # token=account_activation_token.make_token(user)
+            # uid=urlsafe_base64_encode(force_bytes(user.pk))
+
+            to_email =  registration_form.cleaned_data.get('email') 
+          
+            send_mail('test',message,'test@ihorse.com',[to_email])
             return redirect(reverse('login'))
+     
+
+            # try:
+            #     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+            #     response = sg.send(message)
+            #     print(response.status_code)
+            #     print(response.body)
+            #     print(response.headers)
+            # except Exception as e:
+            #   print(e.message)
+            # mail_subject = 'Activation link has been sent to your email id'  
+            # message = render_to_string('acc_active_email.html', {  
+            #     'user': xe,  
+            #     'domain': current_site.domain,  
+            #     'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
+            #     'token':account_activation_token.make_token(user),  
+            # })  
+            # to_email = form.cleaned_data.get('email')  
+            # email = EmailMessage(  
+            #             mail_subject, message, to=[to_email]  
+            # )  
+            # email.send()  
+            # return HttpResponse('Please confirm your email address to complete the registration')  
+            # return redirect(reverse('login'))
 
     registration_form = UserRegistrationForm()
     profile_form = ProfileForm()

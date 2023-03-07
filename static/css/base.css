@@ -2,7 +2,9 @@
 
 
 /*avoid invisible text*/
-
+input{
+    padding:5px!important;
+}
 .file-field .btn, .file-field .btn-large {
     background-color:#0288d1!important;
   }

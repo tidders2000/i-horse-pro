@@ -7,7 +7,7 @@ from django.contrib.postgres.fields import ArrayField
 class Goals(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     title = models.CharField(
-        max_length=100, blank=True, default="Title")
+        max_length=100, blank=True,default='')
     outcome = models.TextField(max_length=256, blank=True, default='outcome')
     performance_goal_1 = models.TextField(
         max_length=256, blank=True, default='Performance Goal')

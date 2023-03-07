@@ -97,12 +97,31 @@
 </div>
 <div class="row">
 <div class="logform">
+
+
+</div> 
   <form method='POST' class="col s12 m6 l4 offset-l4 offset-m3">
 
       {{ login_form|materializecss}} 
       <button type="submit" class="btn btn-success center">Login</button>
+      <a href="{% url 'password_reset' %}">Reset Password</a>
       {% csrf_token %}
+      {% if messages %}
+
+      {% for message in messages %}
+      
+      <p class="white-text">{{message}}</p>
+      
+      
+      
+  
+      {% endfor %}
+      
+      {% endif%} 
     </form> 
+  
 </div>  
-</div> 
+
+
 {% endblock%}
+

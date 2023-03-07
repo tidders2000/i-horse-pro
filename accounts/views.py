@@ -56,7 +56,7 @@ def login(request):
                 return redirect(reverse('home'))
             else:
 
-                messages.error(request, "oops")
+                messages.error(request, "Sorry incorrect password/email")
                 messages.error(request, user)
                 # redirects to switcher instead of dash to set group and business
 
@@ -92,13 +92,13 @@ def index(request):
                 # return redirect(reverse('home'))
             else:
 
-                messages.error(request, "oops")
-                messages.error(request, user)
-                # redirects to switcher instead of dash to set group and business
+                messages.error(request, "Sorry incorrect password/email")
+                return render(request, 'index.html', {'login_form': login_form})
+              
 
     else:
         login_form = UserLoginForm()
-
+ 
     return render(request, 'index.html', {'login_form': login_form})
 
 
@@ -118,9 +118,12 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):  
         user.is_active = True  
         user.save()  
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')  
+        status='Thank you for your email confirmation. Now you can login to your account.'
+        return render(request,'accaccount.html',{'status':status}) 
     else:  
-        return HttpResponse('Activation link is invalid!')  
+         status='Activation link is invalid!'
+         return render(request,'accaccount.html',{'status':status}) 
+         
 
 def registration(request):
 
@@ -153,8 +156,8 @@ def registration(request):
 
             to_email =  registration_form.cleaned_data.get('email') 
           
-            send_mail('test',message,'test@ihorse.com',[to_email])
-            return redirect(reverse('login'))
+            send_mail('IHorse Account activation',message,'register@ihorse.com',[to_email])
+            return render(request,'mailmessage.html') 
      
 
             # try:

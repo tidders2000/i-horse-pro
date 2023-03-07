@@ -1,0 +1,26 @@
+<style>
+    p{
+      color:white;
+    }
+     input{
+       padding:5px;
+     }
+    </style>
+    
+    {% extends 'basePW.html' %}{% load materializecss %}{% block page_title %}Registration Page{% endblock %} {% block page_heading %}Registration{% endblock %}
+     
+       {% block title %}
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Account</a></li>
+    
+      
+      </ol>
+    </nav>{% endblock %}
+     
+     {% block content %}
+
+     <p> {{status}}</p>
+     <p><a href="{% url 'login' %}">Login</a>
+
+     {% endblock %}

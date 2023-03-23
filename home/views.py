@@ -52,7 +52,7 @@ def home(request):
   
 
     #checks that subscription cancel date has not passed and if so converts to free membership in profile
-    if instance.periodend:
+    if instance.periodEnd:
         if instance.periodEnd < now:
             #deletes subscriuption from strip[e using key in model subid
                 stripe.api_key = settings.STRIPE_SECRET_KEY

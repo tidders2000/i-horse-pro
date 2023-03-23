@@ -52,17 +52,18 @@ def home(request):
   
 
     #checks that subscription cancel date has not passed and if so converts to free membership in profile
-    if instance.periodEnd < now:
-        #deletes subscriuption from strip[e using key in model subid
-            stripe.api_key = settings.STRIPE_SECRET_KEY
-            stripe.Subscription.delete(instance.subID)
-       #resets sub to free
-            instance.membership ='Free'
-            instance.save()
-    else:
-          x=instance.periodEnd.strftime("%d/%m/%Y")# converts unix date to string and tells user expiry
-          messages.error(request, "Your membership expires on "+x)
-          
+    if instance.periodend:
+        if instance.periodEnd < now:
+            #deletes subscriuption from strip[e using key in model subid
+                stripe.api_key = settings.STRIPE_SECRET_KEY
+                stripe.Subscription.delete(instance.subID)
+        #resets sub to free
+                instance.membership ='Free'
+                instance.save()
+        else:
+            x=instance.periodEnd.strftime("%d/%m/%Y")# converts unix date to string and tells user expiry
+            messages.error(request, "Your membership expires on "+x)
+            
   #checks user memebership and limits query results to allocates number of horses
 
     if user.profile.membership=="Free":

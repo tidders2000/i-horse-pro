@@ -1,0 +1,31 @@
+label{
+    font-size:18px!important;
+}
+      .links a {
+          padding-left: 10px;
+          margin-left: 10px;
+          border-left: 1px solid #000;
+          text-decoration: none;
+          color: #999;
+  font-size:12px!important;
+      }
+      .links a:first-child {
+          padding-left: 0;
+          margin-left: 0;
+          border-left: none;
+      }
+      .links a:hover {text-decoration: underline;}
+      .column-left {
+          display: inline; 
+          float: left;
+       font-size:12px!important;
+      }
+      .column-right {
+          display: inline; 
+          float: right;
+  font-size:12px!important;
+      }
+
+      .save{
+          color:white!important;
+      }

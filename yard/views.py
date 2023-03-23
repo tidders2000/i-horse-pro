@@ -2,9 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import *
 from django.contrib import messages
 
-# Create your views here.
 
 
+#shows employees and client list
 def people(request):
     user = request.user
  
@@ -17,7 +17,7 @@ def people(request):
     employee = Staff.objects.filter(user=user)
     return render(request, 'people.html', {'client': client, 'employee': employee})
 
-
+#add a client
 def clients(request):
     user = request.user
     form = client_form()
@@ -33,7 +33,7 @@ def clients(request):
             messages.error(request, "Client Saved")
     return render(request, 'client.html', {'form': form})
 
-
+#add staff memeber
 def staff(request):
     user = request.user
  
@@ -50,7 +50,7 @@ def staff(request):
             messages.error(request, "Employee Saved")
     return render(request, 'staff.html', {'form': form})
 
-
+#menu for yard
 def yard_menu(request):
     user = request.user
  
@@ -66,6 +66,7 @@ def yard_menu(request):
 
     return render(request, 'yard_menu.html')
 
+#edit client record
 
 def edit_client(request, pk):
     instance = get_object_or_404(Client, pk=pk)
@@ -79,7 +80,7 @@ def edit_client(request, pk):
             return redirect('people')
     return render(request, 'client.html', {'form': form, 'instance': instance})
 
-
+#edit staff record
 def edit_staff(request, pk):
     instance = get_object_or_404(Staff, pk=pk)
     form = staff_form(instance=instance)
@@ -92,12 +93,13 @@ def edit_staff(request, pk):
 
     return render(request, 'staff.html', {'form': form, 'instance': instance})
 
-
+#delete staff record
 def delete_staff(request, pk):
     instance = get_object_or_404(Staff, pk=pk)
     instance.delete()
     return redirect('people')
 
+#delete client
 
 def delete_client(request, pk):
     instance = get_object_or_404(Client, pk=pk)

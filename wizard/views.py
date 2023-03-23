@@ -10,24 +10,56 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import *
 from accounts.models import Profile
+import datetime
+
 
 import stripe
 
-def success(request):
+#cancel users subscription
 
+def cancelsub(request):
+       
+       if request.method == 'POST':
+        user=request.user
+        user.delete()
+   
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        instance = Profile.objects.get(pk=request.user.pk)
+        subscription=stripe.Subscription.retrieve(instance.subId)
+        renewal=subscription.current_period_end
+        #sets unix date to string
+        newDate=(datetime.datetime.utcfromtimestamp(renewal).strftime('%Y-%m-%d'))
+
+#sets date to delete sub in profile model
+        instance.periodEnd = newDate
+        instance.save()
+        return redirect(reverse('home'))
+
+
+
+       return render(request,'cancelsub.html')
+
+
+       #payment sucess page for subscription
+
+def success(request):
+ st=stripe.Subscription.list(limit=1)
  membership= Profile.objects.get(pk=request.user.pk)
+ sub=st.data[0].id
+ membership.subId=sub
+ membership.save()
  status=membership.membership
  return render(request,'success.html',{'status':status})
 
+#payment faliure page error handling to add
 def cancel(request):
      instance = Profile.objects.get(pk=request.user.pk)
      instance.membership ='Free'
      instance.save()
      return render(request,'cancel.html')
-# Create your views here.
 
-#stripe.api_key = settings.STRIPE_SECRET
-# Create your views here.
+
+#subscription for pro with stripe seperate functioun due to different variables
 
 def pro(request):
  
@@ -38,6 +70,9 @@ def pro(request):
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
+     #add live site url
+            # domain = 'http://127.0.0.1:8000'
+            #switch when using development
             domain = "https://i-horse-development-fezeitgzxk.herokuapp.com"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -50,9 +85,10 @@ def pro(request):
             mode='subscription',
             success_url=domain + '/wizard/success',
             cancel_url=domain + '/wizard/cancel',
-        )
+            )
+            
  return redirect(checkout_session.url, code=303)
-
+#competition membership with stripe
 def competition(request):
  instance = Profile.objects.get(pk=request.user.pk)
  instance.membership ='Competition'
@@ -62,6 +98,8 @@ def competition(request):
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
+          #add live site url
+      # "https://i-horse-development-fezeitgzxk.herokuapp.com"
             domain = "https://i-horse-development-fezeitgzxk.herokuapp.com"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -76,52 +114,21 @@ def competition(request):
             cancel_url=domain + '/wizard/cancel',
         )
  return redirect(checkout_session.url, code=303)
+ 
+#render subscription options
 
-def wizard(request):
-
+@login_required()
+def wizard_payment(request):
     user = request.user
-    disc = Disipline.objects.all()
-    myselection = CustomImages.objects.filter(user=user)
     if request.method == "POST":
-        log = wizard_form(
-            request.POST, request.FILES)
-        if log.is_valid():
-            newlog = log.save(commit=False)
-            newlog.user = user
-            newlog.save()
 
-    return render(request, 'wizard.html', {'disc': disc, 'myselection': myselection})
+        return redirect('payment')
+
+    return render(request, "wizard_payment.html", {})
 
 
-def deletedisipline(request, pk):
-    item = get_object_or_404(CustomImages, pk=pk)
-    item.delete()
 
-    return redirect('wizard')
-
-
-def addDisc(request, pk):
-    dis = get_object_or_404(Disipline, pk=pk)
-    user = request.user
-    custimg = CustomImages(user=user, disipline=dis)
-    custimg.save()
-
-    return redirect('wizard')
-
-
-@csrf_exempt
-def select_img(request):
-    user = request.user
-    custimg = CustomImages.objects.filter(user=user)
-    wizard_form()
-    if request.method == "POST":
-        pk = request.POST.get("pk")
-        obj = get_object_or_404(CustomImages, pk=pk)
-        obj.image = request.FILES.get("inputfile")
-        obj.save()
-        return redirect('select_img')
-
-    return render(request, 'wizard_img.html', {'custimg': custimg, 'wizard_form': wizard_form})
+#allows add horse when log for first time not in current use
 
 
 def wizard_addhorse(request):
@@ -142,62 +149,11 @@ def wizard_addhorse(request):
 
 
 
-def wizard_payment(request):
-    user = request.user
-    instance = Profile.objects.get(pk=request.user.pk)
-    instance.wizard = False
-    instance.save()
-
-    if request.method == "POST":
-
-     return redirect('payment')
-
-    return render(request, "wizard_payment.html", {})
 
 
-def reset_wiz(request):
-    instance = Profile.objects.get(pk=request.user.pk)
-    instance.wizard = False
-    instance.save()
-    return redirect('home')
 
 
-@login_required()
-def payment(request):
-    if request.method == "POST":
-        order_form = OrderForm(request.POST)
-        payment_form = MakePaymentForm(request.POST)
 
-        if order_form.is_valid() and payment_form.is_valid():
-            order = order_form.save(commit=False)
-            order.date = timezone.now()
-            order.save()
 
-            total = 0
 
-            try:
-                customer = stripe.Charge.create(
-                    amount=int(total * 100),
-                    currency="EUR",
-                    description=request.user.email,
-                    card=payment_form.cleaned_data['stripe_id'],
-                )
-            except stripe.error.CardError:
-                messages.error(request, "Your card was declined!")
 
-                if customer.paid:
-                    messages.error(request, "You have successfully paid")
-                    request.session['cart'] = {}
-                    return redirect(reverse('products'))
-                else:
-                    messages.error(request, "Unable to take payment")
-        else:
-            print(payment_form.errors)
-            messages.error(
-                request, "We were unable to take a payment with that card!")
-    else:
-        payment_form = MakePaymentForm()
-        order_form = OrderForm()
-        # 'publishable': settings.STRIPE_PUBLISHABLE
-
-    return render(request, "payment.html", {'order_form': order_form, 'payment_form': payment_form})

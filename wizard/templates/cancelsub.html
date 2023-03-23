@@ -7,19 +7,34 @@
             <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
             <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}"> 
             <link rel="stylesheet" href="{% static 'css/cedit.css' %}"> 
-         
+            <link rel="stylesheet" href={% static 'css/fontawesome-stars.css' %}>
  
-  <!--payment faliure page fro stripe-->
+  
 
 {% endblock %}
 
    {% block content %} 
-  
-
+ 
+<!--checks user wants to cancel-->
   <div class="row">
     <div class="col s12 m8 offset-m2">
-      <h1 class="white-text">Sorry</h1>
-      <p class="white-text">We are unable to upgrade your membership. The payment has failed or been cancelled. Please try again or contact support.
+
+      <h1 class="white-text">Cancel Subscription</h1>
+
+      <p class="white-text">Are you sure you want to cancel your subscription.
+
+   
+      </p>
+
+      <form action="" method="post">
+      {% csrf_token %}
+      <button class="btn btn-large red darken-2" type="submit" value="delete">CANCEL </button> 
+      <a class="btn  btn-large  green darken-1" href="{%url 'home'%}">BACK</a>
+     
+</form>
+<br>
+
+    
       </div><!--end of col-->
 </div><!--end of row-->
    
@@ -48,6 +63,7 @@
 
 </script>
   
+
 
 
 

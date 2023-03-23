@@ -1,0 +1,88 @@
+.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
+
+
+    .card-panel{
+        border-radius:10px;
+        padding:20px!important
+      }
+
+      .tabs li a{
+        color:#0288d1!important;
+      }
+      .indicator{
+          background-color:white!important;
+          margin-top:5px;
+      }
+
+      nav{
+          background-color:black!important;
+      }
+
+      .caret{
+          color:white!important;
+      }
+      .material-icons{
+  
+          color:white;
+          padding-top:10px;
+      }
+      .session_title{
+          font-size:40px;
+          color:white;
+          text-align:center;
+          font-weight:600;
+
+      }
+
+      @media only screen and (max-width: 600px) {
+        .session_title{
+            font-size:25px
+        }
+      }
+
+      button{
+          border-radius:10px;
+          background-colour:#21a3e2!important;
+      }
+
+      .i_color{
+          color:#21a3e2!important;
+         
+      }
+
+
+      ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+
+    label{
+        text-size:1 rem!important;
+        font-family: 'Roboto', 'Helvetica', sans-serif;
+    }
+   
+
+.file-field .btn{
+        display:none;
+    }
+    .file-path-wrapper{
+        display:none;
+    }
+
+    button{
+        border-radius:10px;
+min-height:50px;
+
+    }
+
+    #modal1{
+        padding-bottom:50px!important;
+    }
+
+    #id_homework{
+        padding-bottom: 200px!important;
+      
+        margin-top:10px;
+    }
+   .click-draw{
+       margin-left:5px;
+   }

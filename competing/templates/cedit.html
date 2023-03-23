@@ -14,95 +14,7 @@
 {% endblock %}
 
    {% block content %} 
-   <style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
-     .card-action a{
-       color:#0288d1!important;
-      background-color:white;
-     }
-  .card_text{
-    font-weight: 700;
-    text-transform:uppercase;
-    color:black
-  }
 
-    .card-panel,.card{
-        border-radius:10px;
-      }
-
-      .tabs li a{
-        color:#0288d1!important;
-      }
-      .indicator{
-          background-color:white!important;
-          margin-top:5px;
-      }
-
-      nav{
-          background-color:black!important;
-      }
-
-      .caret{
-          color:white!important;
-      }
-      .material-icons{
-          {% comment %} font-size:40px; {% endcomment %}
-          color:white;
-          padding-top:10px;
-      }
-      .session_title{
-          font-size:40px;
-          color:white;
-          text-align:center;
-          font-weight:600;
-   
-      }
-
-      button{
-          border-radius:10px;
-          background-colour:#21a3e2!important;
-      }
-
-      .i_color{
-          color:#21a3e2!important;
-         
-      }
-
-
-      ::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-    }
-
-    label{
-        text-size:1 rem!important;
-        font-family: 'Roboto', 'Helvetica', sans-serif;
-    }
-   
-
-.file-field .btn{
-        display:none;
-    }
-    .file-path-wrapper{
-        display:none;
-    }
-
-    button{
-        border-radius:10px;
-        min-height:50px;
-    }
-
-   
- .fa-trophy{
-  color: white;
-  font-size: 20px;
-    }
-   select{
-    background-color: #212121!important;
-   }
-
-   #id_class_time{
-     margin-top:20px!important;
-   }
-</style>
 
   <nav>
     <div class="nav-wrapper">
@@ -166,185 +78,14 @@
         {{form.image|materializecss}} 
                 </div>
               </form>
-                {% comment %} <div class="col s12">
-                        
-                  <ul class="tabs grey darken-4">
-                    <li class="tab col s3"><a href="#test1" class="active"> Rider</a></li>
-                    <li class="tab col s3"><a  href="#test2">Venue</a></li>
-                
-   
-                  </ul>
-                </div>
-                <div id="test1" class="col s12"> 
-                  <div class="row blue_box">
-                  <div class="white-text">Rider Rating</div>
-
-
-
-                  <select id="id_myStars" name="myStars">
-                    
-                  {% if session.myStars == '1' %}<option  value="1" selected>1</option>{% else %}<option  value="1">1</option>{% endif %}
-                {% if  session.myStars == '2' %}<option  value="2" selected>2</option>{% else %}<option  value="2">2</option>{% endif %}
-                 {% if  session.myStars == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-                  {% if  session.myStars == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-                  {% if session.myStars == '5' %}<option  value="5" selected>5</option>{% else %}<option  value="5">5</option>{% endif %}
-               </select>
-
-                </div>
-              </div>
-                <div id="test2" class="col s12">
-                  <div class="row blue_box">
-                    <form method="POST">
-                    <button type="submit" data-position="bottom" data-tooltip="Click to Save" name="save_venue"  style="float:right;"><span class="material-icons" >
-                      save
-                      </span></button>
-                    <h5> Rate the Venue</h5>
-                     
-                      
-                     <div class="white-text">Value</div>
-                   
-                     <select id="id_value" name="value">
-                     
-                    <div class="white-text">Venue Rating</div>
-                     
-                   {% if venue_instance.value == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
-                 {% if venue_instance.value == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-                  {% if venue_instance.value == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-                   {% if venue_instance.value == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-                   {% if venue_instance.value == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-                
-                
-                </select>
-                
-                
-                
-                <br>
-                 <div class="white-text">Refreshments</div>
-                <select id="id_refreshments" name="refreshments" value="4">
-                  {% if venue_instance.refreshments == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
-                 {% if venue_instance.refreshments == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-                  {% if venue_instance.refreshments == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-                   {% if venue_instance.refreshments == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-                   {% if venue_instance.refreshments == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-                </select>
-                <br>
-                 <div class="white-text">Prizes</div>
-                <select id="id_prizes" value="4" name="prizes">
-                    {% if venue_instance.prizes == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
-                 {% if venue_instance.prizes == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-                  {% if venue_instance.prizes == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-                   {% if venue_instance.prizes == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-                   {% if venue_instance.prizes == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-                </select>
-                <br>
-                 <div class="white-text">Atmosphere</div>
-                <select id="id_atmosphere" value="4" name="atmosphere">
-                 {% if venue_instance.atmosphere == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
-                 {% if venue_instance.atmosphere == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-                  {% if venue_instance.atmosphere  == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-                   {% if venue_instance.atmosphere  == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-                   {% if venue_instance.atmosphere == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-                </select>
-                   
-                {% csrf_token %}
-                      
-                    </form>
-                 
-                
-                  
-                </div>
-
-
-                </div>
-
-                <div id="test3" class="col s12">
-                
-              </div>     {% endcomment %}
-
-                  
-   
-{% comment %} <div class="rating">
-  <div class="white-text">Rider Rating</div>
-   <select id="id_myStars" name="myStars">
-     
-   {% if session.myStars == '1' %}<option  value="1" selected>1</option>{% else %}<option  value="1">1</option>{% endif %}
- {% if  session.myStars == '2' %}<option  value="2" selected>2</option>{% else %}<option  value="2">2</option>{% endif %}
-  {% if  session.myStars == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-   {% if  session.myStars == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-   {% if session.myStars == '5' %}<option  value="5" selected>5</option>{% else %}<option  value="5">5</option>{% endif %}
-</select> {% endcomment %}
-
+               
     </div>   
          
   </div>
 
     
   
-   
-{% comment %}         
-           </form>
-  
-
-    </div>
-  </div>
-   <h2>Venue Ratings</h2>
-    <div class="row blue_box">
-    <h5> Rate the Venue</h5>
-     <form method="POST">
-     <div class="white-text">Value</div>
-   
-     <select id="id_value" name="value">
-     
-    <div class="white-text">Venue Rating</div>
-     
-   {% if venue_instance.value == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
- {% if venue_instance.value == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-  {% if venue_instance.value == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-   {% if venue_instance.value == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-   {% if venue_instance.value == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-
-
-</select>
-
-
-
-<br>
- <div class="white-text">Refreshments</div>
-<select id="id_refreshments" name="refreshments" value="4">
-  {% if venue_instance.refreshments == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
- {% if venue_instance.refreshments == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-  {% if venue_instance.refreshments == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-   {% if venue_instance.refreshments == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-   {% if venue_instance.refreshments == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-</select>
-<br>
- <div class="white-text">Prizes</div>
-<select id="id_prizes" value="4" name="prizes">
-    {% if venue_instance.prizes == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
- {% if venue_instance.prizes == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-  {% if venue_instance.prizes == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-   {% if venue_instance.prizes == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-   {% if venue_instance.prizes == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-</select>
-<br>
- <div class="white-text">Atmosphere</div>
-<select id="id_atmosphere" value="4" name="atmosphere">
- {% if venue_instance.atmosphere == '1' %}<option  value="1" selected>3</option>{% else %}<option  value="1">1</option>{% endif %}
- {% if venue_instance.atmosphere == '2' %}<option  value="2" selected>3</option>{% else %}<option  value="2">2</option>{% endif %}
-  {% if venue_instance.atmosphere  == '3' %}<option  value="3" selected>3</option>{% else %}<option  value="3">3</option>{% endif %}
-   {% if venue_instance.atmosphere  == '4' %}<option  value="4" selected>4</option>{% else %}<option  value="4">4</option>{% endif %}
-   {% if venue_instance.atmosphere == '5' %}<option  value="5" selected>3</option>{% else %}<option  value="5">5</option>{% endif %}
-</select>
-   
-{% csrf_token %}
-      <button type="submit" class= 'subplus tooltipped' name="save_venue"  data-position="bottom" data-tooltip="Click to Save"><span class="blutext">+<span></button>
-    </form>
- 
-
-  
-</div>
-
-</div> {% endcomment %}
+  <!--will only show entry card when comp is saved-->
  {% if show %}
 <div class="card-panel grey darken-4">
    <h2 class="hs__headline">Entry List</h2>
@@ -369,28 +110,7 @@
       </div>
     </div>
     {% endfor %}
-  {% comment %} <table class=" white-text " id="entries">
-              <thead>
-                <tr class="grey-text">
-                    <th>Horse</th>
-                    <th>Class</th>
-                    <th>Time</th>
-                    <th>Performance</th>
-                    <th>Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-              {% for entry in entries%}
-                <tr>
-                  <td>{{entry.horse}}</td>
-                  <td>{{entry.horseClass}}</td>
-                  <td>{{entry.class_time}}</td>
-                  <td>{{entry.performance}}</td>
-                  <td><a href="{% url 'editentry' entry.pk %}">EDIT</a></td>
-                </tr>
-         {% endfor %}
-              </tbody>
-            </table> {% endcomment %}
+  
 </div>
 </div>
    
@@ -417,22 +137,14 @@
       
     });
    
-    // $('#id_class_time').timepicker() 
+
   
 
   });
 
 </script>
   
-{% comment %} <script>
-var logID = 'log',
-  log = $('<div id="'+logID+'"></div>');
-$('body').append(log);
-  $('[type*="radio"]').change(function () {
-    var me = $(this);
-    log.html(me.attr('value'));
-  });
-</script> {% endcomment %}
+
 
 
 

@@ -270,9 +270,9 @@ input {
 
 .blue_box {
     border: 1px solid #21a3e2 !important;
-    padding: 10px !important;
+    padding-top: 30px !important;
     border-radius: 5px !important;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .selected-image {
@@ -357,4 +357,32 @@ input {
 
 .card-panel{
     border-radius: 10px;
+}
+
+a:active {
+    background-color: #101010;!important;
+  }
+
+  a:visited{
+    background-color: #101010;!important;
+  }
+
+  .topnav{
+    background-color:#101010;
+  }
+
+  .side-nav{
+    background-color:black!important;
+  }
+  @media screen and (max-width: 900px) {
+ .nav_side li a{
+    font-size:12px!important;
+  } 
+}
+
+i{
+  width:40px!important;
+}
+button{
+  border:none!important;
 }

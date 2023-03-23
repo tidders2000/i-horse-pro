@@ -1,53 +1,19 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Add Client{% endblock %}
      
 {% block head %}
-    
+        <!--page style sheets-->
        <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+       <link rel="stylesheet" href="{% static 'css/yard.css' %}"> 
 
   {% endblock %}
  {% block content %} 
-<style>
-  .box{
-    height:100px!important;
-    border: 1px solid grey;
-    padding:5px;
-    text-align:center;
-    border-radius:5px;
-    color:white;
-    margin:5px;
-   
-  }
-  button{
-    border-radius:10px;
-    min-height:50px;
-  }
-  nav{
-    background-color:black!important;
-  }
-  .datepicker{
-    margin-top:20px!important;
-  }
-  ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-  }
 
-  .profile{
-    border:2px grey solid;
-    height:100px;
-    width:100px;
-  }
-
-  .file-field .btn, .file-field .btn-large {
-    background-color:#0288d1!important;
-  }
-
-</style>
 <nav>
     <div class="nav-wrapper">
       <div class="col s12 breadcrumb">
           <a href="{% url 'home' %}" class="breadcrumb">Home</a>
-        <a href="{% url 'yard_menu' %}" class="breadcrumb">yard</a>
+        <a href="{% url 'yard_menu' %}" class="breadcrumb">Yard</a>
         
         <a href="{% url 'people' %}" class="breadcrumb">People</a>
 
@@ -67,12 +33,10 @@
       {% if instance %}
       <img src="{{MEDIA_URL}}{{ instance.image }}" alt="ff" class="materialboxed responsive-img profile">
       {% else %}
-      <img src="{% static 'images/placeholder-600x400.png' %} " alt="ff" class="materialboxed responsive-img profile">
+      <img src="{% static 'images/placeholder-600x400.png' %} " alt="client" class="materialboxed responsive-img profile">
 {% endif %}
     </div>
-    {% comment %} <div class="col s2"><span class="material-icons ">
-        people
-        </span></div> {% endcomment %}
+ 
     <div class="col s6 session_title"><h4>Client Details</h4></div>
     
    
@@ -81,9 +45,9 @@
      </div>
     
          {{form|materializecss}}
-         {% comment %} <input id="id_image" name="id_image"  type="image" > {% endcomment %}
+      
     {% csrf_token %}
-               {% comment %} <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add" name="save_entry"><span class="blutext">+<span></button> {% endcomment %}
+             
 
        </form>
 
@@ -103,11 +67,7 @@
 
 {% endblock %}{% block scripts %}
     <script src="slider.js"></script>
-    <script>
-	  {% comment %} $(document).ready(function(){
-    $('select').formSelect();
-  }); {% endcomment %}
-</script>
+
  
 
 {% endblock %}

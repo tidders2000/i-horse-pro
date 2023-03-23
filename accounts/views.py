@@ -22,16 +22,23 @@ from django.template.context_processors import csrf
 from django.views.generic import TemplateView
 import urllib.request
 
+
+ # removes user
 def deleteuser(request):
-    user=request.user
-    user.delete()
-    return redirect(reverse('login'))
 
+# user gets are you sure page 
+    if request.method == 'POST':
+        user=request.user
+        user.delete()
+        return redirect(reverse('home'))
+    return render(request,'deleteacc.html')
 
+#displays privacy policy
 def pp(request): 
 
  return render(request,'privacypolicy.html')
 
+#log user in
 def login(request):
     if request.user.is_authenticated:
         return redirect(reverse('home'))
@@ -39,7 +46,7 @@ def login(request):
     if request.method == 'POST':
        
         login_form = UserLoginForm(request.POST)
-
+#authenticates user using standard model
         if login_form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
@@ -48,17 +55,16 @@ def login(request):
 
             if user is not None:
                 auth.login(request=request, user=user)
+
                 instance = Profile.objects.get(pk=request.user.pk)
                 messages.error(request, "You have successfully logged in")
-                # if instance.wizard == True:
-                #     print("True")
-                #     return redirect(reverse('wizard_addhorse'))
+              
                 return redirect(reverse('home'))
             else:
 
                 messages.error(request, "Sorry incorrect password/email")
                 messages.error(request, user)
-                # redirects to switcher instead of dash to set group and business
+              
 
     else:
         login_form = UserLoginForm()
@@ -86,10 +92,8 @@ def index(request):
                 auth.login(request=request, user=user)
                 instance = Profile.objects.get(pk=request.user.pk)
                 messages.error(request, "You have successfully logged in")
-                if instance.wizard == True:
-                    print("True")
-                    return redirect(reverse('wizard_payment'))
-                # return redirect(reverse('home'))
+            
+                return redirect(reverse('home'))
             else:
 
                 messages.error(request, "Sorry incorrect password/email")
@@ -108,6 +112,7 @@ def logout(request):
     messages.success(request, "You have successfully been logged out")
     return redirect('index')
 
+""" token for checking user has valid token and activating"""
 def activate(request, uidb64, token):  
   
     try:  
@@ -130,20 +135,21 @@ def registration(request):
   
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
+      
         profile_form = ProfileForm(request.POST, request.FILES)
-        # telephone = request.POST.get("telephone", "default")
-        # image = request.FILES.get("profile_image")
-
+     
+  #auto create a profile where user details recide
         if registration_form.is_valid() :
           
             xe = registration_form.save()
             xe.profile.telephone = '000000000'
-            xe.profile.membership = "Basic"
-            xe.is_active = False 
+            xe.profile.membership = "Basic" # sets basic membership as standard
+            xe.is_active = False # sets accouht inactive until activated from email token
             xe.save()
             user=xe
             #to get the domain of the current site  
             current_site = get_current_site(request)  
+            #sets up message text to register user
             message = render_to_string('acc_active_email.html', {  
                 'user': xe,  
                 'domain': current_site.domain,  
@@ -151,37 +157,16 @@ def registration(request):
                 'token':account_activation_token.make_token(user),  
             }) 
 
-            # token=account_activation_token.make_token(user)
-            # uid=urlsafe_base64_encode(force_bytes(user.pk))
-
-            to_email =  registration_form.cleaned_data.get('email') 
           
+            # sends email using sendgridgets user e mail
+            to_email =  registration_form.cleaned_data.get('email') 
+             # sends email using sendgrid
             send_mail('IHorse Account activation',message,'register@ihorse.com',[to_email])
+            #uses mail message template in templates
             return render(request,'mailmessage.html') 
      
 
-            # try:
-            #     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-            #     response = sg.send(message)
-            #     print(response.status_code)
-            #     print(response.body)
-            #     print(response.headers)
-            # except Exception as e:
-            #   print(e.message)
-            # mail_subject = 'Activation link has been sent to your email id'  
-            # message = render_to_string('acc_active_email.html', {  
-            #     'user': xe,  
-            #     'domain': current_site.domain,  
-            #     'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-            #     'token':account_activation_token.make_token(user),  
-            # })  
-            # to_email = form.cleaned_data.get('email')  
-            # email = EmailMessage(  
-            #             mail_subject, message, to=[to_email]  
-            # )  
-            # email.send()  
-            # return HttpResponse('Please confirm your email address to complete the registration')  
-            # return redirect(reverse('login'))
+        
 
     registration_form = UserRegistrationForm()
     profile_form = ProfileForm()
@@ -190,6 +175,7 @@ def registration(request):
 
 @login_required
 def user_profile(request):
+     # sets up push notifications and displays user profile poage
     webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
     user = request.user
@@ -213,10 +199,11 @@ def user_profile(request):
 #     content_type = 'application/javascript'
 #     name = 'sw.js'
 
-
+ # default page is connection lost
 def offline(request):
     return render(request, 'offline.html')
 
+#form for users to register interest delete when app is liv e
 def emailList(request):
     if request.method =="POST":
         fname=request.POST.get('fn')

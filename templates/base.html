@@ -114,7 +114,7 @@
       <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     <div class="col s4 offset-s2">
-  <img src="{% static 'images/logo5.png' %} "class="logo"/>
+      <a href="{% url 'home' %}">  <img src="{% static 'images/logo5.png' %} "class="logo"/></a>
     </div>
 
   </div>
@@ -125,7 +125,7 @@
 <!--med and up nav-->
       <div class="col s2 hide-on-small-only ">
         <div class="white-text ">
-        <img src="{% static 'images/logo5.png' %} "class="logo responsive-img"/>
+       <a href="{% url 'home' %}"> <img src="{% static 'images/logo5.png' %} "class="logo responsive-img"/></a>
           <ul id="" class="nav_side">
             <li> <a href="{% url 'home' %}"><i class="fa fa-home"></i><em>Home</em></a></li>
               <li> <a href="{% url 'details'%}"><i class="fas fa-horse"></i><em>Horses</em></a></li>

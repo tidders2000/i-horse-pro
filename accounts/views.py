@@ -15,7 +15,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from .models import *
 from datetime import datetime
-from datetime import date
+from datetime import date,timedelta
 from django.conf import settings
 from django.template.context_processors import csrf
 
@@ -144,6 +144,8 @@ def registration(request):
             xe = registration_form.save()
             xe.profile.telephone = '000000000'
             xe.profile.membership = "Basic" # sets basic membership as standard
+       
+
             xe.is_active = False # sets accouht inactive until activated from email token
             xe.save()
             user=xe

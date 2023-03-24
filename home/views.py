@@ -19,7 +19,7 @@ from competing.models import CompetitionLog
 from training.models import TrainingLog
 from django.contrib import messages
 from datetime import datetime
-from datetime import date
+from datetime import date,timedelta
 from django.contrib.auth.decorators import login_required
 from accounts.models import Profile
 import stripe
@@ -37,21 +37,21 @@ def home(request):
 
     user = request.user
     """the users profile page"""
-    instance = Profile.objects.get(pk=request.user.pk)
-    # if request.user.is_authenticated:
-    #     if instance.wizard == True:
-    #                 print("True")
-    #                 return redirect(reverse('wizard_payment'))
+#     instance = Profile.objects.get(pk=user.pk)
+#     # if request.user.is_authenticated:
+#     #     if instance.wizard == True:
+#     #                 print("True")
+#     #                 return redirect(reverse('wizard_payment'))
     
  
-
-  
-    print(date.today-1)
+    instance = get_object_or_404(Profile, user=user)
+   
+    print(datetime.now().date()- timedelta(days=1))
   
     now = datetime.now().date()
   
 
-    #checks that subscription cancel date has not passed and if so converts to free membership in profile
+#     #checks that subscription cancel date has not passed and if so converts to free membership in profile
     if instance.periodEnd:
         if instance.periodEnd < now:
             #deletes subscriuption from strip[e using key in model subid
@@ -64,10 +64,10 @@ def home(request):
             x=instance.periodEnd.strftime("%d/%m/%Y")# converts unix date to string and tells user expiry
             messages.error(request, "Your membership expires on "+x)
             
-  #checks user memebership and limits query results to allocates number of horses
+#   #checks user memebership and limits query results to allocates number of horses
 
     if user.profile.membership=="Free":
-     horses = Horse.objects.all().filter(user=user)[:1]
+        horses = Horse.objects.all().filter(user=user)[:1]
     elif  user.profile.membership=="Competition":
          horses = Horse.objects.all().filter(user=user)[:5]
     else:

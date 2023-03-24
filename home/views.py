@@ -56,7 +56,7 @@ def home(request):
         if instance.periodEnd < now:
             #deletes subscriuption from strip[e using key in model subid
                 stripe.api_key = settings.STRIPE_SECRET_KEY
-                stripe.Subscription.delete(instance.subID)
+                stripe.Subscription.delete(instance.subId)
         #resets sub to free
                 instance.membership ='Free'
                 instance.save()

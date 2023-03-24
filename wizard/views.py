@@ -73,7 +73,7 @@ def pro(request):
      #add live site url
             # domain = 'http://127.0.0.1:8000'
             #switch when using development
-            domain = "https://i-horse-development-fezeitgzxk.herokuapp.com"
+            domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[
@@ -100,7 +100,7 @@ def competition(request):
  if settings.DEBUG:
           #add live site url
       # "https://i-horse-development-fezeitgzxk.herokuapp.com"
-            domain = "https://i-horse-development-fezeitgzxk.herokuapp.com"
+            domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[

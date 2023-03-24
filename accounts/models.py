@@ -13,7 +13,7 @@ class Profile(models.Model):
     wizard = models.BooleanField(default=True)
     membership = models.CharField(default="Free",max_length=254)
     subId= models.CharField(default="Free",max_length=254)
-    periodEnd = models.DateField(auto_now=False,null=True)
+    periodEnd = models.DateField(auto_now=False,null=True,default=None)
 
 
 @receiver(post_save, sender=User)

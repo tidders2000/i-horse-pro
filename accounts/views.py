@@ -56,7 +56,7 @@ def login(request):
             if user is not None:
                 auth.login(request=request, user=user)
 
-                instance = Profile.objects.get(pk=request.user.pk)
+                # instance = Profile.objects.get(pk=request.user.pk)
                 messages.error(request, "You have successfully logged in")
               
                 return redirect(reverse('home'))

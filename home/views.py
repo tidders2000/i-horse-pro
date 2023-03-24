@@ -46,7 +46,7 @@ def home(request):
  
 
   
-
+    print(date.today-1)
   
     now = datetime.now().date()
   

@@ -14,7 +14,7 @@ urlpatterns = [
     path('success',success,name='success'),
     path('pro',pro,name='pro'),
     path('competition',competition,name='competitionmem'),
-      path('cencelsub/', cancelsub, name='cancelsub'),
+      path('cancelsub/', cancelsub, name='cancelsub'),
 
 
 

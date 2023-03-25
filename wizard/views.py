@@ -21,11 +21,12 @@ def cancelsub(request):
        
        if request.method == 'POST':
         user=request.user
-        user.delete()
+     
    
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        instance = Profile.objects.get(pk=request.user.pk)
+        instance = get_object_or_404(Profile, user=user)
         subscription=stripe.Subscription.retrieve(instance.subId)
+        print(subscription.current_period_end)
         renewal=subscription.current_period_end
         #sets unix date to string
         newDate=(datetime.datetime.utcfromtimestamp(renewal).strftime('%Y-%m-%d'))
@@ -43,17 +44,20 @@ def cancelsub(request):
        #payment sucess page for subscription
 
 def success(request):
+ user = request.user  
+ instance = get_object_or_404(Profile, user=user)
  st=stripe.Subscription.list(limit=1)
- membership= Profile.objects.get(pk=request.user.pk)
+ 
  sub=st.data[0].id
- membership.subId=sub
- membership.save()
- status=membership.membership
+ instance.subId=sub
+ instance.save()
+ status=instance.membership
  return render(request,'success.html',{'status':status})
 
 #payment faliure page error handling to add
 def cancel(request):
-     instance = Profile.objects.get(pk=request.user.pk)
+     user = request.user
+     instance = get_object_or_404(Profile, user=user)
      instance.membership ='Free'
      instance.save()
      return render(request,'cancel.html')
@@ -62,8 +66,8 @@ def cancel(request):
 #subscription for pro with stripe seperate functioun due to different variables
 
 def pro(request):
- 
- instance = Profile.objects.get(pk=request.user.pk)
+ user = request.user
+ instance = get_object_or_404(Profile, user=user)
  instance.membership ='Pro'
  instance.save()
  price="price_1MgrHWEbBBCp0sSzN8zMkWgr"
@@ -90,7 +94,8 @@ def pro(request):
  return redirect(checkout_session.url, code=303)
 #competition membership with stripe
 def competition(request):
- instance = Profile.objects.get(pk=request.user.pk)
+ user = request.user
+ instance = get_object_or_404(Profile, user=user)
  instance.membership ='Competition'
  instance.save()
 
@@ -99,7 +104,8 @@ def competition(request):
  
  if settings.DEBUG:
           #add live site url
-      # "https://i-horse-development-fezeitgzxk.herokuapp.com"
+            # domain = 'http://127.0.0.1:8000'
+ 
             domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],

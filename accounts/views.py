@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse,get_object_or_404
 from django.http import HttpResponse  
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
@@ -182,7 +182,7 @@ def user_profile(request):
     vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
     user = request.user
     """the users profile page"""
-    instance = Profile.objects.get(pk=request.user.pk)
+    instance = get_object_or_404(Profile, user=user)
     if request.method == "POST":
 
         form = ProfileForm(request.POST, request.FILES, instance=instance)

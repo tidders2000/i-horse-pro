@@ -19,7 +19,7 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['i-horse.herokuapp.com', '127.0.0.1','i-horse-development-wmfrestkvv.herokuapp.com']
+ALLOWED_HOSTS = ['i-horse.herokuapp.com', '127.0.0.1','i-horse-development-wmfrestkvv.herokuapp.com','www.i-horse.co.uk']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 

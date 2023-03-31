@@ -19,16 +19,19 @@ from .views import *
 
 
 urlpatterns = [
-
+  
     path('logout/', logout, name='logout'),
     path('login/', login, name='login'),
     path('register/', registration, name='registration'),
     path('profile/', user_profile, name='profile'),
     path('emailList', emailList, name="emailList"),
-
-   
+    path('deleteuser', deleteuser, name="deleteuser"),
+ 
+    path('pp',pp,name='pp'),
     path('reset', include('password_reset.urls')),
     path('webpush/', include('webpush.urls')),
+    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
+        activate, name='activate'),  
     # path('test', test, name='test'),
     # path(
     #     'sw.js',

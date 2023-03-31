@@ -12,26 +12,33 @@ from datetime import date
 import calendar
 from django.contrib import messages
 from training.models import Disipline
-# Create your views here.
 
 
+#allows users to find and add competitions
 def competition(request):
     user = request.user
+    comps =CompetitionLog.objects.all().filter(user=user).count()
+    #limits competition entry for free members
+    if user.profile.membership=="Free" and comps >=5:
+         messages.error(request, 'Maximum reached') 
+         return redirect('home')
+  
+    #gets list of disiplines update model in admin to add more
     customImg = Disipline.objects.all()
-     
+     #paginates query return for comps
     comps = CompetitionLog.objects.all().filter(user=user).order_by('-date')
     paginator = Paginator(comps, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-
+#process search request from user
  
-    # if request.method == "POST":
-    #     keyword = request.POST.get('keyword')
-    #     comps = CompetitionLog.objects.filter(
-    #         Q(location__icontains=keyword)  | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
-    #     paginator = Paginator(comps, 10)
-    #     page_obj = paginator.get_page(page_number)
+    if request.method == "POST":
+        keyword = request.POST.get('keyword')
+        comps = CompetitionLog.objects.filter(
+            Q(location__icontains=keyword)  | Q(date__icontains=keyword) | Q(disipline__icontains=keyword))
+        paginator = Paginator(comps, 10)
+        page_obj = paginator.get_page(page_number)
        
         
 
@@ -40,51 +47,39 @@ def competition(request):
 
     return render(request, 'comp.html', {'customImg': customImg, 'page_obj': page_obj})
 
-
+#saves competition record from competition then redirects to the edit screen
 def comp_create(request, pk):
       
-  
+  #gets the disipline from model list
     Dis = get_object_or_404(Disipline, pk=pk)
     form = comp_form()
-    venue = venue_form()
+    
     user = request.user
     sessionSave = form.save(commit=False)
     sessionSave.disipline = Dis
     sessionSave.user = user
 
     sessionSave.save()
-    print(sessionSave)
-    venueSave = venue.save(commit=False)
-    venueSave.competition = sessionSave
-    venueSave.venueName = 'Venue Name'
-    venueSave.save()
+  
 
-    pik = sessionSave.pk
-
-    url = 'comp_edit/{}'.format(pik)
-    return redirect(url)
+    return redirect(reverse('comp_edit', kwargs={'pk': sessionSave.pk}))
 
 
 def comp_edit(request, pk):
-    # Dis = get_object_or_404(Disipline, pk=pk)
+
     session = get_object_or_404(CompetitionLog, pk=pk)
+    # checks a competition has been created then shows it
     if not session.location:
        show=False
     else:
      show=True
     user = request.user
 
-    test = venue_form()
     form = comp_form(instance=session)
-    
-    venue_instance = get_object_or_404(Venue, competition=session)
-    print(venue_instance)
-    venue = venue_form(venue_instance.pk)
-    display = request.session['dis']
-    # entries = Comphorse.objects.all().filter(session=session)
     entry = entry_form()
     entry.fields["horse"].queryset = Horse.objects.filter(user=request.user)
     entries = Comphorse.objects.all().filter(competition=session)
+    #post request for entry picking up on saveentry move to view when can
     if request.method == 'POST':
 
         if 'save_entry' in request.POST:
@@ -99,23 +94,23 @@ def comp_edit(request, pk):
                 messages.error(request, "Entry Added")
 
                 return redirect(reverse('comp_edit', kwargs={'pk': session.pk}) + '#entries')
-
+  #post request for competition move to view when can
         if 'save_log' in request.POST:
 
             log = comp_form(
                 request.POST, request.FILES, instance=session)
             if log.is_valid():
                 log.save()
-                request.session['dis'] = "inline"
+                
                 messages.error(request, "Competition Saved")
-
+  #redirects back to competiton
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
 
 
-    return render(request, 'cedit.html', {'show':show,'venue_instance': venue_instance, 'display': display, 'entry': entry, 'form': form, 'session': session, 'venue': venue, 'entries': entries})
+    return render(request, 'cedit.html', {'show':show, 'entry': entry, 'form': form, 'session': session, 'entries': entries})
 
-
+#adds ics comp needs to be dry on job
 class EventFeed2(ICalFeed):
     """
     A simple event calender
@@ -149,36 +144,12 @@ class EventFeed2(ICalFeed):
         return item.date
 
     def item_link(self, item):
-        return "http://www.google.de"
+        return "http://www.i-horse.co.uk"
 
 
-def history(request):
-    user = request.user
-    request.session['dis'] = 'none'  # sets appointment display css
-    comps = CompetitionLog.objects.all().filter(user=user).order_by('-date')
-    paginator = Paginator(comps, 10)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    training = TrainingLog.objects.all().filter(user=user).order_by('-date')
-    paginators = Paginator(training, 10)
-    train_obj = paginators.get_page(page_number)
-    if request.method == "POST":
-        keyword = request.POST.get('keyword')
-        comps = CompetitionLog.objects.filter(
-            Q(location__icontains=keyword)  | Q(date__icontains=keyword) | Q(disipline__disipline__icontains=keyword))
-        paginator = Paginator(comps, 10)
-        page_obj = paginator.get_page(page_number)
-        training = TrainingLog.objects.filter(
-            Q(instructor__icontains=keyword) | Q(date__icontains=keyword)| Q(horse__stableName__contains=keyword) | Q(disipline__disipline__icontains=keyword))
-        
-
-        
-
-        train_obj = paginator.get_page(page_number)
-        
-    return render(request, 'history.html', {'train_obj': train_obj, 'page_obj': page_obj})
 
 
+#once a comp has been created an entry can be added and editied with this view
 def editentry(request, pk):
     instance = get_object_or_404(Comphorse, pk=pk)
     comp = instance.competition.pk

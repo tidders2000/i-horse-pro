@@ -1,39 +1,16 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Employee{% endblock %}
      
 {% block head %}
-    
+    <!--page style sheets-->
        <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+       <link rel="stylesheet" href="{% static 'css/yard.css' %}"> 
 
   {% endblock %}
  {% block content %} 
 <style>
 
-.box{
-  height:100px!important;
-  border: 1px solid grey;
-  padding:5px;
-  text-align:center;
-  border-radius:5px;
-  color:white;
-  margin:5px;
- 
-}
-button{
-  border-radius:10px;
-  min-height:50px;
-}
-nav{
-  background-color:black!important;
-}
 
-::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
-
-.datepicker{
-  margin-top:20px!important;
-}
 
 </style>
 <nav>
@@ -41,7 +18,7 @@ nav{
       <div class="col s12 breadcrumb">
           <a href="{% url 'home' %}" class="breadcrumb">Home</a>
         <a href="{% url 'yard_menu' %}" class="breadcrumb">yard</a>
-        
+        <link rel="stylesheet" href="{% static 'css/yard.css' %}"> 
         <a href="{% url 'people' %}" class="breadcrumb">People</a>
 
        
@@ -69,7 +46,7 @@ nav{
          {{form|materializecss}}
          
     {% csrf_token %}
-               {% comment %} <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add" name="save_entry"><span class="blutext">+<span></button> {% endcomment %}
+            
 
        </form>
 

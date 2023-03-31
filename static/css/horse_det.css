@@ -79,3 +79,125 @@
     color: white;
     font-family: avenir;
 }
+
+.not-visible{
+    display: none;
+}
+
+
+    .cardHeading {
+        color: #21a3e2;
+    }
+
+    .card-panel,.card{
+      border-radius:10px;
+    }
+
+    .tabs li a{
+      color:#0288d1!important;
+    }
+    .indicator{
+        background-color:white!important;
+        margin-top:5px;
+    }
+
+    nav{
+        background-color:black!important;
+    }
+
+    .caret{
+        color:white!important;
+    }
+    .material-icons{
+       
+        color:white;
+        padding-top:10px;
+    }
+    .session_title{
+        font-size:40px;
+        color:white;
+        text-align:center;
+        font-weight:600;
+
+    }
+
+    button{
+        border-radius:10px;
+        background-colour:#21a3e2!important;
+        min-height:50px;
+    }
+
+    .i_color{
+        color:#21a3e2!important;
+       
+    }
+
+
+    ::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+  }
+
+  label{
+      text-size:1 rem!important;
+      font-family: 'Roboto', 'Helvetica', sans-serif;
+  }
+ 
+
+.file-field .btn{
+      display:none;
+  }
+  .file-path-wrapper{
+      display:none;
+  }
+
+  .save-button{
+      border-radius:10px;
+      float:right;
+      white-space: normal;
+      text-align: center;
+ 
+  }
+
+  .acc_down{
+   
+    color:black;
+  }
+
+  .acc_header{
+    font-size:20px;
+    color:#0288d1;
+  }
+
+  .bl{
+    letter-spacing: 2px;
+    font-weight:600;
+  }
+
+  .photo_button{
+    margin:10px!important;
+width:100%;
+  }
+
+  .photo_title{
+    margin:40px!important;
+  }
+
+  #myProgress{
+    width:100%;
+    background-color:grey;
+  }
+#myBar{
+  width:1%;
+  height:10px;
+  background-color:#21a3e2;
+}
+
+#myBar_passport{
+  width:1%;
+  height:10px;
+  background-color:#21a3e2;
+}
+#myProgress_passport{
+  width:100%;
+  background-color:grey;
+}

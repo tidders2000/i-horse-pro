@@ -1,22 +1,14 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}People{% endblock %}
      
 {% block head %}
-    
+        <!--page style sheets-->
        <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+       <link rel="stylesheet" href="{% static 'css/yard.css' %}"> 
 
   {% endblock %}
  {% block content %} 
-<style>
 
-.card-panel{
-  border-radius:10px;
-}
-nav{
-  background-color:black!important;
-}
-
-</style>
 <nav>
     <div class="nav-wrapper">
       <div class="col s12 breadcrumb">

@@ -1,43 +1,19 @@
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Add Client{% endblock %}
      
 {% block head %}
-    
+        <!--page style sheets-->
        <link rel="stylesheet" href="{% static 'css/slider.css' %}"> 
        <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+       <link rel="stylesheet" href="{% static 'css/yard.css' %}"> 
 
   {% endblock %}
  {% block content %} 
-<style>
-  .box{
-    height:100px!important;
-    border: 1px solid grey;
-    padding:5px;
-    text-align:center;
-    border-radius:5px;
-    color:white;
-    margin:5px;
-   
-  }
-  button{
-    border-radius:10px;
-    min-height:50px;
-  }
-  nav{
-    background-color:black!important;
-  }
-  .datepicker{
-    margin-top:20px!important;
-  }
-  ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-  }
 
-</style>
 <nav>
     <div class="nav-wrapper">
       <div class="col s12 breadcrumb">
           <a href="{% url 'home' %}" class="breadcrumb">Home</a>
-        <a href="{% url 'yard_menu' %}" class="breadcrumb">yard</a>
+        <a href="{% url 'yard_menu' %}" class="breadcrumb">Yard</a>
         
         <a href="{% url 'people' %}" class="breadcrumb">People</a>
 
@@ -50,25 +26,33 @@
 
     <div class="col s12 ">
       <div class="card-panel grey darken-4">
-
- <form method="POST">
+ 
+ <form method="POST" enctype="multipart/form-data">
   <div class="row">
-    <div class="col s2"><span class="material-icons ">
-        people
-        </span></div>
-    <div class="col s8 session_title"><h4>Client Details</h4></div>
+    <div class="col s4"><span class="material-icons ">
+      {% if instance %}
+      <img src="{{MEDIA_URL}}{{ instance.image }}" alt="ff" class="materialboxed responsive-img profile">
+      {% else %}
+      <img src="{% static 'images/placeholder-600x400.png' %} " alt="client" class="materialboxed responsive-img profile">
+{% endif %}
+    </div>
+ 
+    <div class="col s6 session_title"><h4>Client Details</h4></div>
+    
+   
     <div class="col s2">
-      <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_photo" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button>
+      <button type="submit" value=""  data-position="bottom" data-tooltip="Click to Save" name="" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button>
      </div>
+    
          {{form|materializecss}}
-         
+      
     {% csrf_token %}
-               {% comment %} <button type="submit" class= 'subplus tooltipped'  data-position="bottom" data-tooltip="Click to Add" name="save_entry"><span class="blutext">+<span></button> {% endcomment %}
+             
 
        </form>
 
       </div>
-      
+    
       {% if instance %}
       <button type="button" class="btn red darken-2" onclick="location.href='{% url 'delete_client' pk=instance.pk %}'">Delete 
         Client</button>
@@ -83,11 +67,7 @@
 
 {% endblock %}{% block scripts %}
     <script src="slider.js"></script>
-    <script>
-	  $(document).ready(function(){
-    $('select').formSelect();
-  });
-</script>
+
  
 
 {% endblock %}

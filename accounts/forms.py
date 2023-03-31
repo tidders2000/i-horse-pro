@@ -8,7 +8,7 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('profile_image', )
+        fields = ['telephone']
 
 
 class UserLoginForm(forms.Form):
@@ -18,7 +18,7 @@ class UserLoginForm(forms.Form):
 
 class UserRegistrationForm(UserCreationForm):
     """form to register users"""
-
+    email = forms.EmailField( widget=forms.EmailInput(attrs={'autofocus': True}))
     password1 = forms.CharField(label="Password",
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(

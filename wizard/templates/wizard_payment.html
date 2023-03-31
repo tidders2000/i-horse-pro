@@ -1,6 +1,11 @@
 {% load static%} {% load materializecss %}{% block page_title %}Home{% endblock %}
      
-{% load static %}
+<style>.card-content{
+  min-height:308px!important;}
+  .card-title{
+    font-weight:500!important;
+  }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,65 +72,74 @@
 
 
 </head>
-  
-     
-{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  {% endcomment %}
 
- 
-
-
-
-  <div class="row">
-
-    <div class="col s12 ">
-        <div class="white-text ">
-        <img src="{% static 'images/logo5.png' %} "class="logo"/>
-      </div>
- <div>
-
- <div class="row">
-      <div class="col s12 m6 push-m4">
-
-          <h4 class=""> Upgrade to Pro?</h4>
-          <h5> Some info why </h5>
-       </div>
-     
+<div class="row">
+  <div class="col s12 ">
+    <h2> Select Your Membership</h2>
   </div>
-    <div class="row">
-       <div class="col s10 m6 push-s1 push-m4" style="background-color:white;border-radius:5px;padding:10px;">
- <form method="POST">
-
-
- <label>
-     
-       
-        <div  class="col s6 m4 valign-wrapper">   <img src="{% static 'images/logo/mobile_logo.png' %} "class="logo_small"/></div>
-        <div  class="col s6 m4 valign-wrapper" style="padding-top:10px;">
-
-        <label >
-      <input class="with-gap" name="group3" type="radio"  />
-      <span style="font-size:20px;">Pro</span>
-    </label>
-       </div>
-                  <div class="col s12 m4 valign-wrapper" >
-                         {% csrf_token %} 
-                      <button type="submit" style="margin-top:5px; "  class="btn btn-success">Payment Details</button>
-                          </form>
-                  </div>   
-        </form>
-      </label>
-    </div>
 </div>
+<div class="row">
+  <div class="col s12 m4">
+    
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Starter - Free</span>
+        <p>Free subsription that provides limited use of ihorse</p>
+        <ou>
+          <li>1 horse</li>
+          <li>Limited to 5 competitions</li>
+          <li>Limited to 5 training events</li>
+          <li>No access to yard management</li>
 
-  
-    <div class="row">
-         <div class="col s10 m6 push-s1 push-m4" center-align">
-         <a href="{% url 'reset_wiz' %}" class="center-align">Finish <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-         </div>
+        </ul>
+      </div>
+      <div class="card-action">
+        <a href="{% url  'home' %}">Select</a>
+       
+      </div>
     </div>
- 
+  </div>
 
+  <div class="col s12 m4 ">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Competitor - £5 P/M</span>
+        <p>A membership aimed at riders in regular training and competition</p>
+        <ou>
+          <li>5 horses</li>
+          <li>Unlimted competitions</li>
+          <li>Unlimted training events</li>
+          <li>No access to yard management</li>
+
+        </ul>
+      </div>
+      <div class="card-action">
+        <a href="{% url  'competitionmem' %}">Checkout</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m4 ">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Pro - £15 P/M</span>
+        <p>All the great benefits of competition with unlimited horses and access to yard</p>
+        <ou>
+          <li>Unlimites horses</li>
+          <li>Unlimted competitions</li>
+          <li>Unlimted training events</li>
+          <li>Access to yard management</li>
+
+        </ul>
+      </div>
+      <div class="card-action">
+        <a href="{% url  'pro' %}">Checkout</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
        <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>       
    
     <script>

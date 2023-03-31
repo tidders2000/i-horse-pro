@@ -6,110 +6,25 @@
         {% comment %} <link rel="stylesheet" href="{% static 'css/form.css' %}">  {% endcomment %}
         <link rel="stylesheet" href="{% static 'css/chevron.css' %}"> 
          <link rel="stylesheet" href="{% static 'css/form.css' %}"> 
+         <link rel="stylesheet" href="{% static 'css/horse.css' %}"> 
           
       {% endblock %}
      
   
      
      {% block content %}
-     <style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
-      .card-action a{
-        color:#0288d1!important;
-       background-color:white;
-      }
-   .card_text{
-     font-weight: 700;
-     text-transform:uppercase;
-     color:black
-   }
-    label{
-      margin-top:-20px;
-    }
-     .card-panel,.card{
-         border-radius:10px;
-       }
- 
-       .tabs li a{
-         color:#0288d1!important;
-       }
-       .indicator{
-           background-color:white!important;
-           margin-top:5px;
-       }
- 
-       nav{
-           background-color:black!important;
-       }
- 
-       .caret{
-           color:white!important;
-       }
-       .material-icons{
-           {% comment %} font-size:40px; {% endcomment %}
-           color:white;
-           padding-top:10px;
-       }
-       .session_title{
-           font-size:40px;
-           color:white;
-           text-align:center;
-           font-weight:600;
-    
-       }
- 
-       button{
-           border-radius:10px;
-           background-colour:#21a3e2!important;
-       }
- 
-       .i_color{
-           color:#21a3e2!important;
-          
-       }
- 
- 
-       ::-webkit-calendar-picker-indicator {
-         filter: invert(1);
-     }
- 
-     label{
-         text-size:1 rem!important;
-         font-family: 'Roboto', 'Helvetica', sans-serif;
-     }
-    
- 
- .file-field .btn{
-         display:none;
-     }
-     .file-path-wrapper{
-         display:none;
-     }
- 
-     button{
-         border-radius:10px;
-     }
- 
-    
-  .fa-trophy{
-   color: white;
-   font-size: 20px;
-     }
-    select{
-     background-color: #212121!important;
-    }
- </style>
+
      
-{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  {% endcomment %}
-  <nav>
-    <div class="nav-wrapper">
-      <div class="col s12">
-        <a href="#!" class="breadcrumb">Tack</a>
-     
-       
+
+     <nav>
+      <div class="nav-wrapper">
+        <div class="col s12 breadcrumb">
+          <a href="{% url 'detailsInd' horse.pk %}" class="breadcrumb">Horse</a>
+          <a href="#!" class="breadcrumb">Tack</a>
+         
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <div class="card-panel grey darken-4">
 
@@ -130,10 +45,7 @@
 
 
 
-                                {% comment %} {% for tack in tackdetails %}
-                                <li class="white-text">{{tack.tacktype}}: {{tack.description}}  <a href="{% url 'deletetack' pk=tack.pk %}"<i class="fas fa-trash-alt"></i></a></li>
-                              
-                                {% endfor %} {% endcomment %}
+                       
                                 {% for tack in tackdetails %}
                                 <div class="chip">
                                   {{tack.tacktype}}: {{tack.description}}
@@ -164,10 +76,8 @@
    <script>
 $(document).ready(function(){
 
-  // Initialize materialize data picker
-  //$('input').datepicker({'format': 'yyyy-mm-dd'}); 
   $('select').material_select();
-   //$('input').timepicker()
+
   
 
   });

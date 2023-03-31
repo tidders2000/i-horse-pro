@@ -1,0 +1,36 @@
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Horse{% endblock %}{% load ratings %}
+<!--checks user wants to delete their account-->
+
+
+   {% block content %} 
+ 
+
+  <div class="row">
+    <div class="col s12 m8 offset-m2">
+
+      <h1 class="white-text">Delete Account</h1>
+
+      <p class="white-text">Are you sure you want to delete your account? All data will be lost.
+
+   
+      </p>
+
+      <form action="" method="post">
+      {% csrf_token %}
+      <button class="btn btn-large red darken-2" type="submit" value="delete">DELETE </button> 
+      <a class="btn  btn-large  green darken-1" href="{%url 'home'%}">BACK</a>
+     
+</form>
+<br>
+
+    
+      </div><!--end of col-->
+</div><!--end of row-->
+   
+
+  
+
+
+
+
+{% endblock %}

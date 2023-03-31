@@ -1,92 +1,8 @@
 
 {% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Settings{% endblock %} {% block page_heading %}Profile{% endblock %}
  {% block content %}
- <style>.date label{margin-top: -30px!important;}.obj-form input{color:black!important;} form{color:white!important;}
-  .card-action a{
-    color:#0288d1!important;
-   background-color:white;
-  }
-.card_text{
- font-weight: 700;
- text-transform:uppercase;
- color:black
-}
-label{
-  margin-top:-20px;
-}
- .card-panel,.card{
-     border-radius:10px;
-   }
-
-   .tabs li a{
-     color:#0288d1!important;
-   }
-   .indicator{
-       background-color:white!important;
-       margin-top:5px;
-   }
-
-   nav{
-       background-color:black!important;
-   }
-
-   .caret{
-       color:white!important;
-   }
-   .material-icons{
-       {% comment %} font-size:40px; {% endcomment %}
-       color:white;
-       padding-top:10px;
-   }
-   .session_title{
-       font-size:40px;
-       color:white;
-       text-align:center;
-       font-weight:600;
-
-   }
-
-   button{
-       border-radius:10px;
-       background-colour:#21a3e2!important;
-   }
-
-   .i_color{
-       color:#21a3e2!important;
-      
-   }
-
-
-   ::-webkit-calendar-picker-indicator {
-     filter: invert(1);
- }
-
- label{
-     text-size:1 rem!important;
-     font-family: 'Roboto', 'Helvetica', sans-serif;
- }
-
-
-.file-field .btn{
-     display:none;
- }
- .file-path-wrapper{
-     display:none;
- }
-
- button{
-     border-radius:10px;
- }
-
-
-.fa-trophy{
-color: white;
-font-size: 20px;
- }
-select{
- background-color: #212121!important;
-}
-</style>
+  <!-- core css -->
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -107,6 +23,13 @@ select{
   <div class="card-panel grey darken-4">
  <h2>Settings</h2>
 
+ <div class="row">
+  <div class="col s12">
+ <p class="white-text">Your current subscription is {{instance.membership}}</p>
+
+  </div>
+ </div>
+
 
 
       <div class="row">
@@ -118,6 +41,27 @@ select{
         </div>
         </div>
        </div>
+
+       <div class="row">
+        <div class="col s12 col m6 push-m3" >
+            <div class="drawer-option">
+               <a class="link-blue btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent" href="{% url 'cancelsub'%}">
+         Cancel subscription
+               </a>
+        </div>
+       </div>
+      </div>
+     
+      <div class="row">
+        <div class="col s12 col m6 push-m3" >
+            <div class="drawer-option">
+               <a class="link-blue btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent" href="{% url 'wizard_payment'%}">
+         Upgrade Account
+               </a>
+        </div>
+       </div>
+      </div>
+     
 
 
   <div class="row">
@@ -131,6 +75,33 @@ select{
       </form>
     
  </div>
+
+ 
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+  <div class="col s12  m6 push-m3" data-intro='Reset your password'>
+  
+
+
+<form action="{% url 'deleteuser'%}">
+  <button type="submit" class="btn btn-success enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent" style="width:201px;">
+Delete Account
+</button>
+</form>
+  
+</div>
+
+
 </div>
 </div>
 

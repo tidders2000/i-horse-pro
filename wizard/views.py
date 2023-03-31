@@ -86,8 +86,17 @@ def pro(request):
      #add live site url
             # domain = 'http://127.0.0.1:8000'
             #switch when using development
+<<<<<<< HEAD
             # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
             domain="https://i-horse.herokuapp.com/"
+=======
+<<<<<<< HEAD
+            # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
+            domain="https://i-horse.herokuapp.com/"
+=======
+#             domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
+# >>>>>>> c56f3445e841ff6345cce766d1257ca011d05934
+>>>>>>> 0808b63eb0c076364d9abf444b4acf46aa92cd3f
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[
@@ -118,9 +127,19 @@ def competition(request):
           #add live site url
             # domain = 'http://127.0.0.1:8000'
  
+<<<<<<< HEAD
             # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
 
             domain="https://i-horse.herokuapp.com/"
+=======
+<<<<<<< HEAD
+            # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
+
+            domain="https://i-horse.herokuapp.com/"
+=======
+            domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
+>>>>>>> c56f3445e841ff6345cce766d1257ca011d05934
+>>>>>>> 0808b63eb0c076364d9abf444b4acf46aa92cd3f
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[

@@ -12,7 +12,7 @@ class Profile(models.Model):
         upload_to='media/profiles', default='media/images/default_1.png')
     wizard = models.BooleanField(default=True)
     membership = models.CharField(default="Free",max_length=254)
-    subId= models.CharField(default="",max_length=254)
+    subId= models.CharField(max_length=254,blank=True)
     periodEnd = models.DateField(auto_now=False,null=True,default=None)
 
 

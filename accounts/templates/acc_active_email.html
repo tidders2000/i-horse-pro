@@ -1,7 +1,14 @@
-{% autoescape off %}  
+ {% comment %} {% autoescape off %}  
 
 
 Hi {{ user.username }},  
 Please click on the link to confirm your registration, 
 http://{{ domain }}{% url 'activate' uidb64=uid token=token %}  
-{% endautoescape %}  
+{% endautoescape %}    {% endcomment %}
+
+
+<h1> Confirm E Mail </h1>
+
+<p> PLease click the link below to confirm your E Mail.
+
+<a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">Validate</a> 

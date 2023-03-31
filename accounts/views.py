@@ -137,6 +137,12 @@ def registration(request):
         registration_form = UserRegistrationForm(request.POST)
       
         profile_form = ProfileForm(request.POST, request.FILES)
+        email=request.POST.get('email')
+        if User.objects.filter(email=email).exists():
+         messages.error(request, "Email Already In Use")
+         return redirect(reverse('registration'))
+      
+
      
   #auto create a profile where user details recide
         if registration_form.is_valid() :
@@ -159,13 +165,16 @@ def registration(request):
                 'token':account_activation_token.make_token(user),  
             }) 
 
+
+            
+
           
-            # sends email using sendgridgets user e mail
+                # sends email using sendgridgets user e mail
             to_email =  registration_form.cleaned_data.get('email') 
              # sends email using sendgrid
-            send_mail('IHorse Account activation',message,'register@ihorse.com',[to_email])
+            send_mail('IHorse Account activation',message,'reg@ihorse.com',[to_email],html_message=message)
             #uses mail message template in templates
-            return render(request,'mailmessage.html') 
+            return render(request,'mailmessage.html')
      
 
         
@@ -190,7 +199,7 @@ def user_profile(request):
             form.save(commit=True)
 
         return redirect(reverse('home'))
-        messages.error(request, "Profile Updated")
+      
 
     profile = ProfileForm(instance=instance)
     return render(request, 'profile.html', {'profile': profile, 'instance': instance, 'user': user, 'vapid_key': vapid_key})

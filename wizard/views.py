@@ -25,13 +25,17 @@ def cancelsub(request):
    
         stripe.api_key = settings.STRIPE_SECRET_KEY
         instance = get_object_or_404(Profile, user=user)
+        #try instance delete
+
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+   
         subscription=stripe.Subscription.retrieve(instance.subId)
         print(subscription.current_period_end)
         renewal=subscription.current_period_end
         #sets unix date to string
         newDate=(datetime.datetime.utcfromtimestamp(renewal).strftime('%Y-%m-%d'))
 
-#sets date to delete sub in profile model
+# #sets date to delete sub in profile model
         instance.periodEnd = newDate
         instance.save()
         return redirect(reverse('home'))
@@ -68,7 +72,12 @@ def cancel(request):
 def pro(request):
  user = request.user
  instance = get_object_or_404(Profile, user=user)
+ if instance.membership == 'Competition':
+     messages.error(request,'Please cancel your Competing membership then upgrade')
+       
+     return redirect(reverse('home'))
  instance.membership ='Pro'
+ instance.periodEnd=None
  instance.save()
  price="price_1MgrHWEbBBCp0sSzN8zMkWgr"
  stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -96,6 +105,8 @@ def pro(request):
 def competition(request):
  user = request.user
  instance = get_object_or_404(Profile, user=user)
+  
+ instance.periodEnd=None
  instance.membership ='Competition'
  instance.save()
 
@@ -106,7 +117,7 @@ def competition(request):
           #add live site url
             # domain = 'http://127.0.0.1:8000'
  
-            domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
+            domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[

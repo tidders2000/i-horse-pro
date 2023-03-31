@@ -1,5 +1,9 @@
 /* General styles */
 
+/* warning color for email duplicate on reg page*/
+.email-warning{
+    color:white!important;
+  }
 
 /*avoid invisible text*/
 input{

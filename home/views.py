@@ -31,8 +31,11 @@ from django.conf import settings
 def home(request):
     # webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     # vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
-  
+    stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
+  
+ 
 
 
     user = request.user
@@ -45,6 +48,7 @@ def home(request):
     
  
     instance = get_object_or_404(Profile, user=user)
+
    
     print(datetime.now().date()- timedelta(days=1))
   
@@ -57,8 +61,9 @@ def home(request):
             #deletes subscriuption from strip[e using key in model subid
                 stripe.api_key = settings.STRIPE_SECRET_KEY
                 stripe.Subscription.delete(instance.subId)
-        #resets sub to free
+        #resets sub to free and reset periodend to blank
                 instance.membership ='Free'
+                instance.periodEnd = None
                 instance.save()
         else:
             x=instance.periodEnd.strftime("%d/%m/%Y")# converts unix date to string and tells user expiry

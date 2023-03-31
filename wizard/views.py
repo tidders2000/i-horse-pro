@@ -48,6 +48,7 @@ def cancelsub(request):
        #payment sucess page for subscription
 
 def success(request):
+ stripe.api_key = settings.STRIPE_SECRET_KEY
  user = request.user  
  instance = get_object_or_404(Profile, user=user)
  st=stripe.Subscription.list(limit=1)

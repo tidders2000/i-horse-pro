@@ -4,7 +4,10 @@
 .email-warning{
     color:white!important;
   }
-
+/* styles the inout field for username black when selected*/
+  #id_username {
+    background-color: #101010!important;
+  }
 /*avoid invisible text*/
 input{
     padding:5px!important;
@@ -221,7 +224,7 @@ input {
 
 .topnav a {
     color: white;
-    padding: 14px 16px;
+    padding: 5px 5px;
     text-decoration: none;
     font-size: 17px;
     display: block;

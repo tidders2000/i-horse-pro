@@ -138,14 +138,21 @@ def registration(request):
       
         profile_form = ProfileForm(request.POST, request.FILES)
         email=request.POST.get('email')
+        password1=request.POST.get('password1')
+        password2=request.POST.get('password2')
         if User.objects.filter(email=email).exists():
          messages.error(request, "Email Already In Use")
+         return redirect(reverse('registration'))
+        
+        if password1 != password2:
+         messages.error(request, "Passwords Do Not Match")
          return redirect(reverse('registration'))
       
 
      
   #auto create a profile where user details recide
         if registration_form.is_valid() :
+          
           
             xe = registration_form.save()
             xe.profile.telephone = '000000000'
@@ -176,7 +183,7 @@ def registration(request):
             #uses mail message template in templates
             return render(request,'mailmessage.html')
      
-
+   
         
 
     registration_form = UserRegistrationForm()

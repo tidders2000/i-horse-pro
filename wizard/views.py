@@ -127,6 +127,8 @@ def competition(request):
  instance.save()
 
  price="price_1MrjFEEbBBCp0sSzuFySQJvZ"
+
+#  price="price_1MgrGnEbBBCp0sSzEVLCpIuA"
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
@@ -136,7 +138,7 @@ def competition(request):
 
             # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
 
-            domain="https://i-horse.herokuapp.com"
+            # domain="https://i-horse.herokuapp.com"
 
             # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
 

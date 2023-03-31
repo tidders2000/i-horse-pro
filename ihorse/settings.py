@@ -237,3 +237,8 @@ USE_TZ = True
 STRIPE_PUBLISHABLE_KEY =  os.environ.get('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_TEST_MODE = os.environ.get('STRIPE_TEST_MODE')
+
+#stripe config settings
+PRO_PRICE = os.environ.get('PRO_PRICE')
+COMP_PRICE = os.environ.get('COMP_PRICE')
+BASE_URL = os.environ.get('BASE_URL')

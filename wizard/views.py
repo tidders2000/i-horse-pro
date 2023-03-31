@@ -85,23 +85,15 @@ def pro(request):
  
  instance.periodEnd=None
  instance.save()
- price="price_1MrjExEbBBCp0sSzd7YQwmhn"
+ price=settings.PRO_PRICE
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
      #add live site url
-            # domain = 'http://127.0.0.1:8000'
-            #switch when using development
-
-            # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
-            domain="https://i-horse.herokuapp.com"
+        
+            domain=settings.BASE_URL
 
 
-            # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
-            domain="https://i-horse.herokuapp.com"
-
-#             domain = "https://i-horse-development-wmfrestkvv.herokuapp.com/"
-# >>>>>>> c56f3445e841ff6345cce766d1257ca011d05934
 
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -117,6 +109,8 @@ def pro(request):
             )
             
  return redirect(checkout_session.url, code=303)
+
+
 #competition membership with stripe
 def competition(request):
  user = request.user
@@ -126,25 +120,17 @@ def competition(request):
  
  instance.save()
 
- price="price_1MrjFEEbBBCp0sSzuFySQJvZ"
+ price=settings.COMP_PRICE
 
 #  price="price_1MgrGnEbBBCp0sSzEVLCpIuA"
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
-          #add live site url
-            # domain = 'http://127.0.0.1:8000'
- 
+     
 
-            # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
+            domain=settings.BASE_URL
 
-            # domain="https://i-horse.herokuapp.com"
-
-            # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
-
-            domain="https://i-horse.herokuapp.com"
-
-            # domain = "https://i-horse-development-wmfrestkvv.herokuapp.com"
+         
 
             checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],

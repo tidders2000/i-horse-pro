@@ -1,7 +1,7 @@
 
 
-{% extends 'base.html' %}{% load crispy_forms_tags %}{% block page_title %}Registration Page{% endblock %} {% block page_heading %}Registration{% endblock %}
- 
+{% extends 'basePW.html' %}{% load static %}{% load materializecss %}{% block page_title %}Registration Page{% endblock %} {% block page_heading %}Registration{% endblock %}
+
    {% block title %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -10,15 +10,33 @@
     <li class="breadcrumb-item active" aria-current="page">reg User 1/3</li>
   </ol>
 </nav>{% endblock %}
+
  
  {% block content %}
-<h1 class='search-title m-3'>Register User 1/3</h1>
-  <div class="form-group col-md-6 offset-md-3">
- <form method='POST' enctype="multipart/form-data">
+ <link rel="stylesheet" href="{% static 'css/base.css' %}">
+<h1 class='search-title m-3 white-text'>Sign Up</h1>
+{% if messages %}
+
+{% for message in messages %}
+<div class="email-warning">{{message}}</div>
+
+
+
+
+</div>
+{% endfor %}
+
+{% endif%} 
+  <div class="form-group col-sm-12 col-md-4 offset-md-4">
+
+ <form method='POST' class="white-text" enctype="multipart/form-data">
   
         {% csrf_token %}
-    {{ registration_form|crispy}}
-     {{ profile_form|crispy}}
+{{ registration_form|materializecss}}
+
+{% comment %} {{ profile_form|materializecss}} {% endcomment %}
+
+ 
     <button type="submit" class="btn btn-success">Register</button>
     
     </form>

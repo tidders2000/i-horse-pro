@@ -12,9 +12,9 @@ urlpatterns = [
     path('tackedit/<int:pk>', tackedit, name='tackedit'),
     path('details/', details, name='details'),
     path('details/<int:pk>', detailsInd, name='detailsInd'),
-    path('tack/<int:pk>', tackhorse, name='tackhorse'),
+   
     path('deletetack/<int:pk>', deletetack, name='deletetack'),
-      path('deletetackHorse/<int:pk>', deletetackHorse, name='deletetackHorse'),
+
     path('deletelink/<int:pk>', deletelink, name='deletelink'),
     path('savepassport/<int:pk>',savepassport,name="savepassport")
 

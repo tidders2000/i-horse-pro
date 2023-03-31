@@ -10,12 +10,12 @@ from datetime import datetime, timedelta, time
 from django.db import connections
 import random
 
-# Create your views here.
-
+#shows the horses
 
 def horse(request):
     user = request.user
     horses = Horse.objects.all().filter(user=user).count()
+#limits the horses shown in case membership decreased
     if user.profile.membership=="Free" and horses >=1:
          messages.error(request, 'Maximum reached') 
          return redirect('home')
@@ -23,7 +23,7 @@ def horse(request):
           messages.error(request, 'Maximum reached') 
           return redirect('home')
 
-   
+#save horse form 
     form = horse_form()
     if request.method == "POST":
         horsef = horse_form(request.POST)
@@ -39,10 +39,11 @@ def horse(request):
 
     return render(request, 'horse.html', {'form': form})
 
-
+#save photo
 def photo(request,pk):
     
     selected = Horse.objects.get(pk=pk)
+    #random number for unique id
     rand=random.randint(1,10000)
    
     if request.method == "POST":
@@ -52,34 +53,18 @@ def photo(request,pk):
             selected.save()
             obj=Images_new.objects.create(photo=photo,horse=selected,id=rand)
          
-            messages.error(request, "passport Saved")  
-    # number=random.randint(1,10000)
-    # rand = number
-  
-    # if request.method == "POST":
-          
-    #     # files=request.FILES.getlist('id_image')
-    #     # print(files)
-    #     # for f in files:
-    #     #     file_instance=Images_new.objects.create(horse=selected,photo=f)
-    #     #     file_instance.save
-        
-    #         photo = request.FILES.get('id_image')
-    #         obj=Images_new.objects.create(photo=photo,horse=selected,id=rand)
-         
-    
-          
-            
-      
+            messages.error(request, "photo Saved")  
+
             return JsonResponse({'data':'Data uploaded'})
-            # messages.error(request, "photo Saved")  
-            # return redirect('detailsInd', kwargs={'pk': pk})
+           
            
           
 
 
      
     return redirect(reverse('detailsInd', kwargs={'pk': pk}))
+
+#delete tack
 
 def deletetack(request, pk):
     tackItem = get_object_or_404(Tack, pk=pk)
@@ -88,12 +73,7 @@ def deletetack(request, pk):
 
     return redirect('tackedit', pk=horse)
 
-def deletetackHorse(request, pk):
-    tackItem = get_object_or_404(Tack, pk=pk)
-    horse = tackItem.horse.pk
-    tackItem.delete()
-
-    return redirect('tackhorse', pk=horse)
+#delete link
 
 def deletelink(request, pk):
     linkItem = get_object_or_404(Link, pk=pk)
@@ -102,14 +82,14 @@ def deletelink(request, pk):
 
     return redirect('links', pk=horse)
 
-
+#lists tack and add form
 def tackedit(request, pk):
     horse = get_object_or_404(Horse, pk=pk)
     tackdetails = Tack.objects.all().filter(horse=horse)
     user = request.user
     request.session['horse'] = pk
     tack = tack_form()
-
+#add tack
     if request.method == "POST":
         tackf = tack_form(request.POST)
         if tackf.is_valid():
@@ -122,30 +102,16 @@ def tackedit(request, pk):
     return render(request, 'tackedit.html', {'horse': horse, 'tack': tack, 'tackdetails': tackdetails, 'horse': horse})
 
 
-def tackhorse(request, pk):
-
-    user = request.user
-    display = "inline"  # only visible on edit screen css for back button
-    horse = Horse.objects.get(pk=pk)
-    tack = tack_form()
-    tackdetails = Tack.objects.all().filter(horse=horse)
-    if request.method == "POST":
-        tackf = tack_form(request.POST)
-        if tackf.is_valid():
-            tackSave = tackf.save(commit=False)
-            tackSave.user = user
-            tackSave.horse = horse
-            tackSave.save()
-            messages.error(request, "Tack Saved")
-    return render(request, 'tack.html', {'tack': tack, 'tackdetails': tackdetails, 'horse': horse, 'display': display})
 
 
+#lists links to horse realted websites
 def links(request,pk):
     horse = request.session['horse']
     user = request.user
     newHorse = Horse.objects.get(pk=horse)
     link = link_form()
     links = Link.objects.all().filter(horse=newHorse)
+    #add links form
     if request.method == "POST":
         linkf = link_form(request.POST)
 
@@ -157,31 +123,26 @@ def links(request,pk):
             messages.error(request, "Link Saved")
     return render(request, 'links.html', {'link': link, 'links': links, 'horse': newHorse})
 
-
+#displays list of users horses
 def details(request):
     user = request.user
-    request.session['history'] = "Dentist"
-    horses = Horse.objects.all().filter(user=user)
+   
+    if user.profile.membership=="Free":
+     horses = Horse.objects.all().filter(user=user)[:1]
+    elif  user.profile.membership=="Competition":
+         horses = Horse.objects.all().filter(user=user)[:5]
+    else:
+         horses = Horse.objects.all().filter(user=user)
     return render(request, 'horse_details.html', {'horses': horses})
 
-
+#displays horse details
 def detailsInd(request, pk):
     today = datetime.now().date()
    
     user = request.user
-    string = request.session['history']
+    
     selected = Horse.objects.get(pk=pk)
-    if request.session['history']:
 
-        tory = Appointment.objects.all().filter(event__appType=string).filter(
-            horse=selected)
-
-    else:
-        tory = Appointment.objects.all().filter(event__appType="Dentist").filter(
-            horse=selected)
-
-        request.session['history'] = "Dentist"
-        string = request.session['history']
 
     horses = Horse.objects.all().filter(user=user)
     training = TrainingLog.objects.all().filter(horse=pk).order_by('-date')[:5]
@@ -191,29 +152,16 @@ def detailsInd(request, pk):
 
     appointments = Appointment.objects.all().filter(
         horse=selected).order_by('event__appType', 'due')
-    # appointments = appointments.distinct('event__appType')
+  
 
-    # if request.method == "POST":
-       
-    #     if 'save_pp' in request.POST:
-           
-    #         photo = request.FILES.get('pic')
-    #         print(request.POST)
-    #         selected.passport = photo
-    #         selected.save()
-         
-    #         messages.error(request, "passport Saved")  
 
-    if 'apps' in request.POST:
-
-            request.session['history'] = request.POST.get('apps')
-
-            return redirect(reverse('detailsInd', kwargs={'pk': pk}) + '#apps')
         
       
 
-    return render(request, 'horse_details_ind.html', {'tory': tory, 'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links,'photos':photos,'passport':passport })
+    return render(request, 'horse_details_ind.html', {'training': training, 'appointments': appointments, 'selected': selected, 'horses': horses, 'links': links,'photos':photos,'passport':passport })
 
+
+#deletes or edits horse already in db
 
 def edithorse(request, pk):
 
@@ -231,7 +179,7 @@ def edithorse(request, pk):
             return redirect(reverse('detailsInd', kwargs={'pk': pk}))
     return render(request, 'horse_edit.html', {'form': form, 'pk': pk})
 
-
+#deletes a horse from db
 def deletehorse(request, pk):
     instance = get_object_or_404(Horse, pk=pk)
     instance.delete()
@@ -239,9 +187,10 @@ def deletehorse(request, pk):
 
     return redirect(reverse('home'))
 
-
+#adds image of passport
 def savepassport(request,pk):
     selected = Horse.objects.get(pk=pk)
+    #random number for id
     rand=random.randint(1,10000)
    
     if request.method == "POST":
@@ -252,27 +201,14 @@ def savepassport(request,pk):
             obj=Images_P.objects.create(photo=photo,horse=selected,id=rand)
          
             messages.error(request, "passport Saved")  
-    # number=random.randint(1,10000)
-    # rand = number
-  
-    # if request.method == "POST":
-          
-    #     # files=request.FILES.getlist('id_image')
-    #     # print(files)
-    #     # for f in files:
-    #     #     file_instance=Images_new.objects.create(horse=selected,photo=f)
-    #     #     file_instance.save
-        
-    #         photo = request.FILES.get('id_image')
-    #         obj=Images_new.objects.create(photo=photo,horse=selected,id=rand)
+
          
     
           
             
       
             return JsonResponse({'data':'Data uploaded'})
-            # messages.error(request, "photo Saved")  
-            # return redirect('detailsInd', kwargs={'pk': pk})
+          
            
           
 

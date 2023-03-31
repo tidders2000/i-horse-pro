@@ -9,7 +9,9 @@ urlpatterns = [
     path('edit/', editapp, name='editapp'),
     # path('ical/', ical, name='ical')
     path('get_csrftoken_from_cookie', get_csrftoken_from_cookie,
-     name='get_csrftoken_from_cookie')
+     name='get_csrftoken_from_cookie'),
+
+    path('deleteAppointment/<int:pk>',deleteAppointment,name='deleteAppointment')
 
 
 ]

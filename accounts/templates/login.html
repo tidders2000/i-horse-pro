@@ -15,6 +15,7 @@
   <!-- core css -->
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+   <link rel="stylesheet" href="{% static 'css/page.css' %}">
      
   <!--vendor style sheets-->
   <script
@@ -72,37 +73,37 @@
 
 </head>
 {% block content %}
-<style>
 
-    .logo{
-        margin:auto;
-        display:block;
-    }
-
-    .center{
-        display:block!important;
-        margin:auto!important;
-    }
-    input{
-        padding:5px!important;
-        border-radius:3px;
-        margin-top:20px!important;
-    }
-
-
-
-</style>
 <div class="row">
     <div class="col s12"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
 </div>
 <div class="row">
 <div class="logform">
-  <form method='POST' class="col s12 m6 l4 offset-l4 offset-m3">
+
+
+</div> 
+  <form method='POST' class="col s12 m6 l4 offset-l4 offset-m3 login-form">
 
       {{ login_form|materializecss}} 
       <button type="submit" class="btn btn-success center">Login</button>
+      <a href="{% url 'password_reset' %}">Reset Password</a>
       {% csrf_token %}
+      {% if messages %}
+
+      {% for message in messages %}
+      
+      <p class="white-text">{{message}}</p>
+      
+      
+      
+  
+      {% endfor %}
+      
+      {% endif%} 
     </form> 
+  
 </div>  
-</div> 
+
+
 {% endblock%}
+

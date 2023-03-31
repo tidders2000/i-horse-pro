@@ -12,6 +12,8 @@ import base64
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator
 
+# ics file creation du0plkicated due to different setting for comp
+
 class EventFeed3(ICalFeed):
     """
     A simple event calender
@@ -45,11 +47,12 @@ class EventFeed3(ICalFeed):
     def item_link(self, item):
         return "http://www.google.de"
 
-
+#create training log
 def training_log(request):
     user = request.user
+    #gets the dispine image as set by admin
     customImg = Disipline.objects.all()
-     
+     #create serch and history
     train = TrainingLog.objects.all().filter(user=user).order_by('-date')
     paginator = Paginator(train, 10)
     page_number = request.GET.get('page')
@@ -58,7 +61,7 @@ def training_log(request):
 
     return render(request, 'tlog.html', {'customImg': customImg,'train_obj': train_obj,'page_obj':page_obj})
 
-
+#creates  TRAINING EVENT    
 def training_create(request, pk):
 
     customImg = get_object_or_404(Disipline, pk=pk)
@@ -71,7 +74,7 @@ def training_create(request, pk):
     pk = sessionSave.pk
     url = 'training_edit/{}'.format(pk)
     return redirect(url)
-
+#edit a training event
 
 def training_edit(request, pk):
     session = get_object_or_404(TrainingLog, pk=pk)
@@ -79,7 +82,7 @@ def training_edit(request, pk):
     form = training_form(request.user,instance=session)
     listObj = Objectives.objects.all().filter(session=session)
     obj = objective_form()
-    display = 'none'
+# saves objectives
     if request.method == 'POST':
 
         if 'save_obj' in request.POST:
@@ -91,7 +94,7 @@ def training_edit(request, pk):
                 newObj.session = session
                 newObj.save()
                 return redirect(reverse('training_edit', kwargs={'pk': pk}) + '#obj')
-
+#saves edit to training
         if 'save_log' in request.POST:
             photo = request.FILES.get('id_image')
             log = training_form(request.user,
@@ -108,7 +111,7 @@ def training_edit(request, pk):
 
     return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display,})
 
-
+#code to toggle objective done icon off and on
 def checkOb(request, pk):
     objective = get_object_or_404(Objectives, pk=pk)
     if objective.Completed == False:
@@ -120,13 +123,22 @@ def checkOb(request, pk):
     session = objective.session.pk
     return redirect("training_edit", pk=session)
 
+# deletes an objective
+def deleteobjective(request,pk):
+    objective = get_object_or_404(Objectives, pk=pk)
+    objective.delete()
+    id=objective.session.pk
+  
 
+    return redirect(reverse('training_edit', kwargs={'pk': id}))
+
+# draw js plugin on the template that allows user to draw a diagram
 def draw(request, pk):
 
     pk = pk
 
     return render(request, 'draw.html', {'pk': pk})
-
+# saves drawing
 
 def savedraw(request, pk):
     session = get_object_or_404(TrainingLog, pk=pk)
@@ -144,11 +156,3 @@ def savedraw(request, pk):
         session.floorPlan.save(file_name, data, save=True)
 
     return redirect(reverse('training_edit', kwargs={'pk': session.pk}))
-
-def deleteobjective(request,pk):
-    objective = get_object_or_404(Objectives, pk=pk)
-    objective.delete()
-    id=objective.session.pk
-  
-
-    return redirect(reverse('training_edit', kwargs={'pk': id}))

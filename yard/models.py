@@ -46,6 +46,7 @@ class Client  (models.Model):
     emergency_contact_number = models.CharField(max_length=40, blank=True)
     start_date = models.DateField(blank=True,null=True)
     notes = models.TextField(blank=True)
-
+    image = models.ImageField(
+        upload_to='media/images/clients', blank=True, default='media/images/clients/profile.png')
     def __str__(self):
         return self.name

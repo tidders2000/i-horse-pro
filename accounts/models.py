@@ -12,6 +12,8 @@ class Profile(models.Model):
         upload_to='media/profiles', default='media/images/default_1.png')
     wizard = models.BooleanField(default=True)
     membership = models.CharField(default="Free",max_length=254)
+    subId= models.CharField(default="",max_length=254)
+    periodEnd = models.DateField(auto_now=False,null=True,default=None)
 
 
 @receiver(post_save, sender=User)

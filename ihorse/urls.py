@@ -31,7 +31,7 @@ urlpatterns = [
     path('wizard/', include('wizard.urls')),
     path('training/', include('training.urls')),
     path('cal/', include('cal.urls')),
-    path('mindset/', include('mindset.urls')),
+   
     path('horse/', include('horse.urls')),
     path('appointment/', include('appointment.urls')),
     path('competing/', include('competing.urls')),

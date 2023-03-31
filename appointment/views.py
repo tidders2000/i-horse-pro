@@ -13,13 +13,21 @@ from django.http import JsonResponse
 def get_csrftoken_from_cookie(request, **kwargs):
     return JsonResponse({"token": request.COOKIES["csrftoken"]})
 
+#removes appointment
+def deleteAppointment(request, pk):
+       instance = get_object_or_404(Appointment, pk=pk)
+       instance.delete()
+
+
+       return redirect("home")
+#adds appointment
 def appointment(request, pk):
     form = event_form()
     user = request.user
     horse = get_object_or_404(Horse,pk=pk)
    
 
-    display = "none"
+
     if request.method == "POST":
         form = event_form(request.POST, request.FILES)
         if form.is_valid():
@@ -27,16 +35,17 @@ def appointment(request, pk):
             formSave.user = user
             formSave.horse = horse
             formSave.save()
-            display = "inline"
+         
             messages.error(request, "Appointment Saved")
-            # return redirect ('details')
-            return redirect(reverse('EventFeed', kwargs={'pk': formSave.pk}))
+            #sends back to horse that appointment made for
+            return redirect(reverse('detailsInd', kwargs={'pk': horse.pk}))
+         
         else:
             print('error')
 
-    return render(request, 'appointment.html', {'horse':horse,'form': form, 'display': display})
+    return render(request, 'appointment.html', {'horse':horse,'form': form})
 
-
+#allows user to edit appointment
 def editapp(request):
 
     app = request.GET['app']
@@ -46,7 +55,7 @@ def editapp(request):
     user = request.user
     id = request.GET['horse']
     horse = Horse.objects.get(pk=id)
-    display = "none"
+   
     if request.method == "POST":
         photo = request.FILES.get('id_image')
         form = event_form(request.POST, request.FILES, instance=instance)
@@ -56,15 +65,15 @@ def editapp(request):
             formSave.report = photo
             formSave.horse = horse
             formSave.save()
-            display = "inline"
+          
             messages.error(request, "Appointment Saved")
             return redirect(reverse('detailsInd', kwargs={'pk': horse.pk}))
         else:
             print('error')
 
-    return render(request, 'appointment.html', {'form': form, 'display': display, 'instance': instance,'horse':horse})
+    return render(request, 'appointment.html', {'form': form, 'instance': instance,'horse':horse})
 
-
+#create ICS file
 class EventFeed(ICalFeed):
     """
     A simple event calender
@@ -95,25 +104,6 @@ class EventFeed(ICalFeed):
         return item.due
 
     def item_link(self, item):
-        return "http://www.google.de"
+        return "http://i-horse.co.uk"
 
 
-# def ical(request, user_id=None):
-#     cal = vobject.iCalendar()
-
-#     cal.add('method').value = 'PUBLISH'
-#     cal.add('calscale').value = 'GREGORIAN'
-#     cal.add('x-wr-calname').value = 'TestCal28'
-#     cal.add('x-wr-timezone').value = 'Australia/Sydney'
-#     cal.add('x-wr-caldesc').value = ''
-#     vevent = cal.add('vevent')
-#     vevent.add('dtstart').value = datetime(2021, 1, 22)
-#     vevent.add('dtend').value = datetime(2021, 1, 22)
-#     vevent.add('dtstamp').value = datetime.now()
-#     vevent.add('summary').value = "Test event"
-#     icalstream = cal.serialize()
-
-#     response = HttpResponse(icalstream, content_type='text/calendar')
-#     response['Filename'] = 'filename.ics'
-#     response['Content-Disposition'] = 'attachment; filename=filename.ics'
-#     return response

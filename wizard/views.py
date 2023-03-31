@@ -80,7 +80,7 @@ def pro(request):
  instance.membership ='Pro'
  instance.periodEnd=None
  instance.save()
- price="price_1MgrHWEbBBCp0sSzN8zMkWgr"
+ price="price_1MrjExEbBBCp0sSzd7YQwmhn"
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:
@@ -121,7 +121,7 @@ def competition(request):
  instance.membership ='Competition'
  instance.save()
 
- price="price_1MgrGnEbBBCp0sSzEVLCpIuA"
+ price="price_1MrjFEEbBBCp0sSzuFySQJvZ"
  stripe.api_key = settings.STRIPE_SECRET_KEY
  
  if settings.DEBUG:

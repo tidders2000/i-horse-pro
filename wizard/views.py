@@ -51,12 +51,16 @@ def success(request):
  stripe.api_key = settings.STRIPE_SECRET_KEY
  user = request.user  
  instance = get_object_or_404(Profile, user=user)
+ if 'membership' in request.session:
+    instance.membership = request.session['membership']
+    instance.save()
  st=stripe.Subscription.list(limit=1)
  
  sub=st.data[0].id
  instance.subId=sub
  instance.save()
  status=instance.membership
+ request.session['membership']=""
  return render(request,'success.html',{'status':status})
 
 #payment faliure page error handling to add
@@ -77,7 +81,8 @@ def pro(request):
      messages.error(request,'Please cancel your Competing membership then upgrade')
        
      return redirect(reverse('home'))
- instance.membership ='Pro'
+ request.session['membership']="Pro"
+ 
  instance.periodEnd=None
  instance.save()
  price="price_1MrjExEbBBCp0sSzd7YQwmhn"
@@ -116,9 +121,9 @@ def pro(request):
 def competition(request):
  user = request.user
  instance = get_object_or_404(Profile, user=user)
-  
+ request.session['membership']="Competition"
  instance.periodEnd=None
- instance.membership ='Competition'
+ 
  instance.save()
 
  price="price_1MrjFEEbBBCp0sSzuFySQJvZ"

@@ -2,6 +2,7 @@ from django.db import models
 from training.models import CustomImages
 from horse.models import Horse
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 
@@ -43,4 +44,4 @@ class Comphorse(models.Model):
     horse = models.ForeignKey(Horse, null=True, on_delete=models.CASCADE)
     horseClass = models.CharField(max_length=100, blank=True)
     cost = models.TextField(blank=True)
-    class_time = models.TimeField(auto_now=False,blank=True)
+    class_time = models.TimeField(auto_now=False,blank=True,default='12:00')

@@ -109,7 +109,7 @@ def training_edit(request, pk):
                  return redirect("training_edit", pk=pk)
                 
 
-    return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session, 'display': display,})
+    return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session})
 
 #code to toggle objective done icon off and on
 def checkOb(request, pk):

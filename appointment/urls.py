@@ -6,7 +6,7 @@ from .views import *
 urlpatterns = [
     path('<int:pk>', appointment, name='appointment'),
     path('feed.ics$/feed.ics$/<int:pk>', EventFeed(), name='EventFeed'),
-    path('edit/', editapp, name='editapp'),
+    path('edit/<int:pk>', editapp, name='editapp'),
     # path('ical/', ical, name='ical')
     path('get_csrftoken_from_cookie', get_csrftoken_from_cookie,
      name='get_csrftoken_from_cookie'),

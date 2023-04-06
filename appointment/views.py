@@ -20,7 +20,7 @@ def deleteAppointment(request, pk):
 
 
        return redirect("home")
-#adds appointment
+#adds appointment  {% url 'editapp' %}?app=
 def appointment(request, pk):
     form = event_form()
     user = request.user
@@ -30,15 +30,17 @@ def appointment(request, pk):
 
     if request.method == "POST":
         form = event_form(request.POST, request.FILES)
+        photo = request.FILES.get('id_image')
         if form.is_valid():
             formSave = form.save(commit=False)
             formSave.user = user
             formSave.horse = horse
+            formSave.report = photo
             formSave.save()
          
             messages.error(request, "Appointment Saved")
             #sends back to horse that appointment made for
-            return redirect(reverse('detailsInd', kwargs={'pk': horse.pk}))
+            return redirect(reverse('editapp', kwargs={'pk': formSave.pk}))
          
         else:
             print('error')
@@ -46,15 +48,15 @@ def appointment(request, pk):
     return render(request, 'appointment.html', {'horse':horse,'form': form})
 
 #allows user to edit appointment
-def editapp(request):
+def editapp(request,pk):
 
-    app = request.GET['app']
-    instance = get_object_or_404(Appointment, pk=app)
+    
+    instance = get_object_or_404(Appointment, pk=pk)
 
     form = event_form(instance=instance)
     user = request.user
-    id = request.GET['horse']
-    horse = Horse.objects.get(pk=id)
+
+    horse = instance.horse
    
     if request.method == "POST":
         photo = request.FILES.get('id_image')
@@ -67,7 +69,7 @@ def editapp(request):
             formSave.save()
           
             messages.error(request, "Appointment Saved")
-            return redirect(reverse('detailsInd', kwargs={'pk': horse.pk}))
+            return redirect(reverse('editapp', kwargs={'pk': formSave.pk}))
         else:
             print('error')
 

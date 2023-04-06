@@ -170,7 +170,7 @@
 
           <div class="col s11 acc_header">Farrier</div>
           
-          <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+          <div class="col s1"> <i class="material-icons acc_down">expand_more</i></div>
           
 
    
@@ -195,7 +195,7 @@
         <div class="collapsible-header">
            <div class="col s11 acc_header">Vet</div>
           
-         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+         <div class="col s1"> <i class="material-icons acc_down">expand_more</i></div>
    
         </div>
         <div class="collapsible-body"><span>
@@ -204,7 +204,7 @@
           {% if app.event.appType == "Vet" %}
 
 
-          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
+          <li> <a class="white-text" href="{% url 'editapp' pk=app.pk %}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -218,7 +218,7 @@
         <div class="collapsible-header">
            <div class="col s11 acc_header">Physio</div>
           
-         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+         <div class="col s1"> <i class="material-icons acc_down">expand_more</i></div>
    
         </div>
         <div class="collapsible-body"><span>
@@ -227,7 +227,7 @@
           {% if app.event.appType == "Physio" %}
 
 
-          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
+          <li> <a class="white-text" href="{% url 'editapp' pk=app.pk %}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -242,7 +242,7 @@
         <div class="collapsible-header">
            <div class="col s11 acc_header">Dentist</div>
           
-         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+         <div class="col s1"> <i class="material-icons acc_down">expand_more</i></div>
    
         </div>
         <div class="collapsible-body"><span>
@@ -251,7 +251,7 @@
           {% if app.event.appType == "Dentist" %}
 
 
-          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
+          <li> <a class="white-text" href="{% url 'editapp' pk=app.pk %}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -266,7 +266,7 @@
         <div class="collapsible-header">
            <div class="col s11 acc_header">Worming</div>
           
-         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+         <div class="col s1"> <i class="material-icons acc_down">expand_more</i></div>
    
         </div>
         <div class="collapsible-body"><span>
@@ -275,7 +275,7 @@
           {% if app.event.appType == "Worming" %}
 
 
-          <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
+          <li> <a class="white-text" href="{% url 'editapp' pk=app.pk %}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -290,7 +290,7 @@
         <div class="collapsible-header">
            <div class="col s11 acc_header">Vacs</div>
           
-         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+         <div class="col s1"> <i class="material-icons acc_down">expand_more</i></div>
    
         </div>
         <div class="collapsible-body"><span>
@@ -299,7 +299,7 @@
           {% if app.event.appType == "Injections" %}
 
 
-         <li> <a class="white-text" href="{% url 'editapp' %}?app={{app.pk}}&horse={{app.horse.pk}}"><span class=""> {{app.due}}</span></a></li>
+         <li> <a class="white-text" href="{% url 'editapp' pk=app.pk %}"><span class=""> {{app.due}}</span></a></li>
       
       {% endif %}
 
@@ -314,7 +314,7 @@
         <div class="collapsible-header">
            <div class="col s11 acc_header">Saddler</div>
           
-         <div class-"col s1"> <i class="material-icons acc_down">expand_more</i></div>
+         <div class="col s1"> <i class="material-icons acc_down">expand_more</i></div>
    
         </div>
         <div class="collapsible-body"><span>

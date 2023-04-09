@@ -20,7 +20,7 @@ def deleteAppointment(request, pk):
 
 
        return redirect("home")
-#adds appointment  {% url 'editapp' %}?app=
+#adds appointment  
 def appointment(request, pk):
     form = event_form()
     user = request.user

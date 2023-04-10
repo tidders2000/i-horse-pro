@@ -94,6 +94,11 @@ def training_edit(request, pk):
                 newObj.session = session
                 newObj.save()
                 return redirect(reverse('training_edit', kwargs={'pk': pk}) + '#obj')
+            else:
+
+                messages.error(request,'Sorry Error on Form')
+
+                return redirect(reverse('training_edit', kwargs={'pk': pk}))
 #saves edit to training
         if 'save_log' or 'floor_plan' in request.POST:
             photo = request.FILES.get('id_image')
@@ -110,6 +115,11 @@ def training_edit(request, pk):
                  if 'floor_plan' in request.POST:
                        return redirect("draw", pk=pk)
                  return redirect("training_edit", pk=pk)
+            else:
+
+                messages.error(request,'Sorry Error on Form')
+
+                return redirect(reverse('training_edit', kwargs={'pk': pk}))
                 
 
     return render(request, 'tedit.html', {'pk': pk, 'listObj': listObj, 'obj': obj, 'form': form, 'session': session})

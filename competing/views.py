@@ -94,6 +94,10 @@ def comp_edit(request, pk):
                 messages.error(request, "Entry Added")
 
                 return redirect(reverse('comp_edit', kwargs={'pk': session.pk}) + '#entries')
+            else:
+                messages.error(request, "Sorry cannot save")
+                return redirect(reverse('comp_edit', kwargs={'pk': session.pk}))
+
   #post request for competition move to view when can
         if 'save_log' in request.POST:
 
@@ -106,6 +110,10 @@ def comp_edit(request, pk):
   #redirects back to competiton
                 url = '/competing/comp_edit/{}'.format(session.pk)
                 return redirect(url)
+            else:
+                 messages.error(request, "Sorry cannot save")
+                 return redirect(url)
+
 
 
     return render(request, 'cedit.html', {'show':show, 'entry': entry, 'form': form, 'session': session, 'entries': entries})

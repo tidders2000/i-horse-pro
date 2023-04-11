@@ -11,11 +11,11 @@
   
   <title>{% block page_title %}{% endblock %}</title>
   <!--force https redirect-->
-  {% comment %} <script>
+<script>
     if (location.protocol !== "https:") {
           location.protocol = "https:";
         } 
-      </script> {% endcomment %}
+      </script> 
   <!-- core css -->
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
    <link rel="stylesheet" href="{% static 'css/index.css' %}">

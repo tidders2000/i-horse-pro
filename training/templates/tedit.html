@@ -147,7 +147,8 @@
                     <div id="test3" class="col s12">
                         <h2 class="hs__headline" data-intro='You can add diagrams. Click on the Floorplan currently to select a file such as a photo or click the draw floorplan to draw. Note you cannot edit diagrams once drawn but can add another one to replace it'>Floor Plan</h2>
                         <div class="row blue_box" >
-                            <a href="{% url 'draw' pk=session.pk %}" class="click-draw"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Click to draw a floorplan</a>
+                            <button type="submit"  name="floor_plan" class="btn btn-success">Add A Floorplan</button>
+                            {% comment %} <a href="{% url 'draw' pk=session.pk %}" class="click-draw"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Click to draw a floorplan</a> {% endcomment %}
                             <section>
                                 <div class="decoration col s12"></div>
                     
@@ -158,7 +159,11 @@
                     
                     
                             </section>
+                           
+                           
                             <img src="{{MEDIA_URL}}{{ session.floorPlan}}" alt="floor plan" class="floorplan responsive-img">
+                         
+                         
                         </div>
                     </div>
     

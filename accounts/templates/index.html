@@ -11,11 +11,11 @@
   
   <title>{% block page_title %}{% endblock %}</title>
   <!--force https redirect-->
-<script>
+{% comment %} <script>
     if (location.protocol !== "https:") {
           location.protocol = "https:";
         } 
-      </script> 
+      </script>  {% endcomment %}
   <!-- core css -->
    <link rel="stylesheet" href="{% static 'css/base.css' %}">
    <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -89,20 +89,27 @@
 
   <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/parallex_image.jpg'%}">
 
-    <div class="top-left hide-on-small-only"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
-    <div class="center hide-on-med-and-up"><img src="{% static 'images/logo_i-Horse_2022.png' %} "class="logo"/></div>
+    <div class="top-left hide-on-small-only"><img src="{% static 'images/logo5.png' %} "class="logo"/></div>
+    <div class="center hide-on-med-and-up"><img src="{% static 'images/logo5.png' %} "class="logo"/></div>
   
    <div class="top-right white-text login" ><a href="{% url 'registration' %}"> SIGNUP</a> |  <a href="{%url 'login'%}">  LOGIN</a></div>
     {% comment %} <div class="top-right strap-line hide-on-small-only">Your Equine World - Organised <span>LOGIN</span></div> {% endcomment %}
     <div class="centered headline ">
       <div>Your Equine World <span class="blue-text upper">ORGANISED</span> </div>
-    <div class="">Management Appointments <br>Training Competing  Staff </div>
+    <div class="">Management-Appointments <br>Training-Competition-Staff<br>Clients-Yard Management </div>
   </div>
 </div>
   <section>
+    Mangement
+Appointments
+Training
+Competition
+Staff
+Clients
+Yard management
   
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  {% comment %} <div id="modal1" class="modal">
     `<div class="modal-header">
       <h5 class="center"> i-Horse Club</h4>   
       <h6 class="center">Coming April 2022 - Sign up for news</h5>
@@ -123,7 +130,7 @@
       </div>  
     
   
-  </div>
+  </div> {% endcomment %}
       <div class="block  row">
 
         <div class="col s12 m4  left-align ">
@@ -155,15 +162,15 @@
     <div class="phone-text col s10 offset-s1 m12 l8 offset-l2">
       <h2>What is i-Horse?</h2>
 
-      <p>i-Horse club aims to create a place for all things equine. We will provide a platform where you can do all your horsey online stuff in one place, from buying or selling to coaching tips and advice. We will also provide apps and tools to make your horsey life easier </p>
+      <p>I-horse aims to create an easily accessible place for all of your equine information. This app will allow you to access all your management history, upcoming appointments, past & future training and competitions. The pro version will also allow you to access client and staff data in a second! Great for any business - from freelance coaches, livery yards, competition yards to therapists and saddle fitters.  </p>
   
 
      <p> There are 3 versions</p>
     <h5>Starter - FREE </h5>   <p>1 horse and up to 5 training sessions / competitions - great to try it out</p>
       
-     <h5> Competitor - £5 P/M </h5><p> 3 horses, unlimited training and competitions - a fantastic tool for most riders. </p>
+     <h5> Competitor - £5 P/M </h5><p> 3 horses, unlimited training and competitions - a fantastic tool for all riders. </p>
       
-     <h5>Pro - £15 P/M </h5> <p> training and competitions, access to all the yard, staff and client management tools. Make life so much easier with your business at your fingertips!</p>
+     <h5>Pro - £15 P/M </h5> <p>  Unlimited horses, training and competitions. Access to Staff, client and yard management tool. Make life easier with your business at your fingertips! </p>
 
       
 
@@ -179,10 +186,10 @@
     </div>
     </div> 
 
-    <section>
+    {% comment %} <section>
   
       <div class="block2  row">
-
+{% comment %} 
         <div><img src="{% static 'images/logo5.png' %} "class="pro-logo"/><h2>Riding and Tech</h2></div>
      
    
@@ -190,14 +197,14 @@
       <div class="col s12 m6 offset-m3  text-center" >
 
         <p class="text-center pro-text">Modern day riders can access a whole host of online resources. Technology is becoming another tool in a riders toolbox. Instead of going to different apps, websites or magazines, i-Horse will be the name you can trust to meet all your needs </p>
-    </div>
+    </div> {% endcomment %}
     
   
-  </div>
+  {% comment %} </div>
     </div>
      
 
-  </section>
+  </section> {% endcomment %} 
 
 
 
@@ -216,18 +223,18 @@
     <div class='col s12 social-holder '>
       <p>
        <a href="https://www.facebook.com/iHorse-104687624854220/"> <i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-   
-        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+{% comment %}    
+        <i class="fa fa-twitter-square" aria-hidden="true"></i> {% endcomment %}
         <i class="fa fa-instagram" aria-hidden="true"></i>
-        <i class="fa fa-vimeo-square" aria-hidden="true"></i>
-        <i class="fa fa-youtube-square" aria-hidden="true"></i>
+        {% comment %} <i class="fa fa-vimeo-square" aria-hidden="true"></i>
+        <i class="fa fa-youtube-square" aria-hidden="true"></i> {% endcomment %}
       </p>
      
 
 
     </div>
 
-<a href ="{% url 'pp'%}" target="_blank" class="privacy"> Privacy Policy</a> | <a href ="mailto:contact@i-horse.co.uk" target="_blank" class="privacy"> Contact</a>
+<a href ="{% url 'pp'%}" target="_blank" class="privacy"> Privacy Policy</a> | <a href ="mailto:contact@i-horse.co.uk" class="privacy"> Contact</a>
 </div>
  
 <script src="https://kit.fontawesome.com/6cdfe06436.js" crossorigin="anonymous"></script>

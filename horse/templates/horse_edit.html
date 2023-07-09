@@ -53,12 +53,17 @@
            <div class="col s12 col m12">
             {{  form.Left|materializecss}}
            </div>
-         
-
-
+      
+           {% comment %} <div class="col s12 col m12">
+            <input id="id_image" name="photo"  type="file"  accept="image/*"  >
+        </div> {% endcomment %}
     </div>
-
-
+    <div class="row blue_box">
+        <h4 style="font:24px;color:white;font-style:avenair;">Profile Picture</h4>
+        <div class="col s12 col m12" style="margin-left:20px;">
+            {{form.photo}}
+            </div>
+    </div>
 
     <div class="row blue_box">
         <h4 style="font:24px;color:white;font-style:avenair;">Personals</h4>
@@ -71,13 +76,18 @@
         <div class="col s12 col m6">
             {{ form.colour|materializecss}}
         </div>
+      
 
         <div class="col s12 col m6">
             {{ form.height|materializecss}}
         </div>
 
+     
+     
+
 
     </div>
+    
       <div class="row blue_box" > 
                       <h4 style="font:24px;color:white;font-style:avenair;">History / Special Needs</h4>
                        <div class="col s12 ">
@@ -147,6 +157,7 @@
       });
     
     
+
     
     </script>  
 

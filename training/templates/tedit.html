@@ -93,14 +93,15 @@
                         <li class="tab col s3"><a href="#test4"> <i class="material-icons small i_color">file_upload</i></a></li>
                         <li class="tab col s3"><a href="#test5"> <i class="material-icons small i_color">lightbulb_outline</i></a></li>
                       </ul>
+                      
                     </div>
                     <div id="test1" class="col s12">
                         <h2 class="hs__headline">Objectives</h2>
                         <div class="row blue_box">
                         <div class="col s12 m6" id='obj'>
-                            <h5 data-intro='`Session objectives can be added. Click add, to close the box click elsewhere on the screen'>My Objectives</h5>
+                            <h5 data-intro='Session objectives can be added. Click add, to close the box click elsewhere on the screen'>My Objectives</h5>
                             <a class="waves-effect waves-light btn modal-trigger" href="#modal1">ADD</a>
-                            <p class="white-text" data-intro='Come back here after the session and click to show objectives achived'> Click Objective to mark achieved</p>
+                            <p class="white-text" data-intro='Come back here after the session and click to show objectives achieved'> Click Objective to mark achieved</p>
                             <ol>
                                 {% for obj in listObj %}
                                 <li class="white-text"> <a href="{% url 'checkOb' pk=obj.pk %}">{{obj.objective}}</a>  <a href="{% url 'deleteobjective' pk=obj.pk%}"><i class="fa fa-times delete" aria-hidden="true"></i></a> {% if obj.Completed == True %}
@@ -110,8 +111,10 @@
                                 {% endfor %}
                             </ol>
                         </div>
+                        
                     </div>
                     </div>
+                    
                     <div id="test2" class="col s12">
                         <h2 class="hs__headline" data-intro='Add things that went well in the session, such as loaded well'>Little Wins</h2>
                         <div class="row blue_box" >
@@ -181,11 +184,15 @@
             <p>No files added</p>
             {% endif %}
           </div>
+          
         </div>
 
    
         
                     </div>
+                    <div class="col s2">
+                        <button type="submit" value="Upload"  data-position="bottom" data-tooltip="Click to Save" name="save_log" class="save-button">  <span><i class="fas fa-save" style="padding-right:0!important;"></i><br>SAVE</span></button></div>
+                </div>
                   </div>
             
               <div id="test5" class="col s12">
@@ -195,11 +202,16 @@
             {{form.lightbulb|materializecss}}
                 </div>
             </div>
+            
         </div>
+  
               </div>
+    
             </div>
           </div>
+        </div>
           {% csrf_token %}
+
         </form>
     
 </div>

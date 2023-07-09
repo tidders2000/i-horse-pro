@@ -26,7 +26,7 @@ def horse(request):
 #save horse form 
     form = horse_form()
     if request.method == "POST":
-        horsef = horse_form(request.POST)
+        horsef = horse_form(request.POST,request.FILES)
         if horsef.is_valid():
             horseSave = horsef.save(commit=False)
             horseSave.user = user
@@ -49,9 +49,9 @@ def photo(request,pk):
     if request.method == "POST":
             photo = request.FILES.get('id_image')
            
-            selected.photo = photo
-            selected.save()
-            obj=Images_new.objects.create(photo=photo,horse=selected,id=rand)
+         
+            Images_new.objects.create(photo=photo,horse=selected,id=rand)
+          
          
             messages.error(request, "photo Saved")  
 
@@ -171,7 +171,7 @@ def edithorse(request, pk):
     user = request.user
     if request.method == "POST":
         request.session['horse'] = pk
-        horsef = horse_form(request.POST, instance=instance)
+        horsef = horse_form(request.POST,request.FILES, instance=instance)
         if horsef.is_valid():
             horsef.save()
             messages.error(request, "Horse Updated")

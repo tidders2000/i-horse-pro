@@ -239,3 +239,6 @@ def emailList(request):
 
 
     return redirect(reverse('index'))
+
+def help(request):
+    return render(request, 'help.html')

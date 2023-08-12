@@ -100,12 +100,12 @@ class EventFeed(ICalFeed):
         return "{}".format(item.event)
 
     def item_description(self, item):
-        return item.notes
+        return  item.horse.stableName
 
     def item_start_datetime(self, item):
         return item.due
 
     def item_link(self, item):
-        return "http://i-horse.co.uk"
+        return "https://i-horse.co.uk"
 
 

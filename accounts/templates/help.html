@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}{% load static%} {% load materializecss %}{% block page_title %}Settings{% endblock %} {% block page_heading %}Profile{% endblock %}
+ {% block content %}
+  <!-- core css -->
+  <link rel="stylesheet" href="{% static 'css/help.css' %}">
+
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapid-key" content="{{ vapid_key }}">
+    {% if user.id %}
+        <meta name="user_id" content="{{ user.id }}">
+    {% endif %} 
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12 breadcrumb">
+        <a href="{% url 'home' %}" class="breadcrumb">Home</a>
+         
+        <a href="#!" class="breadcrumb">Help</a>
+       
+      </div>
+    </div>
+  </nav>
+  <div class="card-panel grey darken-4">
+
+
+ <i class="fas fa-horse help-icon"></i> <h5>ADD A HORSE </h5>
+<ol type='1'>
+ <li>Choose either + Add Horse or + New</li>
+  <li>Fill in as much basic info as you can </li>
+    <li> Click Add Horse </li>
+      <li> Add any appointments / history you need to add. Don’t forget to press save! You can use the back button or go back into horses to add More. You also have the option of adding to your calendar. </li>
+        <li> Add photos, link to performance record and any other details you have </li>
+</ol>
+ <p> When you have several horses uploaded - you may need to use the Horses button as on the home page you will only see the first four. </p>
+
+ <i class="fas fa-book-open help-icon"></i><h5>ADD A TRAINING SESSION</h5>
+ <ol type='1'>
+<li>Choose Training. </li>
+  <li>Choose a discipline </li>
+    <li>This will take you to the form to fill out </li>
+      <li>Add as much detail as you like! Use the floorpan to help you remember the exercises.</li> 
+        <li>Don’t forget to click save!   </li>
+        </ol>
+
+
+        <i class="fas fa-award help-icon"></i> <h5> ADD A COMPETITION </h5>
+<ol>
+<li> Choose comps</li>
+  <li> Choose Add new</li>
+    <li>Put details and press save</li>
+      <li>Add Entries (if you want to)</li>
+        <li>After the comp - add your lightbulb moment and performance. You can put any other notes here too. </li>
+</ol>
+<p>Future Training and comps will be at the top of your home page - once you have completed them - they will go down into the history section (white boxes). You can edit and review at any time. </p>
+ <div class="row">
+  <div class="col s12">
+    <i class="fa fa-calendar help-icon"></i> <h5> IN APP CALENDAR</h5>
+
+    <p>Any past or upcoming appointments, training or events will be in your app calendar. You will also have the option to send them to your iCal or android calendar at the time of making the appointment. If you forget - just click on the appointment in the list on your home page and you can add from there. </p>
+    
+
+  </div>
+</div>
+</div>
+
+
+
+   <script src="{% static 'js/app.js' %}"></script>
+
+ {% endblock %}

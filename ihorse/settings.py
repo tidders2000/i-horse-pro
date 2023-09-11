@@ -27,7 +27,7 @@ ALLOWED_HOSTS = ['i-horse.herokuapp.com', '127.0.0.1','www.i-horse.co.uk','i-hor
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 
